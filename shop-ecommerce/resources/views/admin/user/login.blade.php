@@ -9,19 +9,19 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178 form" id="form-login-admin">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178 form" id="form-login-admin" action="/admin/user/login/store" method="post">
 					<span class="login100-form-title">
 						ĐĂNG NHẬP
 					</span>
 
-					<div class=" form-group wrap-input100 validate-input m-b-16" data-validate="Vui lòng nhập tên người dùng">
-						<input class="input100" type="text" name="username" id="username" placeholder="Tên Người Dùng">
+					<div class=" form-group wrap-input100 validate-input m-b-16" data-validate="Vui lòng nhập email">
+						<input class="input100" type="email" name="email" id="email" placeholder="Email">
 						<span class="focus-input100"></span>
 						<!--<span class="form-message"></span>-->
 					</div>
 
 					<div class="form-group wrap-input100 validate-input" data-validate = "Vui lòng nhập mật khẩu">
-						<input class="input100" type="password" id="password" name="pass" placeholder="Mật Khẩu">
+						<input class="input100" type="password" id="password" name="password" placeholder="Mật Khẩu">
 						<span class="focus-input100"></span>
 						<!--<span class="form-message"></span>-->
 					</div>
@@ -35,7 +35,7 @@
 					<div class="flex-col-c p-t-100 p-b-40">
 						
 					</div>
-					
+					@csrf 
 				</form>
 			</div>
 		</div>

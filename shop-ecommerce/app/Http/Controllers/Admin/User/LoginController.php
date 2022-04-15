@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\c;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -38,7 +40,22 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          
+        $this->validate($request,[
+            'email' => 'required|email:filter|regex:/^.+@.+$/i',
+            'password' => 'required|min:5'
+        ]);
+        $check=['email' =>$request->input('email') ,
+        'password' => $request->input('password')
+         ];
+        // dd($check);
+
+        if (Auth::attempt($check,$request->input('remember'))) {
+            // Authentication was successful...
+            return redirect()->route('admin');
+        }
+      //  Session()->flash('error','Email hoặc mật khẩu không chính xác!!');
+        return redirect()->back();
     }
 
     /**

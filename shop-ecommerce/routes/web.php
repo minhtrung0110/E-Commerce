@@ -20,6 +20,7 @@ Route::get('/', function () {
 /*==========Admin====================*/
 Route::prefix('admin')->group(function(){
   Route::get('/user/login',[LoginController::class,'index'])->name('login');
+  Route::post('/user/login/store',[LoginController::class,'store']);
 });
 /*--------Check  Login admin-----------*/
 Route::middleware('auth')->group(function (){

@@ -11,6 +11,7 @@ https://github.com/barryvdh/laravel-debugbar <br>
 Dùng câu lệnh: composer require barryvdh/laravel-debugbar --dev
 
 ## MÔ TẢ PROJECT
+- Mỗi lần edit .evn nên:  composer dump-autoload <br>
 
 ## VỀ MIGRATION
 #### Chúng ta cần quan tâm là 2 function up() và down():
@@ -21,9 +22,14 @@ public function down() dùng phục hồi hay xóa bảng, ... - để thực th
 #### Để Xoá Table: <br>
 1. trong function down(){ Schema::dropIfExists('table xoá');}<br>
 2. Dùng php artisan migrate:rollback để chạy down<br>
-3. Dùng php artisan migrate:refresh để chạy xoá xong chạy tạo db . ta có thể hiểu => php artisan migrate:refresh = php artisan <br>migrate:rollback + php artisan migrate.<br>
+3. Dùng php artisan migrate:refresh để chạy xoá xong chạy tạo db . ta có thể hiểu<br> => php artisan migrate:refresh = php artisan migrate:rollback + php artisan migrate.<br>
 #### Các table có sẵn (default)
 Lúc này đã có 4 bảng được tạo trong Database myproject:<br>
 migrations: chứa dữ liệu của Migration, lưu trữ thông tin các bảng dữ liệu được tạo trong Migration.<br>
 password_resets: bảng reset password có sẵn trong thư mục /database/migrations/, đây là table tồn tại sẵn của Laravel<br>
 users: bảng user có sẵn trong thư mục /database/migrations/, đây là table tồn tại sẵn của Laravel<br>
+
+### Cách Xoá 1 db có sẵn:
+php artisan migrate:rollback --path=/database/migrations/your-specific-migration.php<br>
+Trong đó: your-specific-migration.php là file (table) cần DROP.<br>
+####       php artisan make:model --migration  images
