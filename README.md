@@ -11,3 +11,20 @@ https://github.com/barryvdh/laravel-debugbar <br>
 Dùng câu lệnh: composer require barryvdh/laravel-debugbar --dev
 
 ## MÔ TẢ PROJECT
+
+## VỀ MIGRATION
+#### Chúng ta cần quan tâm là 2 function up() và down():
+
+public function up() dùng để thêm, bớt, thay đổi, ... nội dung bảng cơ sở dữ liệu - để thực thi ta cần sử dụng lệnh php artisan migrate
+public function down() dùng phục hồi hay xóa bảng, ... - để thực thi ta cần sử dụng lệnh php artisan migrate:rollback
+- cấu hình xong ta chạy php artisan migrate để build database cho toàn bộ các file trong database/migrations/<br>
+#### Để Xoá Table: <br>
+1. trong function down(){ Schema::dropIfExists('table xoá');}<br>
+2. Dùng php artisan migrate:rollback để chạy down
+3. Dùng php artisan migrate:refresh để chạy xoá xong chạy tạo db . ta có thể hiểu => php artisan migrate:refresh = php artisan migrate:rollback + php artisan migrate.<br>
+#### Các table có sẵn (default)
+Lúc này đã có 4 bảng được tạo trong Database myproject:<br>
+migrations: chứa dữ liệu của Migration, lưu trữ thông tin các bảng dữ liệu được tạo trong Migration.
+news: đây là bảng chúng ta đã tạo.
+password_resets: bảng reset password có sẵn trong thư mục /database/migrations/, đây là table tồn tại sẵn của Laravel
+users: bảng user có sẵn trong thư mục /database/migrations/, đây là table tồn tại sẵn của Laravel
