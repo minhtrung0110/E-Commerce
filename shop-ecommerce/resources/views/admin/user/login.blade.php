@@ -11,37 +11,30 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178 form" id="form-login-admin">
 					<span class="login100-form-title">
-						Sign In
+						ĐĂNG NHẬP
 					</span>
 
-					<div class=" form-group wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="text" name="username" id="username" placeholder="Username">
-						<!--<span class="focus-input100"></span>-->
-						<span class="form-message"></span>
+					<div class=" form-group wrap-input100 validate-input m-b-16" data-validate="Vui lòng nhập tên người dùng">
+						<input class="input100" type="text" name="username" id="username" placeholder="Tên Người Dùng">
+						<span class="focus-input100"></span>
+						<!--<span class="form-message"></span>-->
 					</div>
 
-					<div class="form-group wrap-input100 validate-input" data-validate = "Please enter password">
-						<input class="input100" type="password" id="password" name="pass" placeholder="Password">
-						<!--<span class="focus-input100"></span>-->
-						<span class="form-message"></span>
+					<div class="form-group wrap-input100 validate-input" data-validate = "Vui lòng nhập mật khẩu">
+						<input class="input100" type="password" id="password" name="pass" placeholder="Mật Khẩu">
+						<span class="focus-input100"></span>
+						<!--<span class="form-message"></span>-->
 					</div>
 
-					<div class="text-right p-t-13 p-b-23">
-						<span class="txt1">
-							Forgot
-						</span>
-
-						<a href="#" class="txt2">
-							Username / Password?
-						</a>
-					</div>
-
+					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Sign in
+							Đăng Nhập
 						</button>
 					</div>
-
+					<div class="flex-col-c p-t-100 p-b-40">
+						
+					</div>
 					
 				</form>
 			</div>
@@ -50,7 +43,7 @@
 	
 	@include('admin.footer')
 	<script>
-  
+ 		 /*
 	  document.addEventListener('DOMContentLoaded', function () {
 		// Mong muốn của chúng ta
 		Validator({
@@ -68,6 +61,9 @@
 			console.log(data);
 		  }//nếu muốn submit theo hành vi mặc định của form thì rào cái này lại
 		});
+		// Form này hoat dộng tốt
+
+	});*/
 	</script>
 </body>
 </html>

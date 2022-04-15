@@ -14,6 +14,6 @@
 <!--===============================================================================================-->
 	<script src="../../template/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<!--<script src="../../template/js/main.js"></script>-->
+	<script src="../../template/js/main.js"></script>
 	<script src="../../template/js/validator.js"></script>
     @yield('footer')
