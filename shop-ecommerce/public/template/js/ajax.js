@@ -4,9 +4,9 @@ $.ajaxSetup({
     }
 });
 
-//Login_Admin
+/*------------------------------------Login_Admin-------------------------*/
 
-function showValidate(input) {
+function showError(input) {
     var thisAlert = $(input).parent();
 
     $(thisAlert).addClass('alert-error');
@@ -37,11 +37,11 @@ $(document).ready(function(){
                     if (respond.error === true) {                       
                         if(respond.fail_node == 'email') {
                            let input=document.querySelector('input[type=email]');
-                           showValidate(input)
+                           showError(input)
                         }  
                         else if(respond.fail_node == 'password') {
                             let input=document.querySelector('input[type=password]');
-                            showValidate(input)
+                            showError(input)
                            
                         }
                     } 
@@ -60,11 +60,11 @@ $(document).ready(function(){
                       if (respond.error === true) {                       
                           if(respond.fail_node == 'email') {
                              let input=document.querySelector('input[type=email]');
-                             showValidate(input)
+                             showError(input)
                           }  
                           else if(respond.fail_node == 'password') {
                               let input=document.querySelector('input[type=password]');
-                              showValidate(input)
+                              showError(input)
                           }
                       } else {
                           console.log(respond.fail_node);
