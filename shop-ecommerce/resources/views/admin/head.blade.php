@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../template/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('template/vendor/animate/animate.css')}}">
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="../../template/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
