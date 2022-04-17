@@ -12,15 +12,13 @@ use App\Http\Controllers\Admin\User\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('/',[LoginController::class,'show']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*==========Admin====================*/
 Route::prefix('admin')->group(function(){
   Route::get('/user/login',[LoginController::class,'index'])->name('login');
-  Route::post('/user/login/store',[LoginController::class,'store']);
+  Route::post('/user/login/store/',[LoginController::class,'store'])->name('check_login_admin');
 });
 /*--------Check  Login admin-----------*/
 Route::middleware('auth')->group(function (){

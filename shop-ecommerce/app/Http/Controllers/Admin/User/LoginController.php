@@ -6,9 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\c;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Services\StaffService;
+use App\Models\Staff;
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
+
+    protected $staffService;
+
+    public function __construct(StaffService $staffService)
+    {
+        $this->staffService = $staffService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -40,22 +49,56 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-          
+             
         $this->validate($request,[
             'email' => 'required|email:filter|regex:/^.+@.+$/i',
             'password' => 'required|min:5'
         ]);
-        $check=['email' =>$request->input('email') ,
-        'password' => $request->input('password')
-         ];
-        // dd($check);
-
+        //get Staff
+        $staff=$this->staffService->findStaff($request->input('email'));
+        if(is_null($staff))
+        return response()->json([
+            'error'=>true,
+            'fail_node'=>'email',
+            'message'=>'Tài Khoản Không Tồn Tại'
+        ]);
+        else {
+            if (Hash::check($request->input('password'), $staff->password)) {
+                return response()->json([
+                    'error'=>false,
+                    'fail_node'=>null,
+                    'message'=>'Đăng Nhập Thành Công.'
+                ]);
+            }
+            else
+            return response()->json([
+                'error'=>true,
+                'fail_node'=>'password',
+                'message'=>'Mật Khẩu Không Đúng'
+            ]);
+        
+    }
+/*
+        $result=$this->staffService->checkLogin($request->input('email'),$request->input('password'));
+        
+        if(count($result)>0){
+            return response()->json([
+                'error'=>false,
+                'message'=>'Đăng Nhập Thành Công.'
+            ]);
+        }
+        return response()->json([
+            'error'=>true,
+            'message'=>'Thông Tin Đăng Nhập Sai!!!'
+        ]);*/
+           //return redirect()->back();
+         /*
         if (Auth::attempt($check,$request->input('remember'))) {
             // Authentication was successful...
             return redirect()->route('admin');
         }
-      //  Session()->flash('error','Email hoặc mật khẩu không chính xác!!');
-        return redirect()->back();
+      //  Session()->flash('error','Email hoặc mật khẩu không chính xác!!');*/
+        
     }
 
     /**
@@ -64,9 +107,12 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('admin.dashboard',[
+            'title'=>'Danh sách danh mục',
+            'staff'=>$this->staffService->findStaff('admin@gmail.com')
+        ]);
     }
 
     /**

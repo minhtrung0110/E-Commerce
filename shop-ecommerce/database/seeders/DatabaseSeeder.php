@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(StaffSeeder::class);
-       // \App\Models\Staff::factory(10)->create();
+        //   \App\Models\Staff::factory(15)->create();
     }
 }

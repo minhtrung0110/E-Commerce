@@ -9,40 +9,40 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178 form" id="form-login-admin" action="/admin/user/login/store" method="post">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178 form" id="form-login-admin" >
 					<span class="login100-form-title">
 						ĐĂNG NHẬP
 					</span>
 
-					<div class=" form-group wrap-input100 validate-input m-b-16" data-validate="Vui lòng nhập email">
+					<div class=" form-group wrap-input100 validate-input m-b-16 email-message-error " data-validate="Vui lòng nhập email" data-error="Email Không Tồn Tại">
 						<input class="input100" type="email" name="email" id="email" placeholder="Email">
-						<span class="focus-input100"></span>
-						<!--<span class="form-message"></span>-->
+						<span class="focus-input100"></span>			
 					</div>
-
-					<div class="form-group wrap-input100 validate-input" data-validate = "Vui lòng nhập mật khẩu">
+					<div class="form-group wrap-input100 validate-input password-message-error" data-validate = "Vui lòng nhập mật khẩu"  data-error="Mật Khẩu Không Chính Xác">
 						<input class="input100" type="password" id="password" name="password" placeholder="Mật Khẩu">
 						<span class="focus-input100"></span>
-						<!--<span class="form-message"></span>-->
-					</div>
 
+					</div>
+					@csrf 
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button type="button" class="login100-form-btn" id="btn-form-login">
 							Đăng Nhập
 						</button>
 					</div>
 					<div class="flex-col-c p-t-100 p-b-40">
 						
 					</div>
-					@csrf 
+				
 				</form>
 			</div>
 		</div>
 	</div>
 	
 	@include('admin.footer')
-	<script>
+	<script type="text/javascript">
+	
+		
  		 /*
 	  document.addEventListener('DOMContentLoaded', function () {
 		// Mong muốn của chúng ta

@@ -33,3 +33,9 @@ users: bảng user có sẵn trong thư mục /database/migrations/, đây là t
 php artisan migrate:rollback --path=/database/migrations/your-specific-migration.php<br>
 Trong đó: your-specific-migration.php là file (table) cần DROP.<br>
 ####       php artisan make:model --migration  images
+###         php artisan db:seed --class=user
+
+### Tạo Data Tự Đông Cho Databases
+Sử dụng factories:<br>
+1.https://onlinewebtutorblog.com/seeder-with-faker-library-concept-in-laravel-8/
+
