@@ -14,7 +14,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        $tilte='Dashboard';
+        return view('admin.dashboard',compact('tilte'));
     }
 
     /**

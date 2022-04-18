@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\User\LoginController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +16,8 @@ use App\Http\Controllers\Admin\User\LoginController;
 */
 //Route::get('/',[LoginController::class,'show']);
 
-
+Route::get('/main',[DashboardController::class,'index'])->name('admin.dashboard');
+Route::get('/product',[ProductController::class,'index'])->name('admin.products');
 /*==========Admin====================*/
 Route::prefix('admin')->group(function(){
   Route::get('/user/login',[LoginController::class,'index'])->name('login');
@@ -23,8 +26,9 @@ Route::prefix('admin')->group(function(){
 /*--------Check  Login admin-----------*/
 Route::middleware('auth')->group(function (){
   Route::prefix('admin')->group(function(){
-      Route::get('/',[MainController::class,'index'])->name('admin');
-      Route::get('/main',[MainController::class,'index']);
+      // Route::get('/',[MainController::class,'index'])->name('admin');
+      // Route::get('/main',[MainController::class,'index']);
+      Route::get('/main',[DashboardController::class,'index'])->name('admin') ;
       //Menu
       Route::prefix('/menus')->group(function(){
        Route::get('/add',[MenuController::class,'create'])->name('admin.menus.add');
