@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Services\StaffService;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
 
@@ -64,6 +65,9 @@ class LoginController extends Controller
         ]);
         else {
             if (Hash::check($request->input('password'), $staff->password)) {
+                // Lưu Session 
+                Session::put("staff_id",$staff->id );
+                Session::put("staff_role_id",$staff->role_id );
                 return response()->json([
                     'error'=>false,
                     'fail_node'=>null,
@@ -78,27 +82,13 @@ class LoginController extends Controller
             ]);
         
     }
-/*
-        $result=$this->staffService->checkLogin($request->input('email'),$request->input('password'));
         
-        if(count($result)>0){
-            return response()->json([
-                'error'=>false,
-                'message'=>'Đăng Nhập Thành Công.'
-            ]);
+    }
+    public function logout(Request $request){
+        if ($request->session()->has('staff_id')) {
+            $request->session()->flush();
         }
-        return response()->json([
-            'error'=>true,
-            'message'=>'Thông Tin Đăng Nhập Sai!!!'
-        ]);*/
-           //return redirect()->back();
-         /*
-        if (Auth::attempt($check,$request->input('remember'))) {
-            // Authentication was successful...
-            return redirect()->route('admin');
-        }
-      //  Session()->flash('error','Email hoặc mật khẩu không chính xác!!');*/
-        
+        return back();
     }
 
     /**
@@ -146,6 +136,6 @@ class LoginController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

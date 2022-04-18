@@ -8,12 +8,12 @@ use App\Http\Controllers\admin\OrderController;
 
 
 /*==========Admin====================*/
-  Route::get('/admin/user/login',[LoginController::class,'index'])->name('login');
+  Route::get('/admin/user/login',[LoginController::class,'index'])->name('login.admin');
   Route::post('admin/user/login/store/',[LoginController::class,'store'])->name('check_login_admin');
-
+/*==========Logout Admin====================*/
+Route::get('/admin/logout',[LoginController::class,'logout'])->name('logout.admin');
 /*--------Check  Login admin-----------*/
-//Route::middleware(['auth'])->group(function (){
-  Route::prefix('/admin')->group(function(){
+Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
      
       Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard') ;
       //Products
@@ -49,4 +49,5 @@ use App\Http\Controllers\admin\OrderController;
      
 
   });
-//});
+//Logout Admin
+
