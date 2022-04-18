@@ -5,7 +5,7 @@
     <a href="{{Route('admin.dashboard')}}" class="nav-link ">
         <i class="nav-icon fas fa-tachometer-alt"></i>
       <p>
-        Dashboard
+        Tổng Quan
         {{-- <span class="badge badge-info right">2</span> --}}
       </p>
     </a>
@@ -18,10 +18,22 @@
     <a href="{{Route('admin.products')}}" class="nav-link">
       <i class="nav-icon fas fa-tachometer-alt"></i>
       <p>
-        Product
+        Sản Phẩm
         {{-- <span class="badge badge-info right">2</span> --}}
       </p>
     </a>
+</li>
+{{-- QL-nhap hang--}}
+
+    
+<li class="nav-item">
+  <a href="{{Route('admin.imports')}}" class="nav-link">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+      Nhập Hàng
+      {{-- <span class="badge badge-info right">2</span> --}}
+    </p>
+  </a>
 </li>
 {{-- QL đơn hàng --}}
 
@@ -30,7 +42,7 @@
   <a href="{{Route('admin.orders')}}" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
-      Order
+      Đơn Hàng
       <span class="badge badge-info right">2</span>
     </p>
   </a>
