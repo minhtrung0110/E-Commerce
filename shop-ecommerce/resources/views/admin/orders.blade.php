@@ -3,17 +3,17 @@
 {{$tilte}}
 @endsection 
  {{-- itemt navbar --}}
-@section('product')
+{{-- @section('order')
 
   <ul class="nav nav-treeview">
     <li class="nav-item">
       <a href="pages/layout/top-nav.html" class="nav-link active">
         <i class="far fa-circle nav-icon"></i>
-        <p>Product</p>
+        <p>Order</p>
       </a>
     </li>
   </ul>
-@endsection 
+@endsection  --}}
  
  
  {{-- content  --}}

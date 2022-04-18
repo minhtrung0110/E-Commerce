@@ -9,6 +9,6 @@ class ProductController extends Controller
 {
     public function index(){
         $tilte='Product';
-        return view('admin.product',compact('tilte'));
+        return view('admin.products',compact('tilte'));
     }
 }
