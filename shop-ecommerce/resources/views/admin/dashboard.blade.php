@@ -1,5 +1,8 @@
 @extends('admin.layout.layout') 
-
+{{-- đừng xóa title bên đây nó bug ak --}}
+@section('title')
+{{$title}}
+@endsection 
  {{-- itemt navbar --}}
 
  

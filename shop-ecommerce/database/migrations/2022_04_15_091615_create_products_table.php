@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->integer('group_id');
             $table->string('name');
             $table->text('description');
+            $table->integer('active');
             $table->timestamps();
         });
     }

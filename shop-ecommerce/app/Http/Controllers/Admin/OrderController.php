@@ -9,7 +9,7 @@ class OrderController extends Controller
 {
     //
     public function index(){
-        $tilte='Order';
-        return view('admin.orders',compact('tilte'));
+        $title='Order';
+        return view('admin.orders',compact('title'));
     }
 }

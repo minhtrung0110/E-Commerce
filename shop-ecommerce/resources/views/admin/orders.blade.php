@@ -1,6 +1,6 @@
 @extends('admin.layout.layout') 
-@section('tilte')
-{{$tilte}}
+@section('title')
+{{$title}}
 @endsection 
  {{-- itemt navbar --}}
 {{-- @section('order')

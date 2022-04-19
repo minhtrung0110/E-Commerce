@@ -12,17 +12,31 @@
 </li>
 
 {{-- QL-san pham --}}
-
-    
 <li class="nav-item">
-    <a href="{{Route('admin.products')}}" class="nav-link">
-      <i class="nav-icon fas fa-tachometer-alt"></i>
-      <p>
-        Sản Phẩm
-        {{-- <span class="badge badge-info right">2</span> --}}
-      </p>
-    </a>
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+      Sản Phẩm
+      {{-- <span class="badge badge-info right">2</span> --}}
+    </p>
+    <i class="fas fa-angle-left right"></i>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{Route('admin.products')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>danh sách sản phẩm</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="pages/tables/data.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>thêm sản phẩm</p>
+      </a>
+    </li>
+  </ul>
 </li>
+    
 {{-- QL-nhap hang--}}
 
     
