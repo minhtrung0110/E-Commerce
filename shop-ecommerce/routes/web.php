@@ -12,10 +12,10 @@ Route::get('/list',[ProductController::class,'index'])->name('admin.products');
 
   Route::get('/admin/user/login',[LoginController::class,'index'])->name('login');
   Route::post('admin/user/login/store/',[LoginController::class,'store'])->name('check_login_admin');
-
+/*==========Logout Admin====================*/
+Route::get('/admin/logout',[LoginController::class,'logout'])->name('logout.admin');
 /*--------Check  Login admin-----------*/
-//Route::middleware(['auth'])->group(function (){
-  Route::prefix('/admin')->group(function(){
+Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
      
       Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard') ;
       //Products
@@ -51,4 +51,5 @@ Route::get('/list',[ProductController::class,'index'])->name('admin.products');
      
 
   });
-//});
+//Logout Admin
+

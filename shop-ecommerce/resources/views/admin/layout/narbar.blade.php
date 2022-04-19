@@ -61,3 +61,22 @@
     </p>
   </a>
 </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="nav-item">
+ <a type="button" class="btn btn-danger center btn-logout-admin" href="{{route('logout.admin')}}">Đăng Xuất</a>
+</li>
