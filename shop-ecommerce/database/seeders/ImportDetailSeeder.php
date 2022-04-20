@@ -15,7 +15,7 @@ class ImportDetailSeeder extends Seeder
     {
         DB::table('import_details')->insert([
             ['import_id'=>1,'product_id' => 1,'provider_id'=>1,'amount'=>10,'price'=>300000],
-            ['import_id'=>1,'product_id' => 5,'provider_id'=>2,'amount'=>10,'price'=>300000],
+            ['import_id'=>2,'product_id' => 5,'provider_id'=>2,'amount'=>10,'price'=>300000],
             ['import_id'=>2,'product_id' => 1,'provider_id'=>2,'amount'=>5,'price'=>300000],
             ['import_id'=>2,'product_id' => 2,'provider_id'=>1,'amount'=>2,'price'=>450000],
             ['import_id'=>2,'product_id' => 3,'provider_id'=>3,'amount'=>2,'price'=>390000],
