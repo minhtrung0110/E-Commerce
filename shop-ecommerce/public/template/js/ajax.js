@@ -49,7 +49,7 @@ $(document).ready(function(){
             })
     })
     // ONCLICK 2 cái đều phải có
-    $('#btn-form-login').click(function () {
+    $('#btn-form-login-admin').click(function () {
        
                   $.ajax({
                   type: 'POST',
