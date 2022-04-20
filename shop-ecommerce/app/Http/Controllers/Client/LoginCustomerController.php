@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Services\StaffService;
-use App\Models\Staff;
+use App\Http\Services\CustomerService;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-class DashboardController extends Controller
-{
-    protected $staffService;
 
-    public function __construct(StaffService $staffService)
+class LoginCustomerController extends Controller
+{
+    protected $customerService;
+
+    public function __construct(CustomerService $customerService)
     {
-        $this->staffService = $staffService;
+        $this->customerService = $customerService;
     }
     /**
      * Display a listing of the resource.
@@ -21,10 +23,8 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        return view('admin.dashboard',[
-            'title'=>'Quản Trị Website Bán Hàng',
-            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
+    {
+        return view('client.user.login',[
         ]);
     }
 
@@ -47,6 +47,47 @@ class DashboardController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function showregistery(){
+        return view('client.user.registery',[
+            
+        ]);
+    }
+
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function storeRegistery(Request $request ){
+            
+            $this->validate($request,[
+                'email' => 'required|email:filter|regex:/^.+@.+$/i',
+                'password' => 'required|min:5'
+            ]);
+            //get Staff
+            $customer=$this->customerService->findCustomerwithEmail($request->input('email'));
+            if(is_null($customer)){
+                // thuc hien viec đăng ký
+                
+            }
+            else return response()->json([
+                'error'=>true,
+                'fail_node'=>'email',
+                'message'=>'Email Đã Tồn Tại'
+            ]);
+            
+        
     }
 
     /**

@@ -12,6 +12,9 @@ class StaffService {
         
         return Staff::select('id','role_id','email','password')->where('email',$email)->first();
     }
+    public function getInFo($id){
+        return Staff::all()->where('id',$id)->first();
+    }
 
  
     

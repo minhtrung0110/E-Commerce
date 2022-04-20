@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	@include('admin.head')
+	@include('admin.user.head')
 </head>
 <body>
 	
@@ -26,7 +26,7 @@
 					@csrf 
 					
 					<div class="container-login100-form-btn">
-						<button type="button" class="login100-form-btn" id="btn-form-login">
+						<button type="button" class="login100-form-btn" id="btn-form-login-customer">
 							Đăng Nhập
 						</button>
 					</div>
@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	
-	@include('admin.footer')
+	@include('admin.user.footer')
 	<script type="text/javascript">
 	
 		

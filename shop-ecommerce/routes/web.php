@@ -2,15 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\User\LoginController;
+use App\Http\Controllers\Client\LoginCustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\admin\OrderController;
 
 
 /*==========Admin====================*/
-Route::get('/list',[ProductController::class,'index'])->name('admin.products');
+Route::get('/list',[ProductController::class,'index'])->name('admin.products.add');
 
-  Route::get('/admin/user/login',[LoginController::class,'index'])->name('login');
+  Route::get('/admin/user/login',[LoginController::class,'index'])->name('admin.login');
   Route::post('admin/user/login/store/',[LoginController::class,'store'])->name('check_login_admin');
 /*==========Logout Admin====================*/
 Route::get('/admin/logout',[LoginController::class,'logout'])->name('logout.admin');
@@ -51,5 +52,11 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
      
 
   });
-//Logout Admin
 
+
+  /*====================CUSTOMER=========================*/
+
+  Route::get('/login',[LoginCustomerController::class,'index'])->name('login');
+  Route::post('/login/store/',[LoginCustomerController::class,'store'])->name('check_login');
+  Route::get('/registery',[LoginCustomerController::class,'showRegistery'])->name('registery');
+  Route::post('/registery/store/',[LoginCustomerController::class,'storeRegistery'])->name('check_registery');

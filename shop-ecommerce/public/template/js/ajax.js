@@ -50,6 +50,7 @@ $(document).ready(function(){
     })
     // ONCLICK 2 cái đều phải có
     $('#btn-form-login').click(function () {
+       
                   $.ajax({
                   type: 'POST',
                   datatype: 'JSON',
@@ -74,4 +75,33 @@ $(document).ready(function(){
                   }
               })
       })
+})
+/*===----REGISTERY CUSTOMER------*/
+/*Hàm ẩn messa on focus*/
+
+/*     var input=document.querySelector('.form-group .from-email-registery')
+        input.focus(()=>{
+            input.removeClass('invalid-emai')
+        })*/
+       
+
+/*Ajax*/
+$('.form-submit-registery').click(function () {
+    console.log('CLick Click')
+
+    $.ajax({
+    type: 'POST',
+    datatype: 'JSON',
+    data: $('#form-registery').serialize(),
+    url: '/registery/store/',
+    success: function (respond) {
+        
+        if (respond.error === true) {                       
+            let input=document.querySelector('.form-group .form-message-email');
+            input.innerText=respond.message
+            input.classList.add('invalid-email')
+            
+        } 
+    }
+    })
 })

@@ -17,7 +17,7 @@ class CheckLoginAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $url=route('login.admin');
+        $url=route('admin.login');
         if(!$this->isLogin($request)) return redirect($url);
          return $next($request);// đúng thi tiếp tục
      }
