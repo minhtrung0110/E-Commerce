@@ -6,7 +6,7 @@
     [ Validate ]*/
     var input = $('.validate-input .input100');
 
-    $('#btn-form-login').on('click',function(){
+    $('#btn-form-login-admin').on('click',function(){
         var check = true;
 
         for(var i=0; i<input.length; i++) {

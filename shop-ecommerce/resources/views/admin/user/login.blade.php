@@ -26,7 +26,7 @@
 					@csrf 
 					
 					<div class="container-login100-form-btn">
-						<button type="button" class="login100-form-btn" id="btn-form-login-customer">
+						<button type="button" class="login100-form-btn" id="btn-form-login-admin">
 							Đăng Nhập
 						</button>
 					</div>
