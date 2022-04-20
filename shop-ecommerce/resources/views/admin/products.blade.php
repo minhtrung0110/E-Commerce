@@ -14,8 +14,11 @@
       <thead>
         <tr>
           <th scope="col">STT</th>
+          <th scope="col">Category</th>
           <th scope="col">Product_Name</th>
           <th scope="col">Description</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Price</th>
           <th scope="col">Active</th>
           <th scope="col">#</th>
         </tr>
@@ -26,6 +29,9 @@
         <tr>
           <th scope="row">{{++$key}}</th>
           <td>{{$product->name}}</td>
+          <td>{{$product->name}}</td>
+          <td>{{$product->description}}</td>
+          <td>{{$product->description}}</td>
           <td>{{$product->description}}</td>
       
           <td>{!! App\Helpers\helper::active($product->active) !!}</td>

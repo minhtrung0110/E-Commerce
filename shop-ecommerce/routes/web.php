@@ -9,7 +9,7 @@ use App\Http\Controllers\admin\OrderController;
 
 
 /*==========Admin====================*/
-Route::get('/list',[ProductController::class,'index'])->name('admin.products.add');
+Route::get('/list',[ProductController::class,'index'])->name('admin.products');
 
   Route::get('/admin/user/login',[LoginController::class,'index'])->name('admin.login');
   Route::post('admin/user/login/store/',[LoginController::class,'store'])->name('check_login_admin');

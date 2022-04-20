@@ -136,7 +136,15 @@
           <img src="{{asset('dashboard/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{$staff->first_name }} {{ $staff->last_name }}</a>
+          {{-- FIX tạm thời  --}}
+          @hasSection ('Staff')
+          <a href="#" class="d-block">
+            {{$staff->first_name }} {{ $staff->last_name }}</a>
+                
+            @else
+            <a href="#" class="d-block">
+              ADMIN</a>
+            @endif
         </div>
       </div>
 
