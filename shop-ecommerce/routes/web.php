@@ -21,7 +21,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard') ;
       //Products
       Route::prefix('/products')->name('admin')->group(function(){
-        Route::get('/list',[ProductController::class,'index'])->name('products');
+        Route::get('/list',[ProductController::class,'index'])->name('admin.products');
        Route::get('/add',[ProductController::class,'create']);
        Route::post('/add',[ProductController::class,'store']);//handle
        Route::DELETE('/destroy',[ProductController::class,'destroy'])->name('product.delete');//handle
