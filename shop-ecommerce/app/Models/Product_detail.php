@@ -14,8 +14,6 @@ class Product_detail extends Model
         'code_color',
         'amount',
         'price',
-        'created_at',
-        'update_at'
     ];
     public function product(){
         return $this->hasOne(Product::class,'id','product_id');

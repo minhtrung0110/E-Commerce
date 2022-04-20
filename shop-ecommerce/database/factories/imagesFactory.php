@@ -14,8 +14,7 @@ class imagesFactory extends Factory
     {
         return [
            'id'=>$this->faker->numberBetween(0,20),
-           'img' => $this->faker->text,
-           
+           'img' => $this->faker->text,           
            'created_at' => date('Y-m-d H:i:s'),
            'updated_at' => date('Y-m-d H:i:s'),
 

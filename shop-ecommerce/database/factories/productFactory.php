@@ -16,7 +16,6 @@ class productFactory extends Factory
            'group_id'=>$this->faker->randomElement([1,2,3]),
            'name' => $this->faker->firstName,
            'description' => $this->faker->firstName,
-           'active'=>'1',
            'created_at' => date('Y-m-d H:i:s'),
            'updated_at' => date('Y-m-d H:i:s'),
 

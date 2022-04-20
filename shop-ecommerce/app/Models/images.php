@@ -12,8 +12,6 @@ class images extends Model
     protected $fillable=[
         'id',
         'img',
-        'created_at',
-        'update_at'
     ];
     public function image_product(){
         return  $this->hasMany(Image_product::class,'image_id','id');

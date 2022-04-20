@@ -14,7 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(StaffSeeder::class);
+        //$this->call(StaffSeeder::class);
+        $this->call(GroupProductSeeder::class);
+        $this->call(ImageProductSeeder::class);
+         $this->call(ImagesSeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(ProductDetailSeeder::class);
         //   \App\Models\Staff::factory(15)->create();
     }
 }
