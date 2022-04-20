@@ -14,8 +14,8 @@ class StaffSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\Staff::factory()->count(10)->create();
-        \App\Models\GroupProduct::factory()->count(4)->create();
+        //App\Models\Staff::factory()->count(10)->create();
+        //\App\Models\GroupProduct::factory()->count(4)->create();
         //\App\Models\Product::factory()->count(10)->create();
       //  \App\Models\Product_detail::factory()->count(10)->create();
         
