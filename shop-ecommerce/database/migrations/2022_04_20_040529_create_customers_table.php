@@ -17,12 +17,12 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('gender');
-            $table->string('phone');
-            $table->string('email');
+            $table->string('gender')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->unique();
             $table->string('password');
             $table->integer('status')->unsigned();
-            $table->longText('address');
+            $table->longText('address')->nullable();
             $table->timestamps();
         });
     }

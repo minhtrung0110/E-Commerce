@@ -68,9 +68,10 @@ $(document).ready(function(){
                               showError(input)
                           }
                       } else {
-                          console.log(respond.fail_node);
-                          if(respond.fail_node == null)   alert(respond.message)
-                          window.location="/admin"
+                         
+                          if(respond.fail_node == null)   swal("Chào Bạn", "Bạn Đã Đăng Nhập Thành Công", "success");
+                          setTimeout(() => {window.location="/admin"}, 2000);
+                          
                       }
                   }
               })
@@ -86,9 +87,8 @@ $(document).ready(function(){
        
 
 /*Ajax*/
-$('.form-submit-registery').click(function () {
-    console.log('CLick Click')
-
+$('#form-submit-registery').click(function () {
+    
     $.ajax({
     type: 'POST',
     datatype: 'JSON',
@@ -96,12 +96,41 @@ $('.form-submit-registery').click(function () {
     url: '/registery/store/',
     success: function (respond) {
         
-        if (respond.error === true) {                       
+        if (respond.error === true && respond.fail_node === 'email') {                       
             let input=document.querySelector('.form-group .form-message-email');
             input.innerText=respond.message
             input.classList.add('invalid-email')
             
         } 
+        else if (respond.error === false) {
+            swal("Chào Bạn", "Bạn Đã Đăng Ký Tài Khoản Thành Công", "success");
+            setTimeout(() => {window.location="/login"}, 1600);
+        }
+    }
+    })
+})
+
+/* Login Customer */
+$('#form-submit-login').click(function () {
+    console.log('CLick Click')
+
+    $.ajax({
+    type: 'POST',
+    datatype: 'JSON',
+    data: $('#form-login').serialize(),
+    url: '/login/store/',
+    success: function (respond) {
+        
+        if(respond.error === true && respond.fail_node === 'email') {
+
+        }
+        else if(respond.error===true  && respond.fail_node === 'password'){
+
+        }
+        else {
+            swal("Thật Tuyệt", "Bạn Đã Đăng Nhập Thành Công!", "success");
+            setTimeout(() => {window.location="/"}, 2000);
+        }
     }
     })
 })

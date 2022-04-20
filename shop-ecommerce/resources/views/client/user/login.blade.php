@@ -7,12 +7,14 @@
         <!--===============================================================================================-->	
         <link rel="icon" type="image/png" href="{{asset('template/images/icons/favicon.ico')}}"/>
         <link rel="stylesheet"href="{{asset('template/css/login_style.css')}}">
+        <script src="{{asset('template/vendor/jquery/jquery-3.2.1.min.js')}}"></script> 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         
     </head>
     <body>
         <div class="main">
 
-            <form action="" method="POST" class="form" id="form-2">
+            <form  method="POST" class="form" id="form-login">
               <h3 class="heading">Đăng nhập</h3>
               <p class="desc">Cùng nhau học lập trình miễn phí tại F8 ❤️</p>
         
@@ -30,7 +32,7 @@
                 <span class="form-message"></span>
               </div>
         
-              <button class="form-submit">Đăng nhập</button>
+              <button type="button" class="form-submit" id="form-submit-login">Đăng Nhập</button>
             </form>
         
           </div>
@@ -38,24 +40,21 @@
           <script>
         
             document.addEventListener('DOMContentLoaded', function () {
-              // Mong muốn của chúng ta
-           
         
-              Validator({
-                form: '#form-2',
+             Validator({
+                form: '#form-login',
                 formGroupSelector: '.form-group',
                 errorSelector: '.form-message',
                 rules: [
                   Validator.isEmail('#email'),
                   Validator.minLength('#password', 6),
                 ],
-                onSubmit: function (data) {
-                  // Call API
-                  console.log(data);
-                }
+                
               });
+
             });
         
           </script>
+           <script src="{{asset('template/js/ajax.js')}}"></script>
     </body>
 </html>

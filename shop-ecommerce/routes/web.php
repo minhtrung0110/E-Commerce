@@ -1,11 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+/*--========Admin-=======--*/
 use App\Http\Controllers\Admin\User\LoginController;
 use App\Http\Controllers\Client\LoginCustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\admin\OrderController;
+
+/*================Client===============-*/
+use App\Http\Controllers\Client\HomeController;
 
 
 /*==========Admin====================*/
@@ -54,9 +58,14 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   });
 
 
-  /*====================CUSTOMER=========================*/
+  /*====================CUSTOMER-LOGIN=========================*/
 
   Route::get('/login',[LoginCustomerController::class,'index'])->name('login');
   Route::post('/login/store/',[LoginCustomerController::class,'store'])->name('check_login');
   Route::get('/registery',[LoginCustomerController::class,'showRegistery'])->name('registery');
   Route::post('/registery/store/',[LoginCustomerController::class,'storeRegistery'])->name('check_registery');
+
+  /*====================CUSTOMER=========================*/
+  Route::middleware(['checklogincustomer'])->prefix('/')->group(function(){
+    Route::get('/',[HomeController::class,'index'])->name('home') ;
+  });
