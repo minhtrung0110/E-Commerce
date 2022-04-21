@@ -7,6 +7,7 @@ use App\Http\Controllers\Client\LoginCustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\admin\CategoryController;
 
 /*================Client===============-*/
 use App\Http\Controllers\Client\HomeController;
@@ -31,6 +32,15 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        Route::DELETE('/destroy',[ProductController::class,'destroy'])->name('product.delete');//handle
        Route::get('/edit/{id}',[ProductController::class,'show'])->name('product.edit');
       Route::post('/edit/{id}',[ProductController::class,'update']);//handle
+       });
+       //Category
+       Route::prefix('/categorys')->group(function(){
+         Route::get('/list',[CategoryController::class,'index'])->name('admin.categories.list');
+         Route::get('/add',[CategoryController::class,'create'])->name('admin.categories.add');
+         Route::post('/add',[CategoryController::class,'store']);
+         Route::get('/edit{id}',[CategoryController::class,'show'])->name('admin.categories.edit');
+         Route::post('/edit{id}',[CategoryController::class,'update']);
+         Route::DELETE('/destroy',[CategoryController::class,'destroy']);
        });
        //Import
        Route::prefix('/imports')->group(function(){
