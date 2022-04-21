@@ -136,7 +136,12 @@
           <img src="{{asset('dashboard/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
+          @hasSection ('infoStaff')
+          @yield('infoStaff')
+              
+          @else
           <a href="#" class="d-block">{{$staff->first_name }} {{ $staff->last_name }}</a>
+          @endif
         </div>
       </div>
 
@@ -219,5 +224,11 @@
 <script src="{{asset('dashboard/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js">
+</script>
+<script>
+    CKEDITOR.replace( 'description' );
+
+</script>
 </body>
 </html>

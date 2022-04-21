@@ -14,6 +14,9 @@ class Product extends Model
         'group_id',
         'name',
         'description',
+        'active',
+        'created_at',
+        'updated_at'
     ];
     public function group_product(){
         return $this->hasMany(Group_product::class,'id','product_id');

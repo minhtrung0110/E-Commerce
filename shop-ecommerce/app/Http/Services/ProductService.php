@@ -1,21 +1,47 @@
 <?php
 namespace App\Http\Services;
 use App\Models\Product;
+use Illuminate\Support\Facades\Session;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ProductService{
     public function getAllProduct(){
      
         
-        return Product::all();
+        return Product::join('image_products','image_products.product_id','=','products.id')
+        ->join('images','images.id','=','image_products.image_id')
+        ->join('group_products','group_products.id','=','products.group_id')
+        ->join('product_details','product_details.product_id','=','products.id')
+        ->orderBy('products.id', 'DESC')
+        ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active'])
+        ;
     }
     public function getProduct($id){
-        return Product::join('group_product','group_product.id','=','products.group_id') // lấy category
-                        ->join('product_detail','product_detail.product_id'.'=','products.id') // lấy thông tin chi tiết product_detail
-                        ->join('image_product','image_product.product_id','=','product.id')// lấy group image
-                        ->join('images','images.id','=','image_product.image_id')
-                        ->where('products',$id)
-                        ->get(['group_product.name,images.thumb,products.name,products.description,products.active
-                        ,product_detail.code_color,product_detail.amount,product_detail.price']);
-        
+        return Product::join('image_products','image_products.product_id','=','products.id')
+        ->join('images','images.id','=','image_products.image_id')
+        ->join('group_products','group_products.id','=','products.group_id')
+        ->join('product_details','product_details.product_id','=','products.id')
+        ->where('products.id',$id)
+        ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active'])
+        ;
+    }
+    public function create($request){
+        try {
+                Product::create([
+                'group_id'=>$request->input('Category'),
+                'name'=>$request->input('Product_name'),
+                'description'=> $request->input('Description'),
+                'active'=>$request->input('active'),
+                'created_at'=>date('y-m-d h:i:s'),
+            ]);
+         
+            $lastId=Product::last('id');
+            Session::flash('success','Thêm sản phẩm thành công');
+        } catch (\Exception $err) {
+            Session::flash('error',$err->getMessage());
+            return false;
+            
+        }
+        return $lastId;
     }
 }

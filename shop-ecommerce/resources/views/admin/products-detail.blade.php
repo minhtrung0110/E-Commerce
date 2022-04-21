@@ -2,7 +2,10 @@
 @section('title')
 {{$title}}
 @endsection 
- 
+@section('infoStaff')
+<a href="#" class="d-block">{{$staff->first_name }} {{ $staff->last_name }}</a>
+
+@endsection
  {{-- content  --}}
  
 @section('main-content')
