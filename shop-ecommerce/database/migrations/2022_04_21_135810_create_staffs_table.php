@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStaffTable extends Migration
+class CreateStaffsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,13 @@ class CreateStaffTable extends Migration
      */
     public function up()
     {
-        Schema::create('staff', function (Blueprint $table) {
+        /*
+        Schema::rename('group_product', 'group_products');
+        Schema::rename('image_product', 'image_products');
+        Schema::rename('product_detail;', 'product_details');
+        Schema::rename('staff;', 'staffs');
+        */
+        Schema::create('staffs', function (Blueprint $table) {
             $table->id();
             $table->integer('role_id')->unsigned();
             $table->string('first_name');
@@ -36,6 +42,6 @@ class CreateStaffTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff');
+        Schema::dropIfExists('staffs');
     }
 }

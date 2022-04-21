@@ -2,13 +2,16 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Staff;
-class staffFactory extends Factory
+use App\Models\Staffs;
+class StaffsFactory extends Factory
 {
-   
-     protected $model =Staff::class;// kết nối với obj staff mới chạy được
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    protected $model =Staffs::class;// kết nối với obj staff mới chạy được
      
     public function definition()
     {
@@ -27,5 +30,5 @@ class staffFactory extends Factory
            'updated_at' => date('Y-m-d H:i:s'),
 
         ];
-    }
+}
 }
