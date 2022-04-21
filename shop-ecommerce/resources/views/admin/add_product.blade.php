@@ -1,5 +1,3 @@
-{{-- {{dd($products->toArray())}} --}}
-
 @extends('admin.layout.layout') 
 @section('title')
 {{$title}}
@@ -18,7 +16,7 @@
         <h1>Thêm sản phẩm</h1>
       </div>
     
-    <form action="{{Route('admin.product.add')}}" method="POST" class="m-2">
+    <form action="/add" method="POST" class="m-2">
       @include('admin.user.messeger')
         @csrf
         <div class="form-group">
