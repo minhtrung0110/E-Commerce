@@ -8,6 +8,15 @@
 <a href="#" class="d-block">{{$staff->first_name }} {{ $staff->last_name }}</a>
 
 @endsection
+
+@section('js-ckeditor')
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js">
+</script>
+<script>
+    CKEDITOR.replace( 'description' );
+
+</script>
+@endsection
  {{-- content  --}}
  
 @section('main-content')
@@ -18,7 +27,7 @@
         <h1>Thêm sản phẩm</h1>
       </div>
     
-    <form action="{{Route('admin.product.add')}}" method="POST" class="m-2">
+    <form action="" method="POST" class="m-2">
       @include('admin.user.messeger')
         @csrf
         <div class="form-group">
@@ -71,7 +80,7 @@
 
         <div class="form-group">
             <label for="description">Chi tiết sản phẩm</label>
-            <input type="text" class="form-control" id="description" value="{{old('Description')}}" name="Description" placeholder="Chi tiết sản phẩm...">
+            <textarea  class="form-control" id="description" name="Description" >{{old('Description')}}</textarea>
         </div>
         <div class="form-group">
             <label for="">Kích hoạt</label>

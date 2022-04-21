@@ -227,11 +227,6 @@
 <script src="{{asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
 {{-- ajax --}}
 <script src="{{asset('template/js/remove.js')}}"></script>
-<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js">
-</script>
-<script>
-    CKEDITOR.replace( 'description' );
-
-</script>
+@yield('js-ckeditor')
 </body>
 </html>

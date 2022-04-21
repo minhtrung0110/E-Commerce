@@ -8,7 +8,7 @@ use App\Http\Services\ProductService;
 use App\Http\Services\GroupProduct_Service;
 use App\Http\Services\ImagesService;
 use App\Http\Services\ImageProductService;
-use App\Http\Services\ProductDetailService;
+
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\StaffService;
 
@@ -20,20 +20,18 @@ class ProductController extends Controller
     protected $groupProductService;
     protected $imageProductService;
     protected $imagesService;
-    protected $productDetailService;
     public function __construct(ProductService $productService,
                                 StaffService $staffService,
                                 GroupProduct_Service $groupProductService,
                                 ImageProductService $imageProductService,
-                                ImagesService $imagesService,
-                                ProductDetailService $productDetailService)
+                                ImagesService $imagesService)
     {
         $this->productService=$productService;
         $this->staffService=$staffService;
         $this->groupProductService=$groupProductService;
         $this->imageProductService=$imageProductService;
         $this->imagesService=$imagesService;
-        $this->productDetailService=$productDetailService;
+       
     }
     
     /**
@@ -93,12 +91,12 @@ class ProductController extends Controller
 
         ]);
         $result= $this->productService->create($request);
-        // $this->productDetailService->create($request,$result);
         // $this->imageProductService->create($request,$result);
         // $this->imagesService->create($request,$result);
-        
-         // return redirect()->back();
-         dd($result);
+      dd($result);
+         //return redirect()->back();
+        // dd($request->all());
+       // dd($request->input());
     }
 
     /**

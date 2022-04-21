@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Services;
 use App\Models\Product;
+use App\Models\Product_detail;
 use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -34,8 +35,14 @@ class ProductService{
                 'active'=>$request->input('active'),
                 'created_at'=>date('y-m-d h:i:s'),
             ]);
-         
             $lastId=Product::last('id');
+            Product_detail::create([
+                'product_id'=>$lastId,
+                'code_color'=>(string) $request->input('Code_color'),
+                'amount'=>(int) $request->input('Amount'),
+                'price'=>(int) $request->input('Price'),
+                'created_at'=>date('y-m-d h:i:s') 
+             ]);
             Session::flash('success','Thêm sản phẩm thành công');
         } catch (\Exception $err) {
             Session::flash('error',$err->getMessage());
