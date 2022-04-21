@@ -22,9 +22,13 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('template/vendor/select2/select2.min.css')}}">
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="{{asset('template/vendor/daterangepicker/daterangepicker.css')}}">
+
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{asset('template/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('template/css/main.css')}}">
+	<!--===============================================================================================-->	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--===============================================================================================-->
+
 
 @yield('head')

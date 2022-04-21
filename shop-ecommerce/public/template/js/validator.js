@@ -50,7 +50,7 @@ function Validator(options) {
     var formElement = document.querySelector(options.form);
     if (formElement) {
         // Khi submit form
-        formElement.onclick = function (e) {
+        formElement.onsubmit= function (e) {
             e.preventDefault();/// xoa bỏ hành vi mặc đinh khi Submit của form
 
             var isFormValid = true;

@@ -8,6 +8,7 @@ use App\Http\Services\CustomerService;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class LoginCustomerController extends Controller
 {
@@ -46,7 +47,30 @@ class LoginCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate
+        $customer=$this->customerService->findCustomerwithEmail($request->input('email'));
+        if(!is_null($customer)){
+            if (Hash::check($request->input('password'), $customer->password)) {
+                // Lưu Session 
+                Session::put("customer_id",$customer->id );
+                return response()->json([
+                    'error'=>false,
+                    'fail_node'=>null,
+                    'message'=>'Đăng Nhập Thành Công.'
+                ]);
+            }
+            else
+            return response()->json([
+                'error'=>true,
+                'fail_node'=>'password',
+                'message'=>'Mật Khẩu Không Đúng'
+            ]);
+        }
+        else return response()->json([
+            'error'=>true,
+            'fail_node'=>'email',
+            'message'=>'Email không tồn tại trong hệ thống.'
+        ]);
     }
 
      /**
@@ -75,10 +99,34 @@ class LoginCustomerController extends Controller
                 'email' => 'required|email:filter|regex:/^.+@.+$/i',
                 'password' => 'required|min:5'
             ]);
+            //dd($request->all());
+
             //get Staff
             $customer=$this->customerService->findCustomerwithEmail($request->input('email'));
             if(is_null($customer)){
+
                 // thuc hien viec đăng ký
+                try{
+                Customer::create([
+                    'first_name'=>(string)$request->input('firstname'),
+                    'last_name'=>(string)$request->input('lastname'),
+                    'email'=>(string)$request->input('email'),
+                    'password'=>(string)bcrypt($request->input('password')),
+                    'status'=>1,
+                ]);
+               } catch (\Exception $err) {
+                   return response()->json([
+                    'error'=>true,
+                    'fail_node'=>'insert_database',
+                    'message'=>'Đăng Ký Tài Khoản Thất Bại'
+                ]);
+                
+                 }
+                 return response()->json([
+                    'error'=>false,
+                    'fail_node'=>null,
+                    'message'=>'Đăng Ký Tài Khoản Thành Công'
+                ]);
                 
             }
             else return response()->json([

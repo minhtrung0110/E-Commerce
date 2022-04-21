@@ -13,7 +13,7 @@
     <body>
         <div class="main">
 
-            <form  method="POST" class="form" id="form-registery">
+            <form   class="form" id="form-registery">
               <h3 class="heading">ĐĂNG KÝ TÀI KHOẢN</h3>
               <p class="desc">Chào mừng quý khách đến với cửa hàng chúng tôi ❤️</p>
         
@@ -48,7 +48,7 @@
                 <span class="form-message"></span>
               </div>
               @csrf
-              <button type="button" class="form-submit form-submit-registery">Đăng Ký</button>
+              <button type="submit" class="form-submit" id= "form-submit-registery">Đăng Ký</button>
             </form>
         
           
@@ -61,7 +61,7 @@
         
             document.addEventListener('DOMContentLoaded', function () {
               // Mong muốn của chúng ta
-             Validator({
+            Validator({
                 form: '#form-registery',
                 formGroupSelector: '.form-group',
                 errorSelector: '.form-message',
