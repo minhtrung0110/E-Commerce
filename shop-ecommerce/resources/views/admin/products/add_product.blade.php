@@ -1,5 +1,3 @@
-{{-- {{dd($products->toArray())}} --}}
-
 @extends('admin.layout.layout') 
 @section('title')
 {{$title}}
@@ -27,7 +25,11 @@
         <h1>Thêm sản phẩm</h1>
       </div>
     
+<<<<<<< HEAD
     <form action="" method="POST" class="m-2">
+=======
+    <form action="/add" method="POST" class="m-2">
+>>>>>>> 0348485b8de62b3c193e91175fac8bb28aced3f1
       @include('admin.user.messeger')
         @csrf
         <div class="form-group">
