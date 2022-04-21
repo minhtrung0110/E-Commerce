@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\ProductService;
 use App\Http\Services\GroupProduct_Service;
+use App\Http\Services\ImagesService;
+use App\Http\Services\ImageProductService;
+use App\Http\Services\ProductDetailService;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\StaffService;
 
@@ -15,11 +18,22 @@ class ProductController extends Controller
     protected $productService;
     protected $staffService;
     protected $groupProductService;
-    public function __construct(ProductService $productService,StaffService $staffService,GroupProduct_Service $groupProductService )
+    protected $imageProductService;
+    protected $imagesService;
+    protected $productDetailService;
+    public function __construct(ProductService $productService,
+                                StaffService $staffService,
+                                GroupProduct_Service $groupProductService,
+                                ImageProductService $imageProductService,
+                                ImagesService $imagesService,
+                                ProductDetailService $productDetailService)
     {
         $this->productService=$productService;
         $this->staffService=$staffService;
         $this->groupProductService=$groupProductService;
+        $this->imageProductService=$imageProductService;
+        $this->imagesService=$imagesService;
+        $this->productDetailService=$productDetailService;
     }
     
     /**
@@ -78,7 +92,13 @@ class ProductController extends Controller
             'Img_link.required'=>'Hình ảnh sản phẩm phải bắt buộc',
 
         ]);
-        dd($request->all());
+        $result= $this->productService->create($request);
+        // $this->productDetailService->create($request,$result);
+        // $this->imageProductService->create($request,$result);
+        // $this->imagesService->create($request,$result);
+        
+         // return redirect()->back();
+         dd($result);
     }
 
     /**
