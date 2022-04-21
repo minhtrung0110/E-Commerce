@@ -63,6 +63,17 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
     
       //Upload
       Route::post('upload/services', [\App\Http\Controllers\Admin\UploadController::class, 'store']);
+
+      //Staff
+      Route::prefix('/staff')->group(function(){
+        Route::get('/list',[OrderController::class,'index'])->name('admin.orders');//handle
+       Route::get('/add',[OrderController::class,'create']);
+       Route::post('/add',[OrderController::class,'store']);//handle
+       Route::DELETE('/destroy',[OrderController::class,'destroy']);//handle
+       Route::get('/edit/{id}',[OrderController::class,'show']);
+      Route::post('/edit/{id}',[OrderController::class,'update']);//handle
+       });
+      //Customer
      
 
   });
@@ -76,6 +87,18 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::post('/registery/store/',[LoginCustomerController::class,'storeRegistery'])->name('check_registery');
 
   /*====================CUSTOMER=========================*/
-  Route::middleware(['checklogincustomer'])->prefix('/')->group(function(){
-    Route::get('/',[HomeController::class,'index'])->name('home') ;
+
+  Route::prefix('/')->group(function(){
+
+  Route::get('/',[HomeController::class,'index'])->name('home') ;
+  Route::get('/products',[HomeController::class,'showListProducts'])->name('home.products') ;
+  
+  /*----------------------------Profile Customer --------------------*/
+  Route::get('/myprofile',[HomeController::class,'showProfileCustomer'])->middleware(['checklogincustomer'])->name('home.profile') ;
+  Route::post('/myprofile/store',[HomeController::class,'storeProfileCustomer']) ;
+   
+   
   });
+  /*Route::middleware(['checklogincustomer'])->prefix('/payment')->group(function(){
+   
+  });*/

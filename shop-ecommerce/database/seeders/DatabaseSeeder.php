@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
        $this->call(ImagesSeeder::class);
       $this->call(ProductSeeder::class);
        $this->call(ProductDetailSeeder::class);
-        \App\Models\Staff::factory(10)->create();
+      
+      //  \App\Models\Staffs::factory(10)->create();
         \App\Models\Customer::factory(10)->create();
         $this->call(ProviderSeeder::class);
         $this->call(ImportSeeder::class);
@@ -32,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePermissionSeeder::class);
         $this->call(RatingSeeder::class);
         $this->call(DiscountSeeder::class);
+        $this->call(StaffSeeder::class);
     }
 }
