@@ -15,6 +15,9 @@ class StaffService {
     public function getInFo($id){
         return Staffs::all()->where('id',$id)->first();
     }
+    public function getAll(){
+        return Staffs::orderbyDesc('id')->get();
+    }
 
  
     

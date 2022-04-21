@@ -28,6 +28,8 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('dashboard/plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="{{asset('dashboard/dist/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('template/css/style.css')}}">
+  <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

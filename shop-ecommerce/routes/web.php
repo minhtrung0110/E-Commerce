@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\CategoryController;
-
+use App\Http\Controllers\admin\StaffController;
 /*================Client===============-*/
 use App\Http\Controllers\Client\HomeController;
 
@@ -65,13 +65,13 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::post('upload/services', [\App\Http\Controllers\Admin\UploadController::class, 'store']);
 
       //Staff
-      Route::prefix('/staff')->group(function(){
-        Route::get('/list',[OrderController::class,'index'])->name('admin.orders');//handle
-       Route::get('/add',[OrderController::class,'create']);
-       Route::post('/add',[OrderController::class,'store']);//handle
-       Route::DELETE('/destroy',[OrderController::class,'destroy']);//handle
-       Route::get('/edit/{id}',[OrderController::class,'show']);
-      Route::post('/edit/{id}',[OrderController::class,'update']);//handle
+      Route::prefix('/staffs')->group(function(){
+        Route::get('/list',[StaffController::class,'index'])->name('admin.staffs');//handle
+       Route::get('/add',[StaffController::class,'create']);
+       Route::post('/add',[StaffController::class,'store']);//handle
+       Route::DELETE('/destroy',[StaffController::class,'destroy']);//handle
+       Route::get('/edit/{id}',[StaffController::class,'show']);
+      Route::post('/edit/{id}',[StaffController::class,'update']);//handle
        });
       //Customer
      

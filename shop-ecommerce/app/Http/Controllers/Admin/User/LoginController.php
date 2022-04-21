@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\c;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\StaffService;
-use App\Models\Staff;
+use App\Models\Staffs;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 class LoginController extends Controller

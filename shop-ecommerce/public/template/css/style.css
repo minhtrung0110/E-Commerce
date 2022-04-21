@@ -6,3 +6,10 @@ body, .main-menu > li > a, .ltext-102 {
 .hidden  {
     display: none !important;
 }
+
+/*----------------------------------------------------------------CUSTOM CSS =================================================================*/
+.table-admin-overflow {
+    overflow: auto !important;
+    margin-left: 250px;
+  }
+  
