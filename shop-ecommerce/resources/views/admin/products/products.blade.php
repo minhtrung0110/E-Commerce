@@ -17,13 +17,13 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">STT</th>
+          <th style="width:50px" scope="col">STT</th>
           <th scope="col">Category</th>
           <th scope="col">Product_Name</th>
           <th scope="col">Description</th>
           <th scope="col">Amount</th>
           <th scope="col">Price</th>
-          <th scope="col">Active</th>
+          <th style="width:50px" scope="col">Active</th>
           <th scope="col">#</th>
         </tr>
         

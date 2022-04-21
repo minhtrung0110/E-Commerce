@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   {{-- này k để title dc phải gọi @yield --}}
   <title>@yield('title')</title>
 
@@ -224,6 +225,8 @@
 <script src="{{asset('dashboard/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
+{{-- ajax --}}
+<script src="{{asset('template/js/remove.js')}}"></script>
 <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js">
 </script>
 <script>

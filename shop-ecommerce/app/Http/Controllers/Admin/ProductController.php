@@ -48,7 +48,7 @@ class ProductController extends Controller
   
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
 
-        return view('admin.products',compact('title','products','staff'));
+        return view('admin.products.products',compact('title','products','staff'));
     }
     
 
@@ -64,7 +64,7 @@ class ProductController extends Controller
         $categorys=$this->groupProductService->getAll();
 
       
-        return view('admin.add_product',compact('title','staff','categorys'));
+        return view('admin.products.add_product',compact('title','staff','categorys'));
     }
 
     /**
@@ -112,7 +112,7 @@ class ProductController extends Controller
         $title='Product-Detail';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $products=$this->productService->getProduct($id);
-        return view('admin.products-detail',compact('title','products','staff'));
+        return view('admin.products.products-detail',compact('title','products','staff'));
     }
 
     /**

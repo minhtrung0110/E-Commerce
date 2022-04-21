@@ -10,7 +10,31 @@
       </p>
     </a>
 </li>
-
+{{-- danh mục --}}
+<li class="nav-item">
+  <a href="#" class="nav-link ">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+  <p>
+    Danh mục sản phẩm
+    {{-- <span class="badge badge-info right">2</span> --}}
+  </p>
+  <i class="fas fa-angle-left right"></i>
+</a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{Route('admin.categories.list')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>danh sách danh mục</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{Route('admin.categories.add')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>thêm danh mục</p>
+      </a>
+    </li>
+  </ul>
+</li>
 {{-- QL-san pham --}}
 <li class="nav-item">
   <a href="#" class="nav-link">
