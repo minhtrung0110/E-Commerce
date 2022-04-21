@@ -23,13 +23,13 @@
   </a>
   <ul class="nav nav-treeview">
     <li class="nav-item">
-      <a href="{{Route('admin.products')}}" class="nav-link">
+      <a href="{{Route('admin.products.list')}}" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>danh sách sản phẩm</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="pages/tables/data.html" class="nav-link">
+      <a href="{{Route('admin.product.add')}}" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>thêm sản phẩm</p>
       </a>

@@ -13,7 +13,7 @@ class GroupProductSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('group_product')->insert([
+        DB::table('group_products')->insert([
             ['id' => 1,'name' =>'Ba Lô'],
             ['id' => 2,'name' =>'Túi Nhỏ'],
             ['id' => 3,'name' =>'Túi Mang Vai'],

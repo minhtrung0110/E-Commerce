@@ -9,7 +9,7 @@ use App\Http\Controllers\admin\OrderController;
 
 
 /*==========Admin====================*/
-Route::get('/list',[ProductController::class,'index'])->name('admin.products');
+// Route::get('/list',[ProductController::class,'index'])->name('admin.products');
 
   Route::get('/admin/user/login',[LoginController::class,'index'])->name('admin.login');
   Route::post('admin/user/login/store/',[LoginController::class,'store'])->name('check_login_admin');
@@ -20,9 +20,9 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
      
       Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard') ;
       //Products
-      Route::prefix('/products')->name('admin')->group(function(){
-        Route::get('/list',[ProductController::class,'index'])->name('admin.products');
-       Route::get('/add',[ProductController::class,'create']);
+      Route::prefix('/products')->group(function(){
+        Route::get('/list',[ProductController::class,'index'])->name('admin.products.list');
+       Route::get('/add',[ProductController::class,'create'])->name('admin.product.add');
        Route::post('/add',[ProductController::class,'store']);//handle
        Route::DELETE('/destroy',[ProductController::class,'destroy'])->name('product.delete');//handle
        Route::get('/edit/{id}',[ProductController::class,'show'])->name('product.edit');

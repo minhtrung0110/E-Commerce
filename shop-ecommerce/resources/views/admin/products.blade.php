@@ -1,8 +1,12 @@
+{{-- {{dd($products->toArray())}} --}}
 @extends('admin.layout.layout') 
 @section('title')
 {{$title}}
 @endsection 
- 
+@section('infoStaff')
+<a href="#" class="d-block">{{$staff->first_name }} {{ $staff->last_name }}</a>
+
+@endsection
  {{-- content  --}}
  
 @section('main-content')
@@ -29,10 +33,10 @@
         <tr>
           <th scope="row">{{++$key}}</th>
           <td>{{$product->name}}</td>
-          <td>{{$product->name}}</td>
+          <td>{{$product->name_product}}</td>
           <td>{{$product->description}}</td>
-          <td>{{$product->description}}</td>
-          <td>{{$product->description}}</td>
+          <td>{{$product->amount}}</td>
+          <td>{{$product->price}}</td>
       
           <td>{!! App\Helpers\helper::active($product->active) !!}</td>
           <td><a class="btn btn-primary btn-sm" href="/admin/products/edit/{{ $product->id }}">
