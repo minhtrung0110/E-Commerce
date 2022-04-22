@@ -8,14 +8,16 @@ use App\Models\Staffs;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\StaffService;
-
+use App\Http\Services\RoleService;
 class StaffController extends Controller
 {
     protected $staffService;
+    protected $roleService;
 
-    public function __construct(StaffService $staffService)
+    public function __construct(StaffService $staffService,RoleService $roleService)
     {
         $this->staffService = $staffService;
+        $this->roleService = $roleService;
     }
     /**
      * Display a listing of the resource.
@@ -41,6 +43,7 @@ class StaffController extends Controller
         return view('admin.staffs.add',[
             'title'=> 'Thêm Nhân Viên',
             'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
+            'roles'=>$this->roleService->getListRoles()
         ]);
     }
 
@@ -52,7 +55,24 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-
+       // validate
+      // dd($request->all());
+     // $this->staffService->create($request);
+        if(!is_null($request)){
+            $result=$this->staffService->create($request);
+            
+        }
+       
+        if($result) 
+            return response()->json([
+                'error'=>false,
+                'message'=>'Thêm Thành Công'
+            ]) ;
+        else
+            return response()->json([
+                'error'=>true,
+                'message'=>'Thêm Thất Bại'
+            ]) ;
        
     
     }

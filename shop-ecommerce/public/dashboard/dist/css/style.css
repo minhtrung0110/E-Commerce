@@ -6,3 +6,12 @@
     margin-left: 2.6em;
     margin-top: 1em;
 }
+.form-message {
+    text-align: left;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    font-weight:bold;
+    font-style: italic;
+    padding: 8px 0 0 4px;
+    color: #f33a58;
+}
