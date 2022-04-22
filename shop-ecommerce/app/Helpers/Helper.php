@@ -8,6 +8,7 @@ class Helper{
         return $active == 0 ? '<span class="btn btn-danger btn-xs">HUỶ</span>'
             : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>';
     }
+
     public static function renderListViewStaff($listStaffs){
         $html='';
         foreach ($listStaffs as $key => $staff) {

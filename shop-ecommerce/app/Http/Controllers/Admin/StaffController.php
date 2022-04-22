@@ -38,7 +38,10 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.staffs.add',[
+            'title'=> 'Thêm Nhân Viên',
+            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
+        ]);
     }
 
     /**
@@ -49,7 +52,9 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+       
+    
     }
 
     /**
@@ -60,7 +65,11 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.staffs.edit',[
+            'title'=> 'Sửa Nhân Viên',
+            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
+            'staff_edit'=>$this->staffService->getInFo($id)
+        ]);
     }
 
     /**
