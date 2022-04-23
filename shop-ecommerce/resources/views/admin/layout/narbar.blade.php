@@ -61,6 +61,31 @@
   </ul>
 </li>
     
+{{-- QL-mã giảm giá --}}
+<li class="nav-item">
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+      Mã giảm giá
+      {{-- <span class="badge badge-info right">2</span> --}}
+    </p>
+    <i class="fas fa-angle-left right"></i>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{Route('admin.discount.list')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>danh sách mã giảm giá</p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{Route('admin.discount.add')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>thêm mã giảm giá</p>
+      </a>
+    </li>
+  </ul>
+</li>
 {{-- QL-nhap hang--}}
 
     

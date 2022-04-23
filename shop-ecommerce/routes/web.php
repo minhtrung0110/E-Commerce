@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\StaffController;
+use App\Http\Controllers\admin\DiscountController;
 /*================Client===============-*/
 use App\Http\Controllers\Client\HomeController;
 
@@ -41,6 +42,15 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
          Route::get('/edit/{id}',[CategoryController::class,'show'])->name('admin.categories.edit');
          Route::post('/edit/{id}',[CategoryController::class,'update']);
          Route::DELETE('/destroy',[CategoryController::class,'destroy']);
+       });
+       //Discounts
+       Route::prefix('/discounts')->group(function(){
+         Route::get('/list',[DiscountController::class,'index'])->name('admin.discount.list');
+         Route::get('/add',[DiscountController::class,'create'])->name('admin.discount.add');
+         Route::post('/add',[DiscountController::class,'store']);
+         Route::get('/edit/{id}',[DiscountController::class,'show']);
+         Route::post('/edit/{id}',[DiscountController::class,'update']);
+         Route::DELETE('/destroy',[DiscountController::class,'destroy']);
        });
        //Import
        Route::prefix('/imports')->group(function(){

@@ -25,7 +25,11 @@
         <h1>Thêm sản phẩm</h1>
       </div>
     
-
+      @if(Session::has('error'))
+      <div class="text-center">
+        <p class="alert alert-dangger">{{Session::get('error')}}</p>
+      </div>
+      @endif
     <form action="" method="POST" class="m-2">
       @include('admin.user.messeger')
         @csrf
@@ -37,7 +41,7 @@
           @enderror
         </div>
         <div class="form-group">
-          <label >Tên danh mục</label>
+          <label  >Tên danh mục</label>
           <select class="form-control" id="category" name="Category" value="{{old('Category')}}">
               @foreach ($categorys as $key => $category)
               <option value="{{$category->id}}">{{$category->name}}</option>
