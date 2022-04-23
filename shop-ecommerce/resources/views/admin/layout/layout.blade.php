@@ -228,8 +228,8 @@
 <script src="{{asset('dashboard/dist/js/main.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
-{{-- ajax --}}
-
+{{-- ajax-removeRow --}}
+<script src="{{asset('template/js/remove.js')}}"></script>
 <script src="{{asset('template/js/validator.js')}}"></script>
 @yield('js-ckeditor')
 </body>
