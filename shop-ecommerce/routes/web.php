@@ -38,8 +38,8 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
          Route::get('/list',[CategoryController::class,'index'])->name('admin.categories.list');
          Route::get('/add',[CategoryController::class,'create'])->name('admin.categories.add');
          Route::post('/add',[CategoryController::class,'store']);
-         Route::get('/edit{id}',[CategoryController::class,'show'])->name('admin.categories.edit');
-         Route::post('/edit{id}',[CategoryController::class,'update']);
+         Route::get('/edit/{id}',[CategoryController::class,'show'])->name('admin.categories.edit');
+         Route::post('/edit/{id}',[CategoryController::class,'update']);
          Route::DELETE('/destroy',[CategoryController::class,'destroy']);
        });
        //Import

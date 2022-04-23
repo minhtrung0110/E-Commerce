@@ -87,7 +87,13 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $title='Category|Edit';
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $cates=$this->groupProductService->getItems($id);
+        foreach($cates as $cate){
+            $cate_name=$cate->name;
+        }
+        return view('admin.categories.edit_cate',compact('title','staff','cate_name'));
     }
 
     /**
@@ -110,7 +116,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $valadate=$request->validate([
+            'Cate_name'=>'required|min:4'
+        ],[
+            'required'=>'Tên danh mục bắt buộc phải nhập',
+            'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số'
+        ]);
+        $result=$this->groupProductService->update($request->input('Cate_name'),$id);
+        if($result){
+            Session()->flash('success','Cập nhập thành công');
+            return redirect()->route('admin.categories.list');
+        }
+        Session()->flash('error','Cập nhập thất bại');
+        return redirect()->back();
     }
 
     /**

@@ -2,10 +2,14 @@
 namespace App\Http\Services;
 use App\Models\GroupProduct;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\Console\Command\DumpCompletionCommand;
 
 class GroupProduct_Service{
     public function getAll(){
         return GroupProduct::all();
+    }
+    public function getItems($id){
+        return GroupProduct::where('id',$id)->get();
     }
     public function add_Cate($request){
         try {
@@ -18,6 +22,9 @@ class GroupProduct_Service{
             return false;
         }
         return true;
+    }
+    public function update($data,$id){
+        return GroupProduct::where('id',$id)->update(['name'=>$data]);
     }
     public function delete($request){
         $id=$request->id;
