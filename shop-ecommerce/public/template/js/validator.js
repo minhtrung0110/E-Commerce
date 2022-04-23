@@ -147,12 +147,39 @@ Validator.isRequired = function (selector, message) {
     };
 }
 
+Validator.isNumber = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regex = /^\d+$/;
+            return regex.test(value) ? undefined :  message || 'Trường này phải là số nguyên dương';
+        }
+    };
+}
+Validator.isRealNumber = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regex = /^(\+|-)?((\d+(\.\d+)?)|(\[0].\d+))$/;
+            return regex.test(value) ? undefined :  message || 'Trường này phải là số thực';
+        }
+    };
+}
 Validator.isEmail = function (selector, message) {
     return {
         selector: selector,
         test: function (value) {
-            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            return regex.test(value) ? undefined :  message || 'Trường này phải là email';// function test này là của Regex
+            var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-A0-9\-])+\.)+([a-zA-Z0-9]{2,5})$/;
+            return regex.test(value) ? undefined :  message || 'Trường này phải là email';
+        }
+    };
+}
+Validator.isPhoneNumber = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regex = /^0[3|7|8|9|5]\d{7,8}$/;
+            return regex.test(value) ? undefined :  message || 'Trường này phải là số điện thoại';
         }
     };
 }
@@ -174,3 +201,14 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
         }
     }
 }
+Validator.isEndDate = function (selector, getConfirmValue, message) {
+    return {
+        selector: selector,
+        test: function (value) {         
+        let start_date = new Date(getConfirmValue());
+        let end_date = new Date(value);
+            return ( end_date.getTime() - start_date.getTime() >= 1209600000) ? undefined: message || 'Giá trị nhập vào không chính xác';
+        }
+    }
+}
+

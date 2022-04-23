@@ -18,6 +18,31 @@ class StaffService {
     public function getAll(){
         return Staffs::orderbyDesc('id')->get();
     }
+    public function create($request){
+     
+        try {
+            Staffs::create([
+                'role_id'=>(int)$request->input('role_id'),
+                'first_name'=>(string)$request->input('first_name'),
+                'last_name'=>(string)$request->input('last_name'),
+                'phone'=>(string)$request->input('phone'),
+                'email'=>(string)$request->input('email'),
+                'password'=>(string)bcrypt($request->input('password')),
+                'status'=>(int)$request->input('status'),
+                'address'=>(string)$request->input('address'),
+                'start_date'=>(string)$request->input('start_date'),
+                'end_date'=>(string)$request->input('end_date'),
+
+            ]);
+            session()->flash('success', 'Tạo Nhân Viên Thành Công');
+        }
+        catch(Exception $e){
+            session()->flash('error','Thêm Nhân Viên thất bại !!! ');
+          //  Log::info($e->getMessage());
+            return false;
+        }
+        return true;
+    }
 
  
     

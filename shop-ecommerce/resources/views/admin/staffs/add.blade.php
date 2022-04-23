@@ -1,166 +1,135 @@
-@extends('admin.layout.layout') 
+@extends('admin.layout.layout')
 @section('title')
-{{$title}}
-@endsection 
-
-@section('main-content')
-<div class="content-wrapper">
-    <div class="card card-warning">
-        <div class="card-header">
-          <h3 class="card-title"><strong>Thêm Sản Phẩm</strong></h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <form>
-            <div class="row">
-              <div class="col-sm-6">
-                <!-- text input -->
-                <div class="form-group">
-                  <label>Mã Nhân Viên</label>
-                  <input type="text" class="form-control" placeholder="Enter ...">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Chức vụ</label>
-                  <input type="text" class="form-control" placeholder="Enter ..." disabled="">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <!-- textarea -->
-                <div class="form-group">
-                  <label>Textarea</label>
-                  <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Textarea Disabled</label>
-                  <textarea class="form-control" rows="3" placeholder="Enter ..." disabled=""></textarea>
-                </div>
-              </div>
-            </div>
-    
-            <!-- input states -->
-            <div class="form-group">
-              <label class="col-form-label" for="inputSuccess"><i class="fas fa-check"></i> Input with
-                success</label>
-              <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">
-            </div>
-            <div class="form-group">
-              <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input with
-                warning</label>
-              <input type="text" class="form-control is-warning" id="inputWarning" placeholder="Enter ...">
-            </div>
-            <div class="form-group">
-              <label class="col-form-label" for="inputError"><i class="far fa-times-circle"></i> Input with
-                error</label>
-              <input type="text" class="form-control is-invalid" id="inputError" placeholder="Enter ...">
-            </div>
-    
-            <div class="row">
-              <div class="col-sm-6">
-                <!-- checkbox -->
-                <div class="form-group">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox">
-                    <label class="form-check-label">Checkbox</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" checked="">
-                    <label class="form-check-label">Checkbox checked</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" disabled="">
-                    <label class="form-check-label">Checkbox disabled</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <!-- radio -->
-                <div class="form-group">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio1">
-                    <label class="form-check-label">Radio</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio1" checked="">
-                    <label class="form-check-label">Radio checked</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" disabled="">
-                    <label class="form-check-label">Radio disabled</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-    
-            <div class="row">
-              <div class="col-sm-6">
-                <!-- select -->
-                <div class="form-group">
-                  <label>Select</label>
-                  <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Select Disabled</label>
-                  <select class="form-control" disabled="">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-    
-            <div class="row">
-              <div class="col-sm-6">
-                <!-- Select multiple-->
-                <div class="form-group">
-                  <label>Select Multiple</label>
-                  <select multiple="" class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Select Multiple Disabled</label>
-                  <select multiple="" class="form-control" disabled="">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <!-- /.card-body -->
-      </div>
-
-</div>
-
+    {{ $title }}
 @endsection
 
-<script >
-    CKEDITOR.replace('###');
-</script>
+@section('main-content')
+
+    <div class="content-wrapper">
+        <div class="card card-success bordered " style="padding:1em 5em; border">
+            <div class="card-header">
+                <h3 class="card-title"><strong>Thêm Sản Phẩm</strong></h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form method="post" action="" id="form-add-products" class="row">
+
+                    <!-- text input -->
+                    <div class="form-group col-sm-6">
+                        <label>Họ</label>
+                        <input type="text" name='first_name' id="first_name" class="form-control" placeholder="Enter ...">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label>Tên Nhân Viên</label>
+                        <input type="text" name="last_name"  id="last_name" class="form-control" placeholder="Enter ...">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Chức Vụ:</label>
+                        <select class="form-control" name="role_id">
+                          @foreach($roles as $role)
+                            <option value="{{$role->id}}">{{$role->name}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Số Điện Thoại:</label>
+                        <input type="text" name='phone'  id='phone' class="form-control" placeholder="Enter ...">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label>Email:</label>
+                        <input type="text" name="email"  id="email" class="form-control" placeholder="Enter ...">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <!-- text input -->
+                    <div class="form-group col-sm-6">
+                        <label>Mật Khẩu:</label>
+                        <input type="text" name='password' id='password' class="form-control" placeholder="Enter ...">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label>Địa Chỉ:</label>
+                        <input type="text" name="address"  id="address" class="form-control" placeholder="Enter ...">
+                        <span class="form-message"></span>
+                    </div>
+
+
+                    <div class="form-group col-sm-6">
+                        <label>Ngày Bắt Đầu Hợp Đồng:</label>
+                        <input type="date" name='start_date' id='start_date' class="form-control" placeholder="Enter ...">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label>Ngày Kết Thúc Hợp Đồng:</label>
+                        <input type="date" name="end_date"  id="end_date" class="form-control" placeholder="Enter ...">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <button type="submit" class="form-submit btn btn-success col-sm-6"> Thêm Nhân Viên</button>
+
+                            @csrf
+                </form>
+                        <!-- /.card-body -->
+                 </div>
+            </div>
+
+        </div>
+    @endsection
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mong muốn của chúng ta
+            Validator({
+                form: '#form-add-products',
+                formGroupSelector: '.form-group',
+                errorSelector: '.form-message',
+                rules: [
+                    Validator.isRequired('#last_name', 'Vui lòng nhập tên nhân viên'),
+                    Validator.isRequired('#first_name', 'Vui lòng nhập họ nhân viên'),
+                    Validator.isRequired('#phone', 'Vui lòng nhập số điện thoại'),
+                    Validator.isRequired('#email', 'Vui lòng nhập email'),
+                    Validator.isRequired('#password', 'Vui lòng nhập mật khẩu'),
+                    Validator.isRequired('#address', 'Vui lòng nhập địa chỉ'),
+                    Validator.isRequired('#start_date', 'Vui lòng nhập ngày bắt đầu'),
+                    Validator.isRequired('#end_date', 'Vui lòng nhập ngày kết thúc'),
+                    Validator.isEmail('#email'),
+                    Validator.isPhoneNumber('#phone'),
+                    Validator.minLength('#password', 6),
+                    Validator.isEndDate('#end_date', function () {
+                    return document.querySelector('#form-add-products #start_date').value;
+                  }, 'Hợp đồng làm việc tối thiểu 2 tuần')
+                ],
+                onSubmit: function (data) {
+                  // Call API
+                  console.log(data)
+    
+                    $.ajax({
+                    type: 'POST',
+                    datatype: 'JSON',
+                    data: $('#form-add-products').serialize(),
+                    url: '/admin/staffs/add',
+                    success: function (respond) {
+                        
+                        if (respond.error === true ) {                       
+                           
+                          swal("Thêm Thất Bại", "Nhân Viên Không Được Thêm", "danger");
+                        } 
+                        else  {
+                            swal("Thêm Thành Công", "Nhân Viên Đã Được Thêm", "success");
+                            setTimeout(() => {window.location="/admin/staffs/list"}, 1100);
+                        }
+                    }
+                })
+
+                }//nếu 
+                //nếu muốn submit theo hành vi mặc định của form thì rào cái này lại
+            });
+        });
+    </script>

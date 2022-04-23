@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="{{asset('dashboard/dist/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('template/css/style.css')}}">
   <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -224,11 +225,12 @@
 <!-- AdminLTE App -->
 <script src="{{asset('dashboard/dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('dashboard/dist/js/demo.js')}}"></script>
+<script src="{{asset('dashboard/dist/js/main.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
 {{-- ajax --}}
-<script src="{{asset('template/js/remove.js')}}"></script>
+
+<script src="{{asset('template/js/validator.js')}}"></script>
 @yield('js-ckeditor')
 </body>
 </html>

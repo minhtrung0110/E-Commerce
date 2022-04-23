@@ -25,7 +25,7 @@ class CreateStaffsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->integer('status')->unsigned();
             $table->longText('address');
