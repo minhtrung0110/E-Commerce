@@ -39,6 +39,7 @@
           </tr>
         </thead>
         <tbody>
+        
             {!! \App\Helpers\Helper::renderListViewStaff($listStaffs)!!}
          
         </tbody>

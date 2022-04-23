@@ -6,6 +6,7 @@
 @section('main-content')
 
     <div class="content-wrapper">
+
         <div class="card card-success bordered " style="padding:1em 5em; border">
             <div class="card-header">
                 <h3 class="card-title"><strong>Thêm Sản Phẩm</strong></h3>
@@ -85,7 +86,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mong muốn của chúng ta
             Validator({
                 form: '#form-add-products',
                 formGroupSelector: '.form-group',
@@ -106,24 +106,22 @@
                     return document.querySelector('#form-add-products #start_date').value;
                   }, 'Hợp đồng làm việc tối thiểu 2 tuần')
                 ],
-                onSubmit: function (data) {
-                  // Call API
-                  console.log(data)
-    
+                onSubmit: function (data) {    
                     $.ajax({
                     type: 'POST',
                     datatype: 'JSON',
                     data: $('#form-add-products').serialize(),
                     url: '/admin/staffs/add',
                     success: function (respond) {
-                        
-                        if (respond.error === true ) {                       
-                           
-                          swal("Thêm Thất Bại", "Nhân Viên Không Được Thêm", "danger");
+                        console.log(respond.message)
+
+                        if (respond.error !== true ) {                       
+                            swal("Thêm Thành Công", "Nhân Viên Đã Được Thêm", "success");
+                           setTimeout(() => {window.location="/admin/staffs/list"}, 1200);
                         } 
                         else  {
-                            swal("Thêm Thành Công", "Nhân Viên Đã Được Thêm", "success");
-                            setTimeout(() => {window.location="/admin/staffs/list"}, 1100);
+                            swal("Thêm Thất Bại", "Nhân Viên Không Được Thêm", "error");
+                           
                         }
                     }
                 })

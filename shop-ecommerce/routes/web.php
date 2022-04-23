@@ -34,7 +34,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::post('/edit/{id}',[ProductController::class,'update']);//handle
        });
        //Category
-       Route::prefix('/categorys')->group(function(){
+       Route::prefix('/group-products')->group(function(){
          Route::get('/list',[CategoryController::class,'index'])->name('admin.categories.list');
          Route::get('/add',[CategoryController::class,'create'])->name('admin.categories.add');
          Route::post('/add',[CategoryController::class,'store']);
@@ -69,12 +69,23 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::prefix('/staffs')->group(function(){
         Route::get('/list',[StaffController::class,'index'])->name('admin.staffs');//handle
        Route::get('/add',[StaffController::class,'create']);
+       Route::post('/checkEmail',[StaffController::class,'checkEmailExist']);
        Route::post('/add',[StaffController::class,'store']);//handle
        Route::DELETE('/destroy',[StaffController::class,'destroy']);//handle
        Route::get('/edit/{id}',[StaffController::class,'show']);
       Route::post('/edit/{id}',[StaffController::class,'update']);//handle
        });
       //Customer
+       //Staff
+       Route::prefix('/staffs')->group(function(){
+        Route::get('/list',[StaffController::class,'index'])->name('admin.customers');//handle
+       Route::get('/add',[StaffController::class,'create']);
+       Route::post('/checkEmail',[StaffController::class,'checkEmailExist']);
+       Route::post('/add',[StaffController::class,'store']);//handle
+       Route::DELETE('/destroy',[StaffController::class,'destroy']);//handle
+       Route::get('/edit/{id}',[StaffController::class,'show']);
+      Route::post('/edit/{id}',[StaffController::class,'update']);//handle
+       });
      
 
   });

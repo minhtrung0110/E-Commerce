@@ -8,7 +8,6 @@ function Validator(options) {
             element = element.parentElement;
         }
     }
-
     var selectorRules = {};
 
     // Hàm thực hiện validate
@@ -211,4 +210,35 @@ Validator.isEndDate = function (selector, getConfirmValue, message) {
         }
     }
 }
+Validator.isImage = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var typeImg=value.slice(value.indexOf ('.'),value.length);
+            switch(typeImg)
+            {
+                case '.png':
+                case '.jpg':
+                    console.log("Is Image");
+                    break;
+                default:
+                    return  message || 'Image format must be jpg or png';
+            }
+            
+        }
+    };
+}
+
+
+
+const ValidateImageSize=(selector)=>{
+    const fileSelector = document.querySelector(selector);
+    fileSelector.onchange=(e)=>{
+          if(e.target.files[0].size>2097152)  {
+             alert("Image size is not allowed to exceed 2MB");
+             fileSelector.value = null;
+          }
+    };
+}
+
 

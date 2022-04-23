@@ -11,32 +11,32 @@
     </a>
 </li>
 {{-- danh mục --}}
-<li class="nav-item">
+<li class="nav-item nav-item-li" id="nav-item-group-products">
   <a href="#" class="nav-link ">
     <i class="nav-icon fas fa-tachometer-alt"></i>
   <p>
-    Danh mục sản phẩm
+    Danh Mục Sản Phẩm
     {{-- <span class="badge badge-info right">2</span> --}}
   </p>
   <i class="fas fa-angle-left right"></i>
 </a>
   <ul class="nav nav-treeview">
     <li class="nav-item">
-      <a href="{{Route('admin.categories.list')}}" class="nav-link">
+      <a href="{{Route('admin.categories.list')}}" class="nav-link" id='group-products'>
         <i class="far fa-circle nav-icon"></i>
-        <p>danh sách danh mục</p>
+        <p>Danh Sách Danh Mục</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{Route('admin.categories.add')}}" class="nav-link">
+      <a href="{{Route('admin.categories.add')}}" class="nav-link" id='group-products' >
         <i class="far fa-circle nav-icon"></i>
-        <p>thêm danh mục</p>
+        <p>Thêm Danh Mục</p>
       </a>
     </li>
   </ul>
 </li>
 {{-- QL-san pham --}}
-<li class="nav-item">
+<li class="nav-item nav-item-li " id="nav-item-products" >
   <a href="#" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
@@ -47,15 +47,15 @@
   </a>
   <ul class="nav nav-treeview">
     <li class="nav-item">
-      <a href="{{Route('admin.products.list')}}" class="nav-link">
+      <a href="{{Route('admin.products.list')}}" class="nav-link" id='products'>
         <i class="far fa-circle nav-icon"></i>
-        <p>danh sách sản phẩm</p>
+        <p>Danh Sách Sản Phẩm</p>
       </a>
     </li>
     <li class="nav-item">
-      <a href="{{Route('admin.product.add')}}" class="nav-link">
+      <a href="{{Route('admin.product.add')}}" class="nav-link" id='products'>
         <i class="far fa-circle nav-icon"></i>
-        <p>thêm sản phẩm</p>
+        <p>Thêm Sản Phẩm</p>
       </a>
     </li>
   </ul>
@@ -64,7 +64,7 @@
 {{-- QL-nhap hang--}}
 
     
-<li class="nav-item">
+<li class="nav-item nav-item-li" id="nav-item-imports" >
   <a href="{{Route('admin.imports')}}" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
@@ -76,7 +76,7 @@
 {{-- QL đơn hàng --}}
 
    
-<li class="nav-item">
+<li class="nav-item nav-item-li" id="nav-item-orders">
   <a href="{{Route('admin.orders')}}" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
@@ -87,7 +87,7 @@
 </li>
 
 {{-- QL-nhan vien --}}
-<li class="nav-item ">
+<li class="nav-item nav-item-li " id="nav-item-staffs" >
   <a href="#" class="nav-link">
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
@@ -98,15 +98,40 @@
   </a>
   <ul class="nav nav-treeview">
     <li class="nav-item">
-      <a href="/admin/staffs/list" class="nav-link">
+      <a href="/admin/staffs/list" class="nav-link" id='staffs'>
         <i class="far fa-circle nav-icon"></i>
         <p>Danh Sách Nhân Viên</p>
       </a>
     </li>
     <li class="nav-item ">
-      <a href="/admin/staffs/add" class="nav-link">
+      <a href="/admin/staffs/add" class="nav-link" id='staffs'>
         <i class="far fa-circle nav-icon"></i>
         <p>Thêm Nhân Viên</p>
+      </a>
+    </li>
+  </ul>
+</li>
+{{-- QL-khach hang --}}
+<li class="nav-item nav-item-li " id="nav-item-customers" >
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+      Khách Hàng
+      {{-- <span class="badge badge-info right">2</span> --}}
+    </p>
+    <i class="fas fa-angle-left right"></i>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="/admin/customers/list" class="nav-link" id='customers'>
+        <i class="far fa-circle nav-icon"></i>
+        <p>Danh Sách Khách Hàng</p>
+      </a>
+    </li>
+    <li class="nav-item ">
+      <a href="/admin/customers/add" class="nav-link" id='customers'>
+        <i class="far fa-circle nav-icon"></i>
+        <p>Thêm Khách Hàng</p>
       </a>
     </li>
   </ul>

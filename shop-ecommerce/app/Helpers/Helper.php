@@ -1,6 +1,7 @@
 <?php
 namespace App\Helpers;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 class Helper{
         
     public static function active($active = 0): string
@@ -27,6 +28,14 @@ class Helper{
                     <a  class="btn btn-danger btn-sm" onclick="" href="/admin/staffs/destroy/'.$staff->id.'"><i class="fas fa-trash"></i></a></td>
             </tr>';
             }        
+
+        return $html;
+    }
+    public static function renderClassNameForNavItem( $request){
+        $html='';
+        if ($request->is('admin/staffs/*')) {
+            $html='menu-is-opening menu-open ';
+        }
 
         return $html;
     }

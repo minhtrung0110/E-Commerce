@@ -9,15 +9,18 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\StaffService;
 use App\Http\Services\RoleService;
+use Symfony\Component\Console\Command\DumpCompletionCommand;
 class StaffController extends Controller
 {
     protected $staffService;
     protected $roleService;
 
-    public function __construct(StaffService $staffService,RoleService $roleService)
+    public function __construct(StaffService $staffService,RoleService $roleService, Request $request)
     {
         $this->staffService = $staffService;
         $this->roleService = $roleService;
+        return $request;
+
     }
     /**
      * Display a listing of the resource.
@@ -62,7 +65,6 @@ class StaffController extends Controller
             $result=$this->staffService->create($request);
             
         }
-       
         if($result) 
             return response()->json([
                 'error'=>false,
@@ -75,6 +77,18 @@ class StaffController extends Controller
             ]) ;
        
     
+    }
+
+    public function checkEmailExist(Request $request){
+            //check email các table khác không quan tâm vấn đề này
+            $staff=$this->staffService->findStaff($request->input('email'));
+            if(is_null($staff))
+            return response()->json([
+                'error'=>true,
+                'message'=>'Email Exist'
+            ]);
+            //
+
     }
 
     /**

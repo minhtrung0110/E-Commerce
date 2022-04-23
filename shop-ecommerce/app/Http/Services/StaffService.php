@@ -19,9 +19,9 @@ class StaffService {
         return Staffs::orderbyDesc('id')->get();
     }
     public function create($request){
-     
+
         try {
-            Staffs::create([
+            $staff= Staffs::create([
                 'role_id'=>(int)$request->input('role_id'),
                 'first_name'=>(string)$request->input('first_name'),
                 'last_name'=>(string)$request->input('last_name'),
@@ -34,15 +34,14 @@ class StaffService {
                 'end_date'=>(string)$request->input('end_date'),
 
             ]);
-            session()->flash('success', 'Tạo Nhân Viên Thành Công');
+        } 
+             catch (\Exception $err) {
+                Session::flash('error',$err->getMessage());
+                return false;
+            }
+            return true;
+          
         }
-        catch(Exception $e){
-            session()->flash('error','Thêm Nhân Viên thất bại !!! ');
-          //  Log::info($e->getMessage());
-            return false;
-        }
-        return true;
-    }
 
  
     
