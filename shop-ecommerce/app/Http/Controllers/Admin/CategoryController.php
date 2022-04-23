@@ -71,9 +71,12 @@ class CategoryController extends Controller
         ]);
         $result=$this->groupProductService->add_Cate($request);
         if($result){
-            
-            dd($valadate) ;//redirect()->back();
+            Session()->flash('success','Thêm danh mục thành công');
+             return redirect()->route('admin.categories.list');
         }
+        Session()->flash('error','Thêm danh mục thất bại');
+        return redirect()->back();
+
     }
 
     /**

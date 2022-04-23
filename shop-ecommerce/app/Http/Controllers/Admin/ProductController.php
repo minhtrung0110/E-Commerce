@@ -90,10 +90,10 @@ class ProductController extends Controller
             'Img_link.required'=>'Hình ảnh sản phẩm phải bắt buộc',
 
         ]);
-        $result= $this->productService->create($request);
+        $request= $this->productService->create($request);
         // $this->imageProductService->create($request,$result);
         // $this->imagesService->create($request,$result);
-      dd($result);
+      dd($request);
          //return redirect()->back();
         // dd($request->all());
        // dd($request->input());

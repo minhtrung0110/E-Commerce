@@ -12,9 +12,9 @@ class GroupProduct_Service{
             GroupProduct::create([
                 'name'=> $request->input('Cate_name')
             ]);
-            Session::flash('success','Thêm danh mục thành công');
+            
         } catch (\Exception $err) {
-            Session::flash('error',$err->getMessage());
+            
             return false;
         }
         return true;

@@ -54,11 +54,12 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        //Orders
        Route::prefix('/orders')->group(function(){
          Route::get('/list',[OrderController::class,'index'])->name('admin.orders');//handle
+        Route::get('/show/{id}',[OrderController::class,'showDetail']);
         Route::get('/add',[OrderController::class,'create']);
         Route::post('/add',[OrderController::class,'store']);//handle
         Route::DELETE('/destroy',[OrderController::class,'destroy']);//handle
-        Route::get('/edit/{menu}',[OrderController::class,'show']);
-       Route::post('/edit/{menu}',[OrderController::class,'update']);//handle
+        Route::get('/edit/{id}',[OrderController::class,'show']);
+       Route::post('/edit/{id}',[OrderController::class,'update']);//handle
         });
     
       //Upload

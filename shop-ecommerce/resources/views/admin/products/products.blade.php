@@ -42,10 +42,10 @@
           <td><a class="btn btn-primary btn-sm" href="/admin/products/edit/{{ $product->id }}">
             <i class="fas fa-edit"></i>
         </a>
-           <a href="#" class="btn btn-danger btn-sm"
+           {{-- <a href="#" class="btn btn-danger btn-sm"
               onclick="removeRow({{ $product->id }}, '/admin/products/destroy')">
          <i class="fas fa-trash"></i>
-     </a>
+     </a> --}}
           </td>
         </tr>
             
