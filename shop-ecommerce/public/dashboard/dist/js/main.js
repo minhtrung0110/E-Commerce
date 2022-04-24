@@ -26,6 +26,7 @@ elements.forEach((item)=>{
     if(nav_item ==='group-products' && idname==='group-products') {
         item.classList.add('menu-is-opening')
         item.classList.add('menu-open')
+        
         //sub menu
         let sub_nav_item_input=document.querySelectorAll('.nav > .nav-item-li #group-products');      
         sub_nav_item_input.forEach((link_item)=>{
@@ -33,6 +34,17 @@ elements.forEach((item)=>{
         })
     } 
 
+     //group-products
+     if(nav_item ==='discounts' && idname==='discounts') {
+        item.classList.add('menu-is-opening')
+        item.classList.add('menu-open')
+        //sub menu
+        let sub_nav_item_input=document.querySelectorAll('.nav > .nav-item-li #discounts');      
+        sub_nav_item_input.forEach((link_item)=>{
+            if(link_item.href.indexOf(sub_nav_item)!==-1 )       link_item.classList.add('active')
+        })
+    } 
+    
     //staffs
     if(nav_item ==='staffs' && idname==='staffs') {
         item.classList.add('menu-is-opening')

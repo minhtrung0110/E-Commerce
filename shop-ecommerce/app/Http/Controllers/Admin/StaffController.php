@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Services\StaffService;
 use App\Http\Services\RoleService;
 use Symfony\Component\Console\Command\DumpCompletionCommand;
+
 class StaffController extends Controller
 {
     protected $staffService;
     protected $roleService;
 
-    public function __construct(StaffService $staffService,RoleService $roleService, Request $request)
+    public function __construct(StaffService $staffService, RoleService $roleService, Request $request)
     {
         $this->staffService = $staffService;
         $this->roleService = $roleService;
         return $request;
-
     }
     /**
      * Display a listing of the resource.
@@ -29,10 +29,10 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('admin.staffs.list',[
-            'title'=> 'Danh Sách Nhân Viên',
-            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
-            'listStaffs'=>$this->staffService->getAll(),
+        return view('admin.staffs.list', [
+            'title' => 'Danh Sách Nhân Viên',
+            'staff' => $this->staffService->getInFo(Session::get('staff_id')),
+            'listStaffs' => $this->staffService->getAll(),
         ]);
     }
 
@@ -43,10 +43,10 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return view('admin.staffs.add',[
-            'title'=> 'Thêm Nhân Viên',
-            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
-            'roles'=>$this->roleService->getListRoles()
+        return view('admin.staffs.add', [
+            'title' => 'Thêm Nhân Viên',
+            'staff' => $this->staffService->getInFo(Session::get('staff_id')),
+            'roles' => $this->roleService->getListRoles()
         ]);
     }
 
@@ -58,36 +58,34 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-       // validate
-      // dd($request->all());
-     // $this->staffService->create($request);
-        if(!is_null($request)){
-            $result=$this->staffService->create($request);
-            
+        // validate
+        // dd($request->all());
+        // $this->staffService->create($request);
+        if (!is_null($request)) {
+            $result = $this->staffService->create($request);
         }
-        if($result) 
+        if ($result)
             return response()->json([
-                'error'=>false,
-                'message'=>'Thêm Thành Công'
-            ]) ;
+                'error' => false,
+                'message' => 'Thêm Thành Công'
+            ]);
         else
             return response()->json([
-                'error'=>true,
-                'message'=>'Thêm Thất Bại'
-            ]) ;
-       
-    
+                'error' => true,
+                'message' => 'Thêm Thất Bại'
+            ]);
     }
 
-    public function checkEmailExist(Request $request){
-            //check email các table khác không quan tâm vấn đề này
-            $staff=$this->staffService->findStaff($request->input('email'));
-            if(is_null($staff))
+    public function checkEmailExist(Request $request)
+    {
+        //check email các table khác không quan tâm vấn đề này
+        $staff = $this->staffService->findStaff($request->input('email'));
+        if (is_null($staff))
             return response()->json([
-                'error'=>true,
-                'message'=>'Email Exist'
+                'error' => true,
+                'message' => 'Email Exist'
             ]);
-            //
+        //
 
     }
 
@@ -99,10 +97,11 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        return view('admin.staffs.edit',[
-            'title'=> 'Sửa Nhân Viên',
-            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
-            'staff_edit'=>$this->staffService->getInFo($id)
+        return view('admin.staffs.edit', [
+            'title' => 'Sửa Nhân Viên',
+            'staff' => $this->staffService->getInFo(Session::get('staff_id')),
+            'roles' => $this->roleService->getListRoles(),
+            'staff_edit' => $this->staffService->getInFo($id)
         ]);
     }
 
@@ -124,10 +123,22 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+       
+        $result = $this->staffService->update($request);
+       if ($result)  
+         return response()->json([
+            'error' => false,
+            'message' => "Cập Nhật Thành Công"
+        ]);
+        else
+            return response()->json([
+                'error' => true,
+               'message' => "Cập Nhật Thất Bại"
+           ]);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -135,8 +146,17 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $result = $this->staffService->delete($request);
+        if($result)  {
+            return response()->json([
+                'error'=>false,
+                'message'=>'Xoá thành công!!!'
+            ]);
+        }
+        return response()->json([
+            'error'=>true
+        ]);
     }
 }

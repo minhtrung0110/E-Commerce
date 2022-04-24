@@ -12,8 +12,7 @@
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    {{-- code --}}
-    <a href="{{Route('admin.discount.list')}}" class="btn btn-success">Quay lại</a>
+
       <div class="text-center">
           <h1>Thêm mã giảm giá</h1>
       </div>

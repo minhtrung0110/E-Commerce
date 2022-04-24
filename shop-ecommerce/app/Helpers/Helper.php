@@ -25,7 +25,7 @@ class Helper{
               <td>'.self::active($staff->status).'</td>
               <td>
               <a  class="btn btn-primary btn-sm" href="/admin/staffs/edit/'.$staff->id.'"><i class="fas fa-edit"></i></a>
-                    <a  class="btn btn-danger btn-sm" onclick="" href="/admin/staffs/destroy/'.$staff->id.'"><i class="fas fa-trash"></i></a></td>
+                    <a  class="btn btn-danger btn-sm" onclick="removeRow(' . $staff->id . ', \'/admin/staffs/destroy\')")" ><i class="fas fa-trash"></i></a></td>
             </tr>';
             }        
 

@@ -15,3 +15,8 @@
     padding: 8px 0 0 4px;
     color: #f33a58;
 }
+.form-submit{
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+}

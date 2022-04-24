@@ -45,8 +45,8 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        });
        //Discounts
        Route::prefix('/discounts')->group(function(){
-         Route::get('/list',[DiscountController::class,'index'])->name('admin.discount.list');
-         Route::get('/add',[DiscountController::class,'create'])->name('admin.discount.add');
+         Route::get('/list',[DiscountController::class,'index'])->name('admin.discounts.list');
+         Route::get('/add',[DiscountController::class,'create'])->name('admin.discounts.add');
          Route::post('/add',[DiscountController::class,'store']);
          Route::get('/edit/{id}',[DiscountController::class,'show']);
          Route::post('/edit/{id}',[DiscountController::class,'update']);

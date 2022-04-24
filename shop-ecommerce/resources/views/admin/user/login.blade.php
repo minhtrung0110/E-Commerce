@@ -14,7 +14,7 @@
 						ĐĂNG NHẬP
 					</span>
 
-					<div class=" form-group wrap-input100 validate-input m-b-16 email-message-error " data-validate="Vui lòng nhập email" data-error="Email Không Tồn Tại">
+					<div class=" form-group wrap-input100 validate-input m-b-16 email-message-error " data-validate="Vui lòng nhập email" data-error="Email Không Tồn Tại hoặc Bị Khoá">
 						<input class="input100" type="email" name="email" id="email" placeholder="Email">
 						<span class="focus-input100"></span>			
 					</div>

@@ -44,6 +44,7 @@
          
         </tbody>
       </table>
+      
     </div>
     <!-- /.card-body -->
   </div>
@@ -52,6 +53,3 @@
 
 @endsection
 
-<script >
-    CKEDITOR.replace('content');
-</script>

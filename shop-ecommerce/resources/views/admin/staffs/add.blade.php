@@ -7,10 +7,19 @@
 
     <div class="content-wrapper">
 
-        <div class="card card-success bordered " style="padding:1em 5em; border">
+        <div class="card card-success  " style="padding:1em 8em;min-height: ">
             <div class="card-header">
-                <h3 class="card-title"><strong>Thêm Sản Phẩm</strong></h3>
-            </div>
+                <h3 class="card-title">Thêm Nhân Viên</h3>
+    
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <form method="post" action="" id="form-add-products" class="row">
@@ -71,15 +80,28 @@
                         <label>Ngày Kết Thúc Hợp Đồng:</label>
                         <input type="date" name="end_date"  id="end_date" class="form-control" placeholder="Enter ...">
                         <span class="form-message"></span>
-                    </div>
-
-                    <button type="submit" class="form-submit btn btn-success col-sm-6"> Thêm Nhân Viên</button>
+                    </div>   
+                    <div class="form-group col-sm-12">
+                        <label>Hoạt Động</label>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" value="1" type="radio" id="active" name="status" checked="">
+                            <label for="active" class="custom-control-label">Có</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" value="0" type="radio" id="no_active" name="status" >
+                            <label for="no_active" class="custom-control-label">Không</label>
+                        </div>
+                    </div>                         
 
                             @csrf
+                            <div class="col-sm-3"></div>
+                            <button type="submit" class="form-submit btn btn-success col-sm-6"> Thêm Nhân Viên</button>
+                            <div class="col-sm-3"></div>
                 </form>
                         <!-- /.card-body -->
-                 </div>
             </div>
+            
+           
 
         </div>
     @endsection
@@ -120,7 +142,7 @@
                            setTimeout(() => {window.location="/admin/staffs/list"}, 1200);
                         } 
                         else  {
-                            swal("Thêm Thất Bại", "Nhân Viên Không Được Thêm", "error");
+                            swal("Thêm Thất Bại", "Email Của Nhân Viên Đã Tồn Tại", "error");
                            
                         }
                     }

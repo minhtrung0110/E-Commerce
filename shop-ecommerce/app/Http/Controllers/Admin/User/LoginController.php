@@ -60,7 +60,7 @@ class LoginController extends Controller
         return response()->json([
             'error'=>true,
             'fail_node'=>'email',
-            'message'=>'Tài Khoản Không Tồn Tại'
+            'message'=>'Tài Khoản Không Tồn Tại hoặc Có Thể Bị Khoá'
         ]);
         else {
             if (Hash::check($request->input('password'), $staff->password)) {

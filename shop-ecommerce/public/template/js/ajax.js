@@ -122,10 +122,10 @@ $('#form-submit-login').click(function () {
     success: function (respond) {
         
         if(respond.error === true && respond.fail_node === 'email') {
-
+            swal("Ôi Không", "Dường Như Email Của Bạn Không Tồn Tại hoặc Bị Khoá Rồi!", "error");
         }
         else if(respond.error===true  && respond.fail_node === 'password'){
-
+            swal("Đăng Nhập Thất Bại", "Mật Khẩu Của Bạn Không Chính Xác!", "error");
         }
         else {
             swal("Thật Tuyệt", "Bạn Đã Đăng Nhập Thành Công!", "success");
@@ -137,23 +137,3 @@ $('#form-submit-login').click(function () {
 
 
 
-/// delete sanpham/danhmuc
-function removeRow(id,url){
-    if(confirm('Bạn có chắc xóa hàng này không?')){
-        $.ajax({
-            type:'DELETE',
-            datatype:'JSON',
-            data:{id},
-            url:url,
-            success:function (result){
-                if(result.error === false){
-                    alert(result.message);
-                    location.reload();
-                }
-                else{
-                    alert('lỗi, Vui lòng thử lại');
-                }
-            }
-        })
-    }
-}
