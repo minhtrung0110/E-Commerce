@@ -99,13 +99,20 @@
                 <label for="no_active" class="custom-control-label">Không</label>
             </div>
         </div>
-        
+
+     
+
+      
           <div class="form-group">
             <label for="img_link">Hình ảnh</label>
-            <input type="file"  value="{{$thums}}" onchange="ImagesFileAsURL('img_link','displayImg');" class="form-control" id="img_link" name="Img_link"  >
+            <input type="file"  value="{{$thums}}" placeholder="{{$thums}}" onchange="ImagesFileAsURL('img_link','displayImg');" class="form-control" id="img_link" name="Img_link"  >
             <div id="displayImg">
-              <img width="100px" src="" alt="">
+            
+              <a href="{{asset('storage/uploads/'.$thums)}}" target="_blank">
+                <img src="{{asset('storage/uploads/'.$thums)}}" width="100px">
+              </a>
             </div>
+            <input type="hidden" name="thumb" value="{{$thums}}" id="thumb">
             @error('Img_link')
             <span style="color:red">{{$message}}</span>
           @enderror
@@ -113,4 +120,5 @@
         <button type="submit" class="btn btn-primary">Cập nhập</button>
       </form>
   </div>
+  
 @endsection 

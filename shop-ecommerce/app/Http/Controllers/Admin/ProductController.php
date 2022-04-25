@@ -8,7 +8,7 @@ use App\Http\Services\ProductService;
 use App\Http\Services\GroupProduct_Service;
 use App\Http\Services\ImagesService;
 use App\Http\Services\ImageProductService;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\StaffService;
 
@@ -114,8 +114,8 @@ class ProductController extends Controller
                                $this->productService->createDetail($request,$id); 
                                $id_img=$this->imageProductService->create($request ,$id);
 
-                                $img->storeAs('Images',$namFile);
-                             
+                                $img->storeAs('public/uploads',$namFile);
+                              // Storage::disk('local')->put($namFile,'img');
                                 $result=$this->imagesService->create($namFile,$id_img);   
                         }
                     }else{
@@ -222,7 +222,7 @@ class ProductController extends Controller
             'Category' => 'required',
             'Amount' => 'required|integer',
             'Price' => 'required|integer',
-            'Img_link' => 'required',
+           
         ],[
             'Product_name.required'=>'Tên sản phẩm phải bắt buộc',
             'Product_name.min'=>'Tên sản phẩm không được nhỏ hơn 6 ký tự',
@@ -231,11 +231,12 @@ class ProductController extends Controller
             'Amount.integer'=>'Số lượng sản phẩm phải là chữ số',
             'Price.required'=>'Giá sản phẩm phải bắt buộc',
             'Price.integer'=>'Giá sản phẩm phải là chữ số',
-            'Img_link.required'=>'Hình ảnh sản phẩm phải bắt buộc',
+            
 
         ]);
-            
-       if($request->file('Img_link')){
+          
+       if($request->file('Img_link'))
+       {
         $img=$request->Img_link;
          $file_extension=['png','jpg','jpeg'];
          $extension=$img->getClientOriginalExtension();
@@ -252,6 +253,8 @@ class ProductController extends Controller
 
              $this->productService->update($request,$id);
              $result=$this->imageProductService->update($namFile,$id);
+             $img->storeAs('public/uploads',$namFile);
+             //Storage::disk('local')->put('example.txt', 'Contents');
              if($result){
                  Session()->flash('success','Cập nhập thành công');
                  return redirect()->route('admin.products.list');
@@ -261,7 +264,17 @@ class ProductController extends Controller
             }
         
 
-    }}
+    }else{
+        $this->productService->update($request,$id);
+        $result=$this->imageProductService->update($request->input('thumb'),$id);
+        if($result){
+            Session()->flash('success','Cập nhập thành công');
+            return redirect()->route('admin.products.list');
+           }
+           Session()->flash('error','Cập nhập thất bại');
+           return redirect()->back();
+    }
+}
 
     /**
      * Remove the specified resource from storage.
