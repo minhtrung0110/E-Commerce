@@ -13,7 +13,11 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     {{-- code --}}
-    
+    @if(Session::has('success'))
+    <div class="text-center">
+      <p class="alert alert-success">{{Session::get('success')}}</p>
+    </div>
+    @endif
     <table class="table">
       <thead>
         <tr>

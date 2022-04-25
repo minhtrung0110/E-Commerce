@@ -230,7 +230,10 @@
 <script src="{{asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
 {{-- ajax-removeRow --}}
 <script src="{{asset('template/js/remove.js')}}"></script>
-<script src="{{asset('template/js/validator.js')}}"></script>
+<script src="{{asset('template/js/validator.js')}}">
+</script>
+<script src="{{asset('template/js/uploadFile.js')}}"></script>
+
 @yield('js-ckeditor')
 </body>
 </html>
