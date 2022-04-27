@@ -100,12 +100,15 @@
             </div>
         </div>
 
-     
-
+        
       
           <div class="form-group">
-            <label for="img_link">Hình ảnh</label>
-            <input type="file"  value="{{$thums}}" placeholder="{{$thums}}" onchange="ImagesFileAsURL('img_link','displayImg');" class="form-control" id="img_link" name="Img_link"  >
+            {{-- <label for="img_link">Hình ảnh</label>
+            <input type="file"  onchange="ImagesFileAsURL('img_link','displayImg');" class="form-control" id="img_link" name="Img_link"  > --}}
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="img_link" name="Img_link"  onchange="ImagesFileAsURL('img_link','displayImg');GetValuefile();">
+              <label class="custom-file-label"id="js-show-file" for="img_link">{{$thums}}</label>
+          </div>
             <div id="displayImg">
             
               <a href="{{asset('storage/uploads/'.$thums)}}" target="_blank">
@@ -120,5 +123,6 @@
         <button type="submit" class="btn btn-primary">Cập nhập</button>
       </form>
   </div>
+
   
 @endsection 

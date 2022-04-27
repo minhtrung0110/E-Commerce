@@ -1,3 +1,4 @@
+
 function ImagesFileAsURL(id,divimg) {
     var fileSelected = document.getElementById(id).files;
     if (fileSelected.length > 0) {
@@ -12,4 +13,13 @@ function ImagesFileAsURL(id,divimg) {
         }
         fileReader.readAsDataURL(fileToLoad);
     }
+}
+function GetValuefile(){
+    const name=document.getElementById('img_link').value;
+    const fileName=name.slice(12);
+    const label=document.getElementById('js-show-file');
+   label.innerHTML=`<p>${fileName}</p>`;
+    
+
+
 }
