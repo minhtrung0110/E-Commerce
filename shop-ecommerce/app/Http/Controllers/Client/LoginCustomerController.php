@@ -53,6 +53,7 @@ class LoginCustomerController extends Controller
             if (Hash::check($request->input('password'), $customer->password)) {
                 // Lưu Session 
                 Session::put("customer_id",$customer->id );
+                Session::put("customer_login",true );
                 return response()->json([
                     'error'=>false,
                     'fail_node'=>null,
@@ -136,6 +137,14 @@ class LoginCustomerController extends Controller
             ]);
             
         
+    }
+
+    public function logout(Request $request){
+       // dd($request->session()->get('customer_login'));
+        if ($request->session()->has('customer_id') && $request->session()->get('customer_login')==true ) {
+            $request->session()->flush();
+        }
+        return back();
     }
 
     /**

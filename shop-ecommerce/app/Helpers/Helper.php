@@ -2,8 +2,54 @@
 namespace App\Helpers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 class Helper{
-        
+    public static function renderGroupProducts($menus ){
+        $html='';
+        foreach ($menus as $key => $menu) {
+           
+                $html .= '
+                    <li>
+                        <a href="/products/' . $menu->id . '-' . Str::slug($menu->name, '-') . '.html">
+                            ' . $menu->name . '
+                        </a>';
+
+              
+                $html .= '</li>';
+            
+        }
+        return $html;
+    }
+    public static function renderUserLogin(){
+        $html='';
+       $customer_id= Session::get('customer_id');
+       $checkLogin= Session::get('customer_login');
+       if($checkLogin==true && !is_null($customer_id) ){
+           $data=\App\Http\Services\CustomerService::getInFo($customer_id);
+           $customer_firstname=$data->first_name;
+           $customer_lastname=$data->last_name;
+            $html='
+  
+            <div class="dropdown">
+                <button class="dropbtn">
+                     
+                        <span>'. $customer_firstname.' '.$customer_lastname.'</span>                
+                        
+                </button>
+            <div class="dropdown-content">
+                <a href="/myprofile">Thông Tin Tài Khoản</a> </a>
+                <a href="/logout">Đăng Xuât</a> </a>
+            </div>
+            </div>
+            ';
+       }
+       else $html='
+       <a href="/login" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 " >
+             <i class="zmdi zmdi-account-circle"></i>
+       </a>
+       ';
+       return $html;
+    }
     public static function active($active = 0): string
     {
         return $active == 0 ? '<span class="btn btn-danger btn-xs">HUỶ</span>'

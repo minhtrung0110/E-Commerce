@@ -1,33 +1,7 @@
 <header>
     <!-- Header desktop -->
     <div class="container-menu-desktop">
-        <!-- Topbar -->
-        <div class="top-bar">
-            <div class="content-topbar flex-sb-m h-full container">
-                <div class="left-top-bar">
-                    Free shipping for standard order over $100
-                </div>
-
-                <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
-                    </a>
-                </div>
-            </div>
-        </div>
-
+     
         <div class="wrap-menu-desktop">
             <nav class="limiter-menu-desktop container">
                 
@@ -40,32 +14,25 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu">
-                            <a href="index.html"></a>
+                            <a href="index.html">Trang Chủ</a>
+                           
+                        </li>
+
+                        <li class="active-menu">
+                            <a href="index.html">Cửa Hàng</a>
                             <ul class="sub-menu">
-                                <li><a href="index.html">Homepage 1</a></li>
-                                <li><a href="home-02.html">Homepage 2</a></li>
-                                <li><a href="home-03.html">Homepage 3</a></li>
+                                {!! \App\Helpers\Helper::renderGroupProducts($group_products )!!}
+                               
                             </ul>
                         </li>
 
-                        <li>
-                            <a href="product.html">Shop</a>
-                        </li>
 
-                        <li class="label1" data-label1="hot">
-                            <a href="shoping-cart.html">Features</a>
+                        <li>
+                            <a href="about.html">Về Cửa Hàng</a>
                         </li>
 
                         <li>
-                            <a href="blog.html">Blog</a>
-                        </li>
-
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-
-                        <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="contact.html">Liên Hệ</a>
                         </li>
                     </ul>
                 </div>	
@@ -80,9 +47,10 @@
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
 
-                    <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-                        <i class="zmdi zmdi-favorite-outline"></i>
-                    </a>
+                  
+                        {!! \App\Helpers\Helper::renderUserLogin()!!}
+                       
+                  
                 </div>
             </nav>
         </div>	

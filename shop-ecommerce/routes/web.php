@@ -107,7 +107,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::post('/login/store/',[LoginCustomerController::class,'store'])->name('check_login');
   Route::get('/registery',[LoginCustomerController::class,'showRegistery'])->name('registery');
   Route::post('/registery/store/',[LoginCustomerController::class,'storeRegistery'])->name('check_registery');
-
+  Route::get('/logout',[LoginCustomerController::class,'logout'])->name('logout');
   /*====================CUSTOMER=========================*/
 
   Route::prefix('/')->group(function(){
