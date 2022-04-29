@@ -15,8 +15,8 @@
         <div class="main">
 
             <form  method="POST" class="form" id="form-login">
-              <h3 class="heading">Đăng nhập</h3>
-              <p class="desc">Cùng nhau học lập trình miễn phí tại F8 ❤️</p>
+              <h3 class="heading">Đăng Nhập</h3>
+              <p class="desc">Chào Quý Khách</p>
         
               <div class="spacer"></div>
         
@@ -27,13 +27,18 @@
               </div>
         
               <div class="form-group">
-                <label for="password" class="form-label">Mật khẩu</label>
+                <label for="password" class="form-label">Mật Khẩu</label>
                 <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
                 <span class="form-message"></span>
               </div>
         
               <button type="button" class="form-submit" id="form-submit-login">Đăng Nhập</button>
+              <div class="footer">
+                <a href="/myprofile/reset-password/" class="link-item">Quên Mật Khẩu</a>
+                <a href="/registery" class="link-item">Đăng Ký</a>
+              </div>
             </form>
+            
         
           </div>
           <script src="{{asset('template/js/validator.js')}}"></script>

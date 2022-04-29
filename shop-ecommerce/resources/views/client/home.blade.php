@@ -1,5 +1,9 @@
 @extends('client.main')
 
+    <!-- Slider -->
+@include('client.slider')
+	<!-- Banner -->
+@include('client.banner')
 
 @section('content')
 

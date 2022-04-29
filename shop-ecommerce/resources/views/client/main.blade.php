@@ -12,10 +12,7 @@
 	<!-- Cart  sẽ include cart vào nếu tìm dc cách hiện popup tất cả trang-->
 
 @include('client.cart')
-    <!-- Slider -->
-@include('client.slider')
-	<!-- Banner -->
-@include('client.banner')
+
 
 	<!-- Product -->
 @yield('content')

@@ -286,4 +286,15 @@ class ProductController extends Controller
     {
         //
     }
+    /*================================================================Client================================================================*/
+    public function showDetailProduct($id='',$slug=''){
+        $product=$this->productService->getProduct($id);
+        $relative_product=$this->productService->getRelativeProducts($id,$product->cate_id);
+        return view('client.products.detail',[
+                'title'=>$product->name_product,
+                'group_products'=>$this->groupProductService->getAll(),
+                'product'=>$product,
+                'relative_products'=>$relative_product
+        ]);
+    }
 }

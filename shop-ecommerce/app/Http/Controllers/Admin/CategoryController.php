@@ -64,7 +64,7 @@ class CategoryController extends Controller
     {
         //
         $valadate=$request->validate([
-            'Cate_name'=>'required|min:4',
+            'Cate_name'=>'required',
             'thumb'=>'required'
         ],[
             'required'=>'Tên danh mục bắt buộc phải nhập',

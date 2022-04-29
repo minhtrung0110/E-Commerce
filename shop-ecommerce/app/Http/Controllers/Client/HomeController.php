@@ -8,6 +8,7 @@ use App\Http\Services\CustomerService;
 use App\Http\Services\GroupProduct_Service;
 use App\Http\Services\ProductService;
 use App\Http\Services\CartService;
+use App\Http\Services\SliderService;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -19,13 +20,15 @@ class HomeController extends Controller
     protected $groupProductService;
     protected $cartService;
     protected $productService;
+    protected $sliderService;
 
-    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService,ProductService $productService)
+    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService,ProductService $productService,SliderService $sliderService)
     {
         $this->customerService = $customerService;
         $this->groupProductService = $groupProductService;
         $this->cartService = $cartService;
         $this->productService = $productService;
+        $this->sliderService = $sliderService;
     }
     /**
      * Display a listing of the resource.
@@ -39,6 +42,7 @@ class HomeController extends Controller
                 'customer'=>$this->customerService->getInFo(Session::get('customer_id')),
                 'group_products'=>$this->groupProductService->getAll(),
                 'new_arrival_products'=>$this->productService->getNewArrivalProducts(),
+                'sliders'=>$this->sliderService->getSliders()
                // 'products'=>'products',
                // 'group_product'=>'category',
         ]);

@@ -106,3 +106,27 @@ html {
 .spacer {
     margin-top: 36px;
 }
+.footer {
+    padding: 15px;
+
+}
+.link-item:first-child{
+    margin-left: 10px;
+    margin-right:50px;
+}
+.link-item:nth-child(2){
+    margin-left: 50px;
+    margin-right:10px;
+}
+.link-item{
+    text-decoration: none;
+    font-size:13px;
+    font-weight: bold; 
+    color: #000; 
+}
+.link-item:first-child:hover{
+    color:#bf1361;
+}
+.link-item:nth-child(2):hover{
+    color:#1867b7;
+}

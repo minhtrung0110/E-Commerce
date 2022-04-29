@@ -14,7 +14,7 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu">
-                            <a href="index.html">Trang Chủ</a>
+                            <a href="/">Trang Chủ</a>
                            
                         </li>
 

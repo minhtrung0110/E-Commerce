@@ -124,7 +124,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
 
   Route::get('/',[HomeController::class,'index'])->name('home') ;
   Route::get('/products',[HomeController::class,'showListProducts'])->name('home.products') ;
-  
+  Route::get('/detail-product/{id}-{slug}.html', [ProductController::class,'showDetailProduct']);
   /*----------------------------Profile Customer --------------------*/
   Route::get('/myprofile',[HomeController::class,'showProfileCustomer'])->middleware(['checklogincustomer'])->name('home.profile') ;
   Route::post('/myprofile/store',[HomeController::class,'storeProfileCustomer']) ;

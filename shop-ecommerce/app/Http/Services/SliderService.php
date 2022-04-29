@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Session;
 
 
 class SliderService{
+
+    public function getSliders(){
+        return Slider::where('active',1)->get();
+    }
    function getAll(){
        return Slider::all();
    }
