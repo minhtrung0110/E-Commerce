@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\StaffController;
+use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\DiscountController;
 /*================Client===============-*/
 use App\Http\Controllers\Client\HomeController;
@@ -95,6 +96,15 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        Route::DELETE('/destroy',[StaffController::class,'destroy']);//handle
        Route::get('/edit/{id}',[StaffController::class,'show']);
       Route::post('/edit/{id}',[StaffController::class,'update']);//handle
+       });
+       //sliders
+       Route::prefix('/sliders')->group(function(){
+        Route::get('/list',[SliderController::class,'index'])->name('admin.sliders.list');//handle
+       Route::get('/add',[SliderController::class,'create'])->name('admin.sliders.add');
+       Route::post('/add',[SliderController::class,'store']);//handle
+       Route::DELETE('/destroy',[SliderController::class,'destroy']);//handle
+       Route::get('/edit/{id}',[SliderController::class,'show']);
+      Route::post('/edit/{id}',[SliderController::class,'update']);//handle
        });
      
 

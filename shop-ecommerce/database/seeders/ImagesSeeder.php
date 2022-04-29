@@ -14,11 +14,11 @@ class ImagesSeeder extends Seeder
     public function run()
     {
         DB::table('images')->insert([
-            ['id' => 1,'img' =>'/storage/images/product/'],
-            ['id' => 2,'img' =>'/storage/images/product/'],
-            ['id' => 3,'img' =>'/storage/images/product/'],
-            ['id' => 4,'img' =>'/storage/images/product/'],
-            ['id' => 5,'img' =>'/storage/images/product/'],
+            ['id' => 1,'img' =>'th.jpg'],
+            ['id' => 2,'img' =>'th.jpg'],
+            ['id' => 3,'img' =>'th.jpg'],
+            ['id' => 4,'img' =>'th.jpg'],
+            ['id' => 5,'img' =>'th.jpg'],
       
         ]);
     }

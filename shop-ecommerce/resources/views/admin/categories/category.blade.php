@@ -22,7 +22,8 @@
       <thead>
         <tr>
           <th style="width:50px" scope="col">STT</th>
-          <th scope="col">Category_Name</th>
+          <th scope="col">Loại sản phẩm</th>
+          <th scope="col">Hình ảnh</th>
           <th scope="col">#</th>
         </tr>
         
@@ -32,6 +33,9 @@
         <tr>
           <th scope="row">{{++$key}}</th>
           <td>{{$cate->name}}</td>
+          <td><a href="{{asset('storage/categories/'.$cate->thumb)}}" target="_blank">
+            <img src="{{asset('storage/categories/'.$cate->thumb)}}" width="100px">
+          </a></td>
         
        
           <td>

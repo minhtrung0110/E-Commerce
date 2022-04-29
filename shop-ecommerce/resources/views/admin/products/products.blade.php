@@ -27,6 +27,7 @@
           <th scope="col">Description</th>
           <th scope="col">Amount</th>
           <th scope="col">Price</th>
+          <th scope="col">Image</th>
           <th style="width:50px" scope="col">Active</th>
           <th scope="col">#</th>
         </tr>
@@ -41,6 +42,9 @@
           <td>{{$product->description}}</td>
           <td>{{$product->amount}}</td>
           <td>{{$product->price}}</td>
+          <td><a href="{{asset('storage/uploads/'.$product->img)}}" target="_blank">
+            <img src="{{asset('storage/uploads/'.$product->img)}}" width="100px">
+          </a></td>
       
           <td>{!! App\Helpers\helper::active($product->active) !!}</td>
           <td><a class="btn btn-primary btn-sm" href="/admin/products/edit/{{ $product->id }}">
