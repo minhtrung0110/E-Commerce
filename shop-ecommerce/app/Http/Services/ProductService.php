@@ -27,6 +27,18 @@ class ProductService{
         ->get(['group_products.id as cate_id','products.id','group_products.name','products.name as name_product','description','price','amount','active','code_color'])
         ;
     }
+    public function getNewArrivalProducts(){
+     
+        
+        return Product::join('image_products','image_products.product_id','=','products.id')
+        ->join('images','images.id','=','image_products.image_id')
+        ->join('group_products','group_products.id','=','products.group_id')
+        ->join('product_details','product_details.product_id','=','products.id')
+        ->orderBy('products.updated_at', 'DESC')
+        ->skip(0)->take(8)
+        ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active','code_color','images.img'])
+        ;
+    }
     public function create($request){
        try {
           $products=Product::create([

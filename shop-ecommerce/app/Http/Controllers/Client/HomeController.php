@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\CustomerService;
 use App\Http\Services\GroupProduct_Service;
+use App\Http\Services\ProductService;
 use App\Http\Services\CartService;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
@@ -17,12 +18,14 @@ class HomeController extends Controller
     protected $customerService;
     protected $groupProductService;
     protected $cartService;
+    protected $productService;
 
-    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService)
+    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService,ProductService $productService)
     {
         $this->customerService = $customerService;
         $this->groupProductService = $groupProductService;
         $this->cartService = $cartService;
+        $this->productService = $productService;
     }
     /**
      * Display a listing of the resource.
@@ -35,6 +38,7 @@ class HomeController extends Controller
                 'title'=>'TRESOR',
                 'customer'=>$this->customerService->getInFo(Session::get('customer_id')),
                 'group_products'=>$this->groupProductService->getAll(),
+                'new_arrival_products'=>$this->productService->getNewArrivalProducts(),
                // 'products'=>'products',
                // 'group_product'=>'category',
         ]);

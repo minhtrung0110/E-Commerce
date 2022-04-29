@@ -4,8 +4,10 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 class Helper{
+
     public static function renderGroupProducts($menus ){
         $html='';
+        if(is_null($menus)) return $html;
         foreach ($menus as $key => $menu) {
            
                 $html .= '
@@ -20,14 +22,19 @@ class Helper{
         }
         return $html;
     }
+
     public static function renderGroupProductBanners($menus ){
         $html='';
+        if(is_null($menus)) return $html;
         foreach ($menus as $key => $menu) {
-           
+
+                $images=(is_null($menu->images))?'':' <img src="images/banner-01.jpg" alt="IMG-BANNER">';
+
                 $html .= '
                 <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
+
                     <img src="images/banner-01.jpg" alt="IMG-BANNER">
 
                     <a href="/products/' . $menu->id . '-' . Str::slug($menu->name, '-') . '.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
@@ -51,6 +58,7 @@ class Helper{
         }
         return $html;
     }
+
     public static function renderUserLogin(){
         $html='';
        $customer_id= Session::get('customer_id');
@@ -81,6 +89,53 @@ class Helper{
        ';
        return $html;
     }
+
+
+    public static function renderProductNewArrival($new_arrival_products) {
+        $html='';
+        if(is_null($new_arrival_products)) return $html;
+        foreach ($new_arrival_products as $key => $product) {
+                /*get value*/
+         if($product->active==1){
+                $id=$product->id;
+                $name=$product->name_product;
+                $price=$product->price;
+                $image=$product->img;
+
+                $html .= '
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                <!-- Block2 -->
+                <div class="block2">
+                    <div class="block2-pic hov-img0">
+                        <img src="/storage/uploads/'.$image.'"alt="IMG-PRODUCT">
+
+                        <a href="/detail-product/'.$id. '-' . Str::slug($name, '-') .'.html" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                            Quick View
+                        </a>
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="/detail-product/'.$id. '-' . Str::slug($name, '-') .'.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    '.$name.'
+                                </a>
+
+                                <span class="stext-105 cl3">
+                                '.number_format($price).' VNĐ
+                                </span>
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                </div>
+            ';
+          }
+            
+        }
+        return $html;
+
+    }
     public static function active($active = 0): string
     {
         return $active == 0 ? '<span class="btn btn-danger btn-xs">HUỶ</span>'
@@ -108,6 +163,7 @@ class Helper{
 
         return $html;
     }
+
     public static function renderClassNameForNavItem( $request){
         $html='';
         if ($request->is('admin/staffs/*')) {
