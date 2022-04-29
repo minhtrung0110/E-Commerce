@@ -14,10 +14,10 @@ class GroupProductSeeder extends Seeder
     public function run()
     {
         DB::table('group_products')->insert([
-            ['id' => 1,'name' =>'Ba Lô'],
-            ['id' => 2,'name' =>'Túi '],
-            ['id' => 3,'name' =>'Phụ Kiện'],
-         
+            ['id' => 1,'name' =>'Ba Lô','thumb'=>'th.jpg'],
+            ['id' => 2,'name' =>'Túi Nhỏ','thumb'=>'th.jpg'],
+            ['id' => 3,'name' =>'Túi Mang Vai','thumb'=>'th.jpg'],
+            ['id' => 4,'name' =>'Ví','thumb'=>'th.jpg'],
         ]);
     }
 }

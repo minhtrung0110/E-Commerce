@@ -11,6 +11,7 @@ class GroupProduct extends Model
    
     protected $fillable=[
         'name',
+        'thumb'
     ];
  
 

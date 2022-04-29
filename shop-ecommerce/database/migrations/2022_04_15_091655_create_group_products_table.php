@@ -16,6 +16,7 @@ class CreateGroupProductsTable extends Migration
         Schema::create('group_products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('thumb');
             $table->timestamps();
         });
     }

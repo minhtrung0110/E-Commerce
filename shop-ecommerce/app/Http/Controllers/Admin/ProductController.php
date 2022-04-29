@@ -92,7 +92,7 @@ class ProductController extends Controller
         ]);
         
        // handle 1 file
-       
+   
        
        if($request->file('Img_link')){
            $img=$request->Img_link;

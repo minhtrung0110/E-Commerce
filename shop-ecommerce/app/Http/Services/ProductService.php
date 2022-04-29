@@ -15,7 +15,7 @@ class ProductService{
         ->join('group_products','group_products.id','=','products.group_id')
         ->join('product_details','product_details.product_id','=','products.id')
         ->orderBy('products.id', 'DESC')
-        ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active','code_color'])
+        ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active','code_color','img'])
         ;
     }
     public function getProduct($id){

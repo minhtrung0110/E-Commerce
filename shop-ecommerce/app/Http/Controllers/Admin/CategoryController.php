@@ -64,20 +64,41 @@ class CategoryController extends Controller
     {
         //
         $valadate=$request->validate([
-            'Cate_name'=>'required|min:4'
+            'Cate_name'=>'required|min:4',
+            'thumb'=>'required'
         ],[
             'required'=>'Tên danh mục bắt buộc phải nhập',
-            'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số'
+            'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số',
+            'thumb.required'=>'vui lòng chọn ảnh'
         ]);
-        $result=$this->groupProductService->add_Cate($request);
-        if($result){
-            Session()->flash('success','Thêm danh mục thành công');
-             return redirect()->route('admin.categories.list');
-        }
-        Session()->flash('error','Thêm danh mục thất bại');
-        return redirect()->back();
+       
+        if($request->file('thumb'))
+        {
+        $img=$request->thumb;
+         $file_extension=['png','jpg','jpeg'];
+         $extension=$img->getClientOriginalExtension();
+         $namFile=$img->getClientOriginalName();
+         $exe_flag=true;
+         //check đuôi file
+         $check=in_array($extension,$file_extension);
+         if(!$check){
+             $exe_flag=false;
+             Session()->flash('error','Cập nhập loại sản phẩm thất bại,vui lòng kiểm tra file ảnh');
+                 return redirect()->back();
+         }
+         if($exe_flag){
 
+            $result=$this->groupProductService->add_Cate($request,$namFile);
+            $img->storeAs('public/categories',$namFile);
+            if($result){
+                Session()->flash('success','Thêm danh mục thành công');
+                 return redirect()->route('admin.categories.list');
+            }
+            Session()->flash('error','Thêm danh mục thất bại');
+            return redirect()->back();
+            }
     }
+}
 
     /**
      * Display the specified resource.
@@ -90,10 +111,8 @@ class CategoryController extends Controller
         $title='Category|Edit';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $cates=$this->groupProductService->getItems($id);
-        foreach($cates as $cate){
-            $cate_name=$cate->name;
-        }
-        return view('admin.categories.edit_cate',compact('title','staff','cate_name'));
+       
+        return view('admin.categories.edit_cate',compact('title','staff','cates'));
     }
 
     /**
@@ -122,13 +141,42 @@ class CategoryController extends Controller
             'required'=>'Tên danh mục bắt buộc phải nhập',
             'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số'
         ]);
-        $result=$this->groupProductService->update($request->input('Cate_name'),$id);
-        if($result){
-            Session()->flash('success','Cập nhập thành công');
-            return redirect()->route('admin.categories.list');
-        }
-        Session()->flash('error','Cập nhập thất bại');
-        return redirect()->back();
+        
+        if($request->file('thumb'))
+        {
+         $img=$request->thumb;
+          $file_extension=['png','jpg','jpeg'];
+          $extension=$img->getClientOriginalExtension();
+          $namFile=$img->getClientOriginalName();
+          $exe_flag=true;
+          //check đuôi file
+          $check=in_array($extension,$file_extension);
+          if(!$check){
+              $exe_flag=false;
+              Session()->flash('error','Cập nhập danh mục thất bại,vui lòng kiểm tra file ảnh');
+                  return redirect()->back();
+          }
+          if($exe_flag){
+ 
+             $result=$this->groupProductService->update($request,$namFile,$id);
+             $img->storeAs('public/categories',$namFile);
+             if($result){
+                 Session()->flash('success','Thêm danh mục thành công');
+                  return redirect()->route('admin.categories.list');
+             }
+             Session()->flash('error','Thêm danh mục thất bại');
+             return redirect()->back();
+             }
+     }else{
+         $result=$this->groupProductService->update($request,$request->input('img'),$id);
+       
+         if($result){
+             Session()->flash('success','Thêm danh mục thành công');
+              return redirect()->route('admin.categories.list');
+         }
+         Session()->flash('error','Thêm danh mục thất bại');
+         return redirect()->back();
+     }
     }
 
     /**

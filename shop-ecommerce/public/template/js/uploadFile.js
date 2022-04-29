@@ -14,10 +14,10 @@ function ImagesFileAsURL(id,divimg) {
         fileReader.readAsDataURL(fileToLoad);
     }
 }
-function GetValuefile(){
-    const name=document.getElementById('img_link').value;
+function GetValuefile($id,$idshow){
+    const name=document.getElementById($id).value;
     const fileName=name.slice(12);
-    const label=document.getElementById('js-show-file');
+    const label=document.getElementById($idshow);
    label.innerHTML=`<p>${fileName}</p>`;
     
 

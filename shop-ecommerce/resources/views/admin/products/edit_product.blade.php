@@ -23,7 +23,7 @@
   <div class="content-wrapper">
     {{-- code --}}<a href="/admin/products/list" class="btn btn-success">Quay lại</a>
       <div class="text-center ">
-        <h1>Thêm sản phẩm</h1>
+        <h1>Cập nhập sản phẩm</h1>
       </div>
     
       @if(Session::has('error'))
@@ -35,7 +35,7 @@
       @include('admin.user.messeger')
         @csrf
         <div class="form-group">
-          <label for="product_name">Cập nhập sản phẩm</label>
+          <label for="product_name">Tên sản phẩm</label>
           <input type="text" class="form-control" value="{{$product[0]['name_product']}}" id="product_name" name="Product_name" placeholder="Tên sản phẩm...">
           @error('Product_name')
             <span style="color:red">{{$message}}</span>
@@ -106,9 +106,9 @@
             {{-- <label for="img_link">Hình ảnh</label>
             <input type="file"  onchange="ImagesFileAsURL('img_link','displayImg');" class="form-control" id="img_link" name="Img_link"  > --}}
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="img_link" name="Img_link"  onchange="ImagesFileAsURL('img_link','displayImg');GetValuefile();">
+              <input type="file" class="custom-file-input" id="img_link" name="Img_link"  onchange="ImagesFileAsURL('img_link','displayImg');GetValuefile('img_link','js-show-file');">
               <label class="custom-file-label"id="js-show-file" for="img_link">{{$thums}}</label>
-          </div>
+             </div>
             <div id="displayImg">
             
               <a href="{{asset('storage/uploads/'.$thums)}}" target="_blank">
