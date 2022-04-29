@@ -15,9 +15,9 @@ class GroupProductSeeder extends Seeder
     {
         DB::table('group_products')->insert([
             ['id' => 1,'name' =>'Ba Lô'],
-            ['id' => 2,'name' =>'Túi Nhỏ'],
-            ['id' => 3,'name' =>'Túi Mang Vai'],
-            ['id' => 4,'name' =>'Ví'],
+            ['id' => 2,'name' =>'Túi '],
+            ['id' => 3,'name' =>'Phụ Kiện'],
+         
         ]);
     }
 }
