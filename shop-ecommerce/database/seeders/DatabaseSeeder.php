@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePermissionSeeder::class);
         $this->call(RatingSeeder::class);
         $this->call(DiscountSeeder::class);
+        $this->call(SliderSeeder::class);
         $this->call(StaffSeeder::class);
     }
 }

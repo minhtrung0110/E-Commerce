@@ -4,7 +4,7 @@
 <head>
 	@include('client.head')
 </head>
-<body class="animsition">
+<body class="animsition"> <!-- này loaad chậm-->
 	
 	<!-- Header -->
 @include('client.header')
@@ -12,10 +12,7 @@
 	<!-- Cart  sẽ include cart vào nếu tìm dc cách hiện popup tất cả trang-->
 
 @include('client.cart')
-    <!-- Slider -->
-@include('client.slider')
-	<!-- Banner -->
-@include('client.banner')
+
 
 	<!-- Product -->
 @yield('content')

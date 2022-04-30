@@ -62,15 +62,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $valadate=$request->validate([
-        //     'Cate_name'=>'required|min:4',
-        //     'thumb'=>'required'
-        // ],[
-        //     'required'=>'Tên danh mục bắt buộc phải nhập',
-        //     'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số',
-        //     'thumb.required'=>'vui lòng chọn ảnh'
-        // ]);
+    
        
         if($request->file('thumb'))
         {

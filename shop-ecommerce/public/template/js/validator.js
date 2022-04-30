@@ -86,6 +86,7 @@ function Validator(options) {
                             case 'file':
                                 values[input.name] = input.files;
                                 break;
+                       
                             default:
                                 values[input.name] = input.value;
                         }
@@ -155,6 +156,7 @@ Validator.isNumber = function (selector, message) {
         }
     };
 }
+
 Validator.isRealNumber = function (selector, message) {
     return {
         selector: selector,

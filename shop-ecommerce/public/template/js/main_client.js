@@ -280,3 +280,15 @@
 
 
 })(jQuery);
+/*
+var input=document.querySelector('#btn-order')
+    input.onclick=(e)=>{
+    // check login
+    var checkLogin=sessionStorage.getItem('customer_login');
+    console.log(checkLogin);
+    if(!checkLogin) {
+        e.preventDefault()
+        swal("Bạn Chưa Đăng Nhập", "Yêu Cầu Người Dùng Đăng Nhập Để Mua Hàng", "error");
+    }
+
+}*/

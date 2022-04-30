@@ -4,49 +4,44 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Services\CartService;
 use App\Http\Services\CustomerService;
 use App\Http\Services\GroupProduct_Service;
-use App\Http\Services\ProductService;
-use App\Http\Services\CartService;
-use App\Http\Services\SliderService;
-use App\Models\Customer;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 
-class HomeController extends Controller
+class CartController extends Controller
 {
+    protected $cartService;
     protected $customerService;
     protected $groupProductService;
-    protected $cartService;
-    protected $productService;
-    protected $sliderService;
-
-    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService,ProductService $productService,SliderService $sliderService)
+    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService)
     {
+        $this->cartService = $cartService;
         $this->customerService = $customerService;
         $this->groupProductService = $groupProductService;
-        $this->cartService = $cartService;
-        $this->productService = $productService;
-        $this->sliderService = $sliderService;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('client.home',[
-                'title'=>'TRESOR',
-                'customer'=>$this->customerService->getInFo(Session::get('customer_id')),
-                'group_products'=>$this->groupProductService->getAll(),
-                'new_arrival_products'=>$this->productService->getNewArrivalProducts(),
-                'sliders'=>$this->sliderService->getSliders()
-               // 'products'=>'products',
-               // 'group_product'=>'category',
-        ]);
+        // dd($request->all());
+        $result = $this->cartService->create($request);
+        if ($result)
+            return response()->json([
+                'error' => false,
+                'message' => 'Thêm Thành Công'
+            ]);
+        else
+            return response()->json([
+                'error' => true,
+                'message' => 'Thêm Thất Bại'
+            ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -75,11 +70,22 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $product = $this->cartService->getProduct();
+        return view('client.carts.list', [
+            'title' => 'Giỏ Hàng',
+            'group_products'=>$this->groupProductService->getAll(),
+            'products' => $product,
+            'cart_qty' => Session::get('carts'),
+        ]);
     }
 
+    public function addCart(Request $request)
+    {
+       // $this->cartService->addCart($request);
+        return redirect()->back();
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,9 +104,16 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->cartService->update($request);
+        return redirect('/carts');
+    }
+
+    public function remove($id = 0)
+    {
+        $this->cartService->remove($id);
+        return redirect('/carts');
     }
 
     /**
@@ -111,6 +124,5 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }
