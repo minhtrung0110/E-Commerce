@@ -73,23 +73,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'Product_name' => 'required|min:6',
-            'Category' => 'required',
-            'Amount' => 'required|integer',
-            'Price' => 'required|integer',
-            'Img_link' => 'required',
-        ],[
-            'Product_name.required'=>'Tên sản phẩm phải bắt buộc',
-            'Product_name.min'=>'Tên sản phẩm không được nhỏ hơn 6 ký tự',
-            'Category.required'=>'Tên danh mục phải bắt buộc',
-            'Amount.required'=>'Số lượng sản phẩm phải bắt buộc',
-            'Amount.integer'=>'Số lượng sản phẩm phải là chữ số',
-            'Price.required'=>'Giá sản phẩm phải bắt buộc',
-            'Price.integer'=>'Giá sản phẩm phải là chữ số',
-            'Img_link.required'=>'Hình ảnh sản phẩm phải bắt buộc',
+        // $validated = $request->validate([
+        //     'Product_name' => 'required|min:6',
+        //     'Category' => 'required',
+        //     'Amount' => 'required|integer',
+        //     'Price' => 'required|integer',
+        //     'Img_link' => 'required',
+        // ],[
+        //     'Product_name.required'=>'Tên sản phẩm phải bắt buộc',
+        //     'Product_name.min'=>'Tên sản phẩm không được nhỏ hơn 6 ký tự',
+        //     'Category.required'=>'Tên danh mục phải bắt buộc',
+        //     'Amount.required'=>'Số lượng sản phẩm phải bắt buộc',
+        //     'Amount.integer'=>'Số lượng sản phẩm phải là chữ số',
+        //     'Price.required'=>'Giá sản phẩm phải bắt buộc',
+        //     'Price.integer'=>'Giá sản phẩm phải là chữ số',
+        //     'Img_link.required'=>'Hình ảnh sản phẩm phải bắt buộc',
 
-        ]);
+        // ]);
         
        // handle 1 file
    
@@ -217,23 +217,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'Product_name' => 'required|min:6',
-            'Category' => 'required',
-            'Amount' => 'required|integer',
-            'Price' => 'required|integer',
+        // $validated = $request->validate([
+        //     'Product_name' => 'required|min:6',
+        //     'Category' => 'required',
+        //     'Amount' => 'required|integer',
+        //     'Price' => 'required|integer',
            
-        ],[
-            'Product_name.required'=>'Tên sản phẩm phải bắt buộc',
-            'Product_name.min'=>'Tên sản phẩm không được nhỏ hơn 6 ký tự',
-            'Category.required'=>'Tên danh mục phải bắt buộc',
-            'Amount.required'=>'Số lượng sản phẩm phải bắt buộc',
-            'Amount.integer'=>'Số lượng sản phẩm phải là chữ số',
-            'Price.required'=>'Giá sản phẩm phải bắt buộc',
-            'Price.integer'=>'Giá sản phẩm phải là chữ số',
+        // ],[
+        //     'Product_name.required'=>'Tên sản phẩm phải bắt buộc',
+        //     'Product_name.min'=>'Tên sản phẩm không được nhỏ hơn 6 ký tự',
+        //     'Category.required'=>'Tên danh mục phải bắt buộc',
+        //     'Amount.required'=>'Số lượng sản phẩm phải bắt buộc',
+        //     'Amount.integer'=>'Số lượng sản phẩm phải là chữ số',
+        //     'Price.required'=>'Giá sản phẩm phải bắt buộc',
+        //     'Price.integer'=>'Giá sản phẩm phải là chữ số',
             
 
-        ]);
+        // ]);
           
        if($request->file('Img_link'))
        {

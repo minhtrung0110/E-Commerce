@@ -12,7 +12,7 @@
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    {{-- code --}}
+    {{-- code --}}<a href="{{Route('admin.categories.list')}}" class="btn btn-success">Quay lại</a>
     <div class="text-center ">
         <h1>Sửa danh mục</h1>
       </div>
@@ -23,15 +23,13 @@
       </div>
       @endif
     @foreach($cates as $cate)
-    <form action="" method="POST" class="m-2" enctype="multipart/form-data">
+    <form action="" method="POST" class="m-2" id="form-edit-category" enctype="multipart/form-data">
       @include('admin.user.messeger')
         @csrf
         <div class="form-group">
           <label for="Cate_name">Tên danh mục</label>
           <input type="text" class="form-control" value="{{$cate->name}}" id="Cate_name" name="Cate_name" placeholder="Tên danh mục...">
-          @error('Cate_name')
-            <span style="color:red">{{$message}}</span>
-          @enderror
+          <span class="form-message"></span>
         </div>
 
         <div class="form-group">
@@ -39,6 +37,7 @@
             <input type="file" class="custom-file-input" id="thumb" name="thumb"  onchange="ImagesFileAsURL('thumb','displayImg');GetValuefile('thumb','js-show-file');">
             <label class="custom-file-label"id="js-show-file" for="thumb">{{$cate->thumb}}</label>
            </div>
+           <span class="form-message"></span>
           <div id="displayImg">
           
             <a href="{{asset('storage/categories/'.$cate->thumb)}}" target="_blank">
@@ -46,12 +45,25 @@
             </a>
           </div>
           <input type="hidden" name="img" value="{{$cate->thumb}}" id="img">
-          @error('thumb')
-          <span style="color:red">{{$message}}</span>
-          @enderror
         </div>
         <button type="submit" class="btn btn-primary">Cập nhập</button>
       </form>
  @endforeach
   </div>
 @endsection 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      Validator({
+          form: '#form-edit-category',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+              Validator.isRequired('#Cate_name', 'Vui lòng nhập tên danh mục'),
+              Validator.minLength('#Cate_name',6),
+             // Validator.isRequired('#thumb', 'Vui lòng chọn ảnh'),
+              //Validator.isImage('#thumb','Hình ảnh phải là jpg,jpeg hoặc png')
+          ],
+
+      })
+  });
+</script>

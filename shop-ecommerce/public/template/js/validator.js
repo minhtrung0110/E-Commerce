@@ -221,10 +221,11 @@ Validator.isImage = function (selector, message) {
             {
                 case '.png':
                 case '.jpg':
-                    console.log("Is Image");
+                case '.jpeg':
+                   // console.log("Is Image");
                     break;
                 default:
-                    return  message || 'Image format must be jpg or png';
+                    return  message || 'Image format must be jpg ,jpeg or png';
             }
             
         }

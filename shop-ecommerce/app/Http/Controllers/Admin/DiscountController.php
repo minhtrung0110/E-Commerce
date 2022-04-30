@@ -53,26 +53,26 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        $valadate=$request->validate([
-            'dis_name'=>'required|min:4',
-            'dis_value'=>'required|integer',
-            'dis_description'=>'required',
-            'start_date'=>'required',
-            'end_date'=>'required'
-        ],[
-            'dis_name.required' =>'Tên mã giảm giá bắt buộc phải nhập',
-            'dis_value.required'=>'phần trăm giảm giá bắt buộc phải nhập',
-            'dis_description.required'=>'Chi tiết giảm giá bắt buộc phải nhập',
-            'start_date.required'=>'Ngày bắt đầu giảm giá bắt buộc phải nhập',
-            'end_date.required'=>'Ngày kết thúc giảm giá bắt buộc phải nhập',
-            'dis_name.min'=>'Tên mã giảm giá phải trên :min ký tự',
-            'dis_value.integer'=>'Phải là chữ số'
-        ]); 
+        // $valadate=$request->validate([
+        //     'dis_name'=>'required|min:4',
+        //     'dis_value'=>'required|integer',
+        //     'dis_description'=>'required',
+        //     'start_date'=>'required',
+        //     'end_date'=>'required'
+        // ],[
+        //     'dis_name.required' =>'Tên mã giảm giá bắt buộc phải nhập',
+        //     'dis_value.required'=>'phần trăm giảm giá bắt buộc phải nhập',
+        //     'dis_description.required'=>'Chi tiết giảm giá bắt buộc phải nhập',
+        //     'start_date.required'=>'Ngày bắt đầu giảm giá bắt buộc phải nhập',
+        //     'end_date.required'=>'Ngày kết thúc giảm giá bắt buộc phải nhập',
+        //     'dis_name.min'=>'Tên mã giảm giá phải trên :min ký tự',
+        //     'dis_value.integer'=>'Phải là chữ số'
+        // ]); 
 
         $result=$this->discountService->create($request);
         if($result){
             Session()->flash('success','Cập nhập thành công');
-            return redirect()->route('admin.discount.list');
+            return redirect()->route('admin.discounts.list');
         }
         Session()->flash('error','Cập nhập thất bại ');
         return redirect()->back();
@@ -114,25 +114,25 @@ class DiscountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $valadate=$request->validate([
-            'dis_name'=>'required|min:4',
-            'dis_value'=>'required|integer',
-            'dis_description'=>'required',
-            'start_date'=>'required',
-            'end_date'=>'required'
-        ],[
-            'dis_name.required' =>'Tên mã giảm giá bắt buộc phải nhập',
-            'dis_value.required'=>'phần trăm giảm giá bắt buộc phải nhập',
-            'dis_description.required'=>'Chi tiết giảm giá bắt buộc phải nhập',
-            'start_date.required'=>'Ngày bắt đầu giảm giá bắt buộc phải nhập',
-            'end_date.required'=>'Ngày kết thúc giảm giá bắt buộc phải nhập',
-            'dis_name.min'=>'Tên mã giảm giá phải trên :min ký tự',
-            'dis_value.integer'=>'Phải là chữ số'
-        ]); 
+        // $valadate=$request->validate([
+        //     'dis_name'=>'required|min:4',
+        //     'dis_value'=>'required|integer',
+        //     'dis_description'=>'required',
+        //     'start_date'=>'required',
+        //     'end_date'=>'required'
+        // ],[
+        //     'dis_name.required' =>'Tên mã giảm giá bắt buộc phải nhập',
+        //     'dis_value.required'=>'phần trăm giảm giá bắt buộc phải nhập',
+        //     'dis_description.required'=>'Chi tiết giảm giá bắt buộc phải nhập',
+        //     'start_date.required'=>'Ngày bắt đầu giảm giá bắt buộc phải nhập',
+        //     'end_date.required'=>'Ngày kết thúc giảm giá bắt buộc phải nhập',
+        //     'dis_name.min'=>'Tên mã giảm giá phải trên :min ký tự',
+        //     'dis_value.integer'=>'Phải là chữ số'
+        // ]); 
        $result= $this->discountService->update($request,$id);
        if($result){
            Session()->flash('success','Cập nhập thành công');
-           return redirect()->route('admin.discount.list');
+           return redirect()->route('admin.discounts.list');
        }
        Session()->flash('error','Cập nhập thất bại ');
        return redirect()->back();
