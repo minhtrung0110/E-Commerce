@@ -53,3 +53,30 @@ body, .main-menu > li > a, .ltext-102 {
   .dropdown:hover .dropdown-content {display: block;}
   
   .dropdown:hover .dropbtn {background-color: #78c5f2;}
+
+.no-cart{
+  margin: 10em 2em;
+}
+  .title-no-cart{
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 2px 3px 1px #eee;
+    text-transform: uppercase;
+  }
+  .img-no-cart {
+    width: 40%;
+  
+  }
+  .title-no-cart-notify{
+    font-size: 1em;
+    font-weight: bold;
+    text-shadow: 2px 3px 1px #eee;
+    text-transform: uppercase;
+    text-align: center;
+    line-height:1.3em;
+    margin-bottom:10em;
+  }
+  .img-no-cart-notify {
+    width: 80%;
+  
+  }

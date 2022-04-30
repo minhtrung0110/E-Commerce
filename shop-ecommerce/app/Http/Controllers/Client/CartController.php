@@ -86,6 +86,28 @@ class CartController extends Controller
        // $this->cartService->addCart($request);
         return redirect()->back();
     }
+
+
+    public function checkOut(Request $request)
+    {
+        // check login credentials
+        if(Session::has('customer_id') && Session::get('customer_login')==true) {
+
+
+            return response()->json([
+                'error'=>false,
+                'message'=>'Sản Phảm Đã Được Tiến Hàng Thanh Toán'
+            ]);
+        }
+        else{
+            return response()->json([
+                'error'=>true,
+                'message'=>'Đăng Nhập Để Mua Hàng'
+            ]);
+        }
+       // $this->cartService->addCart($request);
+        return redirect()->back();
+    }
     /**
      * Show the form for editing the specified resource.
      *
