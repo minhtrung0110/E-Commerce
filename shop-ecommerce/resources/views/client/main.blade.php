@@ -4,7 +4,7 @@
 <head>
 	@include('client.head')
 </head>
-<body class="animsition">
+<body class="animsition"> <!-- này loaad chậm-->
 	
 	<!-- Header -->
 @include('client.header')

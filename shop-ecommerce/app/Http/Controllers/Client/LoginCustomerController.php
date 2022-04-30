@@ -142,7 +142,9 @@ class LoginCustomerController extends Controller
     public function logout(Request $request){
        // dd($request->session()->get('customer_login'));
         if ($request->session()->has('customer_id') && $request->session()->get('customer_login')==true ) {
-            $request->session()->flush();
+            $request->session()->forget('customer_id');
+            session()->put('customer_login', false);
+          //  $request->session()->flush();
         }
         return back();
     }

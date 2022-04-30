@@ -50,6 +50,7 @@ class ProductService{
         ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active','code_color','images.img'])
         ;
     }
+  
     public function create($request){
        try {
           $products=Product::create([

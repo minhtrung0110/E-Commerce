@@ -204,6 +204,11 @@ class Helper{
 
         return $html;
     }
+    public static function getNumberCart(){
+        $carts = Session::get('carts');
+        if(is_null($carts)) return 0;
+        return count($carts);
+    }
 
     /*------Product Details --------------------------------*/
     public static function renderRelativeProducts($relative_products){

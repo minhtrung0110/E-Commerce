@@ -1,7 +1,6 @@
 @extends('client.main')
 
 @section('content')
-
     <br><br><br><br>
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -16,7 +15,7 @@
             </a>
 
             <span class="stext-109 cl4">
-                {{$product->name_product}}
+                {{ $product->name_product }}
             </span>
         </div>
     </div>
@@ -31,18 +30,18 @@
                             <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                             <div class="slick3 gallery-lb">
-                                <div class="item-slick3" data-thumb="/storage/uploads/{{$product->img}}">
-                                   <div class="wrap-pic-w pos-relative">
-                                        <img src="/storage/uploads/{{$product->img}}" alt="IMG-PRODUCT">
+                                <div class="item-slick3" data-thumb="/storage/uploads/{{ $product->img }}">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img src="/storage/uploads/{{ $product->img }}" alt="IMG-PRODUCT">
 
                                         <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                            href="/storage/uploads/{{$product->img}}">
+                                            href="/storage/uploads/{{ $product->img }}">
                                             <i class="fa fa-expand"></i>
                                         </a>
                                     </div>
                                 </div>
 
-                               
+
                             </div>
                         </div>
                     </div>
@@ -51,68 +50,75 @@
                 <div class="col-md-6 col-lg-5 p-b-30">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                            {{$product->name_product}}
+                            {{ $product->name_product }}
                         </h4>
 
                         <span class="mtext-106 cl2">
-                           {{$product->price}}
+                            {{ $product->price }}
                         </span>
 
                         <p class="stext-102 cl3 p-t-23">
-                            {{$product->description}}
+                            {{ $product->description }}
                         </p>
 
                         <!--  -->
                         <div class="p-t-33">
-                            
+
                             <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-204 flex-w flex-m respon6-next">
-                                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                    <form action="" method="post" id="product-cart">
+                                        <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                                <i class="fs-16 zmdi zmdi-minus"></i>
+                                            </div>
+
+                                            <input class="mtext-104 cl3 txt-center num-product" type="number" id="num-product"
+                                                name="num-product" value="1" min="1" max="10">
+
+                                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                <i class="fs-16 zmdi zmdi-plus"></i>
+                                            </div>
                                         </div>
-
-                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product"
-                                            value="1">
-
-                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        <div class="form-group">
+                                            <input type="hidden" value="{{ $product->id }}" name="product-id">
+                                           <span class="form-message"></span>
                                         </div>
-                                    </div>
-
-                                    <button
-                                        class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                        Add to cart
-                                    </button>
+                                      
+                                        @csrf
+                                        <button
+                                            class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                            Add to cart
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
 
-                        <!--  
-                        <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                            <div class="flex-m bor9 p-r-10 m-r-11">
-                                <a href="#"
-                                    class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-                                    data-tooltip="Add to Wishlist">
-                                    <i class="zmdi zmdi-favorite"></i>
+                        <!--
+                            <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                                <div class="flex-m bor9 p-r-10 m-r-11">
+                                    <a href="#"
+                                        class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
+                                        data-tooltip="Add to Wishlist">
+                                        <i class="zmdi zmdi-favorite"></i>
+                                    </a>
+                                </div>
+
+                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                                    data-tooltip="Facebook">
+                                    <i class="fa fa-facebook"></i>
                                 </a>
-                            </div>
 
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                                data-tooltip="Facebook">
-                                <i class="fa fa-facebook"></i>
-                            </a>
+                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                                    data-tooltip="Twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
 
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                                data-tooltip="Twitter">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                                data-tooltip="Google Plus">
-                                <i class="fa fa-google-plus"></i>
-                            </a>
-                        </div>-->
+                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                                    data-tooltip="Google Plus">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>-->
                     </div>
                 </div>
             </div>
@@ -142,7 +148,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel">
                             <div class="how-pos2 p-lr-15-md">
                                 <p class="stext-102 cl6">
-                                   {{$product->description}}
+                                    {{ $product->description }}
                                 </p>
                             </div>
                         </div>
@@ -321,8 +327,8 @@
             <!-- Slide2 -->
             <div class="wrap-slick2">
                 <div class="slick2">
-                   
-                    {!! \App\Helpers\Helper::renderRelativeProducts($relative_products)!!}
+
+                    {!! \App\Helpers\Helper::renderRelativeProducts($relative_products) !!}
 
 
                 </div>
@@ -330,3 +336,39 @@
         </div>
     </section>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Validator({
+            form: '#product-cart',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+             
+               // Validator.isNumber('#num-product',"Số Lượng Lớn Hơn 0"),
+             
+            ],
+            onSubmit: function (data) {    
+                $.ajax({
+                type: 'POST',
+                datatype: 'JSON',
+                data: $('#product-cart').serialize(),
+                url: '/add-cart',
+                success: function (respond) {
+                    console.log(respond.message)
+
+                    if (respond.error !== true ) {                       
+                        swal("Thêm Thành Công", "Sản Phẩm Đã Được Thêm Vào Giỏ Hàng", "success");
+                       setTimeout(() => {window.location="/carts"}, 1200);
+                    } 
+                    else  {
+                        swal("Thêm Thất Bại", "Số Lượng Không Hợp Lệ", "error");
+                       
+                    }
+                }
+            })
+
+            }//nếu 
+            //nếu muốn submit theo hành vi mặc định của form thì rào cái này lại
+        });
+    });
+</script>

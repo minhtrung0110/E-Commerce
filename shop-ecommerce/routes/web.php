@@ -13,7 +13,7 @@ use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\DiscountController;
 /*================Client===============-*/
 use App\Http\Controllers\Client\HomeController;
-
+use App\Http\Controllers\Client\CartController;
 
 /*==========Admin====================*/
 // Route::get('/list',[ProductController::class,'index'])->name('admin.products');
@@ -118,6 +118,8 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::get('/registery',[LoginCustomerController::class,'showRegistery'])->name('registery');
   Route::post('/registery/store/',[LoginCustomerController::class,'storeRegistery'])->name('check_registery');
   Route::get('/logout',[LoginCustomerController::class,'logout'])->name('logout');
+
+
   /*====================CUSTOMER=========================*/
 
   Route::prefix('/')->group(function(){
@@ -125,6 +127,13 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::get('/',[HomeController::class,'index'])->name('home') ;
   Route::get('/products',[HomeController::class,'showListProducts'])->name('home.products') ;
   Route::get('/detail-product/{id}-{slug}.html', [ProductController::class,'showDetailProduct']);
+  /*------------------------------------------------Cart------------------------------------------------*/
+  Route::post('/add-cart', [CartController::class,'index']);
+  Route::get('/carts', [CartController::class,'show']);
+  Route::post('/carts', [CartController::class,'addCart']);
+  Route::post('/update-cart', [CartController::class,'update']);
+  Route::get('/cart/delete/{id}', [CartController::class,'remove']);
+
   /*----------------------------Profile Customer --------------------*/
   Route::get('/myprofile',[HomeController::class,'showProfileCustomer'])->middleware(['checklogincustomer'])->name('home.profile') ;
   Route::post('/myprofile/store',[HomeController::class,'storeProfileCustomer']) ;

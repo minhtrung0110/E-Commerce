@@ -371,3 +371,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </script>
 <!--===============================================================================================-->
 <script src="{{asset('/template/js/main_client.js')}}"></script>
+<script src="{{asset('/template/js/validator.js')}}"></script>
