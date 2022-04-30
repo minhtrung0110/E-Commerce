@@ -22,49 +22,45 @@
       <p class="alert alert-dangger">{{Session::get('error')}}</p>
     </div>
     @endif
-    <form action="" method="POST" class="m-2">
-        @include('admin.user.messeger')
+    <form action="" method="POST" class="m-2" id="form-add-discount">
+   
         
           @csrf
           <div class="form-group">
             <label for="Dis_name">Tên mã giảm</label>
             <input type="text" class="form-control" value="{{old('dis_name')}}" id="Dis_name" name="dis_name" placeholder="Nhập tên mã giảm..." >
-            @error('dis_name')
-              <span style="color:red">{{$message}}</span>
-            @enderror
+           <span class="form-message"></span>
           </div>
 
           <div class="form-group">
             <label for="Dis_value">Phần trăm giảm</label>
             <input type="text" class="form-control" value="{{old('dis_value')}}" id="Dis_value" name="dis_value" placeholder="Nhập phần trăm giảm..." >
-            @error('dis_value')
-              <span style="color:red">{{$message}}</span>
-            @enderror
+            <span class="form-message"></span>
+
           </div>
 
           <div class="form-group">
             <label for="Dis_description">Chi tiết mã giảm</label>
             <input type="text" class="form-control" value="{{old('dis_description')}}" id="Dis_description" name="dis_description" placeholder="Nhập chi tiết mã giảm..." >
-            @error('dis_description')
-              <span style="color:red">{{$message}}</span>
-            @enderror
-          </div>
+            <span class="form-message"></span>
 
-          <div class="form-group">
-            <label for="Start_date">Thời gian bắt đầu</label>
-            <input type="date" class="form-control" value="{{old('start_date')}}" id="Start_date" name="start_date" placeholder="Nhập ngày bất đầu...">
-            @error('start_date')
-              <span style="color:red">{{$message}}</span>
-            @enderror
           </div>
-
-          <div class="form-group">
-            <label for="End_date">Thời gian kết thúc</label>
-            <input type="date" class="form-control" value="{{old('end_date')}}" id="End_date" name="end_date" placeholder="Nhập ngày kết thúc..." >
-            @error('end_date')
-              <span style="color:red">{{$message}}</span>
-            @enderror
-          </div>
+            <div class="row form-group">
+              <div class="form-group col-sm-6">
+                <label for="Start_date">Thời gian bắt đầu</label>
+                <input type="date" class="form-control" value="{{old('start_date')}}" id="Start_date" name="start_date" placeholder="Nhập ngày bất đầu...">
+                <span class="form-message"></span>
+    
+              </div>
+    
+              <div class="form-group col-sm-6">
+                <label for="End_date">Thời gian kết thúc</label>
+                <input type="date" class="form-control" value="{{old('end_date')}}" id="End_date" name="end_date" placeholder="Nhập ngày kết thúc..." >
+                <span class="form-message"></span>
+    
+              </div>
+            </div>
+         
 
 
           <div class="form-group">
@@ -82,3 +78,25 @@
         </form>
   </div>
 @endsection 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      Validator({
+          form: '#form-add-discount',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+              Validator.isRequired('#Dis_name', 'Vui lòng nhập tên mã giảm'),
+              Validator.minLength('#Dis_name',4),
+              Validator.isRequired('#Dis_value', 'Vui lòng nhập phần trăm giảm'),
+              Validator.isNumber('#Dis_value','Phần trăm giảm phải là số dương'),
+              Validator.isRequired('#Dis_description','Vui lòng nhập chi tiết mã giảm'),
+              Validator.isRequired('#Start_date','Vui lòng nhập ngày bắt đầu giảm'),
+              Validator.isRequired('#End_date','Vui lòng nhập ngày kết thúc giảm'),
+
+
+
+          ],
+
+      })
+  });
+</script>

@@ -12,7 +12,7 @@
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    {{-- code --}}
+    {{-- code --}}<a href="{{Route('admin.categories.list')}}" class="btn btn-success">Quay lại</a>
     <div class="text-center ">
         <h1>Thêm danh mục</h1>
       </div>
@@ -21,29 +21,41 @@
         <p class="alert alert-dangger">{{Session::get('error')}}</p>
       </div>
       @endif
-    <form action="" method="POST" class="m-2" enctype="multipart/form-data">
-      @include('admin.user.messeger')
+    <form action="" method="POST" id="form-add-category"class="m-2" enctype="multipart/form-data">
+     
         @csrf
         <div class="form-group">
           <label for="Cate_name">Tên danh mục</label>
           <input type="text" class="form-control" value="{{old('Cate_name')}}" id="Cate_name" name="Cate_name" placeholder="Tên danh mục...">
-          @error('Cate_name')
-            <span style="color:red">{{$message}}</span>
-          @enderror
+         <span class="form-message"></span>
         </div>
         <div class="form-group ">
           <label>Hình ảnh</label>
           <input type="file" name="thumb" onchange="ImagesFileAsURL('thumb','displayImg');"  id='thumb' class="form-control" >
-          @error('thumb')
-          <span style="color:red">{{$message}}</span>
-          @enderror
+          <span class="form-message"></span>
           <div id="displayImg">
 
           </div>
       </div>
 
-        <button type="submit" class="btn btn-primary">Thêm</button>
+        <button type="submit" class="form-submit btn btn-primary">Thêm</button>
       </form>
  
   </div>
 @endsection 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      Validator({
+          form: '#form-add-category',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+              Validator.isRequired('#Cate_name', 'Vui lòng nhập tên danh mục'),
+              Validator.minLength('#Cate_name',6),
+              Validator.isRequired('#thumb', 'Vui lòng chọn ảnh'),
+              Validator.isImage('#thumb','Hình ảnh phải là jpg,jpeg hoặc png'),
+          ],
+
+      })
+  });
+</script>

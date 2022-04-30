@@ -63,14 +63,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $valadate=$request->validate([
-            'Cate_name'=>'required|min:4',
-            'thumb'=>'required'
-        ],[
-            'required'=>'Tên danh mục bắt buộc phải nhập',
-            'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số',
-            'thumb.required'=>'vui lòng chọn ảnh'
-        ]);
+        // $valadate=$request->validate([
+        //     'Cate_name'=>'required|min:4',
+        //     'thumb'=>'required'
+        // ],[
+        //     'required'=>'Tên danh mục bắt buộc phải nhập',
+        //     'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số',
+        //     'thumb.required'=>'vui lòng chọn ảnh'
+        // ]);
        
         if($request->file('thumb'))
         {
@@ -135,12 +135,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $valadate=$request->validate([
-            'Cate_name'=>'required|min:4'
-        ],[
-            'required'=>'Tên danh mục bắt buộc phải nhập',
-            'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số'
-        ]);
+        // $valadate=$request->validate([
+        //     'Cate_name'=>'required|min:4'
+        // ],[
+        //     'required'=>'Tên danh mục bắt buộc phải nhập',
+        //     'min'=>'Tên danh mục không được nhỏ hơn 6 chữ số'
+        // ]);
         
         if($request->file('thumb'))
         {

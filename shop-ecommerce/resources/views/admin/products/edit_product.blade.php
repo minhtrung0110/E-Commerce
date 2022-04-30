@@ -31,55 +31,49 @@
         <p class="alert alert-dangger">{{Session::get('error')}}</p>
       </div>
       @endif
-    <form action="" method="POST" class="m-2" enctype="multipart/form-data">
-      @include('admin.user.messeger')
+    <form action="" method="POST" id="form-edit-product" class="m-2" enctype="multipart/form-data">
+
         @csrf
         <div class="form-group">
           <label for="product_name">Tên sản phẩm</label>
           <input type="text" class="form-control" value="{{$product[0]['name_product']}}" id="product_name" name="Product_name" placeholder="Tên sản phẩm...">
-          @error('Product_name')
-            <span style="color:red">{{$message}}</span>
-          @enderror
+        <span class="form-message"></span>
         </div>
         <div class="form-group">
           <label  >Tên danh mục</label>
-          <select class="form-control" name="Category">
+          <select class="form-control" name="Category" id="category">
             @foreach ($categorys as $category)
             <option value="{{$category->id}}"{{$product[0]['cate_id']==$category->id ?'selected': ''}}>{{$category->name}}</option>
                 
             @endforeach
         </select>
-          @error('Category')
-          <span style="color:red">{{$message}}</span>
-          @enderror
+        <span class="form-message"></span>
+
         </div>
 
         
-        <div class="form-group">
+        <div class="row form-group">
          
-            <div class="row">
-                <div class="col-sm-4">
+           
+                <div class="form-group col-sm-4">
                     <label for="code_color">Màu</label>
                      <input type="color" class="form-control" id="code_color" value="{{$product[0]['code_color']}}" name="Code_color" >
-                     @error('Code_color')
-                     <span style="color:red">{{$message}}</span>
-                   @enderror
+                     <span class="form-message"></span>
+
                 </div>
-                <div class="col-sm-4">
+                <div class="form-group col-sm-4">
                     <label for="amount">Số lượng</label>
                     <input type="text" class="form-control" id="amount" value="{{$product[0]['amount']}}" placeholder="Số lượng..." name="Amount" >
-                    @error('Amount')
-                    <span style="color:red">{{$message}}</span>
-                  @enderror
+                    <span class="form-message"></span>
+
                  </div>
-                 <div class="col-sm-4">
+                 <div class="form-group col-sm-4">
                     <label for="price">Giá</label>
                     <input type="text" class="form-control" id="price" value="{{$product[0]['price']}}" placeholder="Giá sản phẩm..." name="Price" >
-                    @error('Price')
-                    <span style="color:red">{{$message}}</span>
-                  @enderror
+                    <span class="form-message"></span>
+
                  </div>
-            </div>
+           
             </div>
 
         <div class="form-group">
@@ -103,12 +97,12 @@
         
       
           <div class="form-group">
-            {{-- <label for="img_link">Hình ảnh</label>
-            <input type="file"  onchange="ImagesFileAsURL('img_link','displayImg');" class="form-control" id="img_link" name="Img_link"  > --}}
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="img_link" name="Img_link"  onchange="ImagesFileAsURL('img_link','displayImg');GetValuefile('img_link','js-show-file');">
               <label class="custom-file-label"id="js-show-file" for="img_link">{{$thums}}</label>
              </div>
+            <span class="form-message"></span>
+
             <div id="displayImg">
             
               <a href="{{asset('storage/uploads/'.$thums)}}" target="_blank">
@@ -116,9 +110,7 @@
               </a>
             </div>
             <input type="hidden" name="thumb" value="{{$thums}}" id="thumb">
-            @error('Img_link')
-            <span style="color:red">{{$message}}</span>
-          @enderror
+           
           </div>
         <button type="submit" class="btn btn-primary">Cập nhập</button>
       </form>
@@ -126,3 +118,27 @@
 
   
 @endsection 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      Validator({
+          form: '#form-edit-product',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+              Validator.isRequired('#product_name', 'Vui lòng nhập tên sản phẩm'),
+              Validator.minLength('#product_name',6),
+              Validator.isRequired('#category', 'Vui lòng chọn danh mục'),
+              Validator.isRequired('#amount','Vui lòng nhập số lượng'),
+              Validator.isNumber('#amount','Số lượng phải là số dương'),
+              Validator.isRequired('#price','Vui lòng nhập giá'),
+              Validator.isNumber('#price','Giá phải là số dương'),
+             // Validator.isRequired('#img_link','Vui lòng chọn ảnh'),
+             // Validator.isImage('#img_link','Hình ảnh phải là jpg,jpeg hoặc png'),
+
+
+
+          ],
+
+      })
+  });
+</script>
