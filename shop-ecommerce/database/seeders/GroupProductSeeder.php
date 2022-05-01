@@ -13,11 +13,11 @@ class GroupProductSeeder extends Seeder
      */
     public function run()
     {
-       /* DB::table('group_products')->insert([
-            ['id' => 1,'name' =>'Ba Lô','thumb'=>'th.jpg'],
-            ['id' => 2,'name' =>'Túi Nhỏ','thumb'=>'th.jpg'],
-            ['id' => 3,'name' =>'Túi Mang Vai','thumb'=>'th.jpg'],
-            ['id' => 4,'name' =>'Ví','thumb'=>'th.jpg'],
-        ]);*/
+        DB::table('group_products')->insert([
+            ['id' => 1,'name' =>'Ba Lô','thumb'=>'SIMPLE BACKPACK 3.0 SS2 - GRAY.png'],
+            ['id' => 2,'name' =>'Túi','thumb'=>'BAMA BUMBAG Black.png'],
+            ['id' => 3,'name' =>'Phụ Kiện','thumb'=>'vi_nu_thoi_trang_tien_dung_5c91 (1).jpg'],
+           
+        ]);
     }
 }

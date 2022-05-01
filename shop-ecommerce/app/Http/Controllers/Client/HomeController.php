@@ -40,7 +40,7 @@ class HomeController extends Controller
         return view('client.home',[
                 'title'=>'TRESOR',
                 'customer'=>$this->customerService->getInFo(Session::get('customer_id')),
-                'group_products'=>$this->groupProductService->getAll(),
+              //  'group_products'=>$this->groupProductService->getAll(),
                 'new_arrival_products'=>$this->productService->getNewArrivalProducts(),
                 'sliders'=>$this->sliderService->getSliders()
                // 'products'=>'products',

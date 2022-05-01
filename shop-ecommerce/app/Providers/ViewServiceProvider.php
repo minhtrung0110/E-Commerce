@@ -27,7 +27,9 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('client.cart',CartComposer::class);
+        View::composer('client.checkout.checkout',CartComposer::class);
         View::composer('client.header',GroupProductComposer::class);
+        View::composer('client.banner',GroupProductComposer::class);
         View::composer('client.footer',GroupProductComposer::class);
     }
 }

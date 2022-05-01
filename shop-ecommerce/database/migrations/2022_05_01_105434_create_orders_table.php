@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->integer('discount_id')->unsigned();
             $table->float('discount_value');
             $table->integer('status')->unsigned();         
-            $table->float('total_price');
+            $table->float('total_price', 14, 2);
             $table->integer('payment_method_id')->unsigned();
             $table->string('address');
             $table->timestamps();

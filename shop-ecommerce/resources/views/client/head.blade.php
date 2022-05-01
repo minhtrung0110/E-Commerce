@@ -31,5 +31,6 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('/template/css/util_client.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/template/css/main_client.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/template/css/style.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('/template/css/checkout.css')}}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 <!--===============================================================================================-->

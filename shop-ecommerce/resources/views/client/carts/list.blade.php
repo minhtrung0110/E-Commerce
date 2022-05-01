@@ -1,6 +1,7 @@
 @extends('client.main')
 
 @section('content')
+
     @if (count($products) != 0)
         <div class="container p-t-100">
             <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -128,24 +129,7 @@
                                     </span>
 
 
-                                    <div class="bor8 bg0 m-b-12">
-                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="name"
-                                            placeholder="Tên Khách Hàng:">
-                                    </div>
-
-                                    <div class="bor8 bg0 m-b-12">
-                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="phone"
-                                            placeholder="Số Điện Thoại">
-                                    </div>
-
-                                    <div class="bor8 bg0 m-b-12">
-                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="email"
-                                            placeholder="Email">
-                                    </div>
-                                    <div class="bor8 bg0 m-b-22">
-                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="address"
-                                            placeholder="Địa Chỉ">
-                                    </div>
+                                  
                                     <div class="bor8 bg0 m-b-22">
                                         <textarea class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="content" placeholder="Ghi chú"></textarea>
                                     </div>
@@ -167,10 +151,9 @@
                                     </span>
                                 </div>
                             </div>
-
-                            <input 
-                                class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer "
-                                id="btn-order" value=" Thanh Toán">
+                            
+                            <input class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer "
+                                id="btn-order" value="Thanh Toán">
                         </div>
                     </div>
                 </div>
@@ -212,7 +195,4 @@
                     }
                 });*/
     });
-
-   
 </script>
-

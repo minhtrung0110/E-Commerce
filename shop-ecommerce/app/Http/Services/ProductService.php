@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Stmt\TryCatch;
 
 class ProductService{
+    public function getPriceOfProduct($id){
+            return Product_detail::select('price')->where('id', $id)->first();
+    }
     public function getAllProduct(){
      
         

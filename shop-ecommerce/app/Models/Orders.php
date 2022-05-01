@@ -13,8 +13,11 @@ class Orders extends Model
         'customer_id',
         'staff_id',
         'discount_id',
-        'status',
         'discount_value',
+        'status',
         'total_price',
+        'payment_method_id',
+        'address',
+   
     ];
 }

@@ -130,10 +130,11 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   /*------------------------------------------------Cart------------------------------------------------*/
   Route::post('/add-cart', [CartController::class,'index']);
   Route::get('/carts', [CartController::class,'show']);
-  //Route::post('/carts', [CartController::class,'addCart']);
+  Route::post('/carts', [CartController::class,'checkLoginPermission']);
   Route::post('/update-cart', [CartController::class,'update']);
   Route::get('/cart/delete/{id}', [CartController::class,'remove']);
   /*--------------------------CheckOut------------------------------------------------*/
+  Route::get('/checkout', [CartController::class,'showCheckOut'])->middleware(['checklogincustomer']);
   Route::post('/checkout', [CartController::class,'checkOut']);
 
   /*----------------------------Profile Customer --------------------*/

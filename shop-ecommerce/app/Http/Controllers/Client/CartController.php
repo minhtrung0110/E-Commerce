@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\CartService;
+use App\Http\Services\DiscountService;
 use App\Http\Services\CustomerService;
 use App\Http\Services\GroupProduct_Service;
 use Illuminate\Support\Facades\Session;
@@ -14,11 +15,13 @@ class CartController extends Controller
     protected $cartService;
     protected $customerService;
     protected $groupProductService;
-    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService)
+    protected $discountService;
+    public function __construct(DiscountService $discountService, CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService)
     {
         $this->cartService = $cartService;
         $this->customerService = $customerService;
         $this->groupProductService = $groupProductService;
+        $this->discountService = $discountService;
     }
     /**
      * Display a listing of the resource.
@@ -81,14 +84,15 @@ class CartController extends Controller
         ]);
     }
 
-    public function addCart(Request $request)
+    public function checkOut(Request $request)
     {
-       // $this->cartService->addCart($request);
-        return redirect()->back();
+       //dd($request->all());
+         $this->cartService->addCart($request);
+       return redirect()->back();
     }
 
 
-    public function checkOut(Request $request)
+    public function checkLoginPermission(Request $request)
     {
         // check login credentials
         if(Session::has('customer_id') && Session::get('customer_login')==true) {
@@ -107,6 +111,17 @@ class CartController extends Controller
         }
        // $this->cartService->addCart($request);
         return redirect()->back();
+    }
+
+
+
+    public function showCheckOut(){
+        $date=date('Y-m-d');
+        return view('client.checkout.checkout',[
+            'title' =>'Thanh Toán',
+            'customer_checkout'=>$this->customerService->getInFo(Session::get('customer_id')),
+            'discount'=>$this->discountService->getDiscount($date),
+        ]);
     }
     /**
      * Show the form for editing the specified resource.

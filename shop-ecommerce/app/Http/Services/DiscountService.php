@@ -5,6 +5,7 @@ use App\Models\Discounts;
 
 
 class DiscountService{
+
 public function getAll(){
     return Discounts::all();
 }
@@ -13,8 +14,13 @@ $discounts =Discounts::where('id',$id)->get();
 foreach($discounts as $discount){
     return $discount;
 }
-   
 }
+public function getDiscount($date){
+
+    return Discounts::where('start_date','<=',$date)->where('end_date','>=',$date)->first();
+}
+   
+
 public function create($request){
     try {
         Discounts::create([

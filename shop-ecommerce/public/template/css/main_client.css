@@ -2618,9 +2618,15 @@ input.num-product::-webkit-inner-spin-button {
 .size-218 {
   max-width: 286px;
 }
-
-
-
+.size-40p{
+  width: 40%;
+}
+.size-60p{
+  width: 60%;
+}
+.size-100p{
+  width: 100%;
+}
 /*//////////////////////////////////////////////////////////////////
 [ Height ]*/
 .size-301 {
