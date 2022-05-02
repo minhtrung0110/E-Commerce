@@ -81,15 +81,7 @@
                             </div>
 
                             <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                                <div class="flex-w flex-m m-r-20 m-tb-5">
-                                    <input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text"
-                                        name="coupon" placeholder="Coupon Code">
-
-                                    <div
-                                        class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-                                        Apply coupon
-                                    </div>
-                                </div>
+                               
                                 @csrf
                                 <input type="submit" formaction="/update-cart"
                                     class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
@@ -118,30 +110,11 @@
                                 </div>
                             </div>
 
-                            <div class="flex-w flex-t bor12 p-t-15 p-b-30">
-
-
-
-
-                                <div class="p-t-5">
-                                    <span class="stext-112 cl8">
-                                        Thông Tin Khách Hàng:
-                                    </span>
-
-
-                                  
-                                    <div class="bor8 bg0 m-b-22">
-                                        <textarea class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="content" placeholder="Ghi chú"></textarea>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                          
                             <div class="flex-w flex-t p-t-27 p-b-33">
                                 <div class="size-208">
                                     <span class="mtext-101 cl2">
-                                        Total:
+                                        Tổng Tiền
                                     </span>
                                 </div>
 
@@ -152,7 +125,7 @@
                                 </div>
                             </div>
                             
-                            <input class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer "
+                            <input class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer " style="text-align: center;"
                                 id="btn-order" value="Thanh Toán">
                         </div>
                     </div>

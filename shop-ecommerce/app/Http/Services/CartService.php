@@ -160,10 +160,10 @@ class CartService
 
             // SendMail::dispatch( $data)->delay(now()->addSeconds(5));
 
-            Session::forget('carts');
+           Session::forget('carts');
         } catch (\Exception $err) {
-            DB::rollBack();
-            Session::flash('error', 'Đặt Hàng Lỗi, Vui lòng thử lại sau');
+           // DB::rollBack();
+           // Session::flash('error', 'Đặt Hàng Lỗi, Vui lòng thử lại sau');
             return false;
         }
 

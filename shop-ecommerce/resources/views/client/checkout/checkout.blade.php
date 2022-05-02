@@ -217,8 +217,8 @@
 
                    
                         <div class="form-group col-md-12 mb-3 m-l-25">
-                            <input type="radio" class="form-check-input" id="radioCOD" name="payment_method_id" value=1>
-                            <label class="form-check-label" for="radioCOD" checked>COD</label>
+                            <input type="radio" class="form-check-input" id="radioCOD" name="payment_method_id" value=1 checked>
+                            <label class="form-check-label" for="radioCOD"  >COD</label>
                             <span class="form-message"></span>
                         </div>
                         <div class="form-group col-md-12 mb-3 m-l-25">

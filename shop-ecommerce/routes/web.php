@@ -134,18 +134,23 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::post('/update-cart', [CartController::class,'update']);
   Route::get('/cart/delete/{id}', [CartController::class,'remove']);
   /*--------------------------CheckOut------------------------------------------------*/
-  Route::get('/checkout', [CartController::class,'showCheckOut'])->middleware(['checklogincustomer']);
+  Route::get('/checkout', [CartController::class,'showCheckOut'])->middleware(['checklogincustomer'])->middleware(['checkorderlogic']);
   // thanh toan COD
-  Route::post('/checkout', [CartController::class,'checkOut']);
+  Route::post('/checkout', [CartController::class,'checkOut'])->middleware(['checkorderlogic']);
   // thanh toan VNPAY
   Route::post('/checkoutVNPay', [CartController::class,'checkOutVNPay'])->name('home.checkoutVNPAY');
-  Route::get('/checkoutVNPay/vnpay_return', [CartController::class,'storeVNPay'])->name('vnpay.return');
+  Route::get('/checkoutVNPay/vnpay-return', [CartController::class,'storeVNPay'])->name('vnpay.return');
+  // xuat hoa don ra màn hinh
 
 
 
   /*----------------------------Profile Customer --------------------*/
-  Route::get('/myprofile',[HomeController::class,'showProfileCustomer'])->middleware(['checklogincustomer'])->name('home.profile') ;
-  Route::post('/myprofile/store',[HomeController::class,'storeProfileCustomer']) ;
+  Route::middleware(['checklogincustomer'])->prefix('/myprofile')->group(function(){
+    Route::get('/',[HomeController::class,'showProfileCustomer'])->name('home.profile') ;
+    Route::post('/myprofile/store',[HomeController::class,'storeProfileCustomer']) ;
+    Route::get('/invoices',[HomeController::class,'showInvoiceCustomer'])->name('home.profile.invoices') ;
+  });
+ 
    
    
   });

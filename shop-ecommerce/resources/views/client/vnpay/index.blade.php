@@ -8,7 +8,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Tạo mới đơn hàng</title>
+        <title>Thanh Toán</title>
         <!-- Bootstrap core CSS -->
         <link href="{{asset('template/vnpay/bootstrap.min.css')}}" rel="stylesheet"/>
         <!-- Custom styles for this template -->
@@ -18,39 +18,39 @@
 
     <body>
      
-        <div class="container">
+        <div class="container main">
             <div class="header clearfix">
-                <h3 class="text-muted">VNPAY DEMO</h3>
+                <br>
+                <h3 class="title">THÔNG TIN THANH TOÁN VNPAY</h3>
             </div>
-            <h3>Tạo mới đơn hàng</h3>
+            <h3></h3>
             <div class="table-responsive">
-                <form action="/checkoutVNPay" id="create_form" method="post">       
+                <form action="/checkoutVNPay" id="create_form" method="post" class=" ">       
 
                     <div class="form-group">
-                        <label for="language">Loại hàng hóa </label>
+                        <label for="language">Loại Thanh Toán </label>
                         <select name="order_type" id="order_type" class="form-control">
-                            <option value="topup">Nạp tiền điện thoại</option>
                             <option value="billpayment">Thanh toán hóa đơn</option>
-                            <option value="fashion">Thời trang</option>
                             <option value="other">Khác - Xem thêm tại VNPAY</option>
                         </select>
+                           
                     </div>
                     <div class="form-group">
-                        <label for="order_id">Mã hóa đơn</label>
-                        <input class="form-control" id="order_id" name="order_id" type="text" value="<?php echo date("YmdHis") ?>"/>
+                        <label for="order_id" >Mã Hóa Đơn</label>
+                        <input class="form-control un " id="order_id" name="order_id" type="text" value="<?php echo date("YmdHis") ?>" disabled/>
                     </div>
                     <div class="form-group">
-                        <label for="amount">Số tiền</label>
-                        <input class="form-control" id="amount"
+                        <label for="amount">Số Tiền Thanh Toán </label>
+                        <input class="form-control un " id="amount"
                                name="amount" type="number" value="{{$data->total_price}}"/>
                     </div>
                     <div class="form-group">
-                        <label for="order_desc">Nội dung thanh toán</label>
-                        <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Noi dung thanh toan</textarea>
+                        <label for="order_desc un ">Nội Dung Thanh Toán</label>
+                        <textarea class="form-control un " cols="20" id="order_desc" name="order_desc" rows="2">Noi dung thanh toan</textarea>
                     </div>
                     <div class="form-group">
                         <label for="bank_code">Ngân hàng</label>
-                        <select name="bank_code" id="bank_code" class="form-control">
+                        <select name="bank_code" id="bank_code" class="form-control un ">
                             <option value="">Không chọn</option>
                             <option value="NCB"> Ngan hang NCB</option>
                             <option value="AGRIBANK"> Ngan hang Agribank</option>
@@ -77,25 +77,25 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="language">Ngôn ngữ</label>
-                        <select name="language" id="language" class="form-control">
+                        <label for="language">Ngôn Ngữ</label>
+                        <select name="language" id="language" class="form-control un">
                             <option value="vn">Tiếng Việt</option>
                             <option value="en">English</option>
                         </select>
                     </div>
                    @csrf
-                   
-                    <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán Post</button>
-                    <button type="submit" name="redirect" id="redirect" class="btn btn-default">Thanh toán Redirect</button>
-                    <button type="button" class="btn btn-primary" onclick="history.back()">Quay Lại</button>
+                   <div class="group-button">
+                    <button type="submit" class=" button" id="btnPopup">Bước Tiếp Theo</button>
+                    <button type="button" class=" button" onclick="history.back()">Quay Lại</button>
+              
+                   </div>
                 </form>
+                    
             </div>
             <p>
                 &nbsp;
             </p>
-            <footer class="footer">
-                <p>&copy; VNPAY <?php echo date('Y')?></p>
-            </footer>
+        
         </div>  
        
          
