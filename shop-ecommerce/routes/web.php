@@ -129,13 +129,19 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::get('/detail-product/{id}-{slug}.html', [ProductController::class,'showDetailProduct']);
   /*------------------------------------------------Cart------------------------------------------------*/
   Route::post('/add-cart', [CartController::class,'index']);
-  Route::get('/carts', [CartController::class,'show']);
+  Route::get('/carts', [CartController::class,'show'])->name('home.carts');
   Route::post('/carts', [CartController::class,'checkLoginPermission']);
   Route::post('/update-cart', [CartController::class,'update']);
   Route::get('/cart/delete/{id}', [CartController::class,'remove']);
   /*--------------------------CheckOut------------------------------------------------*/
   Route::get('/checkout', [CartController::class,'showCheckOut'])->middleware(['checklogincustomer']);
+  // thanh toan COD
   Route::post('/checkout', [CartController::class,'checkOut']);
+  // thanh toan VNPAY
+  Route::post('/checkoutVNPay', [CartController::class,'checkOutVNPay'])->name('home.checkoutVNPAY');
+  Route::get('/checkoutVNPay/vnpay_return', [CartController::class,'storeVNPay'])->name('vnpay.return');
+
+
 
   /*----------------------------Profile Customer --------------------*/
   Route::get('/myprofile',[HomeController::class,'showProfileCustomer'])->middleware(['checklogincustomer'])->name('home.profile') ;

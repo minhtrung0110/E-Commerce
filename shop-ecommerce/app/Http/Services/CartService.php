@@ -87,13 +87,13 @@ class CartService
                 'staff_id' => 1,
                 'discount_id' => (int)$request->input('discount_id'),
                 'discount_value' => (float)$request->input('discount_value'),
-                'status' => 1,
+                'status' => 1,// chưa thanh toán
                 'total_price' => (float)$request->input('total_price'),
                 'payment_method_id' => (int)$request->input('payment_method_id'),
                 'address' => (string)$address,
             ]);
         } catch (\Exception $err) {
-            Session::flash('error', $err->getMessage());
+           // Session::flash('error', $err->getMessage());
             return   false;
         }
         return true;
@@ -113,7 +113,7 @@ class CartService
                 ]);
             }
         } catch (\Exception $err) {
-            Session::flash('error', $err->getMessage());
+            //Session::flash('error', $err->getMessage());
             return   false;
         }
         return true;
@@ -123,8 +123,10 @@ class CartService
 
         try {
             //DB::beginTransaction();
-
             $carts = Session::get('carts');
+            if (is_null($carts))
+            return false;
+          
             /* Thêm Order trước tiên */
             $result_add_order =  $this->addOrder($request);
             /* xử lý created mảng carts */
@@ -132,10 +134,11 @@ class CartService
             $order_id = $result_add_order->id;
             if ($result_add_order) {
                 $result_add_order_detail =  $this->addOrderDetail($order_id, $carts);
+                if(!$result_add_order_detail) return false;
             }
+            else return false;
 
-            if (is_null($carts))
-                return false;
+          
 
 
 

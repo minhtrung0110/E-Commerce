@@ -53,6 +53,7 @@ return array(
     'App\\Models\\Imports' => $baseDir . '/app/Models/Imports.php',
     'App\\Models\\OrderDetail' => $baseDir . '/app/Models/OrderDetail.php',
     'App\\Models\\Orders' => $baseDir . '/app/Models/Orders.php',
+    'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
     'App\\Models\\PaymentMethod' => $baseDir . '/app/Models/PaymentMethod.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\Product_detail' => $baseDir . '/app/Models/Product_detail.php',

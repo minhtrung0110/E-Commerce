@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\CartService;
+use App\Http\Services\OrderService;
+use App\Http\Services\PaymentService;
 use App\Http\Services\DiscountService;
 use App\Http\Services\CustomerService;
 use App\Http\Services\GroupProduct_Service;
@@ -12,16 +14,22 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    private  $hashdata;
+    private  $current_order_id=-1;
     protected $cartService;
     protected $customerService;
     protected $groupProductService;
     protected $discountService;
-    public function __construct(DiscountService $discountService, CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService)
+    protected $paymentService;
+    protected $orderService;
+    public function __construct(OrderService $orderService, PaymentService $paymentService, DiscountService $discountService, CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService)
     {
         $this->cartService = $cartService;
         $this->customerService = $customerService;
         $this->groupProductService = $groupProductService;
         $this->discountService = $discountService;
+        $this->paymentService = $paymentService;
+        $this->orderService = $orderService;
     }
     /**
      * Display a listing of the resource.
@@ -78,7 +86,7 @@ class CartController extends Controller
         $product = $this->cartService->getProduct();
         return view('client.carts.list', [
             'title' => 'Giỏ Hàng',
-            'group_products'=>$this->groupProductService->getAll(),
+            'group_products' => $this->groupProductService->getAll(),
             'products' => $product,
             'cart_qty' => Session::get('carts'),
         ]);
@@ -86,43 +94,158 @@ class CartController extends Controller
 
     public function checkOut(Request $request)
     {
-       //dd($request->all());
-         $this->cartService->addCart($request);
-       return redirect()->back();
+        // VNPAY
+        if ($request->input('payment_method_id') != 1) {
+            $this->cartService->addCart($request);
+            return view('client.vnpay.index', ['data' => $request]);
+        }
+
+        //COD
+        $this->cartService->addCart($request);
+        return redirect()->back(); // có thể trả ra trang xuất hoá dơn:
+    }
+    public function checkOutVNPay(Request $request)
+    {
+        // dd($request->all());
+        $VNP_TMN_CODE = "MOPIFXVG";
+        $VNP_HASH_SECRET = "YDNPYDYMJFONJKTENYMWLLYERWPLTJPN";
+        $VNP_URL = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_TxnRef = rand(); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = $request->input('order_desc');
+        $vnp_OrderType = $request->input('order_type');
+        $vnp_Amount = $request->input('amount') * 100;
+        $vnp_Locale = $request->input('language');
+        $vnp_BankCode = $request->input('bank_code');
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+        $vnp_HashSecret = $VNP_HASH_SECRET;
+        //Add Params of 2.0.1 Version
+        //$vnp_ExpireDate = $_POST['txtexpire'];
+        //Billing
+        /* $vnp_Bill_Mobile = $_POST['txt_billing_mobile'];
+        $vnp_Bill_Email = $_POST['txt_billing_email'];
+        $fullName = trim($_POST['txt_billing_fullname']);
+        if (isset($fullName) && trim($fullName) != '') {
+            $name = explode(' ', $fullName);
+            $vnp_Bill_FirstName = array_shift($name);
+            $vnp_Bill_LastName = array_pop($name);
+        }
+        $vnp_Bill_Address = $_POST['txt_inv_addr1'];
+        $vnp_Bill_City = $_POST['txt_bill_city'];
+        $vnp_Bill_Country = $_POST['txt_bill_country'];
+        $vnp_Bill_State = $_POST['txt_bill_state'];
+        // Invoice
+        $vnp_Inv_Phone = $_POST['txt_inv_mobile'];
+        $vnp_Inv_Email = $_POST['txt_inv_email'];
+        $vnp_Inv_Customer = $_POST['txt_inv_customer'];
+        $vnp_Inv_Address = $_POST['txt_inv_addr1'];
+        $vnp_Inv_Company = $_POST['txt_inv_company'];
+        $vnp_Inv_Taxcode = $_POST['txt_inv_taxcode'];
+        $vnp_Inv_Type = $_POST['cbo_inv_type'];*/
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $VNP_TMN_CODE,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => route('vnpay.return'),
+            "vnp_TxnRef" => $vnp_TxnRef,
+        );
+
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+
+
+        //var_dump($inputData);
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $VNP_URL . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $hashdata = $vnpSecureHash;
+        $returnData = array(
+            'code' => '00', 'message' => 'success', 'data' => $vnp_Url
+        );
+        if (isset($_POST['redirect'])) {
+            header('Location: ' . $vnp_Url);
+            die();
+        } else {
+            echo json_encode($returnData);
+        }
+        return redirect($vnp_Url);
     }
 
+    public function storeVNPay(Request $request)
+    {
+        $vnp_SecureHash = $request->input('vnp_SecureHash');
+        $vnp_ResponseCode = $request->input('vnp_ResponseCode');
+       // if ($this->hashdata == $vnp_SecureHash) {
+            if ($vnp_ResponseCode == '00') {
+                $order=$this->orderService->getOrderLast();
+                $this->orderService->setStatus( $order->id,5);        
+                $result = $this->paymentService->create($request);
+                if ($result) {
+                    return redirect()->route('home.carts');
+                } else {
+                    echo "GD Khong thanh cong";
+                }
+            } else
+                return false;
+      //  }
+    }
 
     public function checkLoginPermission(Request $request)
     {
         // check login credentials
-        if(Session::has('customer_id') && Session::get('customer_login')==true) {
+        if (Session::has('customer_id') && Session::get('customer_login') == true) {
 
 
             return response()->json([
-                'error'=>false,
-                'message'=>'Sản Phảm Đã Được Tiến Hàng Thanh Toán'
+                'error' => false,
+                'message' => 'Sản Phảm Đã Được Tiến Hàng Thanh Toán'
             ]);
-        }
-        else{
+        } else {
             return response()->json([
-                'error'=>true,
-                'message'=>'Đăng Nhập Để Mua Hàng'
+                'error' => true,
+                'message' => 'Đăng Nhập Để Mua Hàng'
             ]);
         }
-       // $this->cartService->addCart($request);
+        // $this->cartService->addCart($request);
         return redirect()->back();
     }
 
 
 
-    public function showCheckOut(){
-        $date=date('Y-m-d');
-        return view('client.checkout.checkout',[
-            'title' =>'Thanh Toán',
-            'customer_checkout'=>$this->customerService->getInFo(Session::get('customer_id')),
-            'discount'=>$this->discountService->getDiscount($date),
+    public function showCheckOut()
+    {
+        $date = date('Y-m-d');
+        return view('client.checkout.checkout', [
+            'title' => 'Thanh Toán',
+            'customer_checkout' => $this->customerService->getInFo(Session::get('customer_id')),
+            'discount' => $this->discountService->getDiscount($date),
         ]);
     }
+
+
     /**
      * Show the form for editing the specified resource.
      *

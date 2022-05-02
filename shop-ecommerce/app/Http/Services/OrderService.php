@@ -5,6 +5,9 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Session;
 
 class OrderService{
+    public function getOrderLast(){
+        return Orders::select('id')->orderByDesc('created_at')->first();
+    }
     public function getAll(){
         return Orders::join('order_details','order_details.order_id','=','orders.id')
                         ->join('customers','customers.id','=','orders.customer_id')
@@ -33,6 +36,17 @@ class OrderService{
     public function update($request,$id){
         try {
             Orders::where('id',$id)->update(['status'=>$request]);
+            
+
+        } catch (\Exception $err) {
+            
+            return false;
+        }
+        return true;
+    }
+    public function setStatus($id,$status){
+        try {
+            Orders::where('id',$id)->update(['status'=>$status]);
             
 
         } catch (\Exception $err) {
