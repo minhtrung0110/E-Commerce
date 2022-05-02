@@ -8,10 +8,14 @@
 
 @endsection
 @section('main-content')
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <div class="" style="background: #fff">
+
+    <a href="{{Route('admin.orders')}}" class="btn btn-success ">Quay lại</a>
+  </div>
       {{-- code --}}
-    
+      
       <div class="card card-success  " style="padding:1em 8em;min-height: ">
         
         <div class="card-header">
@@ -31,8 +35,8 @@
               <p>TÊN : {{$orderItems[0]['first_name'].' '.$orderItems[0]['last_name']}}</p>
               <p>SỐ ĐIỆN THOẠT :{{$orderItems[0]['phone']}} </p>
               <p>EMAIL :{{$orderItems[0]['email']}} </p>
-              <p>ĐỊA CHỈ :{{$orderItems[0]['address']}} </p>
-              <p>NGÀY ĐẶT :{{$orderItems[0]['created_at']}}</p>
+              <p>ĐỊA CHỈ :{{$orderItems[0]['address_orders']}} </p>
+              <p>NGÀY ĐẶT :{{$orderItems[0]['created_at']->toDayDateTimeString()}}</p>
 
           </div>
         </div>
@@ -50,6 +54,9 @@
         </tr>
         
       </thead>
+      @php $sum=0;
+       
+      @endphp
       <tbody>
         @foreach ($orderItems as $key => $order_detail)
         <tr>
@@ -57,18 +64,32 @@
           <td>{{$order_detail->name}}</td>
           <td>{{$order_detail->amount_detail}}</td>
           <td>{{$order_detail->code_color}}
-        <input type="color" value="{{$order_detail->code_color}}" Disabled name="" id="">
+        <input type="color" class="rounded-circle" value="{{$order_detail->code_color}}" Disabled name="" id="">
             </td>
-          <td>{{$order_detail->price}}</td>
+          <td>{{number_format($order_detail->price)}}</td>
           <td>{{$order_detail->amount}}</td>
-      
+      @php
+           
+           $sum=$sum+$order_detail->price;
+            
+      @endphp
         
         </tr>
             
         @endforeach
+        @php $toTal=number_format($sum); @endphp
+        <tr class="table-success">
+          <th scope="row">Tổng</th>
         
-      
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{$toTal}}VNĐ</td>
+          <td></td>
+        </tr>
+        
       </tbody>
+  
     </table>
   </div>
   {{-- <button type="button" class="btn btn-primary launch" data-toggle="modal" data-target="#staticBackdrop"> <i class="fa fa-info"></i> Get information
