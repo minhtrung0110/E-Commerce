@@ -54,8 +54,8 @@
             @endphp
           </td>
           <td>{{$order->discount_value.'%'}}</td>
-          <td>{{$order->total_price}}</td>
-          <td>{{$order->total_price -($order->total_price*($order->discount_value/100))}}</td>
+          <td>{{number_format($order->total_price)}}</td>
+          <td>{{number_format($order->total_price -($order->total_price*($order->discount_value/100)))}}</td>
       
           <td>
             <a class="btn btn-danger btn-sm rounded-circle" href="/admin/orders/edit/{{$order->id}}">

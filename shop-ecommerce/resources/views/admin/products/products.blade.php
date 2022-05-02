@@ -41,7 +41,7 @@
           <td>{{$product->name_product}}</td>
           <td>{{$product->description}}</td>
           <td>{{$product->amount}}</td>
-          <td>{{$product->price}}</td>
+          <td>{{number_format($product->price)}}</td>
           <td><a href="{{asset('storage/uploads/'.$product->img)}}" target="_blank">
             <img src="{{asset('storage/uploads/'.$product->img)}}" width="100px">
           </a></td>
@@ -63,4 +63,5 @@
       </tbody>
     </table>
   </div>
+
 @endsection 
