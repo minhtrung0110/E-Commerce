@@ -218,9 +218,11 @@
                                 <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                                     <div class="p-b-30 m-lr-15-sm">
                                         <!-- Review -->
+                                        {{dd($ratings->toArray())}}
+                                        @foreach($ratings as $rating)
                                         <div class="flex-w flex-t p-b-68">
                                             <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                                <img src="images/avatar-01.jpg" alt="AVATAR">
+                                                <img src="" alt="AVATAR">
                                             </div>
 
                                             <div class="size-207">
@@ -234,7 +236,7 @@
                                                         <i class="zmdi zmdi-star"></i>
                                                         <i class="zmdi zmdi-star"></i>
                                                         <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star-half"></i>
+                                                        <i class="zmdi zmdi-star"></i>
                                                     </span>
                                                 </div>
 
@@ -244,9 +246,10 @@
                                                 </p>
                                             </div>
                                         </div>
+                                        @endforeach
 
                                         <!-- Add review -->
-                                        <form class="w-full">
+                                        <form class="w-full" id="form-add-rating">
                                             <h5 class="mtext-108 cl2 p-b-7">
                                                 Add a review
                                             </h5>
@@ -276,17 +279,7 @@
                                                     <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
                                                 </div>
 
-                                                <div class="col-sm-6 p-b-5">
-                                                    <label class="stext-102 cl3" for="name">Name</label>
-                                                    <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name"
-                                                        type="text" name="name">
-                                                </div>
-
-                                                <div class="col-sm-6 p-b-5">
-                                                    <label class="stext-102 cl3" for="email">Email</label>
-                                                    <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email"
-                                                        type="text" name="email">
-                                                </div>
+                                            
                                             </div>
 
                                             <button

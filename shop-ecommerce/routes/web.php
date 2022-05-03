@@ -133,6 +133,13 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::post('/carts', [CartController::class,'checkLoginPermission']);
   Route::post('/update-cart', [CartController::class,'update']);
   Route::get('/cart/delete/{id}', [CartController::class,'remove']);
+   /*--------------------------ratings------------------------------------------------*/
+   Route::get('/list',[RatingController::class,'index']);
+   Route::get('/ratings/{id}',[RatingController::class,'show']);
+   Route::post('/rating/{id}',[RatingController::class,'checkLoginPermission']);
+   Route::post('/add',[RatingController::class,'create']);
+
+
   /*--------------------------CheckOut------------------------------------------------*/
   Route::get('/checkout', [CartController::class,'showCheckOut'])->middleware(['checklogincustomer'])->middleware(['checkorderlogic']);
   // thanh toan COD

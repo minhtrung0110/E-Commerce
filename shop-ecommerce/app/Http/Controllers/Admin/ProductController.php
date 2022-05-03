@@ -8,6 +8,7 @@ use App\Http\Services\ProductService;
 use App\Http\Services\GroupProduct_Service;
 use App\Http\Services\ImagesService;
 use App\Http\Services\ImageProductService;
+use App\Http\Services\RatingService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\StaffService;
@@ -20,17 +21,20 @@ class ProductController extends Controller
     protected $groupProductService;
     protected $imageProductService;
     protected $imagesService;
+    protected $ratingService;
     public function __construct(ProductService $productService,
                                 StaffService $staffService,
                                 GroupProduct_Service $groupProductService,
                                 ImageProductService $imageProductService,
-                                ImagesService $imagesService)
+                                ImagesService $imagesService,
+                                RatingService $ratingService)
     {
         $this->productService=$productService;
         $this->staffService=$staffService;
         $this->groupProductService=$groupProductService;
         $this->imageProductService=$imageProductService;
         $this->imagesService=$imagesService;
+        $this->ratingService=$ratingService;
        
     }
     
@@ -290,10 +294,12 @@ class ProductController extends Controller
     public function showDetailProduct($id='',$slug=''){
         $product=$this->productService->getProduct($id);
         $relative_product=$this->productService->getRelativeProducts($id,$product->cate_id);
+        $ratings=$this->ratingService->getAll_oneIdProduct($id);
         return view('client.products.detail',[
                 'title'=>$product->name_product,
                 'group_products'=>$this->groupProductService->getAll(),
                 'product'=>$product,
+                'ratings'=>$ratings,
                 'relative_products'=>$relative_product
         ]);
     }
