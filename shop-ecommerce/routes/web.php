@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\DiscountController;
 /*================Client===============-*/
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Client\RatingController;
 
 /*==========Admin====================*/
 // Route::get('/list',[ProductController::class,'index'])->name('admin.products');
@@ -126,7 +127,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
 
   Route::get('/',[HomeController::class,'index'])->name('home') ;
   Route::get('/products',[HomeController::class,'showListProducts'])->name('home.products') ;
-  Route::get('/detail-product/{id}-{slug}.html', [ProductController::class,'showDetailProduct']);
+  Route::get('/detail-product/{id}-{slug}.html', [ProductController::class,'showDetailProduct'])->name('detail-product');
   /*------------------------------------------------Cart------------------------------------------------*/
   Route::post('/add-cart', [CartController::class,'index']);
   Route::get('/carts', [CartController::class,'show'])->name('home.carts');
@@ -134,10 +135,9 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::post('/update-cart', [CartController::class,'update']);
   Route::get('/cart/delete/{id}', [CartController::class,'remove']);
    /*--------------------------ratings------------------------------------------------*/
-   Route::get('/list',[RatingController::class,'index']);
-   Route::get('/ratings/{id}',[RatingController::class,'show']);
-   Route::post('/rating/{id}',[RatingController::class,'checkLoginPermission']);
-   Route::post('/add',[RatingController::class,'create']);
+
+   
+   Route::post('/rating-add',[RatingController::class,'create']);
 
 
   /*--------------------------CheckOut------------------------------------------------*/

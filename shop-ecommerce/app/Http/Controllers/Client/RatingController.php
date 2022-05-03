@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\client;
-
+use App\Http\Services\RatingService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -13,6 +13,11 @@ class RatingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $ratingService;
+    public function __construct(RatingService $ratingService)
+    {
+        $this->ratingService=$ratingService;
+    }
     public function index()
     {
         //
@@ -23,9 +28,31 @@ class RatingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if (Session::has('customer_id') && Session::get('customer_login') == true) {
+            $id_cutomer=Session::get('customer_id');
+            $result=$this->ratingService->create($request,$id_cutomer);
+
+            
+        } else {
+            return response()->json([
+                'error' => true,
+                'message' => 'Đăng Nhập Để Mua Hàng'
+            ]);
+        }
+
+        if($result){
+            return response()->json([
+                'error' => false,
+                'message' => 'Bình luận thành công'
+            ]);
+        }else{
+            return response()->json([
+                'error' => true,
+                'message' => 'Bình luận thất bại'
+            ]);
+        }
     }
 
     /**
@@ -38,25 +65,7 @@ class RatingController extends Controller
     {
         //
     }
-    public function checkLoginPermission(Request $request)
-    {
-        // check login credentials
-        if (Session::has('customer_id') && Session::get('customer_login') == true) {
-
-
-            return response()->json([
-                'error' => false,
-               
-            ]);
-        } else {
-            return response()->json([
-                'error' => true,
-                'message' => 'Đăng Nhập Để bình luận'
-            ]);
-        }
-        // $this->cartService->addCart($request);
-        return redirect()->back();
-    }
+    
 
     /**
      * Display the specified resource.
