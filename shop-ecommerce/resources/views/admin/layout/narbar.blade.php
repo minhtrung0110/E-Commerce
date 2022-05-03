@@ -186,6 +186,16 @@
     </li>
   </ul>
 </li>
+{{-- đánh giá --}}
+<li class="nav-item nav-item-li" id="nav-item-ratings">
+  <a href="{{Route('admin.ratings.list')}}" class="nav-link">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+      Đánh giá
+      
+    </p>
+  </a>
+</li>
 
 
 

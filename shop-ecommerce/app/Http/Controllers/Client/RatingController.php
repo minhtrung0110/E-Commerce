@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Services\RatingService;
 use App\Http\Controllers\Controller;
 use App\Http\Services\OrderService;
+use App\Http\Services\StaffService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -15,15 +16,20 @@ class RatingController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $ratingService;
+    protected $staffService;
     protected $orderService;
-    public function __construct(RatingService $ratingService,OrderService $orderService)
+    public function __construct(RatingService $ratingService,OrderService $orderService,StaffService $staffService)
     {
         $this->ratingService=$ratingService;
         $this->orderService=$orderService;
+        $this->staffService=$staffService;
     }
     public function index()
-    {
-        //
+    {   $point=0;
+        $title='Đánh giá';
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $ratings=$this->ratingService->getAll();
+        return view('admin.ratings.rating',compact('title','staff','ratings','point'));
     }
 
     /**
@@ -86,11 +92,30 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        
+        // $rating=$this->ratingService->getPoint(5);
     }
+    public function searchPoint(Request $request){
+        if($request->input('point') ==0) 
+        {
+            $point=0;
+        }else{
 
+            $point=$request->input('point');
+        }
+        
+        if($point==0){
+            $ratings=$this->ratingService->getAll();
+        }else{
+            $ratings=$this->ratingService->getPoint($point);
+        }
+        $title='Đánh giá';
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        return view('admin.ratings.rating',compact('title','staff','ratings','point'));
+        
+    }
     /**
      * Show the form for editing the specified resource.
      *

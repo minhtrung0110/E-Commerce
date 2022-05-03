@@ -107,6 +107,12 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        Route::get('/edit/{id}',[SliderController::class,'show']);
       Route::post('/edit/{id}',[SliderController::class,'update']);//handle
        });
+       //ratings
+       Route::prefix('/ratings')->group(function(){
+         Route::get('/list',[RatingController::class,'index'])->name('admin.ratings.list');
+         
+         Route::post('/list',[RatingController::class,'searchPoint']);
+       });
      
 
   });

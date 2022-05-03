@@ -44,10 +44,10 @@
           
             @php
 
-              $a=['Chờ xác nhận','Đã xác nhận','Đang giao','Giao hàng thành công','Hủy'];
+              
                 
-                for ($i=0; $i <count($a) ; $i++) { 
-                  if($order->status_order-1== $i){
+                for ($i=1; $i <=count($a) ; $i++) { 
+                  if($order->status_order== $i){
                     echo $a[$i];
                   }
                 }
