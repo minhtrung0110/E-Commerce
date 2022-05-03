@@ -218,11 +218,7 @@
                                 <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                                     <div class="p-b-30 m-lr-15-sm">
                                         <!-- Review -->
-                                        <div class="flex-w flex-t p-b-68">
-                                            <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                                <img src="images/avatar-01.jpg" alt="AVATAR">
-                                            </div>
-
+                                        <div class="flex-w flex-t p-b-68">                                         
                                             <div class="size-207">
                                                 <div class="flex-w flex-sb-m p-b-17">
                                                     <span class="mtext-107 cl2 p-r-20">
@@ -248,7 +244,7 @@
                                         <!-- Add review -->
                                         <form class="w-full">
                                             <h5 class="mtext-108 cl2 p-b-7">
-                                                Add a review
+                                                Thêm Đánh Giá
                                             </h5>
 
                                             <p class="stext-102 cl6">
@@ -257,9 +253,19 @@
 
                                             <div class="flex-w flex-m p-t-50 p-b-23">
                                                 <span class="stext-102 cl3 m-r-16">
-                                                    Your Rating
+                                                    Số Sao:
                                                 </span>
-
+                                                <input class="star star-5" value="5" id="star-5" type="radio" name="star"/>
+                                                <label class="star star-5" for="star-5"></label>
+                                                <input class="star star-4" value="4" id="star-4" type="radio" name="star"/>
+                                                <label class="star star-4" for="star-4"></label>
+                                                <input class="star star-3" value="3" id="star-3" type="radio" name="star"/>
+                                                <label class="star star-3" for="star-3"></label>
+                                                <input class="star star-2" value="2" id="star-2" type="radio" name="star"/>
+                                                <label class="star star-2" for="star-2"></label>
+                                                <input class="star star-1" value="1" id="star-1" type="radio" name="star"/>
+                                                <label class="star star-1" for="star-1"></label>
+                                                
                                                 <span class="wrap-rating fs-18 cl11 pointer">
                                                     <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                     <i class="item-rating pointer zmdi zmdi-star-outline"></i>
@@ -272,12 +278,12 @@
 
                                             <div class="row p-b-25">
                                                 <div class="col-12 p-b-5">
-                                                    <label class="stext-102 cl3" for="review">Your review</label>
+                                                    <label class="stext-102 cl3" for="review">Nhận Xét:</label>
                                                     <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
                                                 </div>
 
                                                 <div class="col-sm-6 p-b-5">
-                                                    <label class="stext-102 cl3" for="name">Name</label>
+                                                    <label class="stext-102 cl3" for="name">Tên</label>
                                                     <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name"
                                                         type="text" name="name">
                                                 </div>
@@ -291,7 +297,7 @@
 
                                             <button
                                                 class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                                                Submit
+                                                Gửi Đánh Giá
                                             </button>
                                         </form>
                                     </div>
