@@ -270,11 +270,11 @@
                                                 
                                                 <span class="wrap-rating fs-18 cl11 pointer">
                                                    
-                                                        <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                        <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                        <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                        <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                        <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
                                                     
                                                  
                                                 </span>

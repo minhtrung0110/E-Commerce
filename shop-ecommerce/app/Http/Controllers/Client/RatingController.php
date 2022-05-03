@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 use App\Http\Services\RatingService;
 use App\Http\Controllers\Controller;
+use App\Http\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -14,9 +15,11 @@ class RatingController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $ratingService;
-    public function __construct(RatingService $ratingService)
+    protected $orderService;
+    public function __construct(RatingService $ratingService,OrderService $orderService)
     {
         $this->ratingService=$ratingService;
+        $this->orderService=$orderService;
     }
     public function index()
     {
@@ -30,29 +33,39 @@ class RatingController extends Controller
      */
     public function create(Request $request)
     {
+        
         if (Session::has('customer_id') && Session::get('customer_login') == true) {
             $id_cutomer=Session::get('customer_id');
-            $result=$this->ratingService->create($request,$id_cutomer);
+            $check=$this->orderService->check($id_cutomer,$request->input('product_id'));
+            
+            if($check){
+                $result=$this->ratingService->create($request,$id_cutomer);
+            }else{
+                return response()->json([
+                    'error' => true,
+                    'message' => 'Bạn chưa từng mua sản phẩm này'
+                ]);
+            }
 
             
         } else {
             return response()->json([
                 'error' => true,
-                'message' => 'Đăng Nhập Để Mua Hàng'
+                'message' => 'Đăng Nhập Để Bình luận'
             ]);
         }
 
-        if($result){
-            return response()->json([
-                'error' => false,
-                'message' => 'Bình luận thành công'
-            ]);
-        }else{
-            return response()->json([
-                'error' => true,
-                'message' => 'Bình luận thất bại'
-            ]);
-        }
+            if($result){
+                return response()->json([
+                    'error' => false,
+                    'message' => 'Bình luận thành công'
+                ]);
+            }else{
+                return response()->json([
+                    'error' => true,
+                    'message' => 'Bình luận thất bại'
+                ]);
+            }
     }
 
     /**

@@ -55,4 +55,15 @@ class OrderService{
         }
         return true;
     }
+    public function check($id_cus,$id_product){
+      
+          $result= Orders::join('order_details','order_details.order_id','=','Orders.id')
+                    ->where('customer_id',$id_cus)->where('product_id',$id_product)->get();
+                
+       if(count($result) !=0){
+           return true;
+       }else{
+           return false;
+       }
+    }
 }
