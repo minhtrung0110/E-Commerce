@@ -18,8 +18,9 @@ class OrderController extends Controller
         1=>'Chờ xác nhận',
         2=>'Đã xác nhận',
          3=>'Đang giao',
-         4=>'Giao hàng thành công',
-        5=>'Hủy'
+         4=>'Giao giao',
+        5=>'Đã hủy',
+        6=>'Đã thanh toán'
         ];
     public function __construct(StaffService $staffService, OrderService $orderService)
     {
