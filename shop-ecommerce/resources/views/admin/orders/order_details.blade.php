@@ -77,7 +77,9 @@
         </tr>
             
         @endforeach
-        @php $toTal=number_format($sum); @endphp
+        @php
+        $toTal=0;
+        $toTal=number_format($sum); @endphp
         <tr class="table-success">
           <th scope="row">Tổng</th>
         
