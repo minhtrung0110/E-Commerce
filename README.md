@@ -39,3 +39,7 @@ Trong đó: your-specific-migration.php là file (table) cần DROP.<br>
 Sử dụng factories:<br>
 1.https://onlinewebtutorblog.com/seeder-with-faker-library-concept-in-laravel-8/
 
+### tạo liên kết storage cho ảnh khi admin thêm uploads file mỗi khi clone project mới về
+trường hợp khi ảnh upload lên nhưng k thấy hiện ra view thì cách fix như sau
+trong thư mục public xóa thư mục storage (nếu có).
+sau khi xóa chạy câu lệnh "php artisan storage:link" nếu hiện thông báo đã liên kết thành thì đã fix xong

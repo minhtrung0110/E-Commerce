@@ -92,7 +92,9 @@
               Validator.isRequired('#Dis_description','Vui lòng nhập chi tiết mã giảm'),
               Validator.isRequired('#Start_date','Vui lòng nhập ngày bắt đầu giảm'),
               Validator.isRequired('#End_date','Vui lòng nhập ngày kết thúc giảm'),
-
+              Validator.isEndDate('#End_date', function () {
+                    return document.querySelector('#form-add-discount #Start_date').value;
+                  }, 'Mã giảm phải tối thiểu 2 tuần')
 
 
           ],
