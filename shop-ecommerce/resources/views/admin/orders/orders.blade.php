@@ -8,13 +8,17 @@
 
 @endsection
 @section('notifications')
-{{count($status)}}
+{{-- {{count($status)}} --}}
 
 @endsection
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     {{-- code --}}
+    <div class="text-center">
+      <h3>Danh sách đơn hàng</h3>
+    </div>
+    
     @if(Session::has('success'))
 
       <div class="text-center">
@@ -31,11 +35,13 @@
           <th scope="col">Giảm giá</th>
           <th scope="col">Tổng giá chưa giảm</th>
           <th scope="col">Tổng giá đã giảm</th>
+          <th scope="col">Ngày đặt</th>
           <th scope="col">#</th>
         </tr>
         
       </thead>
       <tbody>
+      
         @foreach ($orders as $key => $order)
         <tr>
           <th scope="row">{{++$key}}</th>
@@ -56,6 +62,7 @@
           <td>{{$order->discount_value.'%'}}</td>
           <td>{{number_format($order->total_price)}}</td>
           <td>{{number_format($order->total_price -($order->total_price*($order->discount_value/100)))}}</td>
+          <td>{{$order->created_at->toDateString()}}</td>
       
           <td>
             <a class="btn btn-danger btn-sm rounded-circle" href="/admin/orders/edit/{{$order->id}}">

@@ -33,17 +33,22 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $title='Order';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $orders=$this->orderService->getAll();
-        $status=$this->orderService->getStatus();
+        // $status=$this->orderService->getStatus();
+        // $new=count($status);
+        
+        // $request->session()->put('key', 'new');
+
+        
         $a=$this->STATUS;
         
      // dd($status->toArray());
-         return view('admin.orders.orders',compact('title','staff','orders','status','a'));
+         return view('admin.orders.orders',compact('title','staff','orders','a'));
     }
 
     /**

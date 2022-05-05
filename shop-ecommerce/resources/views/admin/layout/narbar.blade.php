@@ -106,7 +106,7 @@
     <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
       Đơn Hàng
-      <span class="badge badge-info right">@yield('notifications')</span>
+      <span class="badge badge-info right">{{count($notification_order)}}</span>
     </p>
   </a>
 </li>

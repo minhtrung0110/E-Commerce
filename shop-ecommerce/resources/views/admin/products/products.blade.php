@@ -12,6 +12,9 @@
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <div class="text-center">
+      <h3>Danh sách Sản phẩm</h3>
+    </div>
     {{-- code --}}
     @if(Session::has('success'))
     <div class="text-center">
@@ -36,11 +39,31 @@
       <tbody>
         @foreach ($products as $key => $product)
         <tr>
+          
           <th scope="row">{{++$key}}</th>
           <td>{{$product->name}}</td>
           <td>{{$product->name_product}}</td>
           <td>{{$product->description}}</td>
-          <td>{{$product->amount}}</td>
+          
+          <td>
+          @for($i=0; $i <count($products) ; $i++) 
+            @php
+             $color='';
+             $number=$product->amount;
+                if($number >=10){
+                  $color='Green';
+                }else if($number <= 3){
+                  $color='red';
+                }else {
+                  $color="orange";
+                }
+               @endphp
+         @endfor
+         
+                <div style="background:{{$color}};" class="noti_check">
+                  <p  class="text-center">{{$product->amount}}</p>
+                </div>
+            </td>
           <td>{{number_format($product->price)}}</td>
           <td><a href="{{asset('storage/uploads/'.$product->img)}}" target="_blank">
             <img src="{{asset('storage/uploads/'.$product->img)}}" width="100px">
