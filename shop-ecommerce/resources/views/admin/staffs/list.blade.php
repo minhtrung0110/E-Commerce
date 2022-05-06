@@ -11,15 +11,18 @@
       <h3 class="card-title">Danh Sách Nhân Viên</h3>
 
       <div class="card-tools">
+        <form action="" method="post" id="form-search-staff">
         <div class="input-group input-group-sm" style="width: 150px;">
-          <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-default">
-              <i class="fas fa-search"></i>
-            </button>
+            @csrf
+            <input type="text" name="search" class="form-control float-right" placeholder="Search">
+            
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-default">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     <!-- /.card-header -->
@@ -38,10 +41,20 @@
             <th style="width:10%">Hành Động</th>
           </tr>
         </thead>
+        
         <tbody>
+          @if(count($listStaffs)==0)
+          
+          <tr>
+            <td colspan="9" class="text-center">
+              <h5>Không có nhân viên</h5>
+            </td>
+          </tr>
+      
+        @else
         
             {!! \App\Helpers\Helper::renderListViewStaff($listStaffs)!!}
-         
+         @endif
         </tbody>
       </table>
       

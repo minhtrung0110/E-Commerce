@@ -100,9 +100,14 @@ class DiscountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function search(Request $request)
     {
-        //
+        
+        $title='Mã giảm giá';
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $discounts=$this->discountService->getSearch($request);
+       
+         return view('admin.discounts.discount',compact('title','staff','discounts'));
     }
 
     /**

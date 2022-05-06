@@ -12,7 +12,7 @@
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    {{-- code --}}<a href="{{Route('admin.categories.list')}}" class="btn btn-success">Quay lại</a>
+    {{-- code --}}
     <div class="text-center ">
         <h1>Thêm danh mục</h1>
       </div>

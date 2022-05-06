@@ -30,11 +30,13 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       //Products
       Route::prefix('/products')->group(function(){
         Route::get('/list',[ProductController::class,'index'])->name('admin.products.list');
+        Route::post('/list',[ProductController::class,'search']);
        Route::get('/add',[ProductController::class,'create'])->name('admin.product.add');
        Route::post('/add',[ProductController::class,'store']);//handle
        Route::DELETE('/destroy',[ProductController::class,'destroy'])->name('product.delete');//handle
        Route::get('/edit/{id}',[ProductController::class,'show'])->name('product.edit');
       Route::post('/edit/{id}',[ProductController::class,'update']);//handle
+    
        });
        //Category
        Route::prefix('/group-products')->group(function(){
@@ -48,6 +50,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        //Discounts
        Route::prefix('/discounts')->group(function(){
          Route::get('/list',[DiscountController::class,'index'])->name('admin.discounts.list');
+         Route::post('/list',[DiscountController::class,'search']);
          Route::get('/add',[DiscountController::class,'create'])->name('admin.discounts.add');
          Route::post('/add',[DiscountController::class,'store']);
          Route::get('/edit/{id}',[DiscountController::class,'show']);
@@ -66,6 +69,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        //Orders
        Route::prefix('/orders')->group(function(){
          Route::get('/list',[OrderController::class,'index'])->name('admin.orders');//handle
+         Route::post('/list',[OrderController::class,'search']);
         Route::get('/show/{id}',[OrderController::class,'showDetail']);
         Route::get('/add',[OrderController::class,'create']);
         Route::post('/add',[OrderController::class,'store']);//handle
@@ -91,6 +95,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        //Staff
        Route::prefix('/staffs')->group(function(){
         Route::get('/list',[StaffController::class,'index'])->name('admin.customers');//handle
+        Route::post('/list',[StaffController::class,'search']);
        Route::get('/add',[StaffController::class,'create']);
        Route::post('/checkEmail',[StaffController::class,'checkEmailExist']);
        Route::post('/add',[StaffController::class,'store']);//handle
@@ -101,6 +106,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        //sliders
        Route::prefix('/sliders')->group(function(){
         Route::get('/list',[SliderController::class,'index'])->name('admin.sliders.list');//handle
+        Route::post('/list',[SliderController::class,'search']);
        Route::get('/add',[SliderController::class,'create'])->name('admin.sliders.add');
        Route::post('/add',[SliderController::class,'store']);//handle
        Route::DELETE('/destroy',[SliderController::class,'destroy']);//handle

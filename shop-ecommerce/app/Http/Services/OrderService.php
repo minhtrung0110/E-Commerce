@@ -16,6 +16,14 @@ class OrderService{
         
 
     }
+    public function getSearch($id){
+        return Orders::join('order_details','order_details.order_id','=','orders.id')
+        ->join('customers','customers.id','=','orders.customer_id')
+        ->distinct('orders.id')->where('orders.status',$id)
+        ->get(['orders.id','discount_value','customers.first_name','customers.last_name','orders.status as status_order','orders.total_price','Orders.created_at']);
+
+
+    }
     public function getStatus(){
         return Orders::join('order_details','order_details.order_id','=','orders.id')
                         ->join('customers','customers.id','=','orders.customer_id')

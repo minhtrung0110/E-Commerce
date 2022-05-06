@@ -13,7 +13,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     {{-- code --}}
-    <a href="{{Route('admin.discounts.list')}}" class="btn btn-success">Quay lại</a>
+   
       <div class="text-center">
           <h1>Cập nhập mã giảm giá</h1>
       </div>

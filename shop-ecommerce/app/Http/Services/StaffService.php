@@ -23,6 +23,12 @@ class StaffService
     {
         return Staffs::orderbyDesc('id')->get();
     }
+    public function getSearch($request){
+        return Staffs::orderbyDesc('id')
+                        ->where('first_name','like','%'.$request->input('search').'%')
+                        ->orwhere('last_name','like','%'.$request->input('search').'%')
+                        ->get();
+    }
     public function create($request)
     {
 

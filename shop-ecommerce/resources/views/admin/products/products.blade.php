@@ -14,13 +14,31 @@
   <div class="content-wrapper">
     <div class="text-center">
       <h3>Danh sách Sản phẩm</h3>
+      <div class="card-tools">
+        <div class="input-group input-group-sm search-input" style="width: 150px;">
+          <form action="" method="post" id="form-search-product">
+
+              <div class="input-group-append">
+                  <input type="search" name="search" id=""   >
+                  @csrf
+                <button id="search_rating" type="submit" class="btn btn-default">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+          </form>
+
+        </div>
+      </div>
     </div>
+    
     {{-- code --}}
     @if(Session::has('success'))
     <div class="text-center">
       <p class="alert alert-success">{{Session::get('success')}}</p>
     </div>
     @endif
+   
+
     <table class="table">
       <thead>
         <tr>
@@ -37,6 +55,16 @@
         
       </thead>
       <tbody>
+        @if(count($products)==0)
+        
+          <tr>
+            <td colspan="9" class="text-center">
+              <h5>Không có sản phẩm</h5>
+            </td>
+          </tr>
+      
+        @else
+        
         @foreach ($products as $key => $product)
         <tr>
           
@@ -81,7 +109,7 @@
         </tr>
             
         @endforeach
-
+        @endif
       
       </tbody>
     </table>

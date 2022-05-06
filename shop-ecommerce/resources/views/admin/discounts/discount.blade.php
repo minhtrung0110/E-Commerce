@@ -15,6 +15,28 @@
     {{-- code --}}
     <div class="text-center">
       <h3>Danh sách khuyến mãi</h3>
+      <div class="card-tools">
+        <div class="input-group input-group-sm search-input" style="width: 150px;">
+          <form action="" method="post" id="form-search-discount">
+
+              <div class="form-group input-group-append">
+                <div class="">
+
+                  <input type="date" name="start_date" id="start_date"   >
+                </div>
+                  <div class="">
+                    <input type="date" name="end_date" id="end_date"   >
+                    <span class="form-message"></span>
+                  </div>
+                  @csrf
+                  <button id="search_rating" type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+          </form>
+
+        </div>
+      </div>
     </div>
     @if(Session::has('success'))
     <div class="text-center">
@@ -37,6 +59,16 @@
         
       </thead>
       <tbody>
+        @if(count($discounts)==0)
+        
+        <tr>
+          <td colspan="9" class="text-center">
+            <h5>Không có mã giảm</h5>
+          </td>
+        </tr>
+    
+      @else
+      
         @foreach ($discounts as $key => $discount)
         <tr>
           <th scope="row">{{++$key}}</th>
@@ -60,9 +92,28 @@
         </tr>
             
         @endforeach
-
+        @endif
       
       </tbody>
     </table>
   </div>
 @endsection 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      Validator({
+          form: '#form-search-discount',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+             
+          
+              Validator.isTommorrow('#end_date', function () {
+                    return document.querySelector('#form-search-discount #start_date').value;
+                  }, 'Ngày chọn không hợp lệ')
+
+
+          ],
+
+      })
+  });
+</script>

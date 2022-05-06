@@ -21,7 +21,7 @@
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    {{-- code --}}<a href="/admin/products/list" class="btn btn-success">Quay lại</a>
+    {{-- code --}}
       <div class="text-center ">
         <h1>Cập nhập sản phẩm</h1>
       </div>

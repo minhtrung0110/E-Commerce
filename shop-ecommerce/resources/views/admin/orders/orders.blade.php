@@ -17,6 +17,32 @@
     {{-- code --}}
     <div class="text-center">
       <h3>Danh sách đơn hàng</h3>
+      <div class="card-tools">
+        <div class="input-group input-group-sm search-input" style="width: 150px;">
+          <form action="" method="post" id="form-search-order">
+
+              <div class="input-group-append">
+                  <Select style="width:150px" value="" name="status">
+                      <option @php if($status==0) echo 'selected' @endphp value="0">ALL</option>
+                      @php
+                      for($i=1;$i<=count($a);$i++){
+                        $selected='';
+                        if($status==$i){
+                          $selected='selected';
+                        }
+                       echo "<option ".$selected." value=".$i.">".$a[$i]."</option>";
+                      }
+                  @endphp
+                  </Select>
+                  @csrf
+                <button id="search_order" type="submit" class="btn btn-default">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+          </form>
+
+        </div>
+      </div>
     </div>
     
     @if(Session::has('success'))

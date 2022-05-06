@@ -108,9 +108,13 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function search(Request $request)
     {
-        //
+        $title='Slider';
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $sliders=$this->sliderService->getSearch($request);
+
+        return view('admin.sliders.slider',compact('title','staff','sliders'));
     }
 
     /**

@@ -53,6 +53,16 @@
           </tr>
         </thead>
         <tbody>
+          @if(count($ratings)==0)
+        
+          <tr>
+            <td colspan="9" class="text-center">
+              <h5>Không có đánh giá</h5>
+            </td>
+          </tr>
+      
+        @else
+        
             @foreach ($ratings as $key => $rating)
             <tr>
               <th scope="row">{{++$key}}</th>
@@ -68,7 +78,7 @@
             </tr>
                 
             @endforeach
-            
+            @endif
          
         </tbody>
       </table>

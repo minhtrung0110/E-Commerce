@@ -55,6 +55,9 @@ public function update($request,$id){
     }
     return true;
 }
+public function getSearch($request){
+    return Discounts::where('start_date','>=',$request->input('start_date'))->where('end_date','<=',$request->input('end_date'))->get();
+}
 public function delete($request){
     $id=$request->id;
     $discount=Discounts::where('id',$id)->first();

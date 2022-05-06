@@ -12,6 +12,9 @@ class SliderService{
    function getAll(){
        return Slider::all();
    }
+   function getSearch($request){
+       return Slider::where('name','like','%'.$request->input('search').'%')->get();
+   }
    function create($request,$namefile){
        try {
            Slider::create([

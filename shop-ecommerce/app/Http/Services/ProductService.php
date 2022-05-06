@@ -70,6 +70,16 @@ class ProductService{
        }
        return $id;
     }
+       
+    public function getSearch($request){
+        return Product::join('image_products','image_products.product_id','=','products.id')
+        ->join('images','images.id','=','image_products.image_id')
+        ->join('group_products','group_products.id','=','products.group_id')
+        ->join('product_details','product_details.product_id','=','products.id')
+        ->orderBy('products.id', 'DESC')->where('products.name','like','%'.$request->input('search').'%')
+        ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active','code_color','img'])
+        ;
+    }
     public function createDetail($request,$id){
         try {
             Product_detail::create([

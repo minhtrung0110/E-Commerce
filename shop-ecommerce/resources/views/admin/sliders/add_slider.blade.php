@@ -6,7 +6,7 @@
 @section('main-content')
 
     <div class="content-wrapper">
-        <a href="{{Route('admin.sliders.list')}}" class="btn btn-success">Quay lại</a>
+      
         <div class="card card-success  " style="padding:1em 8em;min-height: ">
             <div class="card-header">
                 

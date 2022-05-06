@@ -8,6 +8,11 @@ body, .main-menu > li > a, .ltext-102 {
 }
 
 /*----------------------------------------------------------------CUSTOM CSS =================================================================*/
+.search-input{
+  float: right;
+  display: flex; 
+  justify-content: end 
+}
 .noti_check{
   border-radius: 50%;
   color: #fff;

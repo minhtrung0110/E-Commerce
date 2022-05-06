@@ -111,9 +111,14 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function search(Request $request)
     {
-        //
+        
+        return view('admin.staffs.list', [
+            'title' => 'Danh Sách Nhân Viên',
+            'staff' => $this->staffService->getInFo(Session::get('staff_id')),
+            'listStaffs' => $this->staffService->getSearch($request),
+        ]);
     }
 
     /**

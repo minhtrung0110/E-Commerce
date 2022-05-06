@@ -12,7 +12,7 @@ use App\Http\Services\RatingService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\StaffService;
-
+use PHPUnit\Framework\Constraint\Count;
 
 class ProductController extends Controller
 {
@@ -191,9 +191,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function search(Request $request)
     {
-        //
+        $title='Product';
+        $products=$this->productService->getSearch($request);
+        
+  
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+
+        return view('admin.products.products',compact('title','products','staff'));
     }
 
     /**

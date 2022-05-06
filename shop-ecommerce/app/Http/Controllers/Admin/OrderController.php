@@ -36,6 +36,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         //
+        $status=0;
         $title='Order';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $orders=$this->orderService->getAll();
@@ -48,7 +49,7 @@ class OrderController extends Controller
         $a=$this->STATUS;
         
      // dd($status->toArray());
-         return view('admin.orders.orders',compact('title','staff','orders','a'));
+         return view('admin.orders.orders',compact('title','staff','orders','a','status'));
     }
 
     /**
@@ -98,9 +99,20 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function search(Request $request)
     {
-        //
+         //
+         $status=$request->input('status');
+         $title='Order';
+         $staff=$this->staffService->getInFo(Session::get('staff_id'));
+         $a=$this->STATUS;
+         if($status==0){
+             $orders=$this->orderService->getAll();
+        }else{
+            $orders=$this->orderService->getSearch($status);
+        }
+     
+        return view('admin.orders.orders',compact('title','staff','orders','a','status'));
     }
 
     /**
