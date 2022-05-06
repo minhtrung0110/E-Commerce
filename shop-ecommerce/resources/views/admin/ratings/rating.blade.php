@@ -25,7 +25,7 @@
                   </Select>
                   @csrf
                 <button id="search_rating" type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
+                  <i class="fa fa-filter"></i>
                 </button>
               </div>
           </form>
