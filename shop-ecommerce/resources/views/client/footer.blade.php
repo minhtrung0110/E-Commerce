@@ -373,3 +373,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{asset('/template/js/main_client.js')}}"></script>
 <script src="{{asset('/template/js/validator.js')}}"></script>
 <script src="{{asset('/template/js/ajax_client.js')}}"></script>
+<script src="{{asset('/template/js/animation_client.js')}}"></script>

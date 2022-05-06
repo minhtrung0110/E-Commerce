@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const _token=document.getElementById('_token').value
             
 
-           
+           console.log({point:point,product_id:product_id,context:context,_token:_token})
             //    {point:point,product_id:product_id,context:context,_token:_token}
                 $.ajax({
                     type: 'POST',
