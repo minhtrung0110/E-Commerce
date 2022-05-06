@@ -13,6 +13,9 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     {{-- code --}}
+    <div class="text-center">
+      <h3>Danh sách khuyến mãi</h3>
+    </div>
     @if(Session::has('success'))
     <div class="text-center">
       <p class="alert alert-success">{{Session::get('success')}}</p>

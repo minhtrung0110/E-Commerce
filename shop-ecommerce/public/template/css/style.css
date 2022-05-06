@@ -8,6 +8,14 @@ body, .main-menu > li > a, .ltext-102 {
 }
 
 /*----------------------------------------------------------------CUSTOM CSS =================================================================*/
+.noti_check{
+  border-radius: 50%;
+  color: #fff;
+  line-height: 35px;
+  width: 35px;
+  height: 35px;
+  /* background: green; */
+}
 .table-admin-overflow {
     overflow: auto !important;
     margin-left: 250px;

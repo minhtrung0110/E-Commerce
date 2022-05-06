@@ -14,25 +14,41 @@ class OrderController extends Controller
 {
     protected $staffService;
     protected $orderService;
+    public $STATUS=[
+        1=>'Chờ xác nhận',
+        2=>'Đã xác nhận',
+         3=>'Đang giao',
+         4=>'Giao giao',
+        5=>'Đã hủy',
+        6=>'Đã thanh toán'
+        ];
     public function __construct(StaffService $staffService, OrderService $orderService)
     {
         $this->staffService=$staffService;
         $this->orderService=$orderService;
+        
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $title='Order';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $orders=$this->orderService->getAll();
-        $status=$this->orderService->getStatus();
+        // $status=$this->orderService->getStatus();
+        // $new=count($status);
+        
+        // $request->session()->put('key', 'new');
+
+        
+        $a=$this->STATUS;
+        
      // dd($status->toArray());
-         return view('admin.orders.orders',compact('title','staff','orders','status'));
+         return view('admin.orders.orders',compact('title','staff','orders','a'));
     }
 
     /**
@@ -67,12 +83,13 @@ class OrderController extends Controller
         $title='Order|Edit';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $order_ups=$this->orderService->getItem($id);
+        $a=$this->STATUS;
         foreach($order_ups as $order_up){
             $id_order=$order_up->id;
             $status_number= $order_up->status_order;
         }
         
-        return view('admin.orders.edit_orderDetail',compact('title','staff','status_number','id_order'));
+        return view('admin.orders.edit_orderDetail',compact('title','staff','status_number','id_order','a'));
     }
 
     /**

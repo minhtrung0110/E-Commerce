@@ -7,6 +7,7 @@ $.ajaxSetup({
 // CART
 $('#btn-order').click(function () {
     console.log($('#form-add-order').serialize())
+    
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
@@ -68,5 +69,47 @@ document.addEventListener('DOMContentLoaded', function () {
             })
 
         }*/
+    })
+})
+// rating
+document.addEventListener('DOMContentLoaded', function () {
+
+    Validator({
+        form: '#form-add-rating',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired('#review', 'Vui lòng viết bình luận'),
+      
+
+        ],
+        onSubmit: function (data) {
+           const point= document.querySelectorAll(".rating_point .zmdi-star").length
+          const product_id=document.getElementById('product_id').value
+          const context=document.getElementById('review').value
+          const _token=document.getElementById('_token').value
+            
+
+           
+            //    {point:point,product_id:product_id,context:context,_token:_token}
+                $.ajax({
+                    type: 'POST',
+                    datatype: 'JSON',
+                    data:{point:point,product_id:product_id,context:context,_token:_token},
+                    url: '/rating-add',
+                    success: function (respond) {
+                       
+                       if (respond.error !== true) {
+                        swal("Bình luận Thành Công", respond.message, "success");
+                        setTimeout(() => {  location.reload(); }, 100);
+                    } else {
+                        swal("BÌnh luận Thất Bại", respond.message, "error");
+        
+                    }
+                    }
+                })
+        
+
+        }
     })
 })

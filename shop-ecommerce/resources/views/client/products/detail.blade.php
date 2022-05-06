@@ -138,7 +138,7 @@
                         </li>
 
                         <li class="nav-item p-b-10">
-                            <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+                            <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (*)</a>
                         </li>
                     </ul>
 
@@ -211,38 +211,50 @@
                                 </div>
                             </div>
                         </div>
-
+                    
                         <!-- - -->
                         <div class="tab-pane fade" id="reviews" role="tabpanel">
                             <div class="row">
                                 <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                                     <div class="p-b-30 m-lr-15-sm">
                                         <!-- Review -->
-                                        <div class="flex-w flex-t p-b-68">                                         
+                                        {{-- {{dd($ratings->toArray())}} --}}
+                                        @foreach($ratings as $rating)
+                                        <div class="flex-w flex-t p-b-68">
+                                            <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="AVATAR">
+                                            </div>
+
                                             <div class="size-207">
                                                 <div class="flex-w flex-sb-m p-b-17">
                                                     <span class="mtext-107 cl2 p-r-20">
-                                                        Ariana Grande
+                                                        {{$rating->first_name.' '.$rating->last_name}}
                                                     </span>
-
+                                                   
                                                     <span class="fs-18 cl11">
-                                                        <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star"></i>
-                                                        <i class="zmdi zmdi-star-half"></i>
+                                                       @for($i=1;$i<=5;$i++)
+                                                        @php
+                                                            if ($i<=$rating->point) {
+                                                                $class='zmdi-star';
+                                                            }else{
+                                                                $class=' zmdi-star-outline';
+                                                            }
+                                                        @endphp
+                                                        <i class="zmdi {{$class}} "></i>
+                                                        @endfor
                                                     </span>
+                                              
                                                 </div>
 
                                                 <p class="stext-102 cl6">
-                                                    Quod autem in homine praestantissimum atque optimum est, id deseruit.
-                                                    Apud ceteros autem philosophos
+                                                        {{$rating->context}}
                                                 </p>
                                             </div>
                                         </div>
+                                        @endforeach
 
                                         <!-- Add review -->
-                                        <form class="w-full">
+                                        <form class="w-full" id="form-add-rating">
                                             <h5 class="mtext-108 cl2 p-b-7">
                                                 Thêm Đánh Giá
                                             </h5>
@@ -251,54 +263,45 @@
                                                 Your email address will not be published. Required fields are marked *
                                             </p>
 
-                                            <div class="flex-w flex-m p-t-50 p-b-23">
+                                            <div class=" rating_point flex-w flex-m p-t-50 p-b-23">
                                                 <span class="stext-102 cl3 m-r-16">
                                                     Số Sao:
                                                 </span>
-                                                <input class="star star-5" value="5" id="star-5" type="radio" name="star"/>
-                                                <label class="star star-5" for="star-5"></label>
-                                                <input class="star star-4" value="4" id="star-4" type="radio" name="star"/>
-                                                <label class="star star-4" for="star-4"></label>
-                                                <input class="star star-3" value="3" id="star-3" type="radio" name="star"/>
-                                                <label class="star star-3" for="star-3"></label>
-                                                <input class="star star-2" value="2" id="star-2" type="radio" name="star"/>
-                                                <label class="star star-2" for="star-2"></label>
-                                                <input class="star star-1" value="1" id="star-1" type="radio" name="star"/>
-                                                <label class="star star-1" for="star-1"></label>
                                                 
                                                 <span class="wrap-rating fs-18 cl11 pointer">
-                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                    <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                    <input class="dis-none" type="number" name="rating">
+                                                   
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                        <i class="item-rating pointer zmdi zmdi-star"></i>
+                                                    
+                                                 
                                                 </span>
+                                         
+                                            
+                                             
                                             </div>
 
                                             <div class="row p-b-25">
-                                                <div class="col-12 p-b-5">
+                                                <div class="form-group col-12 p-b-5">
                                                     <label class="stext-102 cl3" for="review">Nhận Xét:</label>
                                                     <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
+                                                    <span class="form-message"></span>
                                                 </div>
 
-                                                <div class="col-sm-6 p-b-5">
-                                                    <label class="stext-102 cl3" for="name">Tên</label>
-                                                    <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name"
-                                                        type="text" name="name">
-                                                </div>
-
-                                                <div class="col-sm-6 p-b-5">
-                                                    <label class="stext-102 cl3" for="email">Email</label>
-                                                    <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email"
-                                                        type="text" name="email">
-                                                </div>
+                                            
                                             </div>
-
+                                            <input type="hidden" id="_token" value="{{ csrf_token() }}" />
+                                            <input type="hidden" id="product_id" value="{{$product->id}}" />
+                                           
                                             <button
+                                            id="btn-rating"
+                                            type="submit"
                                                 class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
                                                 Gửi Đánh Giá
                                             </button>
+                                            
                                         </form>
                                     </div>
                                 </div>
@@ -378,3 +381,4 @@
         });
     });
 </script>
+

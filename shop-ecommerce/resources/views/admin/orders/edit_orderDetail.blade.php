@@ -26,12 +26,16 @@
         <div class="form-group">
             <label for="">Trạng thái đơn hàng</label>
             <select name="status_value" id="">
-            
-            <option id="" @php if($status_number == 1) echo 'selected'; @endphp value="1">Chờ xác nhận</option>
-            <option @php if($status_number == 2) echo 'selected'; @endphp value="2">Đã xác nhận</option>
-            <option @php if($status_number == 3) echo 'selected'; @endphp value="3">Đang giao</option>
-            <option @php if($status_number == 4) echo 'selected'; @endphp value="4">Giao hàng thành công</option>
-            <option @php if($status_number == 5) echo 'selected'; @endphp value="5">Hủy</option>
+           
+            @php
+                for($i=1;$i<=count($a);$i++){
+                  $selected='';
+                  if($status_number==$i){
+                    $selected='selected';
+                  }
+                 echo "<option ".$selected." value=".$i.">".$a[$i]."</option>";
+                }
+            @endphp
             </select>
         </div>
         <button type="submit" class="btn btn-success btn-sm">Cập nhập</button>

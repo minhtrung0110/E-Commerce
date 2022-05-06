@@ -19,6 +19,7 @@ class ImagesSeeder extends Seeder
             ['id' => 2,'img' =>'DALAT BACKPACK - PINKGRAY.png'],
             ['id' => 3,'img' =>'DALAT BACKPACK - BLUE COBAN.png'],
             ['id' => 4,'img' =>'BAMA BUMBAG Green.png'],
+            ['id' => 5,'img' =>' Green.png'],
 
       
         ]);

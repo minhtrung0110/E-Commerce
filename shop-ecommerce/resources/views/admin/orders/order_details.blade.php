@@ -42,7 +42,7 @@
         </div>
       </div>
     <div class="text-center"><h1>Chi tiết hóa đơn</h1></div>
-    <table class="table ">
+    {{-- <table class="table ">
       <thead class="thead-dark">
         <tr>
           <th style="width:50px" scope="col">STT</th>
@@ -77,7 +77,9 @@
         </tr>
             
         @endforeach
-        @php $toTal=number_format($sum); @endphp
+        @php
+        $toTal=0;
+        $toTal=number_format($sum); @endphp
         <tr class="table-success">
           <th scope="row">Tổng</th>
         
@@ -90,7 +92,63 @@
         
       </tbody>
   
-    </table>
+    </table> --}}
+  
+  @php $sum=0; @endphp
+    <table id="order_details" class="table table-bordered">
+      <tbody><tr height="40px">
+        <th class="">Tên sản phẩm</th>
+       
+        <th class="text-center">Giá</th>
+        <th class="text-center">Số lượng</th>
+        <th class="total text-right">Tổng cộng</th>
+      </tr>
+
+      @foreach ($orderItems as $key => $order_detail)
+      <tr height="40px" id="1191685316" class="odd">
+        <td class="" style="max-width:300px">
+          <a href="{{asset('storage/uploads/'.$order_detail->img)}}" target="_blank" title="">{{$order_detail->name}}</a> <br> 
+          
+        </td>
+  
+        <td class="money text-center">{{number_format($order_detail->price)}}đ</td>
+        <td class="quantity center text-center">{{$order_detail->amount_detail}}</td>
+        <td class="total money text-right">{{number_format($order_detail->price*$order_detail->amount_detail)}}đ</td>
+      </tr>
+      @php
+          
+          $a=$order_detail->price*$order_detail->amount_detail;
+          $sum=$sum+$a;
+          $discount=($order_detail->discount_value/100)*$sum;
+
+       
+        @endphp
+      @endforeach
+      
+      <tr height="40px" class="order_summary">
+        <td class="text-right" colspan="3"><b>Tổng chưa giảm</b></td>
+        <td class="total money text-right"><b>{{number_format($sum)}}</b></td>
+      </tr>   
+      
+      <tr height="40px" class="order_summary order_total">
+        <td class="text-right" colspan="3"><b>Giảm giá</b></td>
+        <td class="total money text-right"><b>{{number_format($discount)}}₫</b></td>
+      </tr> 
+
+      
+      <tr height="40px" class="order_summary ">
+        <td class="text-right" colspan="3"><b>Vận chuyển Giao hàng tiết kiệm</b></td>
+        <td class="total money text-right"><b>0₫</b></td>
+      </tr>
+      
+
+          
+
+      <tr height="40px" class="order_summary order_total">
+        <td class="text-right" colspan="3"><b>Tổng tiền</b></td>
+        <td class="total money text-right"><b>{{number_format($sum-$discount)}}₫ </b></td>
+      </tr>    
+    </tbody></table>
   </div>
   {{-- <button type="button" class="btn btn-primary launch" data-toggle="modal" data-target="#staticBackdrop"> <i class="fa fa-info"></i> Get information
   </button>

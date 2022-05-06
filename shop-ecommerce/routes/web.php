@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\DiscountController;
 /*================Client===============-*/
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Client\RatingController;
 
 /*==========Admin====================*/
 // Route::get('/list',[ProductController::class,'index'])->name('admin.products');
@@ -106,6 +107,12 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        Route::get('/edit/{id}',[SliderController::class,'show']);
       Route::post('/edit/{id}',[SliderController::class,'update']);//handle
        });
+       //ratings
+       Route::prefix('/ratings')->group(function(){
+         Route::get('/list',[RatingController::class,'index'])->name('admin.ratings.list');
+         
+         Route::post('/list',[RatingController::class,'searchPoint']);
+       });
      
 
   });
@@ -126,13 +133,19 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
 
   Route::get('/',[HomeController::class,'index'])->name('home') ;
   Route::get('/products',[HomeController::class,'showListProducts'])->name('home.products') ;
-  Route::get('/detail-product/{id}-{slug}.html', [ProductController::class,'showDetailProduct']);
+  Route::get('/detail-product/{id}-{slug}.html', [ProductController::class,'showDetailProduct'])->name('detail-product');
   /*------------------------------------------------Cart------------------------------------------------*/
   Route::post('/add-cart', [CartController::class,'index']);
   Route::get('/carts', [CartController::class,'show'])->name('home.carts');
   Route::post('/carts', [CartController::class,'checkLoginPermission']);
   Route::post('/update-cart', [CartController::class,'update']);
   Route::get('/cart/delete/{id}', [CartController::class,'remove']);
+   /*--------------------------ratings------------------------------------------------*/
+
+   
+   Route::post('/rating-add',[RatingController::class,'create']);
+
+
   /*--------------------------CheckOut------------------------------------------------*/
   Route::get('/checkout', [CartController::class,'showCheckOut'])->middleware(['checklogincustomer'])->middleware(['checkorderlogic']);
   // thanh toan COD

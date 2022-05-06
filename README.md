@@ -1,5 +1,4 @@
 # E-Commerce
-
 ## <p style="color:green">CÀI ĐẶT PROJECT </p>
 https://getcomposer.org/download/
 ### Cách Cài Đặt Composer:
@@ -40,6 +39,7 @@ Sử dụng factories:<br>
 1.https://onlinewebtutorblog.com/seeder-with-faker-library-concept-in-laravel-8/
 
 
+
 ### VNPAY
 USER: minhtrung4367@gmail.com<br>
 PASS: Minhtrung0110
@@ -51,4 +51,8 @@ NGUYEN VAN A -
 123456-
 
 
+### tạo liên kết storage cho ảnh khi admin thêm uploads file mỗi khi clone project mới về
+trường hợp khi ảnh upload lên nhưng k thấy hiện ra view thì cách fix như sau
+trong thư mục public xóa thư mục storage (nếu có).
+sau khi xóa chạy câu lệnh "php artisan storage:link" nếu hiện thông báo đã liên kết thành thì đã fix xong
 

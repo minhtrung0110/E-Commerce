@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Http\View\Composers\CartComposer;
 use App\Http\View\Composers\GroupProductComposer;
+use App\Http\View\Composers\NotificationComposer;
 use Illuminate\Support\Facades\View;
 
 class ViewServiceProvider extends ServiceProvider
@@ -31,5 +32,6 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('client.header',GroupProductComposer::class);
         View::composer('client.banner',GroupProductComposer::class);
         View::composer('client.footer',GroupProductComposer::class);
+        View::composer('admin.layout.narbar',NotificationComposer::class);
     }
 }

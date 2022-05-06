@@ -36,14 +36,14 @@
         @csrf
         <div class="form-group">
           <label for="product_name">Tên sản phẩm</label>
-          <input type="text" class="form-control" value="{{$product[0]['name_product']}}" id="product_name" name="Product_name" placeholder="Tên sản phẩm...">
+          <input type="text" class="form-control" value="{{$product['name_product']}}" id="product_name" name="Product_name" placeholder="Tên sản phẩm...">
         <span class="form-message"></span>
         </div>
         <div class="form-group">
           <label  >Tên danh mục</label>
           <select class="form-control" name="Category" id="category">
             @foreach ($categorys as $category)
-            <option value="{{$category->id}}"{{$product[0]['cate_id']==$category->id ?'selected': ''}}>{{$category->name}}</option>
+            <option value="{{$category->id}}"{{$product['cate_id']==$category->id ?'selected': ''}}>{{$category->name}}</option>
                 
             @endforeach
         </select>
@@ -57,19 +57,19 @@
            
                 <div class="form-group col-sm-4">
                     <label for="code_color">Màu</label>
-                     <input type="color" class="form-control" id="code_color" value="{{$product[0]['code_color']}}" name="Code_color" >
+                     <input type="color" class="form-control" id="code_color" value="{{$product['code_color']}}" name="Code_color" >
                      <span class="form-message"></span>
 
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="amount">Số lượng</label>
-                    <input type="text" class="form-control" id="amount" value="{{$product[0]['amount']}}" placeholder="Số lượng..." name="Amount" >
+                    <input type="text" class="form-control" id="amount" value="{{$product['amount']}}" placeholder="Số lượng..." name="Amount" >
                     <span class="form-message"></span>
 
                  </div>
                  <div class="form-group col-sm-4">
                     <label for="price">Giá</label>
-                    <input type="text" class="form-control" id="price" value="{{$product[0]['price']}}" placeholder="Giá sản phẩm..." name="Price" >
+                    <input type="text" class="form-control" id="price" value="{{$product['price']}}" placeholder="Giá sản phẩm..." name="Price" >
                     <span class="form-message"></span>
 
                  </div>
@@ -78,18 +78,18 @@
 
         <div class="form-group">
             <label for="description">Chi tiết sản phẩm</label>
-            <textarea  class="form-control" id="description" name="Description" >{{$product[0]['description']}}</textarea>
+            <textarea  class="form-control" id="description" name="Description" >{{$product['description']}}</textarea>
         </div>
         <div class="form-group">
             <label>Kích hoạt</label>
             <div class="custom-control custom-radio">
                 <input class="custom-control-input" value="1" type="radio" id="active" name="active"
-                    {{ $product[0]['active'] == 1 ? ' checked=""' : '' }}>
+                    {{ $product['active'] == 1 ? ' checked=""' : '' }}>
                 <label for="active" class="custom-control-label">có</label>
             </div>
             <div class="custom-control custom-radio">
                 <input class="custom-control-input" value="0" type="radio" id="no_active" name="active"
-                    {{ $product[0]['active'] == 0 ? ' checked=""' : '' }}>
+                    {{ $product['active'] == 0 ? ' checked=""' : '' }}>
                 <label for="no_active" class="custom-control-label">Không</label>
             </div>
         </div>
