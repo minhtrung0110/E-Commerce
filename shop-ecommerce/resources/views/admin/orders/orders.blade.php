@@ -36,7 +36,7 @@
                   </Select>
                   @csrf
                 <button id="search_order" type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
+                  <i class="fa fa-filter"></i>
                 </button>
               </div>
           </form>
