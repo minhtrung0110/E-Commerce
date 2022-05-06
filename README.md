@@ -39,3 +39,16 @@ Trong đó: your-specific-migration.php là file (table) cần DROP.<br>
 Sử dụng factories:<br>
 1.https://onlinewebtutorblog.com/seeder-with-faker-library-concept-in-laravel-8/
 
+
+### VNPAY
+USER: minhtrung4367@gmail.com<br>
+PASS: Minhtrung0110
+#### Acc Test: 
+NCB -
+9704198526191432198 -
+NGUYEN VAN A -
+07/15 -
+123456-
+
+
+
