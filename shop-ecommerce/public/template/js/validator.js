@@ -202,6 +202,16 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
         }
     }
 }
+Validator.isTommorrow = function (selector, getConfirmValue, message) {
+    return {
+        selector: selector,
+        test: function (value) {         
+        let start_date = new Date(getConfirmValue());
+        let end_date = new Date(value);
+            return ( end_date.getTime() - start_date.getTime() >= 86400) ? undefined: message || 'Giá trị nhập vào không chính xác';
+        }
+    }
+}
 Validator.isEndDate = function (selector, getConfirmValue, message) {
     return {
         selector: selector,
