@@ -1,73 +1,46 @@
 @extends('client.main')
 
 @section('content')
-<br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <div class="container">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+            <a class="stext-109 cl8 hov-cl1 trans-04">
+                Trang Cá Nhân
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
 
-<div class="detail-order-table">
-    <div class="wrapper table-responsive-lg ">
-        <table class="table table-bordered order_summary">
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th class="order_product">HÌNH ẢNH</th>
-                    <th>SẢN PHẨM</th>
-                    <th>SỐ LƯỢNG</th>
-                    <th>ĐƠN GIÁ</th>               
-                    <th>TỔNG CỘNG</th>
-    
-                </tr>
-            </thead>
-            <tbody>
-                            <tr>
-                <td class="number_list"><span class="label label-success">1</span>
-                    </td>
-                    <td class="order_product">
-                        <a href="index.php?quanly=detail&amp;id=7"><img class="img_order" src="./images/product-items/aniversary03.jpg" alt="Sản Phẩm">
-                        </a>
-                    </td>
-                    <td class="order_description">
-                        <p class="product-name"><a href="index.php?quanly=detail&amp;id=7">HappyAniversary Special Fire </a>
-                        </p>
-                        <small class="order_ref">MÃ SP: 7</small>
-                        <br>
-                        <br>
-                        <small class="order_ref"> KÍCH THƯỚC :S</small>
-                    </td>
-                    <td class="order_avail">1                </td>
-                    <td class="price"><span>600,000 VNĐ</span>
-                    </td>    
-                    <td class="price">
-                        <span>600,000 VNĐ</span>
-                    </td>
-                    
-                </tr>
-                          
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2" rowspan="3"></td>
-                    <td colspan="2"><strong>Tổng Tiền Chưa Ưu Đãi: </strong></td>
-                    <td colspan="2">600,000 VNĐ</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><strong>Tiền Ưu Đãi (nếu có):</strong>
-                    </td>
-                   
-                    <td colspan="2"><strong>0 VNĐ </strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"><strong>Tiền Thanh Toán:</strong>
-                    </td>
-                    <td colspan="2"><strong>600,000 VNĐ </strong>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>	
-       
+            <a class="stext-109 cl8 hov-cl1 trans-04">
+                Đơn Hàng
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+
+
+        </div>
     </div>
+    <div class="detail-order-table"> <br><br>
+
+        <div class="wrapper table-responsive-lg ">
+            <table class="table table-bordered order_summary">
+                <thead>
+                    <tr>
+                        <th class="txt-center bold">STT</th>
+                        <th class="order_product txt-center bold">HÌNH ẢNH</th>
+                        <th class="txt-center bold">SẢN PHẨM</th>
+                        <th class="txt-center bold">SỐ LƯỢNG</th>
+                        <th class="txt-center bold">ĐƠN GIÁ</th>
+                        <th class="txt-center bold">TỔNG TIỀN</th>
+
+                    </tr>
+                </thead>
+
+                {!! \App\Helpers\Helper::renderOrderDetailsCustomer($order_details) !!}
+
+
+            </table>
+
+        </div>
     </div>
-
-
-
+    <br><br><br>
+    <br><br><br>
 @endsection

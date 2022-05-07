@@ -168,8 +168,9 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   /*----------------------------Profile Customer --------------------*/
   Route::middleware(['checklogincustomer'])->prefix('/myprofile')->group(function(){
     Route::get('/',[CustomerController::class,'index'])->name('home.profile') ;
-    Route::post('/myprofile/store',[CustomerController::class,'storeProfileCustomer']) ;
-    Route::get('/invoices',[CustomerController::class,'showInvoiceCustomer'])->name('home.profile.invoices') ;
+    Route::post('/store',[CustomerController::class,'updateClient']) ;
+    Route::get('/invoices/{id}',[CustomerController::class,'showDetailOrder'])->name('home.profile.invoices') ;
+    Route::post('/change_password',[CustomerController::class,'changePassword']) ;
   });
  
    

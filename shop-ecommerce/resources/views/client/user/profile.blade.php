@@ -6,29 +6,31 @@
         <div class="side-menu col-md-3 sol-sm-12">
             <div class="username ">
                 <i class="far fa-user-circle font "></i>
-                Tài khoản của <br> <span class="font" style="padding-left: 22%;">Nguyễn Đức Minh Trung</span>
+                Tài khoản của <br> <span class="font" style="padding-left: 22%;">{{ $customer->first_name }}
+                    {{ $customer->last_name }}</span>
             </div>
-            <div class="submenu" >
+            <div class="submenu">
                 <ul>
-                    <li class="subc font tab-item active " id="submenu-myprofile"><a href="index.php?quanly=user">Thông tin chung</a></li>
+                    <li class="subc font tab-item active " id="submenu-myprofile">Thông tin
+                            chung</li>
                     <li class="subc font tab-item " id="submenu-myprofile">Đơn hàng
                         của tôi</li>
                     <li class="subc font tab-item " id="submenu-myprofile">Đổi Mật
                         Khẩu</li>
-                   
-                   
+
+
                 </ul>
             </div>
         </div>
         <div class="information col-md-9 sol-sm-12 tab-pane active" id='panel-info'>
             <div class="information-user">
                 <h5 class="font title-infor">THÔNG TIN CỦA TÔI </h5>
-                <p class="font"><span class="font title-infor">Họ Và Tên:</span> Nguyễn Đức Minh Trung</p>
-                <p class="font"><span class="font title-infor ">Email:</span> minhtrung4367@gmail.com</p>
-                <p class="font"><span class="font title-infor ">Giới Tính:</span> 1</p>
-                <p class="font"><span class="font title-infor">Điện Thoại:</span> 0707624367</p>
-                <p class="font"><span class="font title-infor">Địa Chỉ:</span> B14/12 ấp 2 H.Bình Chánh ,tp HCM
-                </p>
+                <p class="font"><span class="font title-infor">Họ Và Tên:</span> {{ $customer->first_name }}
+                    {{ $customer->last_name }}</p>
+                <p class="font"><span class="font title-infor ">Email:</span> {{ $customer->email }}</p>
+                <p class="font"><span class="font title-infor ">Giới Tính:</span> {{ $customer->gender }}</p>
+                <p class="font"><span class="font title-infor">Điện Thoại:</span>{{ $customer->phone }}</p>
+                <p class="font"><span class="font title-infor">Địa Chỉ:</span> {{ $customer->address }} </p>
             </div>
             <br>
             <button type="button" class="btn btn-outline-primary font "
@@ -41,7 +43,7 @@
 
         <div class="container-fluid table-order col-md-9 sol-sm-12 tab-pane " id='panel-info'>
             <br>
-            <div class="table-responsive-md" id="donhang" >
+            <div class="table-responsive-md" id="donhang">
                 <p class="font" style="font-weight: bold; font-size: large;">Các Đơn Hàng Đã Đặt:</p>
                 <table class="table table-hover  table-bordered">
                     <thead class="thead-dark">
@@ -50,110 +52,45 @@
                             <th class="tr">Ngày Đặt</th>
                             <th class="tr">Tên Sản Phẩm</th>
                             <th class="tr">Tổng Tiền</th>
-                            <th class="tr" style="width: 10%;">Trạng Thái Đơn Hàng</th>
-                            <th class="tr">Thao Tác</th>
+                            <th class="tr">Phương Thức Thanh Toán</th>
+                            <th class="tr" style="width: 10%;">Trạng Thái Đơn Hàng</th>                            
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
 
-                            <td class="items id_order"><a href="index.php?quanly=user&amp;id_order=1">1 </a></td>
-                            <td class="items">0000-00-00 00:00:00</td>
-                            <td class="items name-product">
-                                <a class="name_product_content" href="index.php?quanly=detail&amp;id=76">
-                                    EMGO-VARSITY ---- Kích Thước: S ---- Số Lượng: 1 <br> </a>
-                            </td>
-                            <td class="items">480,000 VNĐ</td>
-                            <td class="items">Đã Hoàn Thành</td>
-                            <td class="items">
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td class="items id_order"><a href="index.php?quanly=user&amp;id_order=2">2 </a></td>
-                            <td class="items">2021-05-15 11:22:30</td>
-                            <td class="items name-product">
-                                <a class="name_product_content" href="index.php?quanly=detail&amp;id=76">
-                                    EMGO-VARSITY ---- Kích Thước: S ---- Số Lượng: 1 <br> </a>
-                                <a class="name_product_content" href="index.php?quanly=detail&amp;id=47">
-                                    Prive-Monogram-Cardigan ---- Kích Thước: M ---- Số Lượng: 3 <br> </a>
-                            </td>
-                            <td class="items">2,850,000 VNĐ</td>
-                            <td class="items">Đang Xử Lý</td>
-                            <td class="items">
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td class="items id_order"><a href="index.php?quanly=user&amp;id_order=3">3 </a></td>
-                            <td class="items">2021-05-15 11:23:44</td>
-                            <td class="items name-product">
-                                <a class="name_product_content" href="index.php?quanly=detail&amp;id=7">
-                                    HappyAniversary Special Fire ---- Kích Thước: S ---- Số Lượng: 1 <br> </a>
-                            </td>
-                            <td class="items">600,000 VNĐ</td>
-                            <td class="items">Đang Xử Lý</td>
-                            <td class="items">
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td class="items id_order"><a href="index.php?quanly=user&amp;id_order=4">4 </a></td>
-                            <td class="items">2021-05-15 11:24:47</td>
-                            <td class="items name-product">
-                                <a class="name_product_content" href="index.php?quanly=detail&amp;id=26">
-                                    ANGLES-RAINBOW ---- Kích Thước: M ---- Số Lượng: 2 <br> </a>
-                            </td>
-                            <td class="items">1,400,000 VNĐ</td>
-                            <td class="items">Đang Xử Lý</td>
-                            <td class="items">
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td class="items id_order"><a href="index.php?quanly=user&amp;id_order=6">6 </a></td>
-                            <td class="items">2021-05-16 01:37:08</td>
-                            <td class="items name-product">
-                                <a class="name_product_content" href="index.php?quanly=detail&amp;id=31">
-                                    Funny-Club ---- Kích Thước: S ---- Số Lượng: 1 <br> </a>
-                            </td>
-                            <td class="items">400,000 VNĐ</td>
-                            <td class="items">Đang Xử Lý</td>
-                            <td class="items">
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td class="items id_order"><a href="index.php?quanly=user&amp;id_order=7">7 </a></td>
-                            <td class="items">2021-05-16 01:42:35</td>
-                            <td class="items name-product">
-                                <a class="name_product_content" href="index.php?quanly=detail&amp;id=7">
-                                    HappyAniversary Special Fire ---- Kích Thước: S ---- Số Lượng: 1 <br> </a>
-                            </td>
-                            <td class="items">600,000 VNĐ</td>
-                            <td class="items">Đang Xử Lý</td>
-                            <td class="items">
-                            </td>
-                        </tr>
-
+                        {!! \App\Helpers\Helper::renderListOrderCustomer($order_customer) !!}
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="information col-md-9 sol-sm-12 tab-pane" id='panel-info'>
-            <div class="information-user">
-                <h5 class="font title-infor">ĐỔI MẬT KHẨU </h5>
-                <p class="font"><span class="font title-infor">Họ Và Tên:</span> Nguyễn Đức Minh Trung</p>
-                <p class="font"><span class="font title-infor ">Email:</span> minhtrung4367@gmail.com</p>
-                <p class="font"><span class="font title-infor ">Giới Tính:</span> 1</p>
-                <p class="font"><span class="font title-infor">Điện Thoại:</span> 0707624367</p>
-                <p class="font"><span class="font title-infor">Địa Chỉ:</span> B14/12 ấp 2 H.Bình Chánh ,tp HCM
-                </p>
-            </div>
-            <br>
-            <button type="button" class="btn btn-outline-primary font "
-                onclick="document.getElementById('id01').style.display='block'">Đổi Mật Khẩu</button>
+        <div class=" col-md-9 sol-sm-12 tab-pane row" id='panel-info'>
+            <div class="col-md-2"></div>
+            <form class=" col-md-6 col-sm-12 bordered" method="post" action="" id="form-change-password">
+                <input type="hidden" name="customer_id" value="{{ $customer->id }}" class="form-control">
+                <div class="form-group-change-password">
+                    <label for="old_password" class="form-label">Mật Khẩu Hiện Tại</label>
+                    <input id="old_password" name="old_password" type="text" placeholder="VD: 123456"
+                        class="form-control">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group-change-password">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+                    <span class="form-message"></span>
+                </div>
+
+                <div class="form-group-change-password">
+                    <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+                    <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu"
+                        type="password" class="form-control">
+                    <span class="form-message"></span>
+                </div>
+                @csrf
+                <button type="submit" class="btn btn-outline-primary font ">Đổi Mật Khẩu</button>
+
+            </form>
+
 
             <br>
 
@@ -162,33 +99,35 @@
 
 
     </div>
-    <div id="id01" class="modal">
+    <div id="id01" class="modal" style="z-index:12">
 
-        <form class="modal-content animate" action="./giaodien/action_user.php" method="post">
+        <form class="modal-content animate" action="/myprofile/store" method="post">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close"
                     title="Close Modal">×</span>
             </div>
 
             <div class="input-content">
-                <label for="fullname"><b>Họ và Tên:</b></label>
-                <input class="login-input" type="text" placeholder="VD:Nguyễn Văn A" name="fullname" id="uname"
-                    required="">
-
-                <label for="psw"><b>Mật Khẩu:</b></label>
-                <input class="login-input" type="text" placeholder="Nhập Mật Khẩu:" name="psw" id="psw" required="">
-
+                <input type="hidden" name="customer_id" value="{{ $customer->id }}" class="form-control">
+                <label for="fullname"><b>Họ Khách Hàng:</b></label>
+                <input class="login-input" type="text" placeholder="VD:Nguyễn Văn A" name="first_name" id="uname"
+                    value="{{ $customer->first_name }} " required="">
+                <label for="fullname"><b>Tên Khách Hàng:</b></label>
+                <input class="login-input" type="text" placeholder="VD:Nguyễn Văn A" name="last_name" id="uname"
+                    value="{{ $customer->last_name }}" required="">
                 <label for="phone"><b>Số Điện Thoại:</b></label>
                 <input class="login-input" type="text" placeholder="Nhập Số Điện Thoại:" name="phone" id="psw"
-                    required="">
+                    value="{{ $customer->phone }}" required="">
 
                 <label for="gender"><b>Giới Tính:</b></label>
-                <input class="login-input" type="text" placeholder="Nhập Giới Tính:" name="gender" id="psw" required="">
+                <input class="login-input" type="text" placeholder="Nhập Giới Tính:" name="gender" id="psw" required=""
+                    value="{{ $customer->gender }}">
 
                 <label for="address"><b>Địa Chỉ:</b></label>
-                <input class="login-input" type="text" placeholder="Nhập Địa Chỉ:" name="address" id="psw" required="">
+                <textarea class="login-input" name="address" id="psw">{{ $customer->address }}</textarea>
 
             </div>
+            @csrf
             <div class="group-button row">
                 <div class="col-md-2 col-sm-0"></div>
                 <button type="button" class="btn btn-outline-danger col-md-3"
@@ -200,3 +139,4 @@
         </form>
     </div>
 @endsection
+
