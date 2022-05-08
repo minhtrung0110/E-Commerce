@@ -30,6 +30,7 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('client.cart',CartComposer::class);
         View::composer('client.checkout.checkout',CartComposer::class);
         View::composer('client.header',GroupProductComposer::class);
+        View::composer('client.products.list',GroupProductComposer::class);
         View::composer('client.banner',GroupProductComposer::class);
         View::composer('client.footer',GroupProductComposer::class);
         View::composer('admin.layout.narbar',NotificationComposer::class);

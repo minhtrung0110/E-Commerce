@@ -156,7 +156,7 @@
     });
 
     var isotopeButton = $('.filter-tope-group button');
-
+    // phần nút fillter trên cùng _ loai san pham
     $(isotopeButton).each(function(){
         $(this).on('click', function(){
             for(var i=0; i<isotopeButton.length; i++) {
@@ -168,7 +168,7 @@
     });
 
     /*==================================================================
-    [ Filter / Search product ]*/
+    [ Filter / Search product ] nút để slick hiện thôi */ 
     $('.js-show-filter').on('click',function(){
         $(this).toggleClass('show-filter');
         $('.panel-filter').slideToggle(400);

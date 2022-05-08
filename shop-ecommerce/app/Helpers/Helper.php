@@ -380,4 +380,48 @@ class Helper
         ';
         return $html;
     }
+
+    /* --------------------------------List Product--------------------------------*/
+    public static function renderListProducts($products)
+    {
+        $html = '';
+        if (is_null($products)) return $html;
+        foreach ($products as $key => $product) {
+            /*get value*/
+            if ($product->active == 1) {
+                $id = $product->id;
+                $name = $product->name_product;
+                $price = $product->price;
+                $image = $product->img;
+
+                $html .= '
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item '.$product->group_products_id.'">
+                <!-- Block2 -->
+                <div class="block2">
+                    <div class="block2-pic hov-img0">
+                        <img src="/storage/uploads/' . $image . '"alt="IMG-PRODUCT">
+
+                      
+                        </div>
+
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="/detail-product/' . $id . '-' . Str::slug($name, '-') . '.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    ' . $name . '
+                                </a>
+
+                                <span class="stext-105 cl3">
+                                ' . number_format($price) . ' VNĐ
+                                </span>
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                </div>
+            ';
+            }
+        }
+        return $html;
+    }
 }

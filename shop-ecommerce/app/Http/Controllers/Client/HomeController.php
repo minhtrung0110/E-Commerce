@@ -48,6 +48,28 @@ class HomeController extends Controller
         ]);
     }
 
+    public function showListProducts(Request $request){
+        return view('client.products.list',[
+            'title'=>'Cửa Hàng',
+            'products'=>$this->productService->getListProducts($request),
+        ]);
+    }
+
+    public function showListProductSortby(Request $request, $id,$slug){
+        return view('client.products.list',[
+            'title'=>'Danh Sách Sản Phẩm',
+            'products'=>$this->productService->getListProductSortby($request,$id),
+        ]);
+    }
+    public function loadProduct(Request $request){
+        $page=$request->input('page',0);
+        $result=$this->productService->loadProduct($page);
+        if(count($result)!=0){
+            $html=view('client.products.content_list',['products'=>$result])->render();
+            return response()->json([ 'data'=>$html]);
+        }
+        return response()->json([ 'data'=>""]);
+}
     /**
      * Show the form for creating a new resource.
      *

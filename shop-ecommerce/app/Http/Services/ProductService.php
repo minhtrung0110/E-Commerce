@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Stmt\TryCatch;
 
 class ProductService{
-   
+    CONST LIMIT =2;
     public function getPriceOfProduct($id){
             return Product_detail::select('price')->where('id', $id)->first();
     }
@@ -19,7 +19,7 @@ class ProductService{
         ->join('group_products','group_products.id','=','products.group_id')
         ->join('product_details','product_details.product_id','=','products.id')
         ->orderBy('products.id', 'DESC')
-        ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active','code_color','img'])
+        ->get(['products.id','group_products.name','group_products.id as group_products_id','products.name as name_product','description','price','amount','active','code_color','img'])
         ;
     }
     public function getProduct($id){
@@ -110,5 +110,73 @@ class ProductService{
             return false;
         }
         return true;
+    }
+    public function getListProducts($request){
+        $query = Product::select(['products.id','group_products.name','group_products.id as group_products_id','products.name as name_product','description','price','amount','active','code_color','img'])
+        ->join('image_products','image_products.product_id','=','products.id')
+        ->join('images','images.id','=','image_products.image_id')
+        ->join('group_products','group_products.id','=','products.group_id')
+        ->join('product_details','product_details.product_id','=','products.id')
+        ->where('active',1);
+        if(!$request->has('search-product')){
+        if($request->has('price_start')){
+            $query= $query->where('product_details.price','>=',$request->input('price_start'));
+         }
+        if($request->has('price_end')){
+            $query= $query->where('product_details.price','<=',$request->input('price_end'));
+         }
+        if($request->has('price')){
+            $query= $query->orderBy('price',$request->input('price'));
+         }
+        }
+        else {
+            $query=$query->where('products.name', 'LIKE', "%{$request->input('search-product')}%");
+        }
+       
+        return $query
+        ->paginate(12)
+        ->withQueryString();
+    }
+    public function getListProductSortby($request,$id){
+        $query = Product::select(['products.id','group_products.name','group_products.id as group_products_id','products.name as name_product','description','price','amount','active','code_color','img'])
+        ->join('image_products','image_products.product_id','=','products.id')
+        ->join('images','images.id','=','image_products.image_id')
+        ->join('group_products','group_products.id','=','products.group_id')
+        ->join('product_details','product_details.product_id','=','products.id')
+        ->where('group_products.id','=',$id)
+        ->where('active',1);
+        if(!$request->has('search-product')){
+        if($request->has('price_start')){
+            $query= $query->where('product_details.price','>=',$request->input('price_start'));
+         }
+        if($request->has('price_end')){
+            $query= $query->where('product_details.price','<=',$request->input('price_end'));
+         }
+        if($request->has('price')){
+            $query= $query->orderBy('price',$request->input('price'));
+         }
+        }
+        else {
+            $query=$query->where('products.name', 'LIKE', "%{$request->input('search-product')}%");
+        }
+       
+        return $query
+        ->paginate(12)
+        ->withQueryString();
+    }
+    public function loadProduct($page=null){
+        return Product::select(['products.id','group_products.name','group_products.id as group_products_id','products.name as name_product','description','price','amount','active','code_color','img'])
+        ->join('image_products','image_products.product_id','=','products.id')
+        ->join('images','images.id','=','image_products.image_id')
+        ->join('group_products','group_products.id','=','products.group_id')
+        ->join('product_details','product_details.product_id','=','products.id')
+        ->where('active',1)
+        ->when($page!=null,function($query) use ($page){
+                $offset=$page*self::LIMIT;
+                $query->offset($offset);
+        })
+        ->limit(self::LIMIT)
+        ->orderbyDesc('id')
+        ->get();
     }
 }

@@ -22,7 +22,7 @@
                         </li>
 
                         <li class="active-menu">
-                            <a href="index.html">Cửa Hàng</a>
+                            <a href="{{Route('home.products')}}">Cửa Hàng</a>
                             <ul class="sub-menu">
                                 {!! \App\Helpers\Helper::renderGroupProducts($group_products )!!}
                                

@@ -3,7 +3,29 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-
+// Load More 
+function loadMore()
+{
+    var page = new Number($('#page').val());
+    $.ajax({
+        type : 'POST',
+        dataType : 'JSON',
+        data : { page },
+        url : '/services/load-product',
+        success : function (result) {
+            
+            if (result.data !== '') {
+                $('#loadProduct').append(result.data);
+                page=page+1;
+                $('#page').val(page);
+                console.dir(page);
+            } else {
+                alert('Đã load xong Sản Phẩm');
+                $('#btnLoadMore').css('display', 'none');
+            }
+        }
+    })
+}
 // CART
 $('#btn-order').click(function () {
     console.log($('#form-add-order').serialize())

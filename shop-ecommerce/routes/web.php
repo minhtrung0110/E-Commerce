@@ -142,6 +142,8 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::get('/',[HomeController::class,'index'])->name('home') ;
   Route::get('/products',[HomeController::class,'showListProducts'])->name('home.products') ;
   Route::get('/detail-product/{id}-{slug}.html', [ProductController::class,'showDetailProduct'])->name('detail-product');
+  Route::get('/products/{id}-{slug}.html', [HomeController::class,'showListProductSortby']);
+  Route::post('/services/load-product',[HomeController::class,'loadProduct']);
   /*------------------------------------------------Cart------------------------------------------------*/
   Route::post('/add-cart', [CartController::class,'index']);
   Route::get('/carts', [CartController::class,'show'])->name('home.carts');
