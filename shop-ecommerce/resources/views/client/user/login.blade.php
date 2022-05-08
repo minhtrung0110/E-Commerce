@@ -8,7 +8,7 @@
         <link rel="icon" type="image/png" href="{{asset('template/images/icons/favicon.ico')}}"/>
         <link rel="stylesheet"href="{{asset('template/css/login_style.css')}}">
         <script src="{{asset('template/vendor/jquery/jquery-3.2.1.min.js')}}"></script> 
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{{asset('/template/vendor/sweetalert/sweetalert.min.js')}}"></script>
         
     </head>
     <body>

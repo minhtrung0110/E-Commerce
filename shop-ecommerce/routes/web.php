@@ -15,7 +15,9 @@ use App\Http\Controllers\admin\DiscountController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\RatingController;
+use App\Http\Controllers\Client\CustomerController;
 use \App\Http\Controllers\Admin\UploadController;
+
 
 /*==========Admin====================*/
 // Route::get('/list',[ProductController::class,'index'])->name('admin.products');
@@ -167,9 +169,10 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
 
   /*----------------------------Profile Customer --------------------*/
   Route::middleware(['checklogincustomer'])->prefix('/myprofile')->group(function(){
-    Route::get('/',[HomeController::class,'showProfileCustomer'])->name('home.profile') ;
-    Route::post('/myprofile/store',[HomeController::class,'storeProfileCustomer']) ;
-    Route::get('/invoices',[HomeController::class,'showInvoiceCustomer'])->name('home.profile.invoices') ;
+    Route::get('/',[CustomerController::class,'index'])->name('home.profile') ;
+    Route::post('/store',[CustomerController::class,'updateClient']) ;
+    Route::get('/invoices/{id}',[CustomerController::class,'showDetailOrder'])->name('home.profile.invoices') ;
+    Route::post('/change_password',[CustomerController::class,'changePassword']) ;
   });
  
    

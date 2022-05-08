@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="{{asset('dashboard/dist/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('template/css/style.css')}}">
   <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="{{asset('/template/vendor/sweetalert/sweetalert.min.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

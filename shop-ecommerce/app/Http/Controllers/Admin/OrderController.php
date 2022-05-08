@@ -14,6 +14,7 @@ class OrderController extends Controller
 {
     protected $staffService;
     protected $orderService;
+    
     public $STATUS=[
         1=>'Chờ xác nhận',
         2=>'Đã xác nhận',
@@ -22,6 +23,7 @@ class OrderController extends Controller
         5=>'Đã hủy',
         6=>'Đã thanh toán'
         ];
+
     public function __construct(StaffService $staffService, OrderService $orderService)
     {
         $this->staffService=$staffService;

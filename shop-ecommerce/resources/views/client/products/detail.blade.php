@@ -129,16 +129,12 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item p-b-10">
-                            <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                            <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Mô Tả</a>
                         </li>
 
+                       
                         <li class="nav-item p-b-10">
-                            <a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional
-                                information</a>
-                        </li>
-
-                        <li class="nav-item p-b-10">
-                            <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (*)</a>
+                            <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh Giá</a>
                         </li>
                     </ul>
 
@@ -154,63 +150,7 @@
                         </div>
 
                         <!-- - -->
-                        <div class="tab-pane fade" id="information" role="tabpanel">
-                            <div class="row">
-                                <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                                    <ul class="p-lr-28 p-lr-15-sm">
-                                        <li class="flex-w flex-t p-b-7">
-                                            <span class="stext-102 cl3 size-205">
-                                                Weight
-                                            </span>
-
-                                            <span class="stext-102 cl6 size-206">
-                                                0.79 kg
-                                            </span>
-                                        </li>
-
-                                        <li class="flex-w flex-t p-b-7">
-                                            <span class="stext-102 cl3 size-205">
-                                                Dimensions
-                                            </span>
-
-                                            <span class="stext-102 cl6 size-206">
-                                                110 x 33 x 100 cm
-                                            </span>
-                                        </li>
-
-                                        <li class="flex-w flex-t p-b-7">
-                                            <span class="stext-102 cl3 size-205">
-                                                Materials
-                                            </span>
-
-                                            <span class="stext-102 cl6 size-206">
-                                                60% cotton
-                                            </span>
-                                        </li>
-
-                                        <li class="flex-w flex-t p-b-7">
-                                            <span class="stext-102 cl3 size-205">
-                                                Color
-                                            </span>
-
-                                            <span class="stext-102 cl6 size-206">
-                                                Black, Blue, Grey, Green, Red, White
-                                            </span>
-                                        </li>
-
-                                        <li class="flex-w flex-t p-b-7">
-                                            <span class="stext-102 cl3 size-205">
-                                                Size
-                                            </span>
-
-                                            <span class="stext-102 cl6 size-206">
-                                                XL, L, M, S
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                      
                     
                         <!-- - -->
                         <div class="tab-pane fade" id="reviews" role="tabpanel">
@@ -259,9 +199,7 @@
                                                 Thêm Đánh Giá
                                             </h5>
 
-                                            <p class="stext-102 cl6">
-                                                Your email address will not be published. Required fields are marked *
-                                            </p>
+                                          
 
                                             <div class=" rating_point flex-w flex-m p-t-50 p-b-23">
                                                 <span class="stext-102 cl3 m-r-16">
@@ -312,15 +250,7 @@
             </div>
         </div>
 
-        <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-            <span class="stext-107 cl6 p-lr-25">
-                SKU: JAK-01
-            </span>
-
-            <span class="stext-107 cl6 p-lr-25">
-                Categories: Jacket, Men
-            </span>
-        </div>
+       
     </section>
 
 

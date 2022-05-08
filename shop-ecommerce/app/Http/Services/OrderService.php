@@ -46,13 +46,23 @@ class OrderService{
     }
     public function getItem($id){
         return Orders::join('order_details','order_details.order_id','=','orders.id')
-                        ->join('products','products.id','=','order_details.product_id')
-                        ->join('product_details','product_details.product_id','=','products.id')
-                        ->join('images','images.id','=','products.id')
+                        ->join('products','products.id','=','order_details.product_id')                      
                         ->join('customers','customers.id','=','orders.customer_id')->distinct('orders.id')
                         ->where('orders.id',$id)
                         ->get(['customers.id','orders.status as status_order','products.name','order_details.amount as amount_detail','product_details.price','product_details.code_color',
                     'product_details.amount','customers.first_name','customers.last_name','phone','email','orders.address as address_orders','orders.created_at','orders.discount_value','images.img']);
+    }
+    public function getbyCustomerId($customer_id){
+        return Orders::join('customers','customers.id','=','orders.customer_id')->distinct('orders.id')
+                        ->where('customers.id',$customer_id)
+                        ->get(['orders.id as order_id','orders.payment_method_id','orders.status as status_order','orders.address as address_orders','orders.created_at','orders.discount_value','orders.total_price']);
+    }
+
+    public function getListProductOrderDetails($id){
+        return Orders::join('order_details','order_details.order_id','=','orders.id')
+        ->join('products','products.id','=','order_details.product_id')                      
+        ->where('orders.id',$id)
+        ->get(['products.id as product_id','products.name as product_name','order_details.amount as amount_detail',]);
     }
     public function update($request,$id){
         try {

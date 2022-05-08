@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const _token=document.getElementById('_token').value
             
 
-           
+           console.log({point:point,product_id:product_id,context:context,_token:_token})
             //    {point:point,product_id:product_id,context:context,_token:_token}
                 $.ajax({
                     type: 'POST',
@@ -113,3 +113,46 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 })
+document.addEventListener('DOMContentLoaded', function() {
+    // Mong muốn của chúng ta
+    Validator({
+        form: '#form-change-password',
+        formGroupSelector: '.form-group-change-password',
+        errorSelector: '.form-message',
+        rules: [
+
+            Validator.minLength('#password', 6),
+            Validator.isRequired('#password_confirmation'),
+            Validator.isConfirmed('#password_confirmation', function() {
+                return document.querySelector('#form-change-password #password').value;
+            }, 'Mật khẩu nhập lại không chính xác')
+        ],
+        onSubmit: function(data) {
+            console.log(data);
+
+            $.ajax({
+                type: 'POST',
+                datatype: 'JSON',
+                data: $('#form-change-password').serialize(),
+                url: '/myprofile/change_password',
+                success: function(respond) {
+                    console.log(respond.message)
+
+
+                    if (respond.error !== true) {
+                        swal("Đổi Mật Khẩu Thành Công", respond.message, "success");
+                        setTimeout(() => {
+                            window.location = "/myprofile"
+                        }, 1200);
+                    } else {
+                        swal("Đổi Mật Khẩu Thất Bại", respond.message, "error");
+
+                    }
+                }
+            })
+
+        }
+
+    });
+
+});

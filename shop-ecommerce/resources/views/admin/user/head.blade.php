@@ -27,7 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('template/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('template/css/main.css')}}">
 	<!--===============================================================================================-->	
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="{{asset('/template/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <!--===============================================================================================-->
 
 
