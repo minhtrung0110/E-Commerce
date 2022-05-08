@@ -22,35 +22,11 @@
     </div>
 
     @endif
-    <div class="text-center">
-      <h3>Danh sách đơn hàng</h3>
+    <div class="card-header " style="background: rgb(17, 196, 47)">
+      <h3 class="tilte_order text-center">Danh sách đơn hàng</h3>
     </div>
       <div class="card-tools">
       
-        {{-- <div class="input-group input-group-sm search-input" style="width: 150px;">
-          <form action="" method="post" id="form-search-order">
-
-              <div class="input-group-append">
-                  <Select style="width:150px" value="" name="status">
-                      <option @php if($status==0) echo 'selected' @endphp value="0">ALL</option>
-                      @php
-                      for($i=1;$i<=count($a);$i++){
-                        $selected='';
-                        if($status==$i){
-                          $selected='selected';
-                        }
-                       echo "<option ".$selected." value=".$i.">".$a[$i]."</option>";
-                      }
-                  @endphp
-                  </Select>
-                  @csrf
-                <button id="search_order" type="submit" class="btn btn-default">
-                  <i class="fa fa-filter"></i>
-                </button>
-              </div>
-          </form>
-
-        </div> --}}
         <form action="" method="post" id="form-saerch-order">
           @csrf
         <div class="card-body">

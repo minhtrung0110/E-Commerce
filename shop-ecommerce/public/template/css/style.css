@@ -11,6 +11,13 @@ body, .main-menu > li > a, .ltext-102 {
   top:100px;
 }
 /*----------------------------------------------------------------CUSTOM CSS =================================================================*/
+.tilte_order{
+ 
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+    color: #fff;
+}
 .search-input{
   float: right;
   display: flex; 

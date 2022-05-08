@@ -46,11 +46,27 @@ class OrderService{
     }
     public function getItem($id){
         return Orders::join('order_details','order_details.order_id','=','orders.id')
-                        ->join('products','products.id','=','order_details.product_id')                      
-                        ->join('customers','customers.id','=','orders.customer_id')->distinct('orders.id')
+                        ->join('customers','customers.id','=','orders.customer_id')
+                        ->join('products','products.id','=','order_details.product_id')
+                        ->join('image_products','image_products.product_id','=','products.id')
+                        ->join('images','images.id','=','image_products.image_id')->distinct('orders.id')
                         ->where('orders.id',$id)
-                        ->get(['customers.id','orders.status as status_order','products.name','order_details.amount as amount_detail','product_details.price','product_details.code_color',
-                    'product_details.amount','customers.first_name','customers.last_name','phone','email','orders.address as address_orders','orders.created_at','orders.discount_value','images.img']);
+                        ->get([
+                            'orders.id as id_order',
+                            'orders.status',
+                            'customers.id',
+                            'customers.first_name',
+                            'customers.last_name',
+                            'customers.phone',
+                            'customers.email',
+                            'orders.created_at',
+                            'orders.address as address_orders',
+                            'images.img',
+                            'products.name',
+                            'order_details.price',
+                            'order_details.amount as amount_detail',
+                            'orders.discount_value'
+                        ]);
     }
     public function getbyCustomerId($customer_id){
         return Orders::join('customers','customers.id','=','orders.customer_id')->distinct('orders.id')

@@ -63,8 +63,9 @@
       @php
           
           $a=$order_detail->price*$order_detail->amount_detail;
-          $sum=$sum+$a;
+          $sum=$sum + $a;
           $discount=($order_detail->discount_value/100)*$sum;
+          $discount_value=$order_detail->discount_value;
 
        
         @endphp
@@ -76,7 +77,7 @@
       </tr>   
       
       <tr height="40px" class="order_summary order_total">
-        <td class="text-right" colspan="3"><b>Giảm giá</b></td>
+        <td class="text-right" colspan="3"><b>Giảm giá({{$discount_value}}%)</b></td>
         <td class="total money text-right"><b>{{number_format($discount)}}₫</b></td>
       </tr> 
 
@@ -91,7 +92,7 @@
 
       <tr height="40px" class="order_summary order_total">
         <td class="text-right" colspan="3"><b>Tổng tiền</b></td>
-        <td class="total money text-right"><b>{{number_format($sum-$discount)}}₫ </b></td>
+        <td class="total money text-right"><b>{{number_format($sum - $discount)}}₫ </b></td>
       </tr>    
     </tbody></table>
     <a href="{{Route('admin.orders')}}" class="btn btn-success ">Quay lại</a>

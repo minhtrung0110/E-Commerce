@@ -13,7 +13,8 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <div class="text-center">
-      <h3>Danh sách Sản phẩm</h3>
+      <h3 class="">Danh sách Sản phẩm</h3>
+    
       <div class="card-tools">
         @if(Session::has('success'))
         <div class="text-center">

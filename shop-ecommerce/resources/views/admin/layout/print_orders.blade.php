@@ -21,7 +21,7 @@
       <div class="col-12">
         <h2 class="page-header">
           <i class="fas fa-globe"></i> Ecommerce,Inc.
-          <small class="float-right">Date: {{date('d-m-y')}}</small>
+          <small class="float-right">Ngày: {{date('d-m-y')}}</small>
         </h2>
       </div>
       <!-- /.col -->
@@ -29,33 +29,33 @@
     <!-- info row -->
     <div class="row invoice-info">
       <div class="col-sm-4 invoice-col">
-        From
+        Từ
         <address>
           <strong>Ecommerce, Inc.</strong><br>
           273 An D. Vương, Phường 3,  <br>
           Quận 5, Thành phố Hồ Chí Minh<br>
-          Phone: +84912345678<br>
+          Số điện thoạt: +84912345678<br>
           Email: nhom13@gmail.com
         </address>
       </div>
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        To
+        Đến
         <address>
           <strong>{{$orderItems[0]['first_name'].' '.$orderItems[0]['last_name']}}</strong><br>
           {{$orderItems[0]['address_orders']}}<br>
          
-          Phone: {{$orderItems[0]['phone']}}<br>
+          Số điện thoạt: {{$orderItems[0]['phone']}}<br>
           Email: {{$orderItems[0]['email']}}
         </address>
       </div>
       <!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        <b>Invoice #00{{$id_print}}</b><br>
+        <b>Mã hóa đơn #00{{$id_print}}</b><br>
         <br>
-        <b>Order ID:</b> #{{$id_print}}<br>
-        <b>Payment Due:</b> {{date('d-m-y')}}<br>
-        <b>Account:</b> #{{$orderItems[0]['id'].'_'.$orderItems[0]['first_name'].''.$orderItems[0]['last_name']}}
+        <b>ID đơn hàng:</b> #{{$id_print}}<br>
+        <b>Ngày lập:</b> {{date('d-m-y')}}<br>
+        <b>Tài khoản:</b> #{{$orderItems[0]['id'].'_'.$orderItems[0]['first_name'].''.$orderItems[0]['last_name']}}
       </div>
       <!-- /.col -->
     </div>
@@ -67,11 +67,11 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th>Qty</th>
-            <th>Product</th>
-            <th>Amount</th>
-            <th>Price</th>
-            <th>Subtotal</th>
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng</th>
           </tr>
           </thead>
           <tbody>
@@ -103,7 +103,7 @@
     <div class="row">
       <!-- accepted payments column -->
       <div class="col-6">
-        <p class="lead">Payment Methods:</p>
+        {{-- <p class="lead">Payment Methods:</p>
         <img src="{{asset('dashboard/dist/img/credit/visa.png')}}" alt="Visa">
         <img src="{{asset('dashboard/dist/img/credit/mastercard.png')}}" alt="Mastercard">
         <img src="{{asset('dashboard/dist/img/credit/american-express.png')}}" alt="American Express">
@@ -111,7 +111,7 @@
 
         <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
           
-        </p>
+        </p> --}}
       </div>
       <!-- /.col -->
       <div class="col-6">
@@ -120,19 +120,19 @@
         <div class="table-responsive">
           <table class="table">
             <tr>
-              <th style="width:50%">Subtotal:</th>
+              <th style="width:50%">Tổng chưa giảm:</th>
               <td>{{number_format($sum)}}VNĐ</td>
             </tr>
             <tr>
-              <th>Discount ({{$discount_value}}%)</th>
+              <th>Giảm giá ({{$discount_value}}%)</th>
               <td>{{number_format($discount)}}VNĐ</td>
             </tr>
             <tr>
-              <th>Shipping:</th>
+              <th>Giao hàng:</th>
               <td>0 VNĐ</td>
             </tr>
             <tr>
-              <th>Total:</th>
+              <th>Tổng Cộng:</th>
               <td>{{number_format($sum-$discount)}}VNĐ</td>
             </tr>
           </table>

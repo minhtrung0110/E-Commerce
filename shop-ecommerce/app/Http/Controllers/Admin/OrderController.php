@@ -83,9 +83,10 @@ class OrderController extends Controller
         $a=$this->STATUS;
     
         foreach($order_ups as $order_up){
-            $id_order=$order_up->id;
-            $status_number= $order_up->status_order;
+            $id_order=$order_up->id_order;
+            $status_number= $order_up->status;
         }
+
         
         return view('admin.orders.edit_orderDetail',compact('title','staff','status_number','id_order','a'));
     }
@@ -145,7 +146,7 @@ class OrderController extends Controller
             $staff=$this->staffService->getInFo(Session::get('staff_id'));
             $orderItems=$this->orderService->getItem($request->id);
             $id_print=$request->id;
-           
+           //dd($orderItems);
         return view('admin.orders.order_details',compact('title','staff','orderItems','id_print'));
     }
     public function print(Request $request){
