@@ -36,19 +36,12 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         //
+      
         $status=0;
         $title='Order';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $orders=$this->orderService->getAll();
-        // $status=$this->orderService->getStatus();
-        // $new=count($status);
-        
-        // $request->session()->put('key', 'new');
-
-        
-        $a=$this->STATUS;
-        
-     // dd($status->toArray());
+          $a=$this->STATUS;
          return view('admin.orders.orders',compact('title','staff','orders','a','status'));
     }
 
@@ -81,10 +74,12 @@ class OrderController extends Controller
      */
     public function show($id)
     {
+       
         $title='Order|Edit';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $order_ups=$this->orderService->getItem($id);
         $a=$this->STATUS;
+    
         foreach($order_ups as $order_up){
             $id_order=$order_up->id;
             $status_number= $order_up->status_order;
@@ -92,6 +87,7 @@ class OrderController extends Controller
         
         return view('admin.orders.edit_orderDetail',compact('title','staff','status_number','id_order','a'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -101,16 +97,13 @@ class OrderController extends Controller
      */
     public function search(Request $request)
     {
-         //
          $status=$request->input('status');
          $title='Order';
          $staff=$this->staffService->getInFo(Session::get('staff_id'));
          $a=$this->STATUS;
-         if($status==0){
-             $orders=$this->orderService->getAll();
-        }else{
-            $orders=$this->orderService->getSearch($status);
-        }
+        
+        $orders=$this->orderService->getSearch($request);
+    
      
         return view('admin.orders.orders',compact('title','staff','orders','a','status'));
     }
@@ -149,7 +142,17 @@ class OrderController extends Controller
            $title='Order';
             $staff=$this->staffService->getInFo(Session::get('staff_id'));
             $orderItems=$this->orderService->getItem($request->id);
-       //   dd($orderItems->toArray());
-        return view('admin.orders.order_details',compact('title','staff','orderItems'));
+            $id_print=$request->id;
+           
+        return view('admin.orders.order_details',compact('title','staff','orderItems','id_print'));
+    }
+    public function print(Request $request){
+        
+             $title='Order';
+            $staff=$this->staffService->getInFo(Session::get('staff_id'));
+            $orderItems=$this->orderService->getItem($request->id);
+            
+            $id_print=$request->id;
+        return view('admin.layout.print_orders',compact('title','staff','orderItems','id_print'));
     }
 }

@@ -11,6 +11,11 @@
       <h3 class="card-title">Danh Sách silders</h3>
 
       <div class="card-tools">
+        @if(Session::has('success'))
+        <div class="text-center">
+          <p class="alert alert-success">{{Session::get('success')}}</p>
+        </div>
+        @endif
         <form action="" method="post" id="form-search-slider">
         <div class="input-group input-group-sm" style="width: 150px;">
             @csrf
@@ -27,11 +32,7 @@
     </div>
   
     <div class="card-body table-responsive p-0" style="height: 550px;">
-        @if(Session::has('success'))
-        <div class="text-center">
-          <p class="alert alert-success">{{Session::get('success')}}</p>
-        </div>
-        @endif
+      
       <table class="table">
         <thead >
           <tr>

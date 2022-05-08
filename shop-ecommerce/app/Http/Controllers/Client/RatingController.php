@@ -5,8 +5,11 @@ use App\Http\Services\RatingService;
 use App\Http\Controllers\Controller;
 use App\Http\Services\OrderService;
 use App\Http\Services\StaffService;
+use App\Http\Services\GroupProduct_Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+
+use function GuzzleHttp\Promise\all;
 
 class RatingController extends Controller
 {
@@ -18,18 +21,25 @@ class RatingController extends Controller
     protected $ratingService;
     protected $staffService;
     protected $orderService;
-    public function __construct(RatingService $ratingService,OrderService $orderService,StaffService $staffService)
+    protected $groupProductService;
+    public function __construct(RatingService $ratingService,
+                                GroupProduct_Service $groupProductService,
+                                OrderService $orderService,StaffService $staffService)
     {
         $this->ratingService=$ratingService;
         $this->orderService=$orderService;
         $this->staffService=$staffService;
+        $this->groupProductService=$groupProductService;
     }
     public function index()
     {   $point=0;
+        $category_id=0;
         $title='Đánh giá';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $ratings=$this->ratingService->getAll();
-        return view('admin.ratings.rating',compact('title','staff','ratings','point'));
+        $categorys=$this->groupProductService->getAll();
+    
+        return view('admin.ratings.rating',compact('title','staff','ratings','category_id','point','categorys'));
     }
 
     /**
@@ -98,22 +108,15 @@ class RatingController extends Controller
         // $rating=$this->ratingService->getPoint(5);
     }
     public function searchPoint(Request $request){
-        if($request->input('point') ==0) 
-        {
-            $point=0;
-        }else{
-
-            $point=$request->input('point');
-        }
-        
-        if($point==0){
-            $ratings=$this->ratingService->getAll();
-        }else{
-            $ratings=$this->ratingService->getPoint($point);
-        }
+       //dd($request->all());
+        $point=$request->input('point');
+        $category_id=$request->input('category');
+        $ratings=$this->ratingService->getSearch($request);
         $title='Đánh giá';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
-        return view('admin.ratings.rating',compact('title','staff','ratings','point'));
+        $categorys=$this->groupProductService->getAll();
+        
+         return view('admin.ratings.rating',compact('title','staff','ratings','category_id','point','categorys'));
         
     }
     /**

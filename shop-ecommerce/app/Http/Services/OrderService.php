@@ -2,6 +2,7 @@
 namespace App\Http\Services;
 use App\Models\Orders;
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class OrderService{
@@ -16,11 +17,22 @@ class OrderService{
         
 
     }
-    public function getSearch($id){
-        return Orders::join('order_details','order_details.order_id','=','orders.id')
+    public function getSearch($request){
+        $orders= Orders::join('order_details','order_details.order_id','=','orders.id')
         ->join('customers','customers.id','=','orders.customer_id')
-        ->distinct('orders.id')->where('orders.status',$id)
-        ->get(['orders.id','discount_value','customers.first_name','customers.last_name','orders.status as status_order','orders.total_price','Orders.created_at']);
+        ->where('orders.created_at','>=',$request->input('start_date'))
+        ->where('orders.created_at','<=',$request->input('end_date'))
+        ->distinct('orders.id');
+        if(!is_null($request->input('name_customer'))){
+            $orders->where('customers.first_name','like','%'.$request->input('name_customer').'%')->orwhere('customers.last_name','like','%'.$request->input('name_customer').'%');
+        }
+        if(!is_null($request->input('status'))){
+            $orders->where('orders.status',$request->input('status'));
+        }
+        if(!is_null($request->input('discount'))){
+            $orders->where('discount_value',$request->input('discount'));
+        }
+        return $orders->get(['orders.id','discount_value','customers.first_name','customers.last_name','orders.status as status_order','orders.total_price','Orders.created_at']);
 
 
     }
@@ -39,7 +51,7 @@ class OrderService{
                         ->join('images','images.id','=','products.id')
                         ->join('customers','customers.id','=','orders.customer_id')->distinct('orders.id')
                         ->where('orders.id',$id)
-                        ->get(['orders.status as status_order','products.name','order_details.amount as amount_detail','product_details.price','product_details.code_color',
+                        ->get(['customers.id','orders.status as status_order','products.name','order_details.amount as amount_detail','product_details.price','product_details.code_color',
                     'product_details.amount','customers.first_name','customers.last_name','phone','email','orders.address as address_orders','orders.created_at','orders.discount_value','images.img']);
     }
     public function update($request,$id){
