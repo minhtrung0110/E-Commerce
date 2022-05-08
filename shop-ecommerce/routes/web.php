@@ -16,6 +16,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\RatingController;
 use App\Http\Controllers\Client\CustomerController;
+use \App\Http\Controllers\Admin\UploadController;
 
 
 /*==========Admin====================*/
@@ -73,6 +74,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
          Route::get('/list',[OrderController::class,'index'])->name('admin.orders');//handle
          Route::post('/list',[OrderController::class,'search']);
         Route::get('/show/{id}',[OrderController::class,'showDetail']);
+        Route::get('print/{id}',[OrderController::class,'print']);
         Route::get('/add',[OrderController::class,'create']);
         Route::post('/add',[OrderController::class,'store']);//handle
         Route::DELETE('/destroy',[OrderController::class,'destroy']);//handle
@@ -81,7 +83,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
         });
     
       //Upload
-      Route::post('upload/services', [\App\Http\Controllers\Admin\UploadController::class, 'store']);
+      Route::post('upload/services', [UploadController::class, 'store']);
 
       //Staff
       Route::prefix('/staffs')->group(function(){

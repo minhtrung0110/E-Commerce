@@ -16,6 +16,11 @@
     <div class="text-center">
       <h3>Danh sách khuyến mãi</h3>
       <div class="card-tools">
+        @if(Session::has('success'))
+        <div class="text-center">
+          <p class="alert alert-success">{{Session::get('success')}}</p>
+        </div>
+        @endif
         <div class="input-group input-group-sm search-input" style="width: 150px;">
           <form action="" method="post" id="form-search-discount">
 
@@ -38,11 +43,7 @@
         </div>
       </div>
     </div>
-    @if(Session::has('success'))
-    <div class="text-center">
-      <p class="alert alert-success">{{Session::get('success')}}</p>
-    </div>
-    @endif
+ 
     
     <table class="table">
       <thead>
