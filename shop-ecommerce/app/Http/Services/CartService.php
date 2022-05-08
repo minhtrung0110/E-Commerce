@@ -87,13 +87,13 @@ class CartService
                 'staff_id' => 1,
                 'discount_id' => (int)$request->input('discount_id'),
                 'discount_value' => (float)$request->input('discount_value'),
-                'status' => 1,// chưa thanh toán
+                'status' => 1, // chưa thanh toán
                 'total_price' => (float)$request->input('total_price'),
                 'payment_method_id' => (int)$request->input('payment_method_id'),
                 'address' => (string)$address,
             ]);
         } catch (\Exception $err) {
-           // Session::flash('error', $err->getMessage());
+            // Session::flash('error', $err->getMessage());
             return   false;
         }
         return true;
@@ -122,11 +122,11 @@ class CartService
     {
 
         try {
-            //DB::beginTransaction();
+            DB::beginTransaction();
             $carts = Session::get('carts');
             if (is_null($carts))
-            return false;
-          
+                return false;
+
             /* Thêm Order trước tiên */
             $result_add_order =  $this->addOrder($request);
             /* xử lý created mảng carts */
@@ -134,36 +134,38 @@ class CartService
             $order_id = $result_add_order->id;
             if ($result_add_order) {
                 $result_add_order_detail =  $this->addOrderDetail($order_id, $carts);
-                if(!$result_add_order_detail) return false;
-            }
-            else return false;
-
-          
+                if (!$result_add_order_detail) return false;
+            } else return false;
 
 
 
-            //$order=$this->infoProductCart($carts, $customer->id);
-            // $data=[
-            //     'order'=>$order,
-            //    'customer'=>$customer
-            //  ];
-            //dd($data['customer']);
-            // DB::commit();
-            Session::flash('success', 'Đặt Hàng Thành Công');
-            $data_send_mail = [
-                'name' => $request->input('name'),
+            $address = $request->input('address') . ', ' . $request->input('calc_shipping_wards') . ', ' . $request->input('calc_shipping_district') . ', ' . $request->input('calc_shipping_provinces');
+            $customer = [
                 'email' => $request->input('email'),
-                'phone' => $request->input('phone')
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'phone' => $request->input('phone'),
+                'address' => $address,
             ];
+            $order_id=Orders::select('id')->orderByDesc('created_at')->first();
+
+            DB::commit();
+            //Session::flash('success', 'Đặt Hàng Thành Công');
+
+            $data = [
+                'customer' => $customer,
+                'order_id' =>  $order_id->id,
+            ];
+          
 
             #Queue
 
-            // SendMail::dispatch( $data)->delay(now()->addSeconds(5));
+            SendMail::dispatch($data)->delay(now()->addSeconds(5));
 
            Session::forget('carts');
         } catch (\Exception $err) {
-           // DB::rollBack();
-           // Session::flash('error', 'Đặt Hàng Lỗi, Vui lòng thử lại sau');
+            DB::rollBack();
+            Session::flash('error', 'Đặt Hàng Lỗi, Vui lòng thử lại sau');
             return false;
         }
 

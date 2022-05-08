@@ -424,4 +424,68 @@ class Helper
         }
         return $html;
     }
+    public function renderOrderDetailsCustomerSendMail($order_details)
+    {
+        $html = '';
+        $tr = '';
+        $total_price=0;
+        $discount_value = 0;
+        $payment_method='Thanh Toán Khi Nhận Hàng ';
+        if (is_null($order_details)) return $html;
+        foreach ($order_details as $key => $item) {
+            $key += 1;
+            $total_price += $item->product_price*$item->amount_detail;
+            $discount_value = $item->discount_value;
+            if($item->payment_method_id == 2) $payment_method="Thanh Toán Qua VNPay";
+            $tr .= '
+            <tr>
+                <td style="text-align:center"><span >' . $key . '</span></td>               
+                <td style="text-align:center"><p >'. $item->name . ' </p>
+                    <small class="order_ref">MÃ SP: ' . $item->product_id . '</small>
+                    <br>                 
+                </td>
+                <td style="text-align:center">' . $item->amount_detail . '                </td>
+                <td style="text-align:center">' . $item->product_price . '</td>    
+                <td style="text-align:center">
+                  ' . number_format($item->amount_detail * $item->product_price) . ' VNĐ
+                </td>
+                
+            </tr>
+            ';
+        }
+        $html .= '
+            <tbody>
+              '.$tr.'
+                          
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="1" rowspan="4"></td>
+                    <td colspan="2" style="text-align:center"><strong>Tổng Tiền Chưa Giảm Giá: </strong></td>
+                    <td colspan="2" style="text-align:center">'.number_format($total_price).' VNĐ</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center" ><strong>Tiền Giảm Giá (nếu có):</strong>
+                    </td>
+                   
+                    <td colspan="2" style="text-align:center" ><strong>'.number_format($total_price*($discount_value/100)).' VNĐ </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center" ><strong>Tiền Thanh Toán:</strong>
+                    </td>
+                    <td colspan="2" style="text-align:center" ><strong>'.number_format($total_price*(1-($discount_value/100))).' VNĐ </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center" ><strong>Phương Thức Thanh Toán:</strong>
+                    </td>
+                    <td colspan="2" style="text-align:center" ><strong>'.$payment_method.'  </strong>
+                    </td>
+                </tr>
+            </tfoot>
+        
+        ';
+        return $html;
+    }
 }

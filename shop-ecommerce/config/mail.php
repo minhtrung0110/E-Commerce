@@ -93,7 +93,8 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'name' => 'Thông Báo Đặt Hàng Từ TreSor',
+        'subject'=>'Xác Nhận Đặt Hàng'
     ],
 
     /*

@@ -102,7 +102,7 @@ class CartController extends Controller
 
         //COD
         $this->cartService->addCart($request);
-        return redirect()->route('home.profile.invoices'); // có thể trả ra trang thông tin hoá đơn của khách hàng
+        return redirect()->back();//route('home.products'); // có thể trả ra trang thông tin hoá đơn của khách hàng
     }
     public function checkOutVNPay(Request $request)
     {
@@ -201,10 +201,10 @@ class CartController extends Controller
        // if ($this->hashdata == $vnp_SecureHash) {
             if ($vnp_ResponseCode == '00') {
                 $order=$this->orderService->getOrderLast();
-                $this->orderService->setStatus( $order->id,5);        
+                $this->orderService->setStatus( $order->id,6);        
                 $result = $this->paymentService->create($request);
                 if ($result) {
-                    return redirect()->route('home.profile.invoices'); 
+                    return redirect()->route('home.profile'); 
                 } else {
                     echo "GD Khong thanh cong";
                 }

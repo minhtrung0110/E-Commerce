@@ -14,7 +14,7 @@ class OrderDetailService{
                         ->join('image_products','image_products.product_id','=','products.id')        
                         ->join('images','images.id','=','image_products.image_id')              
                         ->where('order_details.order_id',$id)
-                        ->get(['orders.status as status_order','products.name','order_details.amount as amount_detail',
+                        ->get(['orders.status as status_order','products.name','order_details.amount as amount_detail','orders.payment_method_id',
                         'product_details.price as product_price','product_details.code_color','products.id as product_id',
                         'orders.address as address_orders','orders.created_at','orders.discount_value','images.img']);
     }
