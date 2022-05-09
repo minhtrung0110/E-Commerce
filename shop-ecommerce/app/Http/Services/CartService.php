@@ -153,6 +153,7 @@ class CartService
             //Session::flash('success', 'Đặt Hàng Thành Công');
 
             $data = [
+                'reset_password' =>false,
                 'customer' => $customer,
                 'order_id' =>  $order_id->id,
             ];

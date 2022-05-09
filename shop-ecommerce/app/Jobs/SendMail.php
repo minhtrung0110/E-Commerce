@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\OrderShipped;
+use App\Mail\Notify;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,7 +18,7 @@ class SendMail implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     protected  $customer;
     protected $order_id;
-    protected $order_details;
+    protected $data;
     protected $orderDetailsService;
     /**
      * Create a new job instance.
@@ -26,9 +27,10 @@ class SendMail implements ShouldQueue
      */
     public function __construct($data)
     {
+      $this->data= $data;
 
-      $this->customer = $data['customer'];
-      $this->order_id = $data['order_id'];
+      //$this->customer = $data['customer'];
+      //$this->order_id = $data['order_id'];
 
     }
     /**
@@ -39,6 +41,12 @@ class SendMail implements ShouldQueue
     public function handle()
     {
     //dd( $this->order_id);
-     Mail::to($this->customer['email'])->send(new OrderShipped($this->customer,$this->order_id));
+    $sendmail=$this->data;
+      if($sendmail['reset_password']==true){
+        Mail::to($sendmail['email'])->send(new Notify($sendmail['email'], $sendmail['otp']));
+      }
+      else 
+      Mail::to($sendmail['customer']['email'])->send(new OrderShipped( $sendmail['customer'], $sendmail['order_id']));
+    // Mail::to($this->customer['email'])->send(new OrderShipped($this->customer,$this->order_id))
     }
 }

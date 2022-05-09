@@ -4,7 +4,8 @@
     </div>
 
     <div style="text-align:center; margin-botton:5px; font-size:15px; color:black">
-        <h4> Xin Chào {{ $customer['last_name'] }}. Bạn có đặt 1 đơn hàng với thông tin cá nhân sau:</h4>
+        <h4> Xin Chào <strong>{{ $customer['last_name'] }} </strong>. </h4><br>
+        Cảm ơn bạn đã đặt trên TRESOR ! Bạn có đặt đơn hàng với thông tin sau:
     </div>
     <div style="text-align:center; margin-botton:5px; font-size:15px; color:black">
         Số Điện Thoại: {{ $customer['phone'] }}

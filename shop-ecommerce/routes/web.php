@@ -135,6 +135,15 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::get('/registery',[LoginCustomerController::class,'showRegistery'])->name('registery');
   Route::post('/registery/store/',[LoginCustomerController::class,'storeRegistery'])->name('check_registery');
   Route::get('/logout',[LoginCustomerController::class,'logout'])->name('logout');
+  // forgot password
+  Route::get('/login/forgot-password/',[LoginCustomerController::class,'showFormCheckEmailForgotPassword'])->name('forgot_password');
+  Route::post('/login/forgot-password/',[LoginCustomerController::class,'storeFormCheckEmailForgotPassword']);
+
+  Route::get('/login/forgot-password/send-otp',[LoginCustomerController::class,'showFormSentOTP']);
+  Route::post('/login/forgot-password/send-otp',[LoginCustomerController::class,'storeFormSentOTP']);
+
+  Route::get('/login/reset-password/',[LoginCustomerController::class,'showResetPassword'])->name('resetpassword');
+  Route::post('/login/reset-password/',[LoginCustomerController::class,'storeResetPassword']);
 
 
   /*====================CUSTOMER=========================*/

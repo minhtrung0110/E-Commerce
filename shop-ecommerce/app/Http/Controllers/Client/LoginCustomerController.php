@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 class LoginCustomerController extends Controller
 {
     protected $customerService;
+    private $OTP;
 
     public function __construct(CustomerService $customerService)
     {
@@ -147,6 +148,72 @@ class LoginCustomerController extends Controller
           //  $request->session()->flush();
         }
         return back();
+    }
+
+
+    // chc=eck mail gui mã OTP
+    public function showFormCheckEmailForgotPassword(){
+        return view('client.user.forgot-password');
+    }
+
+    public function storeFormCheckEmailForgotPassword(Request $request){
+            $result=$this->customerService->findCustomerwithEmail($request->input('email'));
+           
+            if(is_null($result)){
+                return response()->json([
+                    'error'=>true,
+                    'message'=>'Email Không Tồn Tại'
+                ]);
+            }
+            else {
+        $this->OTP=$this->customerService->sendOTP($request->input('email'));
+        Session::put("xxxxxAGH_Error",$this->OTP);
+                return response()->json([
+                    'error'=>false,
+                    'message'=>'Email  Tồn Tại'
+                ]);
+            }
+    }
+    // Send OTP email
+    public function showFormSentOTP(){
+        return view('client.user.check_email_reset_password');
+    }
+    public function storeFormSentOTP(Request $request){
+        //$result=$this->customerService->checkOTP($request->input('otp'));
+           $result=($request->input('otp')== Session::get("xxxxxAGH_Error"));
+        if(!$result){
+            return response()->json([
+                'error'=>true,
+                'message'=>'Mã Xác Thực Sai'
+            ]);
+        }
+        else {
+            return response()->json([
+                'error'=>false,
+                'message'=>'Chính Xác'
+            ]);
+        }
+    }
+    //reset password
+    public function showResetPassword(){
+            return view('client.user.reset_password',[
+                'title'=>'Quên Mật Khẩu',
+                            ]);
+    }
+    public function storeResetPassword(Request $request){
+      $result= $this->customerService->changePasswordWithEmail($request);
+      if(!$result){
+        return response()->json([
+            'error'=>true,
+            'message'=>'Đổi Mật Khẩu Thành Công'
+        ]);
+    }
+    else {
+        return response()->json([
+            'error'=>false,
+            'message'=>'Thất Bại'
+        ]);
+    }
     }
 
     /**

@@ -34,7 +34,7 @@
         
               <button type="button" class="form-submit" id="form-submit-login">Đăng Nhập</button>
               <div class="footer">
-                <a href="/myprofile/reset-password/" class="link-item">Quên Mật Khẩu</a>
+                <a href="{{Route('forgot_password')}}" class="link-item">Quên Mật Khẩu</a>
                 <a href="/registery" class="link-item">Đăng Ký</a>
               </div>
             </form>
