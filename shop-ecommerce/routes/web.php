@@ -176,7 +176,9 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
   Route::get('/checkoutVNPay/vnpay-return', [CartController::class,'storeVNPay'])->name('vnpay.return');
   // xuat hoa don ra màn hinh
 
-
+  // về cửa hàng
+  Route::get('/about', [HomeController::class,'aboutStore'])->name('home.about');
+  Route::get('/contact', [HomeController::class,'contactStore'])->name('home.contact');
 
   /*----------------------------Profile Customer --------------------*/
   Route::middleware(['checklogincustomer'])->prefix('/myprofile')->group(function(){

@@ -41,37 +41,37 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 @font-face {
   font-family: Poppins-Regular;
-  src: url('../fonts/Poppins/Poppins-Regular.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Regular.ttf'); 
 }
 
 @font-face {
   font-family: Poppins-Light;
-  src: url('../fonts/Poppins/Poppins-Light.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Light.ttf'); 
 }
 
 @font-face {
   font-family: Poppins-ExtraLight;
-  src: url('../fonts/Poppins/Poppins-ExtraLight.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Light.ttf'); 
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('../fonts/Poppins/Poppins-Medium.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Medium.ttf'); 
 }
 
 @font-face {
   font-family: Poppins-Italic;
-  src: url('../fonts/Poppins/Poppins-Italic.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Italic.ttf'); 
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('../fonts/Poppins/Poppins-Bold.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Bold.ttf'); 
 }
 
 @font-face {
   font-family: Poppins-SemiBold;
-  src: url('../fonts/Poppins/Poppins-SemiBold.ttf'); 
+  src: url('../fonts/Roboto/Roboto-SemiBold.ttf'); 
 }
 
 
@@ -1670,7 +1670,9 @@ button.mfp-close {
 .swal-button:active {
   background-color: #333;
 }
-
+.title-menu-narbar {
+  font-weight: bold!important;
+}
 .swal-title {
   font-family: Poppins-Bold;
   color: #333333;

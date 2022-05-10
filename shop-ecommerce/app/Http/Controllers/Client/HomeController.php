@@ -22,7 +22,7 @@ class HomeController extends Controller
     protected $productService;
     protected $sliderService;
 
-    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService,ProductService $productService,SliderService $sliderService)
+    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService, ProductService $productService, SliderService $sliderService)
     {
         $this->customerService = $customerService;
         $this->groupProductService = $groupProductService;
@@ -37,39 +37,48 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('client.home',[
-                'title'=>'TRESOR',
-                'customer'=>$this->customerService->getInFo(Session::get('customer_id')),
-              //  'group_products'=>$this->groupProductService->getAll(),
-                'new_arrival_products'=>$this->productService->getNewArrivalProducts(),
-                'sliders'=>$this->sliderService->getSliders()
-               // 'products'=>'products',
-               // 'group_product'=>'category',
+        return view('client.home', [
+            'title' => 'TRESOR',
+            'customer' => $this->customerService->getInFo(Session::get('customer_id')),
+            //  'group_products'=>$this->groupProductService->getAll(),
+            'new_arrival_products' => $this->productService->getNewArrivalProducts(),
+            'sliders' => $this->sliderService->getSliders()
+            // 'products'=>'products',
+            // 'group_product'=>'category',
         ]);
     }
 
-    public function showListProducts(Request $request){
-        return view('client.products.list',[
-            'title'=>'Cửa Hàng',
-            'products'=>$this->productService->getListProducts($request),
+    public function showListProducts(Request $request)
+    {
+        return view('client.products.list', [
+            'title' => 'Cửa Hàng',
+            'products' => $this->productService->getListProducts($request),
         ]);
     }
 
-    public function showListProductSortby(Request $request, $id,$slug){
-        return view('client.products.list',[
-            'title'=>'Danh Sách Sản Phẩm',
-            'products'=>$this->productService->getListProductSortby($request,$id),
+    public function showListProductSortby(Request $request, $id, $slug)
+    {
+        return view('client.products.list', [
+            'title' => 'Danh Sách Sản Phẩm',
+            'products' => $this->productService->getListProductSortby($request, $id),
         ]);
     }
-    public function loadProduct(Request $request){
-        $page=$request->input('page',0);
-        $result=$this->productService->loadProduct($page);
-        if(count($result)!=0){
-            $html=view('client.products.content_list',['products'=>$result])->render();
-            return response()->json([ 'data'=>$html]);
+    public function loadProduct(Request $request)
+    {
+        $page = $request->input('page', 0);
+        $result = $this->productService->loadProduct($page);
+        if (count($result) != 0) {
+            $html = view('client.products.content_list', ['products' => $result])->render();
+            return response()->json(['data' => $html]);
         }
-        return response()->json([ 'data'=>""]);
-}
+        return response()->json(['data' => ""]);
+    }
+    public function aboutStore(){
+        return view('client.about',['title'=>'Thông Tin Cửa Hàng']);
+    }
+    public function contactStore(){
+        return view('client.contact',['title'=>'Thông Tin Liên Hệ Cửa Hàng']);
+    }
     /**
      * Show the form for creating a new resource.
      *

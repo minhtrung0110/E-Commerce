@@ -142,12 +142,16 @@ document.addEventListener('DOMContentLoaded', function() {
         formGroupSelector: '.form-group-change-password',
         errorSelector: '.form-message',
         rules: [
-
+            Validator.isRequired('#old_password'),
+            Validator.minLength('#old_password', 6),
             Validator.minLength('#password', 6),
             Validator.isRequired('#password_confirmation'),
             Validator.isConfirmed('#password_confirmation', function() {
                 return document.querySelector('#form-change-password #password').value;
-            }, 'Mật khẩu nhập lại không chính xác')
+            }, 'Mật khẩu nhập lại không chính xác'),
+            Validator.isConfirmedFail('#password', function() {
+                return document.querySelector('#form-change-password #old_password').value;
+            }, 'Mật khẩu nhập lại không được giống mật khẩu cũ')
         ],
         onSubmit: function(data) {
             console.log(data);

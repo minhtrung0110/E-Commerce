@@ -16,12 +16,12 @@
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="active-menu">
-                            <a href="/">Trang Chủ</a>
+                        <li class="title-menu-narbar">
+                         <a href="/">Trang Chủ</a>
                            
                         </li>
 
-                        <li class="active-menu">
+                        <li class="title-menu-narbar">
                             <a href="{{Route('home.products')}}">Cửa Hàng</a>
                             <ul class="sub-menu">
                                 {!! \App\Helpers\Helper::renderGroupProducts($group_products )!!}
@@ -30,12 +30,12 @@
                         </li>
 
 
-                        <li>
-                            <a href="about.html">Về Cửa Hàng</a>
+                        <li class="title-menu-narbar">
+                            <a href="{{Route('home.about')}}">Về Cửa Hàng</a>
                         </li>
 
-                        <li>
-                            <a href="contact.html">Liên Hệ</a>
+                        <li class="title-menu-narbar">
+                            <a href="{{Route('home.contact')}}">Liên Hệ</a>
                         </li>
                     </ul>
                 </div>	
@@ -92,65 +92,23 @@
 
     <!-- Menu Mobile -->
     <div class="menu-mobile">
-        <ul class="topbar-mobile">
+              <ul class="main-menu-m">
             <li>
-                <div class="left-top-bar">
-                    Free shipping for standard order over $100
-                </div>
-            </li>
-
-            <li>
-                <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        Help & FAQs
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        My Account
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        USD
-                    </a>
-                </div>
-            </li>
-        </ul>
-
-        <ul class="main-menu-m">
-            <li>
-                <a href="index.html">Home</a>
+                <a href="{{Route('home.products')}}">Cửa Hàng</a>
                 <ul class="sub-menu-m">
-                    <li><a href="index.html">Homepage 1</a></li>
-                    <li><a href="home-02.html">Homepage 2</a></li>
-                    <li><a href="home-03.html">Homepage 3</a></li>
+                    {!! \App\Helpers\Helper::renderGroupProducts($group_products )!!}
                 </ul>
+               
                 <span class="arrow-main-menu-m">
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </span>
             </li>
-
             <li>
-                <a href="product.html">Shop</a>
+                <a href="{{Route('home.about')}}">Về Cửa Hàng</a>
             </li>
 
             <li>
-                <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
-            </li>
-
-            <li>
-                <a href="blog.html">Blog</a>
-            </li>
-
-            <li>
-                <a href="about.html">About</a>
-            </li>
-
-            <li>
-                <a href="contact.html">Contact</a>
+                <a href="{{Route('home.contact')}}">Liên Hệ</a>
             </li>
         </ul>
     </div>

@@ -11,10 +11,8 @@
             </div>
             <div class="submenu">
                 <ul>
-                    <li class="subc font tab-item active " id="submenu-myprofile">Thông tin
-                            chung</li>
-                    <li class="subc font tab-item " id="submenu-myprofile">Đơn hàng
-                        của tôi</li>
+                    <li class="subc font tab-item active " id="submenu-myprofile">Thông Tin Chung</li>
+                    <li class="subc font tab-item " id="submenu-myprofile">Đơn Hàng Của Tôi</li>
                     <li class="subc font tab-item " id="submenu-myprofile">Đổi Mật
                         Khẩu</li>
 
@@ -41,7 +39,7 @@
 
         </div>
 
-        <div class="container-fluid table-order col-md-9 sol-sm-12 tab-pane " id='panel-info'>
+        <div class=" table-order col-md-9 sol-sm-12 tab-pane " id='panel-info'>
             <br>
             <div class="table-responsive-md" id="donhang">
                 <p class="font" style="font-weight: bold; font-size: large;">Các Đơn Hàng Đã Đặt:</p>
@@ -64,9 +62,8 @@
                 </table>
             </div>
         </div>
-        <div class=" col-md-9 sol-sm-12 tab-pane row" id='panel-info'>
-            <div class="col-md-2"></div>
-            <form class=" col-md-6 col-sm-12 bordered" method="post" action="" id="form-change-password">
+        <div class=" information-user-change-password col-md-4 sol-sm-12 tab-pane row" id='panel-info'>
+            <form class="information-user-change-password-form col-md-12 col-sm-12 bordered" method="post" action="" id="form-change-password">
                 <input type="hidden" name="customer_id" value="{{ $customer->id }}" class="form-control">
                 <div class="form-group-change-password">
                     <label for="old_password" class="form-label">Mật Khẩu Hiện Tại</label>
@@ -75,13 +72,13 @@
                     <span class="form-message"></span>
                 </div>
                 <div class="form-group-change-password">
-                    <label for="password" class="form-label">Mật khẩu</label>
+                    <label for="password" class="form-label">Mật Khẩu Mới</label>
                     <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
                     <span class="form-message"></span>
                 </div>
 
                 <div class="form-group-change-password">
-                    <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+                    <label for="password_confirmation" class="form-label">Nhập Lại Mật Khẩu Mới</label>
                     <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu"
                         type="password" class="form-control">
                     <span class="form-message"></span>
@@ -90,11 +87,6 @@
                 <button type="submit" class="btn btn-outline-primary font ">Đổi Mật Khẩu</button>
 
             </form>
-
-
-            <br>
-
-
         </div>
 
 

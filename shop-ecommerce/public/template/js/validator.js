@@ -202,6 +202,14 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
         }
     }
 }
+Validator.isConfirmedFail = function (selector, getConfirmValue, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return value !== getConfirmValue() ? undefined : message || 'Giá trị nhập vào không chính xác';// nếu  message bằng null thì sẽ lấy 'Gia trị nhập vào không chính xác'
+        }
+    }
+}
 Validator.isTommorrow = function (selector, getConfirmValue, message) {
     return {
         selector: selector,
