@@ -13,6 +13,6 @@ class Providers extends Model
         'id',
         'name',
         'address',
-        'phone'
+        'phones'
     ];
 }

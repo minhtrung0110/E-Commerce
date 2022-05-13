@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
+use App\Http\Services\ProviderService;
+use App\Http\Services\StaffService;
 class ProviderController extends Controller
 {
     /**
@@ -12,9 +14,24 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    protected $providerService;
+    protected $staffService;
+    public function __construct(ProviderService $providerService,StaffService $staffService)
     {
-        //
+        $this->providerService=$providerService;
+        $this->staffService=$staffService;
+    }
+    public function index()
+    {   $id_cript=0;
+        $id_provider=0;
+        $title='Nhà cung cấp';
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $providers=$this->providerService->getAll();
+        $name='';
+        $address='';
+        $phones='';
+        $name_btn='Thêm';
+        return view('admin.provider.list',compact('title','id_provider','id_cript','name_btn','providers','name','address','phones','staff'));
     }
 
     /**
@@ -22,9 +39,9 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -35,7 +52,21 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result=$this->providerService->create($request);
+        if ($result)  
+        {
+            return response()->json([
+                'error' => false,
+                'message' => "Thêm nhà cung cấp thành công"
+            ]);
+        }
+       else
+           {
+            return response()->json([
+                'error' => true,
+               'message' => "Thêm nhà cung cấp thất bại"
+           ]);
+           }
     }
 
     /**
@@ -44,9 +75,22 @@ class ProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Request $request,$id)
+    {   $id_cript=1;
+        
+        $title='Nhà cung cấp';
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $providers=$this->providerService->getAll();
+        $providers_items=$this->providerService->getItems($id);
+        $name_btn='Cập nhập';
+        $id_provider=$id;
+        foreach($providers_items as $items){
+            $name=$items->name;
+            $address=$items->address;
+            $phones=$items->phones;
+        }
+       
+        return view('admin.provider.list',compact('title','id_provider','id_cript','name_btn','providers','staff','name','address','phones'));
     }
 
     /**
@@ -69,7 +113,23 @@ class ProviderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+               // dd( $request->input('id'));
+        $result=$this->providerService->update($request);
+        
+        if ($result)  
+        {
+            return response()->json([
+                'error' => false,
+                'message' => "Cập nhâp nhà cung cấp thành công"
+            ]);
+        }
+       else
+           {
+            return response()->json([
+                'error' => true,
+               'message' => "Cập nhập nhà cung cấp thất bại"
+           ]);
+           }
     }
 
     /**
@@ -78,8 +138,18 @@ class ProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $result=$this->providerService->delete($request);
+        if($result)  {
+            return response()->json([
+                'error'=>false,
+                'message'=>'Xoá thành công!!!'
+            ]);
+        }
+        return response()->json([
+            'error'=>true,
+            'message'=>'Xoá không thành công!!!'
+        ]);
     }
 }

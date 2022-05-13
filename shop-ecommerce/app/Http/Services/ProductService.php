@@ -11,6 +11,9 @@ class ProductService{
     public function getPriceOfProduct($id){
             return Product_detail::select('price')->where('id', $id)->first();
     }
+    public function getAll(){
+        return Product::all();
+    }
     public function getAllProduct(){
      
         
@@ -69,6 +72,12 @@ class ProductService{
            return false;
        }
        return $id;
+    }
+    public function getToCate($id_cate,$id_product){
+        return Product::join('group_products','group_products.id','=','products.group_id')
+                        ->where('products.group_id',$id_cate)
+                        ->where('products.id',$id_product)
+                        ->get(['products.name as name_product','group_products.name as name_cate','products.id as id_product']);
     }
        
     public function getSearch($request){

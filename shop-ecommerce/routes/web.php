@@ -11,6 +11,8 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\StaffController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\DiscountController;
+use App\Http\Controllers\admin\ProviderController;
+use App\Http\Controllers\Admin\ImportController;
 /*================Client===============-*/
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
@@ -41,6 +43,16 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::post('/edit/{id}',[ProductController::class,'update']);//handle
     
        });
+       //provider
+       Route::prefix('/providers')->group(function(){
+        Route::get('/list',[ProviderController::class,'index'])->name('admin.providers.list');      
+       Route::get('/add',[ProviderController::class,'create'])->name('admin.providers.add');
+       Route::post('/add',[ProviderController::class,'store']);//handle
+       Route::DELETE('/destroy',[ProviderController::class,'destroy'])->name('providers.delete');//handle
+       Route::get('/list/{id}',[ProviderController::class,'show'])->name('providers.edit');
+      Route::post('/list/{id}',[ProviderController::class,'update']);//handle
+    
+       });
        //Category
        Route::prefix('/group-products')->group(function(){
          Route::get('/list',[CategoryController::class,'index'])->name('admin.categories.list');
@@ -62,12 +74,13 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        });
        //Import
        Route::prefix('/imports')->group(function(){
-        Route::get('/add',[MenuController::class,'create']);
-        Route::post('/add',[MenuController::class,'store']);//handle
-        Route::get('/list',[MenuController::class,'index'])->name('admin.imports');
-        Route::DELETE('/destroy',[MenuController::class,'destroy']);//handle
-        Route::get('/edit/{menu}',[MenuController::class,'show']);
-       Route::post('/edit/{menu}',[MenuController::class,'update']);//handle
+         Route::get('/list',[ImportController::class,'index'])->name('admin.imports');
+        Route::get('/add',[ImportController::class,'create']);
+        Route::post('/add',[ImportController::class,'store']);//handle
+       
+        Route::DELETE('/destroy',[ImportController::class,'destroy']);//handle
+        Route::get('/edit/{menu}',[ImportController::class,'show']);
+       Route::post('/edit/{menu}',[ImportController::class,'update']);//handle
         });
        //Orders
        Route::prefix('/orders')->group(function(){
