@@ -98,6 +98,16 @@
     </p>
   </a>
 </li>
+{{-- QL nhà cung cấp --}}
+<li class="nav-item nav-item-li" id="nav-item-providers" >
+  <a href="{{Route('admin.providers.list')}}" class="nav-link">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+      Nhà cung cấp
+  
+    </p>
+  </a>
+</li>
 {{-- QL đơn hàng --}}
 
    

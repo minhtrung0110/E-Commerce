@@ -30,6 +30,7 @@ class CartService
         if (is_null($carts)) {
             Session::put('carts', [
                 $product_id => $qty
+                
             ]);
             return true;
         }
