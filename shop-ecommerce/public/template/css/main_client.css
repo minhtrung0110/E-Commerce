@@ -2257,6 +2257,11 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ M-Text 16 - 25 ]*/
+.mtext-100 {
+  font-family: Poppins-Medium;
+  font-size: 18px;
+  line-height: 1;
+}
 .mtext-101 {
   font-family: Poppins-Medium;
   font-size: 18px;
@@ -3336,5 +3341,5 @@ input.num-product::-webkit-inner-spin-button {
   .respon3 {
     padding: 20px;
   }
-
+ 
 }

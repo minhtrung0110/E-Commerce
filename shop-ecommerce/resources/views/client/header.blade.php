@@ -9,33 +9,27 @@
             <nav class="limiter-menu-desktop container">
                 
                 <!-- Logo desktop -->		
-                <a href="#" class="logo">
-                    <img src="{{asset('/template/images/icons/logo-01.png')}}" alt="IMG-LOGO">
-                </a>
+                <h4 href="/" class="logo">
+                    TRESÓR
+                </h4>
 
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="title-menu-narbar">
-                         <a href="/">Trang Chủ</a>
+                        <li class="title-menu-narbar ">
+                         <a href="/" class="mtext-100 cl2">TRANG CHỦ</a>
                            
                         </li>
 
                         <li class="title-menu-narbar">
-                            <a href="{{Route('home.products')}}">Cửa Hàng</a>
-                            <ul class="sub-menu">
-                                {!! \App\Helpers\Helper::renderGroupProducts($group_products )!!}
-                               
-                            </ul>
+                            <a href="{{Route('home.products')}}">CỬA HÀNG</a>
+                           
                         </li>
 
 
-                        <li class="title-menu-narbar">
-                            <a href="{{Route('home.about')}}">Về Cửa Hàng</a>
-                        </li>
 
                         <li class="title-menu-narbar">
-                            <a href="{{Route('home.contact')}}">Liên Hệ</a>
+                            <a href="{{Route('home.contact')}}">LIÊN HỆ</a>
                         </li>
                     </ul>
                 </div>	
@@ -103,9 +97,7 @@
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </span>
             </li>
-            <li>
-                <a href="{{Route('home.about')}}">Về Cửa Hàng</a>
-            </li>
+         
 
             <li>
                 <a href="{{Route('home.contact')}}">Liên Hệ</a>

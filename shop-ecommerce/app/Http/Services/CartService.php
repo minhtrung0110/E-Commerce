@@ -46,8 +46,7 @@ class CartService
 
         return true;
     }
-    public function update($request)
-    {
+    public function update($request){
         Session::put('carts', $request->input('num_product'));
         return true;
     }

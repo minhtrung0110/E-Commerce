@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <label for="language">Loại Thanh Toán </label>
-                        <select name="order_type" id="order_type" class="form-control">
+                        <select name="order_type" id="order_type" class="form-control un">
                             <option value="billpayment">Thanh toán hóa đơn</option>
                             <option value="other">Khác - Xem thêm tại VNPAY</option>
                         </select>

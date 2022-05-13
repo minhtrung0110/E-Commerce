@@ -134,7 +134,7 @@ class ProductService{
         }
        
         return $query
-        ->paginate(12)
+        ->paginate(32)
         ->withQueryString();
     }
     public function getListProductSortby($request,$id){
@@ -161,7 +161,7 @@ class ProductService{
         }
        
         return $query
-        ->paginate(12)
+        ->paginate(32)
         ->withQueryString();
     }
     public function loadProduct($page=null){

@@ -53,11 +53,12 @@
 
             <div class="col-sm-6 col-lg-4 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    VỀ CỬA HÀNG
+                    VẬN CHUYỂN VÀ THANH TOÁN
                 </h4>
 
                 <div class="stext-107 cl7 size-201">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.44652006586!2d106.69715812207009!3d10.777072637589962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f47c0606189%3A0x8316dc875ebe43fa!2zNzYtNzggTMOqIFRow6FuaCBUw7RuLCBC4bq_biBOZ2jDqSwgUXXhuq1uIDEsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1652166858711!5m2!1sen!2s" width="300" height="120" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <img src="{{asset('/template/images/vnpay.png')}}" class="vnpay-img">
+                    <img src="{{asset('/template/images/giao_hang_tiet_kiem.png')}}" class="ghtk-img">
                 </div>
 
                 <div class="p-t-27">

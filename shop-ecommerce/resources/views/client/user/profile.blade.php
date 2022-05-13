@@ -4,7 +4,7 @@
     <br><br><br>
     <div class="user-content row">
         <div class="side-menu col-md-3 sol-sm-12">
-            <div class="username ">
+            <div class="username bor10">
                 <i class="far fa-user-circle font "></i>
                 Tài khoản của <br> <span class="font" style="padding-left: 22%;">{{ $customer->first_name }}
                     {{ $customer->last_name }}</span>
@@ -20,24 +20,27 @@
                 </ul>
             </div>
         </div>
-        <div class="information col-md-9 sol-sm-12 tab-pane active" id='panel-info'>
-            <div class="information-user">
-                <h5 class="font title-infor">THÔNG TIN CỦA TÔI </h5>
-                <p class="font"><span class="font title-infor">Họ Và Tên:</span> {{ $customer->first_name }}
-                    {{ $customer->last_name }}</p>
-                <p class="font"><span class="font title-infor ">Email:</span> {{ $customer->email }}</p>
-                <p class="font"><span class="font title-infor ">Giới Tính:</span> {{ $customer->gender }}</p>
-                <p class="font"><span class="font title-infor">Điện Thoại:</span>{{ $customer->phone }}</p>
-                <p class="font"><span class="font title-infor">Địa Chỉ:</span> {{ $customer->address }} </p>
-            </div>
+       
+            <div class="bor10 p-lr-30 p-t-30 p-b-40   m-lr-0-xl p-lr-15-sm col-md-7 tab-pane active " id='panel-info'>
+                <h4 class="mtext-109 cl2 p-b-30 p-l-20">
+                    THÔNG TIN CỦA TÔI
+                    
+                </h4>
+                <div class="form-group"><span class="font title-infor mtext-100 cl2">Họ Và Tên:</span> {{ $customer->first_name }}
+                    {{ $customer->last_name }}</div>
+                <div class="form-group"><span class="font title-infor mtext-100 cl2">Email:</span> {{ $customer->email }}</div>
+                <div class="form-group"><span class="font title-infor mtext-100 cl2 ">Giới Tính:</span> {{ $customer->gender }}</div>
+                <div class="form-group"><span class="font title-infor mtext-100 cl2">Điện Thoại:</span>{{ $customer->phone }}</div>
+                <div class="form-group"><span class="font title-infor mtext-100 cl2">Địa Chỉ:</span> {{ $customer->address }} </div>
+            
             <br>
-            <button type="button" class="btn btn-outline-primary font "
+            <button type="button" class="flex-c-m stext-101 cl0 size-101 bg3 bor1 hov-btn3 p-lr-15 trans-04 "
                 onclick="document.getElementById('id01').style.display='block'">Cập Nhật Thông Tin Cá Nhân</button>
 
-            <br>
+            </div>
 
 
-        </div>
+        
 
         <div class=" table-order col-md-9 sol-sm-12 tab-pane " id='panel-info'>
             <br>
@@ -62,29 +65,31 @@
                 </table>
             </div>
         </div>
-        <div class=" information-user-change-password col-md-4 sol-sm-12 tab-pane row" id='panel-info'>
+        <div class=" bor10 p-lr-30 p-t-30 p-b-40   m-lr-0-xl p-lr-15-sm col-md-7 tab-pane " id='panel-info'>
+            <h4 class="mtext-109 cl2 p-b-30 p-l-20">
+                    ĐỔI MẬT KHẨU </h4>
             <form class="information-user-change-password-form col-md-12 col-sm-12 bordered" method="post" action="" id="form-change-password">
                 <input type="hidden" name="customer_id" value="{{ $customer->id }}" class="form-control">
                 <div class="form-group-change-password">
-                    <label for="old_password" class="form-label">Mật Khẩu Hiện Tại</label>
+                    <label for="old_password" class="form-label mtext-100 cl2">Mật Khẩu Hiện Tại</label>
                     <input id="old_password" name="old_password" type="text" placeholder="VD: 123456"
-                        class="form-control">
+                        class="form-control stext-111 cl2 plh3 size-116 p-l-10 p-r-30">
                     <span class="form-message"></span>
                 </div>
                 <div class="form-group-change-password">
-                    <label for="password" class="form-label">Mật Khẩu Mới</label>
-                    <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+                    <label for="password" class="form-label mtext-100 cl2">Mật Khẩu Mới</label>
+                    <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control stext-111 cl2 plh3 size-116 p-l-10 p-r-30">
                     <span class="form-message"></span>
                 </div>
 
                 <div class="form-group-change-password">
-                    <label for="password_confirmation" class="form-label">Nhập Lại Mật Khẩu Mới</label>
+                    <label for="password_confirmation" class="form-label mtext-100 cl2">Nhập Lại Mật Khẩu Mới</label>
                     <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu"
-                        type="password" class="form-control">
+                        type="password" class="form-control stext-111 cl2 plh3 size-116 p-l-10 p-r-30">
                     <span class="form-message"></span>
                 </div>
                 @csrf
-                <button type="submit" class="btn btn-outline-primary font ">Đổi Mật Khẩu</button>
+                <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg3 bor1 hov-btn3 p-lr-15 trans-04  ">Đổi Mật Khẩu</button>
 
             </form>
         </div>

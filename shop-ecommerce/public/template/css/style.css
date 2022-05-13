@@ -453,3 +453,12 @@ body, .main-menu > li > a, .ltext-102 {
 .detail-order-table{
   padding: 1.5em 10em;
 }
+.vnpay-img{
+  width:100px;
+  height:90px;
+}
+.ghtk-img{
+  margin-left: 10px;
+  width:150px;
+  height:auto;
+}
