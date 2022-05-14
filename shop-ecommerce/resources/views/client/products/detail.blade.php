@@ -57,9 +57,9 @@
                             {{ number_format($product->price) }} VNĐ
                         </span>
 
-                        <p class="stext-102 cl3 p-t-23">
-                            {{ $product->description }}
-                        </p>
+                        <div class="stext-102 cl3 p-t-23">
+                            {{ strip_tags($product->description, '<b>') }}
+                        </div>
 
                         <!--  -->
                         <div class="p-t-33">
@@ -144,7 +144,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel">
                             <div class="how-pos2 p-lr-15-md">
                                 <p class="stext-102 cl6">
-                                    {{ $product->description }}
+                                    {{ strip_tags($product->description, '<b>') }}
                                 </p>
                             </div>
                         </div>

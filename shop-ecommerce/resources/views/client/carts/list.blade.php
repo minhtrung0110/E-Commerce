@@ -28,12 +28,12 @@
                                     @endphp
                                     <tbody>
                                         <tr class="table_head">
-                                            <th class="column-1">Product</th>
+                                            <th class="column-1">Sản Phẩm</th>
                                             <th class="column-2"></th>
-                                            <th class="column-3">Price</th>
-                                            <th class="column-4">Quantity</th>
-                                            <th class="column-5">Total</th>
-                                            <th class="column-6"> </th>
+                                            <th class="column-3">Giá</th>
+                                            <th class="column-4">Số Lượng</th>
+                                            <th class="column-5">Tổng Tiền</th>
+                                            <th class="column-6">Thao Tác </th>
                                         </tr>
                                         @foreach ($products as $key => $product)
                                             @php
@@ -85,7 +85,7 @@
                                 @csrf
                                 <input type="submit" formaction="/update-cart"
                                     class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
-                                    value='Update Cart'>
+                                    value='Cập Nhật Giỏ Hàng'>
                             </div>
                         </div>
                     </div>
@@ -93,13 +93,13 @@
                     <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
                         <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
                             <h4 class="mtext-109 cl2 p-b-30">
-                                Cart Totals
+                                Tổng Đơn Hàng
                             </h4>
 
                             <div class="flex-w flex-t bor12 p-b-13">
                                 <div class="size-208">
                                     <span class="stext-110 cl2">
-                                        Subtotal:
+                                        Tổng Tiền
                                     </span>
                                 </div>
 
@@ -114,7 +114,7 @@
                             <div class="flex-w flex-t p-t-27 p-b-33">
                                 <div class="size-208">
                                     <span class="mtext-101 cl2">
-                                        Tổng Tiền
+                                        Thành Tiền
                                     </span>
                                 </div>
 
@@ -126,7 +126,7 @@
                             </div>
                             
                             <input class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer " style="text-align: center;"
-                                id="btn-order" value="Thanh Toán">
+                                id="btn-order" value="Đặt Hàng">
                         </div>
                     </div>
                 </div>

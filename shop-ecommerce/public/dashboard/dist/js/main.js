@@ -70,3 +70,12 @@ elements.forEach((item)=>{
 
 
 
+// các hàm show phần thử{
+const showDetailStaff=(id)=>{
+    let input=document.querySelector(`#id-show-detail-staff-${id}`)
+    input.style.display='block'
+}
+const closeDetailStaff=(id)=>{
+    let input=document.querySelector(`#id-show-detail-staff-${id}`)
+    input.style.display='none'
+}

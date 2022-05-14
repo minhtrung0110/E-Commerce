@@ -86,7 +86,7 @@ $(document).ready(function(){
         })*/
        
 
-/*Ajax*/
+/*Ajax
 $('#form-submit-registery').click(function () {
     
     $.ajax({
@@ -114,25 +114,7 @@ $('#form-submit-registery').click(function () {
 $('#form-submit-login').click(function () {
     console.log('CLick Click')
 
-    $.ajax({
-    type: 'POST',
-    datatype: 'JSON',
-    data: $('#form-login').serialize(),
-    url: '/login/store/',
-    success: function (respond) {
-        
-        if(respond.error === true && respond.fail_node === 'email') {
-            swal("Ôi Không", "Dường Như Email Của Bạn Không Tồn Tại hoặc Bị Khoá Rồi!", "error");
-        }
-        else if(respond.error===true  && respond.fail_node === 'password'){
-            swal("Đăng Nhập Thất Bại", "Mật Khẩu Của Bạn Không Chính Xác!", "error");
-        }
-        else {
-            swal("Thật Tuyệt", "Bạn Đã Đăng Nhập Thành Công!", "success");
-            setTimeout(() => {window.location="/"}, 2000);
-        }
-    }
-    })
+    
 })
 
 // search rating

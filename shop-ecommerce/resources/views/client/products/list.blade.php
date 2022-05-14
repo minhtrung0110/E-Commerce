@@ -129,6 +129,7 @@
             </a>
         </div>Load more -->
     </div>
+    
    
 </div>
  {!! $products->links() !!}

@@ -15,12 +15,9 @@
         <div class="row m-t-63">
             <!-- Đơn hàng -->
             <div class="col-md-4 order-md-2 mb-4">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Đơn Hàng</span>
-                </h4>
                 <div class="bor10 p-lr-30 p-t-30 p-b-40   m-lr-0-xl p-lr-15-sm">
                     <h4 class="mtext-109 cl2 p-b-30">
-                        Cart Totals
+                        Giỏ Hàng
                     </h4>
 
 
@@ -125,13 +122,12 @@
                     </div>
 
                 </div>
-
-
-
             </div>
             <!--- Thông Tin Nhận Hàng ----->
-            <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Thông Tin Nhận Hàng</h4>
+            <div class="col-md-8 order-md-1 bor10 p-lr-30 p-t-30 p-b-40    m-lr-0-xl ">
+                <h4 class="mtext-109 cl2 p-b-30 p-l-20">
+                    Thông Tin Nhận Hàng
+                </h4>
                 <form method="POST" action="" class="needs-validation row" novalidate id="form-checkout">
 
                     <!-- Thông Tin Giỏ Hàng --->
@@ -142,14 +138,14 @@
 
                     <!--- Thông Tin Khách Hàng Đặt Hàng -->
                     <div class="form-group col-md-6 mb-3">
-                        <label for="first_name">Nhập Họ:</label>
+                        <label for="first_name" class="mtext-101 cl2">Nhập Họ:</label>
                         <input type="text" class="form-control" id="first_name" name="first_name"
                             placeholder="VD: Nguyễn Văn" value="{{ $first_name }}" required>
                         <span class="form-message"></span>
 
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="last_name">Nhập Tên</label>
+                        <label for="last_name" class="mtext-101 cl2">Nhập Tên</label>
                         <input type="text" class="form-control" id="last_name" name="last_name" placeholder="VD: Thinh"
                             value="{{ $last_name }} " required>
                         <span class="form-message"></span>
@@ -158,82 +154,85 @@
 
 
                     <div class="form-group col-md-6 mb-3">
-                        <label for="phone">Nhập Số Điện Thoại</label>
+                        <label for="phone" class="mtext-101 cl2">Nhập Số Điện Thoại</label>
                         <input type="text" class="form-control" id="phone" name="phone" placeholder="VD: 0707****"
                             value="{{ $phone }}" required>
                         <span class="form-message"></span>
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="email" class="form-label">Nhập Email</label>
+                        <label for="email" class="form-label" class="mtext-101 cl2">Nhập Email</label>
                         <input id="email" name="email" type="text" placeholder="VD: email@domain.com"
                             value="{{ $email }}" class="form-control">
                         <span class="form-message"></span>
                     </div>
 
                     <div class="form-group col-md-4 mb-3">
-                        <label for="provinces">Tỉnh/Thành Phố</label>
+                        <label for="provinces" class="mtext-101 cl2">Tỉnh/Thành Phố</label>
                         <select class="custom-select d-block w-100" name="calc_shipping_provinces" id="provinces" required>
-                            <option value="">Choose...</option>
+                            <option value="">Chọn...</option>
 
                         </select>
                         <span class="form-message"></span>
                     </div>
 
                     <div class="form-group col-md-4 mb-3">
-                        <label for="district">Quận/Huyện</label>
+                        <label for="district" class="mtext-101 cl2">Quận/Huyện</label>
                         <select class="custom-select d-block w-100 " name="calc_shipping_district" id="district" required>
-                            <option value="">Choose...</option>
+                            <option value="">Chọn...</option>
                             <option>United States</option>
                         </select>
                         <span class="form-message"></span>
                     </div>
 
                     <div class="form-group col-md-4 mb-3">
-                        <label for="wards">Phường/Xã</label>
+                        <label for="wards" class="mtext-101 cl2">Phường/Xã</label>
                         <input type="text" class="form-control" id="wards" name="calc_shipping_wards"
                             placeholder="VD: Xã Lê Minh Xuân" required>
                         <!-- <select class="custom-select d-block w-100 " name="calc_shipping_wards" id="country" required>
-                                        <option value="">Choose...</option>
-                                        <option>United States</option>
-                                    </select>-->
+                                            <option value="">Choose...</option>
+                                            <option>United States</option>
+                                        </select>-->
                         <span class="form-message"></span>
                     </div>
                     <div class="form-group col-md-10 mb-3">
-                        <label for="address">Address</label>
+                        <label for="address" class="mtext-101 cl2">Address</label>
                         <input type="text" class="form-control" name="address" id="address"
                             placeholder="VD: 123 Lê Văn Qới" required>
                         <span class="form-message"></span>
                     </div>
 
-
+                
                     <input class="billing_address_1" name="" type="hidden" value="">
                     <input class="billing_address_2" name="" type="hidden" value="">
 
-                    <hr class="mb-4">
+                <div class="bor12"></div>
+           
+               
+            
+                <!----------------------------- Thanh Toán ---------------------------------------------------------------->
+                <h4 class="mtext-109 cl2 p-b-30 p-l-30 ">
+                    Phương Thức Thanh Toán
+                </h4>
 
-                    <!----------------------------- Thanh Toán ---------------------------------------------------------------->
-                    <h4 class="mb-3  m-l-20">Phương Thức Thanh Toán</h4>
+
+                <div class="form-group col-md-12 mb-3 m-l-25">
+                    <input type="radio" class="form-check-input" id="radioCOD" name="payment_method_id" value=1 checked>
+                    <label class="form-check-label mtext-101 cl2" for="radioCOD">Thanh Toán Khi Nhận Hàng</label>
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group col-md-12 mb-3 m-l-25">
+                    <input type="radio" class="form-check-input" id="radioVNPAY" name="payment_method_id" value=2>
+        
+                    <label class="form-check-label mtext-101 cl2" for="radioVNPAY">Thanh Toán Qua VNPAY</label>
+                    <span class="form-message"></span>
+                </div>
 
 
-                   
-                        <div class="form-group col-md-12 mb-3 m-l-25">
-                            <input type="radio" class="form-check-input" id="radioCOD" name="payment_method_id" value=1 checked>
-                            <label class="form-check-label" for="radioCOD"  >COD</label>
-                            <span class="form-message"></span>
-                        </div>
-                        <div class="form-group col-md-12 mb-3 m-l-25">
-                            <input type="radio" class="form-check-input" id="radioVNPAY" name="payment_method_id" value=2>
-                            <label class="form-check-label" for="radioVNPAY">VNPAY<i class="fa-solid fa-credit-card"></i></label>
-                            <span class="form-message"></span>
-                        </div>
 
-                
-
-                    <hr class="mb-4">
-                    @csrf
-                    <Button type="submit"
-                        class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer ">
-                        Thanh Toán</Button>
+                <hr class="mb-4">
+                @csrf
+                <Button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer ">
+                    Thanh Toán</Button>
 
                 </form>
             </div>
