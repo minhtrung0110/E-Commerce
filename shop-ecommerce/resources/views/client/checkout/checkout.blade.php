@@ -169,7 +169,7 @@
                     <div class="form-group col-md-4 mb-3">
                         <label for="provinces" class="mtext-101 cl2">Tỉnh/Thành Phố</label>
                         <select class="custom-select d-block w-100" name="calc_shipping_provinces" id="provinces" required>
-                            <option value="">Choose...</option>
+                            <option value="">Chọn...</option>
 
                         </select>
                         <span class="form-message"></span>
@@ -178,7 +178,7 @@
                     <div class="form-group col-md-4 mb-3">
                         <label for="district" class="mtext-101 cl2">Quận/Huyện</label>
                         <select class="custom-select d-block w-100 " name="calc_shipping_district" id="district" required>
-                            <option value="">Choose...</option>
+                            <option value="">Chọn...</option>
                             <option>United States</option>
                         </select>
                         <span class="form-message"></span>

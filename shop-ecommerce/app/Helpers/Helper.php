@@ -180,14 +180,13 @@ class Helper
         $html = '';
         foreach ($listStaffs as $key => $staff) {
             $html .= '
-              <tr>
+              <tr onclick="showDetailStaff('.$staff->id.')">
               <td>' . $staff->id . '</td>
               <td>' . $staff->first_name . ' ' . $staff->last_name . '</td>
               <td>' . $staff->role_id . '</td>
               <td>' . $staff->phone . '</td>
               <td>' . $staff->email . '</td>
-              <td style="width:10%">' . $staff->password . '</td>
-              <td>' . $staff->address . '</td>
+            
               <td>' . self::active($staff->status) . '</td>
               <td>
               <a  class="btn btn-primary btn-sm" href="/admin/staffs/edit/' . $staff->id . '"><i class="fas fa-edit"></i></a>
@@ -197,7 +196,57 @@ class Helper
 
         return $html;
     }
+    public static function renderPopupViewItemStaff($listStaffs)
+    {
+        $html = '';
+        foreach ($listStaffs as $key => $staff) {
+            $html .= '
+            <div id="id-show-detail-staff-'.$staff->id.'" class="modal" data-staff=" popup-detail-staff-'.$staff->id.'">
 
+            <div class="modal-content animate" >
+                <div class="imgcontainer">
+                    <span onclick="closeDetailStaff('.$staff->id.')" class="close"
+                        title="Close Modal">&times;</span>
+                </div>
+
+                <div class="container">
+                    <div>
+                    <label for="uname"><b>' . $staff->first_name . ' ' . $staff->last_name . '</b></label>
+                    </div>
+                    <div>
+                    <label for="uname"><b>' . $staff->role_id . '</b></label>
+                    </div>
+                    <div>
+                    <label for="uname"><b>' . $staff->phone . '</b></label>
+                    </div>
+                    <div>
+                    <label for="uname"><b>' . $staff->email . '</b></label>
+                    </div>
+                    <div>
+                    <label for="uname"><b>' . $staff->password . '</b></label>
+                    </div>
+                    <div>
+                    <label for="uname"><b>' . $staff->address . '</b></label>
+                    </div>
+                    <div>
+                    <label for="uname"><b>' . self::active($staff->status). '</b></label>
+                    </div>
+                    <div>
+                    <label for="uname"><b>' . $staff->start_date . '</b></label>
+                    </div>
+                    <div>
+                    <label for="uname"><b>' . $staff->end_date . '</b></label>
+                    </div>
+
+                </div>
+
+               
+            </div>
+        </div>';
+        }
+
+        return $html;
+    }
     public static function renderClassNameForNavItem($request)
     {
         $html = '';

@@ -4,11 +4,10 @@
     <br><br><br>
     <div class="user-content row">
         <div class="side-menu col-md-3 sol-sm-12">
-            <div class="username bor10">
-                <i class="far fa-user-circle font "></i>
-                Tài khoản của <br> <span class="font" style="padding-left: 22%;">{{ $customer->first_name }}
-                    {{ $customer->last_name }}</span>
-            </div>
+            <h4 class="mtext-109 cl2 p-b-30 p-l-25-ssm ">
+                {{ $customer->first_name }}    {{ $customer->last_name }}             
+            </h4>
+            
             <div class="submenu">
                 <ul>
                     <li class="subc font tab-item active " id="submenu-myprofile">Thông Tin Chung</li>
@@ -45,7 +44,7 @@
         <div class=" table-order col-md-9 sol-sm-12 tab-pane " id='panel-info'>
             <br>
             <div class="table-responsive-md" id="donhang">
-                <p class="font" style="font-weight: bold; font-size: large;">Các Đơn Hàng Đã Đặt:</p>
+                <h4 class="mtext-109 cl2 p-b-30 p-l-20">Các Đơn Hàng Đã Đặt:</h4>
                 <table class="table table-hover  table-bordered">
                     <thead class="thead-dark">
                         <tr>

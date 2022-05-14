@@ -2691,7 +2691,10 @@ input.num-product::-webkit-inner-spin-button {
        BORDER BORDER  BORDER  BORDER  BORDER  BORDER  BORDER  BORDER
 ==================================================================*/
 .bor0 {border-radius: 50%;}
-
+.bor100 {
+  border-radius: 23px;
+  border: 1px solid #e5e5e5;
+}
 .bor1 {
   border-radius: 23px;
 }
@@ -3341,5 +3344,5 @@ input.num-product::-webkit-inner-spin-button {
   .respon3 {
     padding: 20px;
   }
- 
+  .p-l-25-ssm {padding-left: 25px;}
 }
