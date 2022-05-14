@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\OrderService;
+use App\Http\Services\ProviderService;
 use App\Http\Services\PaymentMethodService;
 
 class Helper
@@ -30,12 +31,86 @@ class Helper
         }
         return $html;
     }
+    public static function renderImports($imports){
+        $html='';
+        $price=0;
+        if(is_null($imports)) return $html;
+        foreach($imports as $key =>$import){
+            $name_provider= \App\Http\Services\ProviderService::getId($import['provide_id']);
+            $name_product= \App\Http\Services\ProductService::getName($import['product_id']);
+            $name_category= \App\Http\Services\GroupProduct_Service::getItems($import['category_id']);
+            $price +=($import['price']*$import['amount']);
+            $id_delete=$key;
+            $html .='   <tr>
+            <td>'.++$key.'</td>
+            <td>'.$name_provider[0]['name'].'</td>
+            <td>'.$name_category[0]['name'].'</td>
+            <td>'.$name_product[0]['name'].'</td>
+            <td>'.$import['amount'].'</td>
+            <td>'.number_format($import['price']).'</td>
+            <td> 
+              <a href="#" class="btn btn-danger btn-sm" onclick="removeRow(' . $id_delete. ', \'/admin/imports/destroy\')")">
+                <i class="fas fa-trash"></i>
+              </a>
+            </td>
+        </tr>';
+        }
+        $html .='<tr style="background: #dee2e6">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Tổng:</td>
+        <td>'.number_format($price).'VNĐ</td>
+        <td></td>
+        </tr>';
+        return $html;
+    }
+    public static function renderImportDetail($imports){
+        $html='<tr height="40px">
+        <th class="">Nhà cung cấp</th>
 
+        <th class="text-center">Loại sản phẩm</th>
+        <th class="text-center">Tên sản phẩm</th>
+        <th class="text-center">Số lượng</th>
+        <th class="text-center">Giá nhập</th>
+        <th class="total text-right">Tổng cộng</th>
+      </tr>';
+      $total_price=0;
+        foreach($imports as $import){
+            
+            $name_provider= \App\Http\Services\ProviderService::getId($import->provider_id);
+            $name_product= \App\Http\Services\ProductService::getName($import->product_id);
+            $name_category= \App\Http\Services\GroupProduct_Service::getItems($import->category_id);
+            $total_price=$import->total_price;
+            $html.='
+          <tr height="40px" id="1191685316" class="odd">
+            <td class="" style="max-width:300px">
+              '.$name_provider[0]['name'].' <br> 
+            </td>
+      
+            <td class="money text-center">'.$name_category[0]['name'].'</td>
+            <td class="quantity center text-center">'.$name_product[0]['name'].'</td>
+            <td class="total money text-right">'.$import->amount.'</td>
+            <td class="total money text-right">'.number_format($import->price).'</td>
+            <td class="total money text-right">'.number_format($import->amount*$import->price).'</td>
+          </tr>';
+     
+        }
+        $html .='  
+      
+      <tr height="40px" class="order_summary order_total">
+        <td class="text-right" colspan="5"><b>Tổng tiền</b></td>
+        <td class="total money text-right"><b>'.number_format($total_price).'VNĐ </b></td>
+      </tr> ';
+      return $html;
+    }
     public static function renderGroupProductBanners($menus)
     {
         $html = '';
         if (is_null($menus)) return $html;
         foreach ($menus as $key => $menu) {
+
 
             $images = (is_null($menu->images)) ? '' : ' <img src="images/banner-01.jpg" alt="IMG-BANNER">';
 

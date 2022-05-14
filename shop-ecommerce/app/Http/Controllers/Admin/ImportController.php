@@ -35,30 +35,30 @@ class ImportController extends Controller
         $this->productService=$productService;
         $this->importService=$importService;
     }
-    public function index(Request $request) { 
-   
-        $title='Nhập hàng';
-        if(Session::has('imports'))
-        {
-            $imports=Session::get('imports');
-
-        }else{
-            $imports=[];
-        }
-        // print json_encode($imports);
-        // exit;
-       // $imports=(object)$temp;
-        //$imports = json_decode(json_encode($temp), FALSE);
-        $productsAll=$this->productService->getAll();
-      
+    public function index() { 
+        
+        $title='Danh sách nhập hàng';
+       
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
-        $providers=$this->providerService->getAll();
-      
-        $categorys=$this->groupProduct_Service->getAll();
-
-        //dd($imports);
-
-        return view('admin.imports.list',compact('title','imports','productsAll','categorys','providers','staff'));
+        $imports=$this->importService->getAll();
+        //dd($imports->toArray());
+        return view('admin.imports.list',compact('title','staff','imports'));
+    }
+    public function search(Request $request){
+        $title='Danh sách nhập hàng';
+       
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $imports=$this->importService->search($request);
+        //dd($imports->toArray());
+        return view('admin.imports.list',compact('title','staff','imports'));
+    }
+    public function importdetail($id){
+        $title='Chi tiết nhập hàng';
+       
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $imports=$this->importService->getItems($id);
+       // dd($imports->toArray());
+        return view('admin.imports.detail',compact('title','staff','imports'));
     }
 
     /**
@@ -68,7 +68,28 @@ class ImportController extends Controller
      */
     public function create()
     {
-        //
+      //  Session::forget('imports');
+        $title='Nhập hàng';
+        
+        if(Session::has('imports'))
+        {
+            $imports=Session::get('imports');
+
+        }else{
+            $imports=[];
+        }
+       
+        $productsAll=$this->productService->getAll();
+      
+      
+        $staff=$this->staffService->getInFo(Session::get('staff_id'));
+        $providers=$this->providerService->getAll();
+      
+        $categorys=$this->groupProduct_Service->getAll();
+
+        
+
+        return view('admin.imports.add',compact('title','imports','productsAll','categorys','providers','staff'));
     }
 
     /**
@@ -81,7 +102,7 @@ class ImportController extends Controller
     {
         //dd($request->all());
         //dd(Session::get('imports'));
-        $result=$this->importService->create($request);
+        $result=$this->importService->addSession($request);
         //dd($result);
         if ($result)  
         return response()->json([
@@ -93,6 +114,25 @@ class ImportController extends Controller
                'error' => true,
               'message' => "Thêm Thất Bại"
           ]);
+    }
+    public function save(){
+        $imports=Session::get('imports');
+        $result=$this->importService->create($imports);
+        if ($result)  
+         {
+            Session::forget('imports');
+            return response()->json([
+               'error' => false,
+               'message' => "Nhập hàng Thành Công"
+           ]);
+         }
+       else
+          {
+            return response()->json([
+                'error' => true,
+               'message' => "Nhập hàng Thất Bại"
+           ]);
+          }
     }
 
     /**
@@ -131,8 +171,17 @@ class ImportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $result=$this->importService->delete($request);
+        if($result){
+           return response()->json([
+                'error'=>false,
+                'message'=>'Xóa thành công '
+            ]);
+        }
+        return response()->json([
+            'error'=>true
+        ]);
     }
 }

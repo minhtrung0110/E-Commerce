@@ -14,8 +14,8 @@ class ImportSeeder extends Seeder
     public function run()
     {
         DB::table('imports')->insert([
-            ['id' => 1,'total_price'=>500000],
-            ['id' => 2,'total_price'=>700000],
+            ['id' => 1,'total_price'=>500000,'created_at'=> date('Y-m-d H:i:s'),'updated_at'=> date('Y-m-d H:i:s')],
+            ['id' => 2,'total_price'=>700000,'created_at'=> date('Y-m-d H:i:s'),'updated_at'=> date('Y-m-d H:i:s')],
         ]);
     }
 }

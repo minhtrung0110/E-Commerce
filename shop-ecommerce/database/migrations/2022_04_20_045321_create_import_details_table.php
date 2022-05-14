@@ -16,6 +16,7 @@ class CreateImportDetailsTable extends Migration
         Schema::create('import_details', function (Blueprint $table) {
             $table->integer('import_id');
             $table->integer('product_id');
+            $table->integer('category_id')->unsigned();
             $table->integer('provider_id')->unsigned();
             $table->integer('amount')->unsigned();
             $table->float('price')->unsigned();

@@ -14,6 +14,9 @@ class ProductService{
     public function getAll(){
         return Product::all();
     }
+    public function getName($id){
+        return Product::where('id',$id)->get();
+    }
     public function getAllProduct(){
      
         

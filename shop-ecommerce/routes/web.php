@@ -74,10 +74,12 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        });
        //Import
        Route::prefix('/imports')->group(function(){
-         Route::get('/list',[ImportController::class,'index'])->name('admin.imports');
-        Route::get('/add',[ImportController::class,'create']);
+         Route::get('/list',[ImportController::class,'index'])->name('admin.imports.list');
+         Route::post('/list',[ImportController::class,'search']);
+        Route::get('/add',[ImportController::class,'create'])->name('admin.imports.add');
         Route::post('/add',[ImportController::class,'store']);//handle
-       
+        Route::post('/addDB',[ImportController::class,'save']);//handle
+        Route::get('/show/{id}',[ImportController::class,'importdetail']);
         Route::DELETE('/destroy',[ImportController::class,'destroy']);//handle
         Route::get('/edit/{menu}',[ImportController::class,'show']);
        Route::post('/edit/{menu}',[ImportController::class,'update']);//handle
