@@ -58,7 +58,7 @@
                         </span>
 
                         <div class="stext-102 cl3 p-t-23">
-                            {{ strip_tags($product->description, '<b>') }}
+                            {!! $product->description !!} 
                         </div>
 
                         <!--  -->
@@ -144,7 +144,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel">
                             <div class="how-pos2 p-lr-15-md">
                                 <p class="stext-102 cl6">
-                                    {{ strip_tags($product->description, '<b>') }}
+                                    {!! $product->description !!} 
                                 </p>
                             </div>
                         </div>

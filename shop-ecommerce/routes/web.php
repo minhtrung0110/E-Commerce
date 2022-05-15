@@ -19,7 +19,7 @@ use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\RatingController;
 use App\Http\Controllers\Client\CustomerController;
 use \App\Http\Controllers\Admin\UploadController;
-
+use \App\Http\Controllers\Admin\RoleController;
 
 /*==========Admin====================*/
 // Route::get('/list',[ProductController::class,'index'])->name('admin.products');

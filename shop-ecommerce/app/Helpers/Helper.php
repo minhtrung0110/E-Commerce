@@ -331,10 +331,7 @@ class Helper
                   <label for="name">Email</label>
                   <input type="text" class="form-control" disabled value="'.$staff->email.'" placeholder="">
                 </div>
-                <div class="form-group col-md-8">
-                  <label for="name">Mật Khẩu</label>
-                  <input type="text" class="form-control" disabled value="'.$staff->password.'">
-                </div>
+               
                 <div class="form-group col-md-12">
                   <label for="name">Địa Chỉ</label>
                   <input type="text" class="form-control" disabled value="'.$staff->address.'">
@@ -419,10 +416,7 @@ class Helper
                   <label for="name">Email</label>
                   <input type="text" class="form-control" disabled value="'.$staff->email.'" placeholder="">
                 </div>
-                <div class="form-group col-md-8">
-                  <label for="name">Mật Khẩu</label>
-                  <input type="text" class="form-control" disabled value="'.$staff->password.'">
-                </div>
+              
                 <div class="form-group col-md-12">
                   <label for="name">Địa Chỉ</label>
                   <input type="text" class="form-control" disabled value="'.$staff->address.'">

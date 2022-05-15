@@ -62,12 +62,6 @@
                         <span class="form-message"></span>
                     </div>
 
-                    <!-- text input -->
-                    <div class="form-group col-sm-6">
-                        <label>Mật Khẩu:</label>
-                        <input type="text" name='password' id='password' class="form-control" value="{{$staff_edit->password}}">
-                        <span class="form-message"></span>
-                    </div>
                     <div class="form-group col-sm-12">
                         <label>Địa Chỉ:</label>
                         <input type="text" name="address"  id="address" class="form-control" value="{{$staff_edit->address}}">
