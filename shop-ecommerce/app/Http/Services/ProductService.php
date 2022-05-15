@@ -14,6 +14,12 @@ class ProductService{
     public function getAll(){
         return Product::all();
     }
+    public function getArray(){
+        return Product::all(['id','name','group_id']);
+    }
+    public function getCheck(){
+        return Product::all(['id','name']);
+    }
     public function getName($id){
         return Product::where('id',$id)->get();
     }

@@ -40,7 +40,7 @@ class OrderController extends Controller
         //
       
         $status=0;
-        $title='Order';
+        $title='Danh sách đơn hàng';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $orders=$this->orderService->getAll();
           $a=$this->STATUS;
@@ -77,7 +77,7 @@ class OrderController extends Controller
     public function show($id)
     {
        
-        $title='Order|Edit';
+        $title='Sét trạng thái đơn hàng';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $order_ups=$this->orderService->getItem($id);
         $a=$this->STATUS;
@@ -86,7 +86,7 @@ class OrderController extends Controller
             $id_order=$order_up->id_order;
             $status_number= $order_up->status;
         }
-
+      
         
         return view('admin.orders.edit_orderDetail',compact('title','staff','status_number','id_order','a'));
     }
@@ -101,7 +101,7 @@ class OrderController extends Controller
     public function search(Request $request)
     {
          $status=$request->input('status');
-         $title='Order';
+         $title='Danh sách đơn hàng';
          $staff=$this->staffService->getInFo(Session::get('staff_id'));
          $a=$this->STATUS;
         
@@ -121,14 +121,18 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         
-        $result=$this->orderService->update($request->input('status_value'),$id);
-        if($result){
-            session()->flash('success','Cập nhập thành công');
-            return redirect()->route('admin.orders');
-        }
-
-        session()->flash('error','Cập nhập thất bại');
-        return redirect()->back();
+        
+        $result=$this->orderService->update($request->input('status_value'),$request->input('id'));
+        if ($result)  
+        return response()->json([
+           'error' => false,
+           'message' => "Cập nhập Thành Công"
+       ]);
+       else
+           return response()->json([
+               'error' => true,
+              'message' => "Cập nhập Thất Bại"
+          ]);
     }
 
     /**
@@ -142,7 +146,7 @@ class OrderController extends Controller
         //
     }
     public function showDetail(Request $request){
-           $title='Order';
+           $title='Chi tiết đơn hàng';
             $staff=$this->staffService->getInFo(Session::get('staff_id'));
             $orderItems=$this->orderService->getItem($request->id);
             $id_print=$request->id;
@@ -151,7 +155,7 @@ class OrderController extends Controller
     }
     public function print(Request $request){
         
-             $title='Order';
+             $title='In đơn hàng';
             $staff=$this->staffService->getInFo(Session::get('staff_id'));
             $orderItems=$this->orderService->getItem($request->id);
             

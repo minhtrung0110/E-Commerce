@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $title='Category';
+        $title='Danh mục';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $categories=$this->groupProductService->getAll();
 
@@ -49,9 +49,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $title='Category|Add';
+        $title='Thêm danh mục';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
-        return view('admin.categories.add_cate',compact('title','staff'));
+        $categorys=$this->groupProductService->getAll();
+        return view('admin.categories.add_cate',compact('title','categorys','staff'));
     }
 
     /**
@@ -100,7 +101,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $title='Category|Edit';
+        $title='Sửa danh mục';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $cates=$this->groupProductService->getItems($id);
        

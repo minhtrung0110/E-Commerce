@@ -28,7 +28,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('dashboard/plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="{{asset('dashboard/dist/css/style.css')}}">
-
+ 
   <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
   <script src="{{asset('/template/vendor/sweetalert/sweetalert.min.js')}}"></script>
 </head>
@@ -232,7 +232,9 @@
 <script src="{{asset('template/js/remove.js')}}"></script>
 <script src="{{asset('template/js/handle.js')}}"></script>
 <script src="{{asset('template/js/validator.js')}}">
+
 </script>
+
 <script src="{{asset('template/js/uploadFile.js')}}"></script>
 
 @yield('js-ckeditor')

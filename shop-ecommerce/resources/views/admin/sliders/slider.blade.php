@@ -8,7 +8,7 @@
 
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Danh Sách silders</h3>
+      <h3 class="card-title">Danh Sách thanh trược</h3>
 
       <div class="card-tools">
         @if(Session::has('success'))
@@ -49,7 +49,7 @@
         
           <tr>
             <td colspan="9" class="text-center">
-              <h5>Không có slider </h5>
+              <h5>Không có thanh trược nào </h5>
             </td>
           </tr>
       

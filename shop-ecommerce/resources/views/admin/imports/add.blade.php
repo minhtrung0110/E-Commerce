@@ -118,6 +118,7 @@
 
 const obj_product =JSON.parse('<?= $productsAll ; ?>')
 const product=document.getElementById('product')
+console.log(obj_product);
 
 
 var html=obj_product.map(o =>{

@@ -84,12 +84,15 @@ class ProviderController extends Controller
         $providers_items=$this->providerService->getItems($id);
         $name_btn='Cập nhập';
         $id_provider=$id;
+        $name='';
+        $address='';
+        $phones='';
         foreach($providers_items as $items){
             $name=$items->name;
             $address=$items->address;
             $phones=$items->phones;
         }
-       
+      
         return view('admin.provider.list',compact('title','id_provider','id_cript','name_btn','providers','staff','name','address','phones'));
     }
 

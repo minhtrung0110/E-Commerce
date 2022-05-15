@@ -79,6 +79,7 @@
   </div>
 @endsection 
 <script>
+   const obj_discount=JSON.parse('<?= $discounts?>')
   document.addEventListener('DOMContentLoaded', function() {
       Validator({
           form: '#form-add-discount',
@@ -87,6 +88,7 @@
           rules: [
               Validator.isRequired('#Dis_name', 'Vui lòng nhập tên mã giảm'),
               Validator.minLength('#Dis_name',4),
+              Validator.isCheck('#Dis_name',obj_discount,'Tên mã giảm đã tồn tại'),
               Validator.isRequired('#Dis_value', 'Vui lòng nhập phần trăm giảm'),
               Validator.isNumber('#Dis_value','Phần trăm giảm phải là số dương'),
               Validator.isRequired('#Dis_description','Vui lòng nhập chi tiết mã giảm'),

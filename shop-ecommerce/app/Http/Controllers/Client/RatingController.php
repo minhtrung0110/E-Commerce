@@ -34,7 +34,7 @@ class RatingController extends Controller
     public function index()
     {   $point=0;
         $category_id=0;
-        $title='Đánh giá';
+        $title='Danh sách đánh giá';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $ratings=$this->ratingService->getAll();
         $categorys=$this->groupProductService->getAll();
@@ -112,7 +112,7 @@ class RatingController extends Controller
         $point=$request->input('point');
         $category_id=$request->input('category');
         $ratings=$this->ratingService->getSearch($request);
-        $title='Đánh giá';
+        $title='Danh sách đánh giá';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $categorys=$this->groupProductService->getAll();
         

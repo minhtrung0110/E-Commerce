@@ -52,6 +52,7 @@
   </div>
 @endsection 
 <script>
+  
   document.addEventListener('DOMContentLoaded', function() {
       Validator({
           form: '#form-edit-category',
@@ -59,7 +60,8 @@
           errorSelector: '.form-message',
           rules: [
               Validator.isRequired('#Cate_name', 'Vui lòng nhập tên danh mục'),
-              Validator.minLength('#Cate_name',6),
+             
+              
              // Validator.isRequired('#thumb', 'Vui lòng chọn ảnh'),
               //Validator.isImage('#thumb','Hình ảnh phải là jpg,jpeg hoặc png')
           ],

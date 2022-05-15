@@ -41,8 +41,8 @@ class DiscountController extends Controller
     {
         $title='Thêm mã giảm giá';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
-
-        return view('admin.discounts.add_discount',compact('title','staff'));
+        $discounts=$this->discountService->getAll();
+        return view('admin.discounts.add_discount',compact('title','discounts','staff'));
     }
 
     /**
@@ -86,7 +86,7 @@ class DiscountController extends Controller
      */
     public function show($id)
     {
-        $title='Cập Nhập mã giảm giá';
+        $title='Sửa mã giảm giá';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
        $discount=$this->discountService->getItems($id)->toArray();
        

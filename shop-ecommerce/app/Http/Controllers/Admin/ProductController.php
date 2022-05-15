@@ -45,7 +45,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $title='Product';
+        $title='Danh sách sản phẩm';
         $products=$this->productService->getAllProduct();
   
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
@@ -61,10 +61,10 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        $title='Products|Add';
+        $title='Thêm sản phẩm';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $categorys=$this->groupProductService->getAll();
-        $products=$this->productService->getAllProduct();
+        $products=$this->productService->getCheck();
 
       
         return view('admin.products.add_product',compact('title','staff','products','categorys'));
@@ -194,7 +194,7 @@ class ProductController extends Controller
      */
     public function search(Request $request)
     {
-        $title='Product';
+        $title='Danh sách sản phẩm';
         $products=$this->productService->getSearch($request);
         
   

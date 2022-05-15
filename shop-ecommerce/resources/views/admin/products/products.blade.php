@@ -73,7 +73,7 @@
           <th scope="row">{{++$key}}</th>
           <td>{{$product->name}}</td>
           <td>{{$product->name_product}}</td>
-          <td>{{$product->description}}</td>
+          <td>{!!$product->description!!}</td>
           
           <td>
           @for($i=0; $i <count($products) ; $i++) 

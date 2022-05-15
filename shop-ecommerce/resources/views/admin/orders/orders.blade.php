@@ -22,7 +22,7 @@
     </div>
 
     @endif
-    <div class="card-header " style="background: rgb(17, 196, 47)">
+    <div class="card-header " style="background: rgb(105 ,127, 248)">
       <h3 class="tilte_order text-center">Danh sách đơn hàng</h3>
     </div>
       <div class="card-tools">

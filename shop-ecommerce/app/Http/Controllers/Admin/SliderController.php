@@ -23,7 +23,7 @@ class SliderController extends Controller
     }
     public function index()
     {
-        $title='Slider';
+        $title='Danh sách thanh trược';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $sliders=$this->sliderService->getAll();
 
@@ -37,7 +37,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        $title='Thêm Sliders';
+        $title='Thêm thanh trược';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         
 
@@ -95,7 +95,7 @@ class SliderController extends Controller
     public function show($id)
     {
         
-        $title='Sửa slider';
+        $title='Sửa thanh trược';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $sliders=$this->sliderService->getItems($id);
 
@@ -110,7 +110,7 @@ class SliderController extends Controller
      */
     public function search(Request $request)
     {
-        $title='Slider';
+        $title='Danh sách thanh trược';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $sliders=$this->sliderService->getSearch($request);
 

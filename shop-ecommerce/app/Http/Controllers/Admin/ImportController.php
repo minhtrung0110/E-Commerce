@@ -79,7 +79,7 @@ class ImportController extends Controller
             $imports=[];
         }
        
-        $productsAll=$this->productService->getAll();
+        $productsAll=$this->productService->getArray();
       
       
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
