@@ -39,8 +39,8 @@
         <thead >
           <tr>
            <th >STT</th>
-           <th >Tổng tiền</th>
            <th >Ngày nhập</th>
+           <th >Tổng tiền</th>
            <th >#</th>
           </tr>
         </thead>
@@ -58,7 +58,7 @@
         @foreach($imports as $key => $import)
         <tr>
           <td>{{++$key}}</td>
-          <td>{{$import->created_at->toDateString()}}</td>
+          <td>{{date('d-m-y',strtotime($import->created_at))}}</td>
           <td>
            {{number_format($import->total_price)}}
           </td>

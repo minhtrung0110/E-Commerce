@@ -156,7 +156,17 @@ Validator.isNumber = function (selector, message) {
         }
     };
 }
-
+// check sản phẩm tồn tại hay k
+Validator.isProduct = function (selector,array, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var name=array.filter(e=> e.name_product ==value.trim());
+           
+            return name.length <=0 ? undefined :  message || 'Tên sản phẩm đã tồn tại';
+        }
+    };
+}
 Validator.isRealNumber = function (selector, message) {
     return {
         selector: selector,

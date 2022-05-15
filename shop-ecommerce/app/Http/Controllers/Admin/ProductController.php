@@ -64,9 +64,10 @@ class ProductController extends Controller
         $title='Products|Add';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $categorys=$this->groupProductService->getAll();
+        $products=$this->productService->getAllProduct();
 
       
-        return view('admin.products.add_product',compact('title','staff','categorys'));
+        return view('admin.products.add_product',compact('title','staff','products','categorys'));
     }
 
     /**
