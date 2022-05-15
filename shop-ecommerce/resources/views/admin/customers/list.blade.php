@@ -9,10 +9,10 @@
         <div class="card col-md-10 card-info" >
             
             <div class="card-header">
-                <h2 class="card-title"><strong>Danh Sách Nhân Viên</strong></h2>
+                <h2 class="card-title"><strong>Danh Sách Khách Hàng</strong></h2>
 
                 <div class="card-tools">
-                    <button class="btn btn-dark"><a href="/admin/staffs/add"  class="cl-white">Thêm Nhân Viên </a></button>
+                    <button class="btn btn-dark"><a href="/admin/customers/add"  class="cl-white">Thêm Khách Hàng </a></button>
                 
                 </div>
             </div>
@@ -24,7 +24,6 @@
                         <tr>
                             <th style="width:9%">Mã</th>
                             <th style="width:20%">Họ Và Tên</th>
-                            <th style="width:12%">Chức Vụ</th>
                             <th style="width:11%">Điện Thoại</th>
                             <th style="width:12%">Email</th>
                             <th style="width:10%">Trạng Thái</th>
@@ -33,26 +32,26 @@
                     </thead>
 
                     <tbody>
-                        @if (count($listStaffs) == 0)
+                        @if (count($listCustomers) == 0)
                             <tr>
                                 <td colspan="9" class="text-center">
-                                    <h5>Không có nhân viên</h5>
+                                    <h5>Không Có Khách Hàng Theo Yêu Cầu</h5>
                                 </td>
                             </tr>
                         @else
-                            {!! \App\Helpers\Helper::renderListViewStaff($listStaffs) !!}
+                            {!! \App\Helpers\Helper::renderListViewCustomer($listCustomers) !!}
                         @endif
                     </tbody>
                 </table>
 
             </div>
             <!-- /.card-body -->
-            {!! \App\Helpers\Helper::renderPopupViewItemStaff($listStaffs) !!}
+            {!! \App\Helpers\Helper::renderPopupViewItemCustomer($listCustomers) !!}
            
         </div>
         <div class="card col-md-2 card-warning" >
             <div class="card-header">
-                <h2 class="card-title"><strong>Lọc Nhân Viên</strong></h2>
+                <h2 class="card-title"><strong>Tìm Kiếm Khách Hàng</strong></h2>
             </div>
             <div class="card-body">
                 <form action="" method="post" id="form-search-staff">
@@ -67,13 +66,14 @@
                         </div>
                     </div>
                 </form>
-                <form class="form-horizontal" method="post" action="/admin/staffs/list/filter" id="form-horizontal">
+                <div class="card-header">
+                    <h2 class="card-title"><strong>Lọc Khách Hàng</strong></h2>
+                </div>
+                <form class="form-horizontal" method="post" action="/admin/customers/list/filter" id="form-horizontal">
+                    <br>
                     <div class="form-group">
-                        <label>Chức Vụ</label>
-                        <select class="form-control" name="role_id">
-                            <option value="-1">Tất Cả</option>
-                            {!! \App\Helpers\Helper::renderListRole() !!}
-                        </select>
+                        <label>Tìm Theo Email</label>
+                        <input type="text" name="email" class="form-control float-right" placeholder="Tìm Theo Email">
                     </div>
                     <div class="form-group">
                         <label>Trạng Thái</label>

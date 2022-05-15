@@ -64,6 +64,13 @@ class StaffController extends Controller
         if (!is_null($request)) {
             $result = $this->staffService->create($request);
         }
+        $staff = $this->staffService->findStaff($request->input('email'));
+        if (is_null($staff))
+            return response()->json([
+                'error' => true,
+                'message' => 'Email Exist'
+            ]);
+        //
         if ($result)
             return response()->json([
                 'error' => false,
@@ -118,6 +125,16 @@ class StaffController extends Controller
             'title' => 'Danh Sách Nhân Viên',
             'staff' => $this->staffService->getInFo(Session::get('staff_id')),
             'listStaffs' => $this->staffService->getSearch($request),
+        ]);
+    }
+
+    public function filter(Request $request)
+    {
+        //dd($this->staffService->getFilter($request));
+        return view('admin.staffs.list', [
+            'title' => 'Danh Sách Nhân Viên',
+            'staff' => $this->staffService->getInFo(Session::get('staff_id')),
+            'listStaffs' => $this->staffService->getFilter($request),
         ]);
     }
 

@@ -29,6 +29,16 @@ class StaffService
                         ->orwhere('last_name','like','%'.$request->input('search').'%')
                         ->get();
     }
+    public function getFilter($request){
+        $query = Staffs::query();
+        if($request->has('role_id') && $request->input('role_id')!=-1){
+            $query=$query->where('role_id',$request->input('role_id'));
+        }
+        if($request->has('status') && $request->input('status')!=-1){
+            $query=$query->where('status',$request->input('status'));
+        }
+        return $query->get();
+    }
     public function create($request)
     {
 

@@ -28,7 +28,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('dashboard/plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="{{asset('dashboard/dist/css/style.css')}}">
-  <link rel="stylesheet" href="{{asset('template/css/style.css')}}">
+
   <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
   <script src="{{asset('/template/vendor/sweetalert/sweetalert.min.js')}}"></script>
 </head>

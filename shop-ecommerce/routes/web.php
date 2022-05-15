@@ -103,6 +103,8 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       //Staff
       Route::prefix('/staffs')->group(function(){
         Route::get('/list',[StaffController::class,'index'])->name('admin.staffs');//handle
+        Route::post('/list',[StaffController::class,'search']);
+        Route::post('/list/filter',[StaffController::class,'filter']);
        Route::get('/add',[StaffController::class,'create']);
        Route::post('/checkEmail',[StaffController::class,'checkEmailExist']);
        Route::post('/add',[StaffController::class,'store']);//handle
@@ -111,16 +113,16 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::post('/edit/{id}',[StaffController::class,'update']);//handle
        });
       //Customer
-       //Staff
-       Route::prefix('/staffs')->group(function(){
-        Route::get('/list',[StaffController::class,'index'])->name('admin.customers');//handle
-        Route::post('/list',[StaffController::class,'search']);
-       Route::get('/add',[StaffController::class,'create']);
-       Route::post('/checkEmail',[StaffController::class,'checkEmailExist']);
-       Route::post('/add',[StaffController::class,'store']);//handle
-       Route::DELETE('/destroy',[StaffController::class,'destroy']);//handle
-       Route::get('/edit/{id}',[StaffController::class,'show']);
-      Route::post('/edit/{id}',[StaffController::class,'update']);//handle
+       Route::prefix('/customers')->group(function(){
+        Route::get('/list',[\App\Http\Controllers\Admin\CustomerController::class,'index'])->name('admin.customers');//handle
+        Route::post('/list',[\App\Http\Controllers\Admin\CustomerController::class,'search']);
+        Route::post('/list/filter',[\App\Http\Controllers\Admin\CustomerController::class,'filter']);
+       Route::get('/add',[\App\Http\Controllers\Admin\CustomerController::class,'create']);
+       Route::post('/checkEmail',[\App\Http\Controllers\Admin\CustomerController::class,'checkEmailExist']);
+       Route::post('/add',[\App\Http\Controllers\Admin\CustomerController::class,'store']);//handle
+       Route::DELETE('/destroy',[\App\Http\Controllers\Admin\CustomerController::class,'destroy']);//handle
+       Route::get('/edit/{id}',[\App\Http\Controllers\Admin\CustomerController::class,'show']);
+      Route::post('/edit/{id}',[\App\Http\Controllers\Admin\CustomerController::class,'update']);//handle
        });
        //sliders
        Route::prefix('/sliders')->group(function(){

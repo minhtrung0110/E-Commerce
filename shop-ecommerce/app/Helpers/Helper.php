@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\OrderService;
+use App\Http\Services\RoleService;
 use App\Http\Services\ProviderService;
 use App\Http\Services\PaymentMethodService;
 
@@ -13,6 +14,30 @@ class Helper
 {
     protected $orderService;
 
+    // support render function
+    public static function active($active = 0): string
+    {
+        return $active == 0 ? '<span class="btn btn-danger btn-xs">Vô Hiệu</span>'
+            : '<span class="btn btn-success btn-xs">Hoạt Động</span>';
+    }
+    public static function renderRole($id): string
+    {
+        $permissions =\App\Http\Services\RoleService::findRoleWithID($id);
+        return $permissions->name;
+    }
+    public static function renderListRole(){
+        $html='';
+        $permissions =\App\Http\Services\RoleService::getListRoles();
+        foreach($permissions as $item){
+            $html.= '
+            <option value="'.$item->id.'">'.$item->name.'</option>
+            ';
+        }
+        return $html;
+
+    }
+
+    /*----------------------------------------------FUNCTION--------------------------------*/
 
     public static function renderGroupProducts($menus)
     {
@@ -31,43 +56,45 @@ class Helper
         }
         return $html;
     }
-    public static function renderImports($imports){
-        $html='';
-        $price=0;
-        if(is_null($imports)) return $html;
-        foreach($imports as $key =>$import){
-            $name_provider= \App\Http\Services\ProviderService::getId($import['provide_id']);
-            $name_product= \App\Http\Services\ProductService::getName($import['product_id']);
-            $name_category= \App\Http\Services\GroupProduct_Service::getItems($import['category_id']);
-            $price +=($import['price']*$import['amount']);
-            $id_delete=$key;
-            $html .='   <tr>
-            <td>'.++$key.'</td>
-            <td>'.$name_provider[0]['name'].'</td>
-            <td>'.$name_category[0]['name'].'</td>
-            <td>'.$name_product[0]['name'].'</td>
-            <td>'.$import['amount'].'</td>
-            <td>'.number_format($import['price']).'</td>
+    public static function renderImports($imports)
+    {
+        $html = '';
+        $price = 0;
+        if (is_null($imports)) return $html;
+        foreach ($imports as $key => $import) {
+            $name_provider = \App\Http\Services\ProviderService::getId($import['provide_id']);
+            $name_product = \App\Http\Services\ProductService::getName($import['product_id']);
+            $name_category = \App\Http\Services\GroupProduct_Service::getItems($import['category_id']);
+            $price += ($import['price'] * $import['amount']);
+            $id_delete = $key;
+            $html .= '   <tr>
+            <td>' . ++$key . '</td>
+            <td>' . $name_provider[0]['name'] . '</td>
+            <td>' . $name_category[0]['name'] . '</td>
+            <td>' . $name_product[0]['name'] . '</td>
+            <td>' . $import['amount'] . '</td>
+            <td>' . number_format($import['price']) . '</td>
             <td> 
-              <a href="#" class="btn btn-danger btn-sm" onclick="removeRow(' . $id_delete. ', \'/admin/imports/destroy\')")">
+              <a href="#" class="btn btn-danger btn-sm" onclick="removeRow(' . $id_delete . ', \'/admin/imports/destroy\')")">
                 <i class="fas fa-trash"></i>
               </a>
             </td>
         </tr>';
         }
-        $html .='<tr style="background: #dee2e6">
+        $html .= '<tr style="background: #dee2e6">
         <td></td>
         <td></td>
         <td></td>
         <td></td>
         <td>Tổng:</td>
-        <td>'.number_format($price).'VNĐ</td>
+        <td>' . number_format($price) . 'VNĐ</td>
         <td></td>
         </tr>';
         return $html;
     }
-    public static function renderImportDetail($imports){
-        $html='<tr height="40px">
+    public static function renderImportDetail($imports)
+    {
+        $html = '<tr height="40px">
         <th class="">Nhà cung cấp</th>
 
         <th class="text-center">Loại sản phẩm</th>
@@ -76,34 +103,33 @@ class Helper
         <th class="text-center">Giá nhập</th>
         <th class="total text-right">Tổng cộng</th>
       </tr>';
-      $total_price=0;
-        foreach($imports as $import){
-            
-            $name_provider= \App\Http\Services\ProviderService::getId($import->provider_id);
-            $name_product= \App\Http\Services\ProductService::getName($import->product_id);
-            $name_category= \App\Http\Services\GroupProduct_Service::getItems($import->category_id);
-            $total_price=$import->total_price;
-            $html.='
+        $total_price = 0;
+        foreach ($imports as $import) {
+
+            $name_provider = \App\Http\Services\ProviderService::getId($import->provider_id);
+            $name_product = \App\Http\Services\ProductService::getName($import->product_id);
+            $name_category = \App\Http\Services\GroupProduct_Service::getItems($import->category_id);
+            $total_price = $import->total_price;
+            $html .= '
           <tr height="40px" id="1191685316" class="odd">
             <td class="" style="max-width:300px">
-              '.$name_provider[0]['name'].' <br> 
+              ' . $name_provider[0]['name'] . ' <br> 
             </td>
       
-            <td class="money text-center">'.$name_category[0]['name'].'</td>
-            <td class="quantity center text-center">'.$name_product[0]['name'].'</td>
-            <td class="total money text-right">'.$import->amount.'</td>
-            <td class="total money text-right">'.number_format($import->price).'</td>
-            <td class="total money text-right">'.number_format($import->amount*$import->price).'</td>
+            <td class="money text-center">' . $name_category[0]['name'] . '</td>
+            <td class="quantity center text-center">' . $name_product[0]['name'] . '</td>
+            <td class="total money text-right">' . $import->amount . '</td>
+            <td class="total money text-right">' . number_format($import->price) . '</td>
+            <td class="total money text-right">' . number_format($import->amount * $import->price) . '</td>
           </tr>';
-     
         }
-        $html .='  
+        $html .= '  
       
       <tr height="40px" class="order_summary order_total">
         <td class="text-right" colspan="5"><b>Tổng tiền</b></td>
-        <td class="total money text-right"><b>'.number_format($total_price).'VNĐ </b></td>
+        <td class="total money text-right"><b>' . number_format($total_price) . 'VNĐ </b></td>
       </tr> ';
-      return $html;
+        return $html;
     }
     public static function renderGroupProductBanners($menus)
     {
@@ -244,28 +270,26 @@ class Helper
         }
         return $html;
     }
-    public static function active($active = 0): string
-    {
-        return $active == 0 ? '<span class="btn btn-danger btn-xs">HUỶ</span>'
-            : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>';
-    }
-
+    
+    /*----STAFF****/
     public static function renderListViewStaff($listStaffs)
     {
         $html = '';
         foreach ($listStaffs as $key => $staff) {
             $html .= '
-              <tr onclick="showDetailStaff('.$staff->id.')">
+              <tr >
               <td>' . $staff->id . '</td>
               <td>' . $staff->first_name . ' ' . $staff->last_name . '</td>
-              <td>' . $staff->role_id . '</td>
+              <td>' .self::RenderRole($staff->role_id) . '</td>
               <td>' . $staff->phone . '</td>
               <td>' . $staff->email . '</td>
             
               <td>' . self::active($staff->status) . '</td>
               <td>
               <a  class="btn btn-primary btn-sm" href="/admin/staffs/edit/' . $staff->id . '"><i class="fas fa-edit"></i></a>
-                    <a  class="btn btn-danger btn-sm" onclick="removeRow(' . $staff->id . ', \'/admin/staffs/destroy\')")" ><i class="fas fa-trash"></i></a></td>
+                    <a  class="btn btn-danger btn-sm" onclick="removeRow(' . $staff->id . ', \'/admin/staffs/destroy\')")" ><i class="fas fa-trash"></i></a>
+                    <button class="btn btn-success btn-sm" onclick="showDetailStaff(' . $staff->id . ')">Xem Chi Tiết</button>
+                    </td>
             </tr>';
         }
 
@@ -276,47 +300,149 @@ class Helper
         $html = '';
         foreach ($listStaffs as $key => $staff) {
             $html .= '
-            <div id="id-show-detail-staff-'.$staff->id.'" class="modal" data-staff=" popup-detail-staff-'.$staff->id.'">
+            <div id="id-show-detail-staff-' . $staff->id . '" class="modal" data-staff=" popup-detail-staff-' . $staff->id . '">
 
-            <div class="modal-content animate" >
-                <div class="imgcontainer">
-                    <span onclick="closeDetailStaff('.$staff->id.')" class="close"
-                        title="Close Modal">&times;</span>
+            <div class="modal-content animate  card card-primary" >
+
+            <div class="card-header">
+              <h3 class="card-title admin-popup-title">THÔNG TIN CHI TIẾT NHÂN VIÊN</h3>
+              <span onclick="closeDetailStaff('.$staff->id.')" class="close"
+              title="Close Modal">&times;</span>
+            </div>
+ 
+              <div class="card-body pd-45 row">
+                <div class="form-group col-md-12">
+                  <label for="name">Họ Tên Nhân Viên</label>
+                  <input type="text" class="form-control" disabled value=" '.$staff->first_name . ' ' . $staff->last_name .'">
                 </div>
-
-                <div class="container">
-                    <div>
-                    <label for="uname"><b>' . $staff->first_name . ' ' . $staff->last_name . '</b></label>
-                    </div>
-                    <div>
-                    <label for="uname"><b>' . $staff->role_id . '</b></label>
-                    </div>
-                    <div>
-                    <label for="uname"><b>' . $staff->phone . '</b></label>
-                    </div>
-                    <div>
-                    <label for="uname"><b>' . $staff->email . '</b></label>
-                    </div>
-                    <div>
-                    <label for="uname"><b>' . $staff->password . '</b></label>
-                    </div>
-                    <div>
-                    <label for="uname"><b>' . $staff->address . '</b></label>
-                    </div>
-                    <div>
-                    <label for="uname"><b>' . self::active($staff->status). '</b></label>
-                    </div>
-                    <div>
-                    <label for="uname"><b>' . $staff->start_date . '</b></label>
-                    </div>
-                    <div>
-                    <label for="uname"><b>' . $staff->end_date . '</b></label>
-                    </div>
-
+                <div class="form-group col-md-6">
+                  <label for="name">Chức vụ</label>
+                  <input type="text" class="form-control" disabled value="'.self::RenderRole($staff->role_id).'">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Trạng Thái</label>
+                  <div class="admin-popup-status">'.self::active($staff->status).'</div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Số Điện Thoại</label>
+                  <input type="text" class="form-control" disabled value="'.$staff->phone.'">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Email</label>
+                  <input type="text" class="form-control" disabled value="'.$staff->email.'" placeholder="">
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="name">Mật Khẩu</label>
+                  <input type="text" class="form-control" disabled value="'.$staff->password.'">
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="name">Địa Chỉ</label>
+                  <input type="text" class="form-control" disabled value="'.$staff->address.'">
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <label for="name">Ngày Bắt Đầu Làm Việc</label>
+                  <input type="text" class="form-control" disabled value="'.date ('d-m-Y', strtotime($staff->start_date)).'">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Ngày Kết Thúc Hợp Đồng</label>
+                  <input type="text" class="form-control" disabled value="'.date ('d-m-Y', strtotime($staff->end_date)).'">
                 </div>
 
                
+              </div>
+              <!-- /.card-body -->
+            
+          </div>
+               
+        </div>';
+        }
+
+        return $html;
+    }
+    /***Customer */
+    public static function renderListViewCustomer($listCustomers)
+    {
+        $html = '';
+        foreach ($listCustomers as $key => $staff) {
+            $html .= '
+              <tr >
+              <td>' . $staff->id . '</td>
+              <td>' . $staff->first_name . ' ' . $staff->last_name . '</td>
+              <td>' . $staff->phone . '</td>
+              <td>' . $staff->email . '</td>
+            
+              <td>' . self::active($staff->status) . '</td>
+              <td>
+              <a  class="btn btn-primary btn-sm" href="/admin/customers/edit/' . $staff->id . '"><i class="fas fa-edit"></i></a>
+                    <a  class="btn btn-danger btn-sm" onclick="removeRow(' . $staff->id . ', \'/admin/customers/destroy\')")" ><i class="fas fa-trash"></i></a>
+                    <button class="btn btn-success btn-sm" onclick="showDetailStaff(' . $staff->id . ')">Xem Chi Tiết</button>
+                    </td>
+            </tr>';
+        }
+
+        return $html;
+    }
+    public static function renderPopupViewItemCustomer($listCustomers)
+    {
+        $html = '';
+        foreach ($listCustomers as $key => $staff) {
+            $html .= '
+            <div id="id-show-detail-staff-' . $staff->id . '" class="modal" data-staff=" popup-detail-staff-' . $staff->id . '">
+
+            <div class="modal-content animate  card card-primary" >
+
+            <div class="card-header">
+              <h3 class="card-title admin-popup-title">THÔNG TIN CHI TIẾT KHÁCH HÀNG</h3>
+              <span onclick="closeDetailStaff('.$staff->id.')" class="close"
+              title="Close Modal">&times;</span>
             </div>
+ 
+              <div class="card-body pd-45 row">
+                <div class="form-group col-md-12">
+                  <label for="name">Họ Tên Khách Hàng</label>
+                  <input type="text" class="form-control" disabled value=" '.$staff->first_name . ' ' . $staff->last_name .'">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Giới Tính </label>
+                  <input type="text" class="form-control" disabled value="'.$staff->gender.'">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Trạng Thái</label>
+                  <div class="admin-popup-status">'.self::active($staff->status).'</div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Số Điện Thoại</label>
+                  <input type="text" class="form-control" disabled value="'.$staff->phone.'">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Email</label>
+                  <input type="text" class="form-control" disabled value="'.$staff->email.'" placeholder="">
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="name">Mật Khẩu</label>
+                  <input type="text" class="form-control" disabled value="'.$staff->password.'">
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="name">Địa Chỉ</label>
+                  <input type="text" class="form-control" disabled value="'.$staff->address.'">
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <label for="name">Ngày Đăng Ký Tài Khoản</label>
+                  <input type="text" class="form-control" disabled value="'.date ('d-m-Y', strtotime($staff->created_at)).'">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Ngày Cập Nhật Thông Tin Gần Nhất</label>
+                  <input type="text" class="form-control" disabled value="'.date ('d-m-Y', strtotime($staff->updated_at)).'">
+                </div>
+
+               
+              </div>
+              <!-- /.card-body -->
+            
+          </div>
+               
         </div>';
         }
 
@@ -438,12 +564,12 @@ class Helper
     {
         $html = '';
         $tr = '';
-        $total_price=0;
+        $total_price = 0;
         $discount_value = 0;
         if (is_null($order_details)) return $html;
         foreach ($order_details as $key => $item) {
             $key += 1;
-            $total_price += $item->product_price*$item->amount_detail;
+            $total_price += $item->product_price * $item->amount_detail;
             $discount_value = $item->discount_value;
             $tr .= '
             <tr>
@@ -473,26 +599,26 @@ class Helper
         }
         $html .= '
             <tbody>
-              '.$tr.'
+              ' . $tr . '
                           
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="2" rowspan="3"></td>
                     <td colspan="2"><strong>Tổng Tiền Chưa Giảm Giá: </strong></td>
-                    <td colspan="2">'.number_format($total_price).' VNĐ</td>
+                    <td colspan="2">' . number_format($total_price) . ' VNĐ</td>
                 </tr>
                 <tr>
                     <td colspan="2"><strong>Tiền Giảm Giá (nếu có):</strong>
                     </td>
                    
-                    <td colspan="2"><strong>'.number_format($total_price*($discount_value/100)).' VNĐ </strong>
+                    <td colspan="2"><strong>' . number_format($total_price * ($discount_value / 100)) . ' VNĐ </strong>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2"><strong>Tiền Thanh Toán:</strong>
                     </td>
-                    <td colspan="2"><strong>'.number_format($total_price*(1-($discount_value/100))).' VNĐ </strong>
+                    <td colspan="2"><strong>' . number_format($total_price * (1 - ($discount_value / 100))) . ' VNĐ </strong>
                     </td>
                 </tr>
             </tfoot>
@@ -515,7 +641,7 @@ class Helper
                 $image = $product->img;
 
                 $html .= '
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item '.$product->group_products_id.'">
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ' . $product->group_products_id . '">
                 <!-- Block2 -->
                 <div class="block2">
                     <div class="block2-pic hov-img0">
@@ -548,19 +674,19 @@ class Helper
     {
         $html = '';
         $tr = '';
-        $total_price=0;
+        $total_price = 0;
         $discount_value = 0;
-        $payment_method='Thanh Toán Khi Nhận Hàng ';
+        $payment_method = 'Thanh Toán Khi Nhận Hàng ';
         if (is_null($order_details)) return $html;
         foreach ($order_details as $key => $item) {
             $key += 1;
-            $total_price += $item->product_price*$item->amount_detail;
+            $total_price += $item->product_price * $item->amount_detail;
             $discount_value = $item->discount_value;
-            if($item->payment_method_id == 2) $payment_method="Thanh Toán Qua VNPay";
+            if ($item->payment_method_id == 2) $payment_method = "Thanh Toán Qua VNPay";
             $tr .= '
             <tr>
                 <td style="text-align:center"><span >' . $key . '</span></td>               
-                <td style="text-align:center"><p >'. $item->name . ' </p>
+                <td style="text-align:center"><p >' . $item->name . ' </p>
                     <small class="order_ref">MÃ SP: ' . $item->product_id . '</small>
                     <br>                 
                 </td>
@@ -575,32 +701,32 @@ class Helper
         }
         $html .= '
             <tbody>
-              '.$tr.'
+              ' . $tr . '
                           
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="1" rowspan="4"></td>
                     <td colspan="2" style="text-align:center"><strong>Tổng Tiền Chưa Giảm Giá: </strong></td>
-                    <td colspan="2" style="text-align:center">'.number_format($total_price).' VNĐ</td>
+                    <td colspan="2" style="text-align:center">' . number_format($total_price) . ' VNĐ</td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align:center" ><strong>Tiền Giảm Giá (nếu có):</strong>
                     </td>
                    
-                    <td colspan="2" style="text-align:center" ><strong>'.number_format($total_price*($discount_value/100)).' VNĐ </strong>
+                    <td colspan="2" style="text-align:center" ><strong>' . number_format($total_price * ($discount_value / 100)) . ' VNĐ </strong>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align:center" ><strong>Tiền Thanh Toán:</strong>
                     </td>
-                    <td colspan="2" style="text-align:center" ><strong>'.number_format($total_price*(1-($discount_value/100))).' VNĐ </strong>
+                    <td colspan="2" style="text-align:center" ><strong>' . number_format($total_price * (1 - ($discount_value / 100))) . ' VNĐ </strong>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align:center" ><strong>Phương Thức Thanh Toán:</strong>
                     </td>
-                    <td colspan="2" style="text-align:center" ><strong>'.$payment_method.'  </strong>
+                    <td colspan="2" style="text-align:center" ><strong>' . $payment_method . '  </strong>
                     </td>
                 </tr>
             </tfoot>

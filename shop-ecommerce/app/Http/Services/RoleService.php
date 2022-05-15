@@ -14,6 +14,9 @@ class RoleService {
     public static function getListRoles(){
         return Roles::orderByDesc('id')->get();
     } 
+    public static function findRoleWithID($id) {
+        return Roles::all()->where('id', $id)->first();
+    }
  
     
 }
