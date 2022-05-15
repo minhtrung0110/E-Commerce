@@ -1,3 +1,23 @@
+.tilte_order{
+ 
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0;
+  color: #fff;
+}
+.search-input{
+float: right;
+display: flex; 
+justify-content: end 
+}
+.noti_check{
+border-radius: 50%;
+color: #fff;
+line-height: 35px;
+width: 35px;
+height: 35px;
+/* background: green; */
+}
 .btn-logout-admin{
     color: #fff !important;
     font-weight: bold;

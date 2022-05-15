@@ -110,6 +110,8 @@
 
 @endsection 
 <script>
+  const obj_product=JSON.parse('<?= $products?>')
+ 
   document.addEventListener('DOMContentLoaded', function() {
       Validator({
           form: '#form-add-product',
@@ -118,6 +120,7 @@
           rules: [
               Validator.isRequired('#product_name', 'Vui lòng nhập tên sản phẩm'),
               Validator.minLength('#product_name',6),
+              Validator.isProduct('#product_name',obj_product),
               Validator.isRequired('#category', 'Vui lòng chọn danh mục'),
               Validator.isRequired('#amount','Vui lòng nhập số lượng'),
               Validator.isNumber('#amount','Số lượng phải là số dương'),
