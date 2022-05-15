@@ -39,8 +39,8 @@
         <thead >
           <tr>
            <th >STT</th>
-           <th >Tổng tiền</th>
            <th >Ngày nhập</th>
+           <th >Tổng tiền</th>
            <th >#</th>
           </tr>
         </thead>
