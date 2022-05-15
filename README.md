@@ -56,3 +56,5 @@ trường hợp khi ảnh upload lên nhưng k thấy hiện ra view thì cách 
 trong thư mục public xóa thư mục storage (nếu có).
 sau khi xóa chạy câu lệnh "php artisan storage:link" nếu hiện thông báo đã liên kết thành thì đã fix xong
 
+#### Date parsing
+date ('d-m-Y', strtotime($staff->end_date)) 
