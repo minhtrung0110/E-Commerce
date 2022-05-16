@@ -115,11 +115,9 @@
                     Validator.isRequired('#first_name', 'Vui lòng nhập họ Khách Hàng'),
                     Validator.isRequired('#phone', 'Vui lòng nhập số điện thoại'),
                     Validator.isRequired('#email', 'Vui lòng nhập email'),
-                    Validator.isRequired('#password', 'Vui lòng nhập mật khẩu'),
                     Validator.isRequired('#address', 'Vui lòng nhập địa chỉ'),
                     Validator.isEmail('#email'),
                     Validator.isPhoneNumber('#phone'),
-                    Validator.minLength('#password', 6),
                   
                 ],
                 onSubmit: function (data) {   

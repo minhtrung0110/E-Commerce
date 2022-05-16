@@ -33,7 +33,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
      
       Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard') ;
       //Products
-      Route::prefix('/products')->group(function(){
+      Route::middleware(['checkrole'])->prefix('/products')->group(function(){
         Route::get('/list',[ProductController::class,'index'])->name('admin.products.list');
         Route::post('/list',[ProductController::class,'search']);
        Route::get('/add',[ProductController::class,'create'])->name('admin.product.add');
@@ -44,7 +44,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
     
        });
        //provider
-       Route::prefix('/providers')->group(function(){
+       Route::middleware(['checkrole'])->prefix('/providers')->group(function(){
         Route::get('/list',[ProviderController::class,'index'])->name('admin.providers.list');      
        Route::get('/add',[ProviderController::class,'create'])->name('admin.providers.add');
        Route::post('/add',[ProviderController::class,'store']);//handle
@@ -54,7 +54,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
     
        });
        //Category
-       Route::prefix('/group-products')->group(function(){
+       Route::middleware(['checkrole'])->prefix('/group-products')->group(function(){
          Route::get('/list',[CategoryController::class,'index'])->name('admin.categories.list');
          Route::get('/add',[CategoryController::class,'create'])->name('admin.categories.add');
          Route::post('/add',[CategoryController::class,'store']);
@@ -63,7 +63,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
          Route::DELETE('/destroy',[CategoryController::class,'destroy']);
        });
        //Discounts
-       Route::prefix('/discounts')->group(function(){
+       Route::middleware(['checkrole'])->prefix('/discounts')->group(function(){
          Route::get('/list',[DiscountController::class,'index'])->name('admin.discounts.list');
          Route::post('/list',[DiscountController::class,'search']);
          Route::get('/add',[DiscountController::class,'create'])->name('admin.discounts.add');
@@ -73,7 +73,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
          Route::DELETE('/destroy',[DiscountController::class,'destroy']);
        });
        //Import
-       Route::prefix('/imports')->group(function(){
+       Route::middleware(['checkrole'])->prefix('/imports')->group(function(){
          Route::get('/list',[ImportController::class,'index'])->name('admin.imports.list');
          Route::post('/list',[ImportController::class,'search']);
         Route::get('/add',[ImportController::class,'create'])->name('admin.imports.add');
@@ -85,7 +85,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
        Route::post('/edit/{menu}',[ImportController::class,'update']);//handle
         });
        //Orders
-       Route::prefix('/orders')->group(function(){
+       Route::middleware(['checkrole'])->prefix('/orders')->group(function(){
          Route::get('/list',[OrderController::class,'index'])->name('admin.orders');//handle
          Route::post('/list',[OrderController::class,'search']);
         Route::get('/show/{id}',[OrderController::class,'showDetail']);
@@ -101,7 +101,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::post('upload/services', [UploadController::class, 'store']);
 
       //Staff
-      Route::prefix('/staffs')->group(function(){
+      Route::middleware(['checkrole'])->prefix('/staffs')->group(function(){
         Route::get('/list',[StaffController::class,'index'])->name('admin.staffs');//handle
         Route::post('/list',[StaffController::class,'search']);
         Route::post('/list/filter',[StaffController::class,'filter']);
@@ -113,7 +113,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::post('/edit/{id}',[StaffController::class,'update']);//handle
        });
       //Customer
-       Route::prefix('/customers')->group(function(){
+       Route::middleware(['checkrole'])->prefix('/customers')->group(function(){
         Route::get('/list',[\App\Http\Controllers\Admin\CustomerController::class,'index'])->name('admin.customers');//handle
         Route::post('/list',[\App\Http\Controllers\Admin\CustomerController::class,'search']);
         Route::post('/list/filter',[\App\Http\Controllers\Admin\CustomerController::class,'filter']);
@@ -125,7 +125,7 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::post('/edit/{id}',[\App\Http\Controllers\Admin\CustomerController::class,'update']);//handle
        });
        //sliders
-       Route::prefix('/sliders')->group(function(){
+       Route::middleware(['checkrole'])->prefix('/sliders')->group(function(){
         Route::get('/list',[SliderController::class,'index'])->name('admin.sliders.list');//handle
         Route::post('/list',[SliderController::class,'search']);
        Route::get('/add',[SliderController::class,'create'])->name('admin.sliders.add');
@@ -135,12 +135,22 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::post('/edit/{id}',[SliderController::class,'update']);//handle
        });
        //ratings
-       Route::prefix('/ratings')->group(function(){
+       Route::middleware(['checkrole'])->prefix('/ratings')->group(function(){
          Route::get('/list',[RatingController::class,'index'])->name('admin.ratings.list');
          
          Route::post('/list',[RatingController::class,'searchPoint']);
        });
-     
+       // Role
+        //role
+      Route::middleware(['checkrole'])->prefix('/roles')->group(function(){
+        Route::get('/list',[RoleController::class,'index'])->name('admin.roles');//handle
+        Route::post('/add',[RoleController::class,'store']);
+        Route::get('/add',[RoleController::class,'create']);
+        Route::get('/edit/{id}',[RoleController::class,'show']);
+        Route::post('/edit/{id}',[RoleController::class,'update']);//handle
+        Route::DELETE('/destroy',[RoleController::class,'destroy']);//handl
+      
+       });
 
   });
 

@@ -22,19 +22,19 @@ class Helper
     }
     public static function renderRole($id): string
     {
-        $permissions =\App\Http\Services\RoleService::findRoleWithID($id);
+        $permissions = \App\Http\Services\RoleService::findRoleWithID($id);
         return $permissions->name;
     }
-    public static function renderListRole(){
-        $html='';
-        $permissions =\App\Http\Services\RoleService::getListRoles();
-        foreach($permissions as $item){
-            $html.= '
-            <option value="'.$item->id.'">'.$item->name.'</option>
+    public static function renderListRole()
+    {
+        $html = '';
+        $permissions = \App\Http\Services\RoleService::getListRoles();
+        foreach ($permissions as $item) {
+            $html .= '
+            <option value="' . $item->id . '">' . $item->name . '</option>
             ';
         }
         return $html;
-
     }
 
     /*----------------------------------------------FUNCTION--------------------------------*/
@@ -270,7 +270,7 @@ class Helper
         }
         return $html;
     }
-    
+
     /*----STAFF****/
     public static function renderListViewStaff($listStaffs)
     {
@@ -280,7 +280,7 @@ class Helper
               <tr >
               <td>' . $staff->id . '</td>
               <td>' . $staff->first_name . ' ' . $staff->last_name . '</td>
-              <td>' .self::RenderRole($staff->role_id) . '</td>
+              <td>' . self::RenderRole($staff->role_id) . '</td>
               <td>' . $staff->phone . '</td>
               <td>' . $staff->email . '</td>
             
@@ -306,44 +306,44 @@ class Helper
 
             <div class="card-header">
               <h3 class="card-title admin-popup-title">THÔNG TIN CHI TIẾT NHÂN VIÊN</h3>
-              <span onclick="closeDetailStaff('.$staff->id.')" class="close"
+              <span onclick="closeDetailStaff(' . $staff->id . ')" class="close"
               title="Close Modal">&times;</span>
             </div>
  
               <div class="card-body pd-45 row">
                 <div class="form-group col-md-12">
                   <label for="name">Họ Tên Nhân Viên</label>
-                  <input type="text" class="form-control" disabled value=" '.$staff->first_name . ' ' . $staff->last_name .'">
+                  <input type="text" class="form-control" disabled value=" ' . $staff->first_name . ' ' . $staff->last_name . '">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Chức vụ</label>
-                  <input type="text" class="form-control" disabled value="'.self::RenderRole($staff->role_id).'">
+                  <input type="text" class="form-control" disabled value="' . self::RenderRole($staff->role_id) . '">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Trạng Thái</label>
-                  <div class="admin-popup-status">'.self::active($staff->status).'</div>
+                  <div class="admin-popup-status">' . self::active($staff->status) . '</div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Số Điện Thoại</label>
-                  <input type="text" class="form-control" disabled value="'.$staff->phone.'">
+                  <input type="text" class="form-control" disabled value="' . $staff->phone . '">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Email</label>
-                  <input type="text" class="form-control" disabled value="'.$staff->email.'" placeholder="">
+                  <input type="text" class="form-control" disabled value="' . $staff->email . '" placeholder="">
                 </div>
                
                 <div class="form-group col-md-12">
                   <label for="name">Địa Chỉ</label>
-                  <input type="text" class="form-control" disabled value="'.$staff->address.'">
+                  <input type="text" class="form-control" disabled value="' . $staff->address . '">
                 </div>
                 
                 <div class="form-group col-md-6">
                   <label for="name">Ngày Bắt Đầu Làm Việc</label>
-                  <input type="text" class="form-control" disabled value="'.date ('d-m-Y', strtotime($staff->start_date)).'">
+                  <input type="text" class="form-control" disabled value="' . date('d-m-Y', strtotime($staff->start_date)) . '">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Ngày Kết Thúc Hợp Đồng</label>
-                  <input type="text" class="form-control" disabled value="'.date ('d-m-Y', strtotime($staff->end_date)).'">
+                  <input type="text" class="form-control" disabled value="' . date('d-m-Y', strtotime($staff->end_date)) . '">
                 </div>
 
                
@@ -391,44 +391,44 @@ class Helper
 
             <div class="card-header">
               <h3 class="card-title admin-popup-title">THÔNG TIN CHI TIẾT KHÁCH HÀNG</h3>
-              <span onclick="closeDetailStaff('.$staff->id.')" class="close"
+              <span onclick="closeDetailStaff(' . $staff->id . ')" class="close"
               title="Close Modal">&times;</span>
             </div>
  
               <div class="card-body pd-45 row">
                 <div class="form-group col-md-12">
                   <label for="name">Họ Tên Khách Hàng</label>
-                  <input type="text" class="form-control" disabled value=" '.$staff->first_name . ' ' . $staff->last_name .'">
+                  <input type="text" class="form-control" disabled value=" ' . $staff->first_name . ' ' . $staff->last_name . '">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Giới Tính </label>
-                  <input type="text" class="form-control" disabled value="'.$staff->gender.'">
+                  <input type="text" class="form-control" disabled value="' . $staff->gender . '">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Trạng Thái</label>
-                  <div class="admin-popup-status">'.self::active($staff->status).'</div>
+                  <div class="admin-popup-status">' . self::active($staff->status) . '</div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Số Điện Thoại</label>
-                  <input type="text" class="form-control" disabled value="'.$staff->phone.'">
+                  <input type="text" class="form-control" disabled value="' . $staff->phone . '">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Email</label>
-                  <input type="text" class="form-control" disabled value="'.$staff->email.'" placeholder="">
+                  <input type="text" class="form-control" disabled value="' . $staff->email . '" placeholder="">
                 </div>
               
                 <div class="form-group col-md-12">
                   <label for="name">Địa Chỉ</label>
-                  <input type="text" class="form-control" disabled value="'.$staff->address.'">
+                  <input type="text" class="form-control" disabled value="' . $staff->address . '">
                 </div>
                 
                 <div class="form-group col-md-6">
                   <label for="name">Ngày Đăng Ký Tài Khoản</label>
-                  <input type="text" class="form-control" disabled value="'.date ('d-m-Y', strtotime($staff->created_at)).'">
+                  <input type="text" class="form-control" disabled value="' . date('d-m-Y', strtotime($staff->created_at)) . '">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Ngày Cập Nhật Thông Tin Gần Nhất</label>
-                  <input type="text" class="form-control" disabled value="'.date ('d-m-Y', strtotime($staff->updated_at)).'">
+                  <input type="text" class="form-control" disabled value="' . date('d-m-Y', strtotime($staff->updated_at)) . '">
                 </div>
 
                
@@ -726,6 +726,129 @@ class Helper
             </tfoot>
         
         ';
+        return $html;
+    }
+
+    /*----------------------------------------------------------------ROLE----------------------------------------------------------------*/
+    public function renderListRoles($listRoles)
+    {
+        $html = '';
+        if (is_null($listRoles)) return $html;
+        foreach ($listRoles as $item) {
+            $html .= '
+            <tr>
+
+            <td>' . $item->id . '</td>
+            <td>' . $item->name . '</td>
+            <td>
+            <a  class="btn btn-primary btn-sm" href="/admin/roles/edit/' . $item->id . '"><i class="fas fa-edit"></i></a>
+            <a  class="btn btn-danger btn-sm" onclick="removeRow(' . $item->id . ', \'/admin/roles/destroy\')")" ><i class="fas fa-trash"></i></a>
+            <button class="btn btn-success btn-sm" onclick="showDetailStaff(' . $item->id . ')">Xem Chi Tiết</button>
+
+            </td>
+          </tr>
+            ';
+        }
+        return $html;
+    }
+    public function renderPopupViewItemRole($listRoles)
+    {
+        $html = '';
+        foreach ($listRoles as $item){
+        $html .= '
+            <div id="id-show-detail-staff-' . $item->id . '" class="modal" data-staff=" popup-detail-staff-' . $item->id . '">
+
+            <div class="modal-content animate  card card-primary" >
+
+            <div class="card-header">
+              <h3 class="card-title admin-popup-title">THÔNG TIN CHI TIẾT QUYỀN</h3>
+              <span onclick="closeDetailStaff(' . $item->id . ')" class="close"
+              title="Close Modal">&times;</span>
+            </div>
+ 
+              <div class="card-body pd-45 row">
+                <div class="form-group col-md-12">
+                  <label for="name">Họ Tên Khách Hàng</label>
+                  <input type="text" class="form-control" disabled value=" ' . $item->name . '">
+                </div>
+                <ul class="">
+                '.self::renderPopupItemViewPermissions($item->id).'
+                </ul>
+              </div>
+              <!-- /.card-body -->
+            
+          </div>
+               
+        </div>';
+        }
+
+        return $html;
+    }
+    public function renderPopupItemViewPermissions($id)
+    {
+        $html = '';
+        $detail_roles = \App\Http\Services\RoleService::getListPermissionsWithRoleID($id);
+        foreach ($detail_roles as $item) {
+            $html .= '
+            <li class="nav-item">
+            ' .$item->permission_name . '
+            </li>            ';
+        }
+
+
+        return $html;
+    }
+    public function renderListPermissions($listPermissions)
+    {
+        $html = '';
+        if (is_null($listPermissions)) return $html;
+        foreach ($listPermissions as $item) {
+            $html .= '
+            <tr>
+
+            <td>' . $item->id . '</td>
+            <td>' . $item->name . '</td>
+           
+          </tr>
+            ';
+        }
+        return $html;
+    }
+    public function renderOptionPermission($listPermissions){
+        $html = '';
+        if (is_null($listPermissions)) return $html;
+        foreach ($listPermissions as $item) {
+            $html .= '
+            <div class="custom-control custom-checkbox">
+            <input class="custom-control-input" name="permission_id[]" value="'.$item->id.'" type="checkbox" id="customCheckbox'.$item->id.'" >
+            <label for="customCheckbox'.$item->id.'" class="custom-control-label">'.$item->name.'</label>
+          </div>
+            ';
+        }
+        return $html;
+    }
+    public function renderOptionPermissionEdit($listPermissions,$listChecked){
+        $html = '';
+        $check='';
+        if (is_null($listPermissions)) return $html;
+        foreach ($listPermissions as $item) {
+           foreach ($listChecked as $checked) { //
+               if($item->id == $checked->permission_id) {                 
+                $check='checked';              
+                break;
+               }
+                else $check='';
+               //echo $item->id;
+           }        
+            $html .= '
+            <div class="custom-control custom-checkbox">
+            <input class="custom-control-input" '.$check.' name="permission_id[]" value="'.$item->id.'" type="checkbox" id="customCheckbox'.$item->id.'" >
+            <label for="customCheckbox'.$item->id.'" class="custom-control-label">'.$item->name.'</label>
+          </div>
+            ';
+           
+            
+        }
         return $html;
     }
 }

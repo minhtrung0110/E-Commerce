@@ -38,7 +38,7 @@
 {{-- QL-san pham --}}
 <li class="nav-item nav-item-li " id="nav-item-products" >
   <a href="#" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <i class=" nav-icon fas fa-solid fa-bag-shopping"></i>
     <p>
       Sản Phẩm
       {{-- <span class="badge badge-info right">2</span> --}}
@@ -186,31 +186,7 @@
     </li>
   </ul>
 </li>
-{{-- Ql-silders --}}
-<li class="nav-item nav-item-li " id="nav-item-sliders" >
-  <a href="#" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
-    <p>
-      sliders
-      {{-- <span class="badge badge-info right">2</span> --}}
-    </p>
-    <i class="fas fa-angle-left right"></i>
-  </a>
-  <ul class="nav nav-treeview">
-    <li class="nav-item">
-      <a href="{{Route('admin.sliders.list')}}" class="nav-link" id='sliders'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Danh sách sliders</p>
-      </a>
-    </li>
-    <li class="nav-item ">
-      <a href="{{Route('admin.sliders.add')}}" class="nav-link" id='sliders'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Thêm sliders</p>
-      </a>
-    </li>
-  </ul>
-</li>
+
 {{-- đánh giá --}}
 <li class="nav-item nav-item-li" id="nav-item-ratings">
   <a href="{{Route('admin.ratings.list')}}" class="nav-link">
@@ -221,9 +197,42 @@
     </p>
   </a>
 </li>
+{{---Phân Quyền--}}
+<li class="nav-item nav-item-li" id="nav-item-roles" >
+  <a href="{{Route('admin.roles')}}" class="nav-link">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+     Phân Quyền
+  
+    </p>
+  </a>
+</li>
 
-
-
+{{-- Ql-silders --}}
+<li class="nav-item nav-item-li " id="nav-item-sliders" >
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <p>
+      Ảnh Trình Chiếu
+      {{-- <span class="badge badge-info right">2</span> --}}
+    </p>
+    <i class="fas fa-angle-left right"></i>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{Route('admin.sliders.list')}}" class="nav-link" id='sliders'>
+        <i class="far fa-circle nav-icon"></i>
+        <p>Danh Sách Ảnh</p>
+      </a>
+    </li>
+    <li class="nav-item ">
+      <a href="{{Route('admin.sliders.add')}}" class="nav-link" id='sliders'>
+        <i class="right fas fa-angle-left"></i>
+        <p>Thêm Ảnh</p>
+      </a>
+    </li>
+  </ul>
+</li>
 
 
 

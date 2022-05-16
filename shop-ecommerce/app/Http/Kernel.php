@@ -67,6 +67,20 @@ class Kernel extends HttpKernel
         'checkloginadmin'=> \App\Http\Middleware\CheckLoginAdmin::class,
         'checklogincustomer'=> \App\Http\Middleware\CheckLoginCustomer::class,
         'checkorderlogic'=> \App\Http\Middleware\CheckOrderLogic::class,
+        'manageproduct'=> \App\Http\Middleware\ManageProduct::class,
+        'managecustomer'=> \App\Http\Middleware\ManageCustomer::class,
+        'managediscount'=> \App\Http\Middleware\ManageDiscount::class,
+        'managegroup-product'=> \App\Http\Middleware\ManageGroupProduct::class,
+        'manageimport'=> \App\Http\Middleware\ManageImport::class,
+        'manageorder'=> \App\Http\Middleware\ManageOrder::class,
+        'manageprovider'=> \App\Http\Middleware\ManageProvider::class,
+        'managerole'=> \App\Http\Middleware\ManageRole::class,
+        'manageslider'=> \App\Http\Middleware\ManageSlider::class,
+        'managestaff'=> \App\Http\Middleware\ManageStaff::class,
+        'checkrole'=> \App\Http\Middleware\CheckRole::class,
+
+
+    
     
     ];
 }

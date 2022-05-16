@@ -54,6 +54,14 @@ if(nav_item ==='ratings' && idname==='ratings') {
     
    
  }
+ //rating
+if(nav_item ==='roles' && idname==='roles') {
+    item.classList.add('menu-is-opening')
+    item.classList.add('menu-open')
+    item.classList.add('active-navbar')
+    
+   
+ }
      //discount
      if(nav_item ==='discounts' && idname==='discounts') {
         item.classList.add('menu-is-opening')
