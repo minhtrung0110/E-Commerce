@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\StaffService;
 use App\Http\Services\OrderService;
+use App\Http\Services\OrderDetailService;
 use Illuminate\Support\Facades\Session;
 
 
@@ -14,6 +15,7 @@ class OrderController extends Controller
 {
     protected $staffService;
     protected $orderService;
+    protected $orderdetailService;
     
     public $STATUS=[
         1=>'Chờ xác nhận',
@@ -24,10 +26,12 @@ class OrderController extends Controller
         6=>'Đã thanh toán'
         ];
 
-    public function __construct(StaffService $staffService, OrderService $orderService)
+    public function __construct(StaffService $staffService, OrderService $orderService,
+                                OrderDetailService $orderDetailService)
     {
         $this->staffService=$staffService;
         $this->orderService=$orderService;
+        $this->orderDetailService=$orderDetailService;
         
     }
     /**
@@ -37,7 +41,9 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        //
+     
+       // $result=$this->orderDetailService->statisTical(); (Thống kê)
+        
       
         $status=0;
         $title='Danh sách đơn hàng';

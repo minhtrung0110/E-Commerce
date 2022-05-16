@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Services;
 use App\Models\Orders;
+use App\Models\OrderDetail;
 use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class OrderService{
+ 
     public function getOrderLast(){
         return Orders::select('id')->orderByDesc('created_at')->first();
     }
