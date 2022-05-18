@@ -38,7 +38,7 @@
 {{-- QL-san pham --}}
 <li class="nav-item nav-item-li " id="nav-item-products" >
   <a href="#" class="nav-link">
-    <i class=" nav-icon fas fa-solid fa-bag-shopping"></i>
+    <i class="nav-icon fas fa-tachometer-alt"></i>
     <p>
       Sản Phẩm
       {{-- <span class="badge badge-info right">2</span> --}}
@@ -227,7 +227,7 @@
     </li>
     <li class="nav-item ">
       <a href="{{Route('admin.sliders.add')}}" class="nav-link" id='sliders'>
-        <i class="right fas fa-angle-left"></i>
+        <i class="far fa-circle nav-icon"></i>
         <p>Thêm Ảnh</p>
       </a>
     </li>

@@ -55,9 +55,11 @@ class ProviderController extends Controller
         $result=$this->providerService->create($request);
         if ($result)  
         {
+            $providers=$this->providerService->getAll();
             return response()->json([
                 'error' => false,
-                'message' => "Thêm nhà cung cấp thành công"
+                'message' => "Thêm nhà cung cấp thành công",
+                'providers'=>$providers
             ]);
         }
        else

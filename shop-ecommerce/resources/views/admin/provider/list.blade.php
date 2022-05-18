@@ -67,7 +67,7 @@
                 <th >#</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="body">
               @foreach($providers as $key => $provider)
               <tr>
                 <td>{{++$key}}</td>
@@ -91,8 +91,14 @@
         <!-- /.card-body -->
       </div>
 </div>
+<script>
+
+const obj_product=JSON.parse('<?= $providers ?>');
+  console.log(obj_product);
+</script>
 @if($id_cript==0)
 <script>
+
   document.addEventListener('DOMContentLoaded', function() {
       Validator({
           form: '#form-add-provider',
@@ -117,7 +123,30 @@
 
                   if (respond.error !== true ) {                       
                       swal("Thêm Thành Công",respond.message, "success");
-                     setTimeout(() => {location.reload()}, 1200);
+                     //setTimeout(() => {console.log(respond.providers);}, 1200);
+                     const body=document.getElementById('body');
+                     document.getElementById("form-add-provider").reset();
+                     var i=0;
+                     var html=respond.providers.map(e=>{
+                      i++;
+                            return `  <tr>
+                      <td>${i}</td>
+                      <td>${e.name}</td>
+                      <td>${e.phones}</td>
+                      
+                    <td>${e.address}</td>
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="/admin/providers/list/${e.id}">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                      <a href="#" class="btn btn-danger btn-sm" onclick="removeRow(${e.id}, '/admin/providers/destroy')">
+                      <i class="fas fa-trash"></i>
+                      </a>
+                    </td>
+                    </tr>`;
+                  
+                     });
+                     body.innerHTML=html.join('')
                   } 
                   else  {
                       swal("Thêm Thất Bại", respond.message, "error");

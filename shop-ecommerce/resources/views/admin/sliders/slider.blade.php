@@ -8,7 +8,7 @@
 
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Danh Sách thanh trược</h3>
+      <h3 class="card-title">Danh sách ảnh trình chiếu</h3>
 
       <div class="card-tools">
         @if(Session::has('success'))
