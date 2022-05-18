@@ -30,7 +30,7 @@ use \App\Http\Controllers\Admin\RoleController;
 Route::get('/admin/logout',[LoginController::class,'logout'])->name('logout.admin');
 /*--------Check  Login admin-----------*/
 Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
-     
+     // Thống kê
       Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard') ;
       //Products
       Route::middleware(['checkrole'])->prefix('/products')->group(function(){
@@ -151,6 +151,8 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
         Route::DELETE('/destroy',[RoleController::class,'destroy']);//handl
       
        });
+       
+    
 
   });
 

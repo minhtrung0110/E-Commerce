@@ -5,15 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\StaffService;
+use App\Http\Services\OrderService;
+use App\Http\Services\OrderDetailService;
 use App\Models\Staff;
+use App\Http\Services\CustomerService;
 use Illuminate\Support\Facades\Session;
 class DashboardController extends Controller
 {
     protected $staffService;
+    protected $orderDetailService;
+    protected $orderService;
+    protected $customerService;
 
-    public function __construct(StaffService $staffService)
+    public function __construct(StaffService $staffService, OrderDetailService $orderDetailService,OrderService $orderService, CustomerService $customerService)
     {
         $this->staffService = $staffService;
+        $this->orderDetailService = $orderDetailService;
+        $this->customerService = $customerService;
+        $this->orderService = $orderService;
     }
     /**
      * Display a listing of the resource.
@@ -25,6 +34,8 @@ class DashboardController extends Controller
         return view('admin.dashboard',[
             'title'=>'Quản Trị Website Bán Hàng',
             'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
+            'statisticsGroupProduct'=> $this->orderDetailService->statisTical()
+
         ]);
     }
 

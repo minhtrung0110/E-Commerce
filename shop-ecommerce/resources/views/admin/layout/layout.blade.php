@@ -118,7 +118,10 @@
   </aside>
 {{-- -------------------------------------------------  Begin content main------------------------------ --}}
   <!-- Content Wrapper. Contains page content -->
-  @yield('main-content')
+  <div class="content-wrapper">
+    @yield('main-content')
+  </div>
+  
   {{-- --------------------------------------------------------end content main----------------------------------- --}}
   <!-- /.content-wrapper -->
   {{-- <footer class="main-footer">
@@ -174,11 +177,9 @@
 {{-- ajax-removeRow --}}
 <script src="{{asset('template/js/remove.js')}}"></script>
 <script src="{{asset('template/js/handle.js')}}"></script>
-<script src="{{asset('template/js/validator.js')}}">
-
-</script>
-
+<script src="{{asset('template/js/validator.js')}}"></script>
 <script src="{{asset('template/js/uploadFile.js')}}"></script>
+<script src="{{asset('dashboard/dist/js/renderChart.js')}}"></script>
 
 @yield('js-ckeditor')
 </body>
