@@ -25,7 +25,7 @@
           <form action="" method="post" id="form-search-product">
 
               <div class="input-group-append">
-                  <input type="search" name="search" id=""   >
+                  <input type="search" name="search" id="" placeholder="search..."  style="outline: none" >
                   @csrf
                 <button id="search_rating" type="submit" class="btn btn-default">
                   <i class="fas fa-search"></i>
@@ -56,7 +56,7 @@
         </tr>
         
       </thead>
-      <tbody>
+      <tbody id="body_product">
         @if(count($products)==0)
         
           <tr>
@@ -99,14 +99,11 @@
             <img src="{{asset('storage/uploads/'.$product->img)}}" width="100px">
           </a></td>
       
-          <td>{!! App\Helpers\helper::active($product->active) !!}</td>
+          <td><button class="btn-toggle" onclick="handleToggle({{$product->active}},{{$product->id}})">{!! App\Helpers\helper::active($product->active) !!}</button></td>
           <td><a class="btn btn-primary btn-sm" href="/admin/products/edit/{{ $product->id }}">
             <i class="fas fa-edit"></i>
         </a>
-           {{-- <a href="#" class="btn btn-danger btn-sm"
-              onclick="removeRow({{ $product->id }}, '/admin/products/destroy')">
-         <i class="fas fa-trash"></i>
-     </a> --}}
+           
           </td>
         </tr>
             
@@ -118,3 +115,78 @@
   </div>
 
 @endsection 
+<script>
+function handleToggle(active,id){
+  $.ajax({
+                    type: 'POST',
+                    datatype: 'JSON',
+                    data: {id:id,active:active},
+                    url: '/admin/products/active',
+                    success: function (respond) {
+                          if (respond.error !== true ) {       
+                          const body_product=document.getElementById('body_product');
+                          var key=0;
+                          var length_product=respond.products.length
+                          var html=respond.products.map(e=>{
+                            var str='<span class="btn btn-danger btn-xs">Vô Hiệu</span>';
+                            if(e.active==1){
+                              str='<span class="btn btn-success btn-xs">Hoạt Động</span>';
+                            }
+                           
+                            for(var i=0;i<length_product;i++){
+                              var color='';
+                              if(e.amount >=10){
+                                color='Green';
+                              }else if(e.amount <= 3){
+                                      color='red';
+                                    }else {
+                                      color="orange";
+                                    }
+                            }
+                            
+                           key++;
+                            return `<tr>
+          
+                              <th scope="row">${key}</th>
+                              <td>${e.name}</td>
+                              <td>${e.name_product}</td>
+                              <td>${e.description}</td>
+                              
+                              <td>
+                             
+                            
+                                    <div style="background:${color};" class="noti_check">
+                                      <p  class="text-center">${e.amount}</p>
+                                    </div>
+                                </td>
+                              <td>${e.price}</td>
+                              <td><a href="{{asset('storage/uploads/${e.img}')}}" target="_blank">
+                                <img src="{{asset('storage/uploads/${e.img}')}}" width="100px">
+                              </a></td>
+                          
+                              <td><button class="btn-toggle" onclick="handleToggle(${e.active},${e.id})">
+                                ${str} </button></td>
+                              <td>
+                                <a class="btn btn-primary btn-sm" href="/admin/products/edit/${e.id}">
+                                <i class="fas fa-edit"></i>
+                               </a>
+                              
+                              
+                              </td>
+                            </tr> `;
+                  
+                     });
+                         body_product.innerHTML=html.join('')          
+                            
+                          
+                        } 
+                        else  {
+                            swal("Thất Bại", respond.message, "error");
+                           
+                        }
+
+                    
+                    }
+                })
+}
+</script>

@@ -111,6 +111,23 @@ class ProductService{
         }
         return true;
     }
+    public function updateActive($request){
+        if($request->input('active')==1){
+            $active=0;
+        }else{
+            $active=1;
+
+        }
+        try {
+            Product::where('id',$request->input('id'))->update([
+                
+                'active'=>(int)$active
+            ]);
+        } catch (\Exception $err) {
+            return false;
+        }
+        return true;
+    }
     public function update($request,$id){
         try {
             Product::where('id',$id)->update([

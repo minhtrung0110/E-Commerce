@@ -185,7 +185,24 @@ class ProductController extends Controller
         
         return view('admin.products.edit_product',compact('title','product','staff','categorys','thums'));
     }
-
+    public function active(Request $request){
+        $result=$this->productService->updateActive($request);
+        if ($result)  
+        {
+           
+           return response()->json([
+              'error' => false,
+              'products'=>$this->productService->getAllProduct()
+          ]);
+        }
+      else
+         {
+           return response()->json([
+               'error' => true,
+              'message' => "Có lỗi!!!"
+          ]);
+         }
+    }
     /**
      * Show the form for editing the specified resource.
      *

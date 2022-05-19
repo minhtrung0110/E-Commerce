@@ -36,6 +36,8 @@ Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
       Route::middleware(['checkrole'])->prefix('/products')->group(function(){
         Route::get('/list',[ProductController::class,'index'])->name('admin.products.list');
         Route::post('/list',[ProductController::class,'search']);
+        Route::post('/active',[ProductController::class,'active']);
+        
        Route::get('/add',[ProductController::class,'create'])->name('admin.product.add');
        Route::post('/add',[ProductController::class,'store']);//handle
        Route::DELETE('/destroy',[ProductController::class,'destroy'])->name('product.delete');//handle
