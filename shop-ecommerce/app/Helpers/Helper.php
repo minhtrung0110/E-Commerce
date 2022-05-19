@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\OrderService;
+use App\Http\Services\CustomerService;
 use App\Http\Services\RoleService;
 use App\Http\Services\ProviderService;
 use App\Http\Services\PaymentMethodService;
@@ -848,6 +849,26 @@ class Helper
             ';
            
             
+        }
+        return $html;
+    }
+
+    /*----------------------------------------------------Statictis********************************/
+    public function renderListCustomerFail($listCustomers){
+        $html = '';
+      //  if (is_null($listCustomers) return $html;
+        foreach ($listCustomers as $key=> $item) {
+            $customer=\App\Http\Services\CustomerService::getInFo($item->id);
+           $html .= '
+           <tr>
+           <td>'.++$key.'</td>
+           <td>'.$customer->first_name.'</td>
+           <td>
+           '.$customer->last_name.'
+           </td>
+           <td>'.$item->number_cancel.'</td>
+         </tr>
+            ';
         }
         return $html;
     }

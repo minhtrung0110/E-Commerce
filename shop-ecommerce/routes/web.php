@@ -32,6 +32,7 @@ Route::get('/admin/logout',[LoginController::class,'logout'])->name('logout.admi
 Route::middleware(['checkloginadmin'])->prefix('/admin')->group(function(){
      // Thống kê
       Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard') ;
+      Route::post('/',[DashboardController::class,'loadChart']) ;
       //Products
       Route::middleware(['checkrole'])->prefix('/products')->group(function(){
         Route::get('/list',[ProductController::class,'index'])->name('admin.products.list');

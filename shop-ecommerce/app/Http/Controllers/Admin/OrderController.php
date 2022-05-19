@@ -152,7 +152,7 @@ class OrderController extends Controller
         //
     }
     public function showDetail(Request $request){
-           $title='Chi tiết đơn hàng';
+           $title='Chi Tiết Đơn Hàng';
             $staff=$this->staffService->getInFo(Session::get('staff_id'));
             $orderItems=$this->orderService->getItem($request->id);
             $id_print=$request->id;
@@ -161,7 +161,7 @@ class OrderController extends Controller
     }
     public function print(Request $request){
         
-             $title='In đơn hàng';
+             $title='In Đơn Hàng';
             $staff=$this->staffService->getInFo(Session::get('staff_id'));
             $orderItems=$this->orderService->getItem($request->id);
             

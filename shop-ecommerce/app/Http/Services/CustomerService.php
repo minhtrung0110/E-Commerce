@@ -158,6 +158,12 @@ class CustomerService {
          }
          return true;
         }
+
+        /** Statictis-------- */
+        public function getStatisticsNewCustomerRegistery(){
+            return Customer::where('created_at','>',date('Y-m-d'))->count();
+        }
+        
 }
    
 

@@ -28,7 +28,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('dashboard/plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="{{asset('dashboard/dist/css/style.css')}}">
- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" ></script>
   <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
   <script src="{{asset('/template/vendor/sweetalert/sweetalert.min.js')}}"></script>
 </head>
@@ -151,7 +151,7 @@
 <!-- Bootstrap 4 -->
 <script src="{{asset('dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
-<script src="{{asset('dashboard/plugins/chart.js/Chart.min.js')}}"></script>
+
 <!-- Sparkline -->
 <script src="{{asset('dashboard/plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->

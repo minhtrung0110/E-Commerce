@@ -115,4 +115,36 @@ class OrderService{
            return false;
        }
     }
+
+    /*---Statistics****************/
+    public function getStatisticsOrderInMonth($month,$year){
+        return Orders::join('order_details','order_details.order_id','=','orders.id');
+    }
+
+    // đơn hàng mới:
+    public function getStatisticsNewOrder(){
+        return Orders::where('created_at','>',date('Y-m-d'))->count();
+        //select count(*) as new_order from orders where created_at > '2022-05-19'
+    }
+    public function getStatisticsNewRevenue(){
+        return Orders::where('created_at','>',date('Y-m-d'))->sum('total_price');
+        //select count(*) as new_order from orders where created_at > '2022-05-19'
+    }
+    public function getStatisticsNewCanceled(){
+        return Orders::where('status',5)->where('updated_at','>',date('Y-m-d'))->count();
+        //select count(*) as new_order from orders where created_at > '2022-05-19'
+    }
+    public function getStatisticsMostCancelOrder(){
+        return Orders::select('customers.id',DB::raw('COUNT(*)AS number_cancel'))
+        ->join('customers','customers.id','=','orders.customer_id')
+        ->where('orders.status',5)->where('orders.updated_at','>',date('Y-m-d'))
+        ->groupby('customers.id')
+        ->skip(0)->take(5)->get();
+    }
+    public function getOrderInLongTime($start,$end){
+        return Orders::select('created_at',DB::raw('COUNT(*)AS amount_order'))
+        ->groupBy('created_at')
+        ->havingRaw('created_at  BETWEEN ? AND ?',  [''.$start.'', ''.$end.''])->get();
+        //SELECT created_at, COUNT(created_at) FROM orders GROUP BY created_at HAVING (created_at BETWEEN '2022-05-14' AND '2022-05-20')
+    }
 }

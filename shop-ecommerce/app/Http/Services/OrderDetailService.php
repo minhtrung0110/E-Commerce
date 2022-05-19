@@ -20,11 +20,12 @@ class OrderDetailService{
                         'orders.address as address_orders','orders.created_at','orders.discount_value','images.img']);
     }
     //Thống kê
-    public function statisTical(){
+    public function statisTical($month){
      
-        return DB::select('select group_products.name, count(group_products.id) as Tong from order_details INNER JOIN products ON products.id=
-                            order_details.product_id INNER JOIN group_products ON group_products.id=products.group_id GROUP BY group_products.name ');
-  
+        return DB::select('select group_products.name, count(group_products.id) as Tong from order_details 
+        INNER JOIN products ON products.id= order_details.product_id 
+        INNER JOIN group_products ON group_products.id=products.group_id
+         WHERE MONTH(order_details.created_at) = '.$month.'  GROUP BY group_products.name ');
     }
   
 }

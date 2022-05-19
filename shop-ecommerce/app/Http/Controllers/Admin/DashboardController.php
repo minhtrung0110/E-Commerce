@@ -30,11 +30,30 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {   $lastdate=mktime(0, 0, 0, date("m")  , date("d")-8, date("Y"));
         return view('admin.dashboard',[
             'title'=>'Quản Trị Website Bán Hàng',
             'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
-            'statisticsGroupProduct'=> $this->orderDetailService->statisTical()
+            'statisticsGroupProduct'=> $this->orderDetailService->statisTical(date('m')),
+            'number_new_order'=>$this->orderService->getStatisticsNewOrder(),
+            'number_new_revenue'=>$this->orderService->getStatisticsNewRevenue(),
+            'number_new_customer_registery'=>$this->customerService->getStatisticsNewCustomerRegistery(),
+            'number_new_order_cancel'=>$this->orderService->getStatisticsNewCanceled(),
+            'top_customer_cancel_order'=>$this->orderService->getStatisticsMostCancelOrder(),
+            'dataChartOrder'=>$this->orderService->getOrderInLongTime(date('Y-m-d', $lastdate),date('Y-m-d'))
+
+        ]);
+    }
+
+    public function loadChart(Request $request){
+        return view('admin.dashboard',[
+            'title'=>'Quản Trị Website Bán Hàng',
+            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
+            'statisticsGroupProduct'=> $this->orderDetailService->statisTical(date('m')),
+            'number_new_order'=>$this->orderService->getStatisticsNewOrder(),
+            'number_new_revenue'=>$this->orderService->getStatisticsNewRevenue(),
+            'number_new_customer_registery'=>$this->customerService->getStatisticsNewCustomerRegistery(),
+            'number_new_order_cancel'=>$this->orderService->getStatisticsNewCanceled(),
 
         ]);
     }
