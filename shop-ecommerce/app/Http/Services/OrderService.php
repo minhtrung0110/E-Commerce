@@ -115,4 +115,28 @@ class OrderService{
            return false;
        }
     }
+
+    public function Order_InDate($start_date, $end_date){
+     
+        return DB::select('SELECT created_at, COUNT(created_at) 
+        FROM `orders` 
+        GROUP BY created_at 
+        HAVING (created_at BETWEEN $start_date AND $end_date)');
+  
+    }
+
+    public function Order_turnoverInMonth(){
+        return DB::select('SELECT SUM(total_price) 
+        FROM `orders` 
+        WHERE MONTH(created_at) = MONTH(CURRENT_DATE())');
+  
+    }    
+
+    public function Order_cancelInMonth(){
+        return DB::select('SELECT COUNT(*) 
+        FROM `orders` 
+        WHERE MONTH(created_at) = MONTH(CURRENT_DATE()) 
+        AND status = 2;');
+  
+    }
 }
