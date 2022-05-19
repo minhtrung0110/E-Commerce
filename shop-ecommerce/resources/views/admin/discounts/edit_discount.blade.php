@@ -11,7 +11,6 @@
  
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
     {{-- code --}}
    
       <div class="text-center">
@@ -79,7 +78,6 @@
         </div>
           <button type="submit" class="btn btn-primary">Cập nhập</button>
         </form>
-  </div>
 @endsection 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

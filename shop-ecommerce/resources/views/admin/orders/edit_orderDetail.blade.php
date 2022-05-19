@@ -9,7 +9,6 @@
 @endsection
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
       {{-- code --}}
       <a href="/admin/orders/list" class="btn btn-success">Quay lại</a>
       <div class="text-center">
@@ -36,7 +35,6 @@
         </div>
         <button type="submit" class="btn btn-success btn-sm">Cập nhập</button>
     </form>
-  </div>
 @endsection
 <script>
 

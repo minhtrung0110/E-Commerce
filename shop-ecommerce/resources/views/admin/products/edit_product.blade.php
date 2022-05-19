@@ -20,7 +20,6 @@
  
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
     {{-- code --}}
       <div class="text-center ">
         <h1>Cập nhập sản phẩm</h1>
@@ -114,7 +113,6 @@
           </div>
         <button type="submit" class="btn btn-primary">Cập nhập</button>
       </form>
-  </div>
 
   
 @endsection 

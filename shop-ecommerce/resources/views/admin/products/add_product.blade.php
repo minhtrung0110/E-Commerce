@@ -19,7 +19,6 @@
  
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper ">
     {{-- code --}}
         
         <div class="text-center ">
@@ -106,7 +105,6 @@
               <button type="submit" class="btn btn-primary">Thêm</button>
         </form>
       
-</div>
 
 @endsection 
 
