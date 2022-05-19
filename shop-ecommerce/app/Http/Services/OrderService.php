@@ -116,7 +116,6 @@ class OrderService{
        }
     }
 
-<<<<<<< HEAD
     /*---Statistics****************/
     public function getStatisticsOrderInMonth($month,$year){
         return Orders::join('order_details','order_details.order_id','=','orders.id');
@@ -147,7 +146,8 @@ class OrderService{
         ->groupBy('created_at')
         ->havingRaw('created_at  BETWEEN ? AND ?',  [''.$start.'', ''.$end.''])->get();
         //SELECT created_at, COUNT(created_at) FROM orders GROUP BY created_at HAVING (created_at BETWEEN '2022-05-14' AND '2022-05-20')
-=======
+
+    }
     public function Order_InDate($start_date, $end_date){
      
         return DB::select('SELECT created_at, COUNT(created_at) 
@@ -170,6 +170,5 @@ class OrderService{
         WHERE MONTH(created_at) = MONTH(CURRENT_DATE()) 
         AND status = 2;');
   
->>>>>>> fd8ad1444fd6d2d43128f3d67428ce5193b0a3b8
     }
 }
