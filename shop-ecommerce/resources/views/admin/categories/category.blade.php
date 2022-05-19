@@ -11,7 +11,6 @@
  
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
     <div class="text-center">
       <h3>Danh sách danh mục</h3>
     </div>
@@ -57,5 +56,5 @@
       
       </tbody>
     </table>
-  </div>
+
 @endsection 

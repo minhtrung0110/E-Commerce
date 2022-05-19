@@ -4,7 +4,7 @@
 @endsection 
 
 @section('main-content')
-<div class="content-wrapper">
+
 
 <div class="card">
   <div class="text-center">
@@ -79,7 +79,7 @@
     <!-- /.card-body -->
   </div>
   
-</div>
+
 
 @endsection
 

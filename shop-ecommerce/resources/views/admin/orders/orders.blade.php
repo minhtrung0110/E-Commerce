@@ -13,7 +13,6 @@
 @endsection
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
     {{-- code --}}
     @if(Session::has('success'))
 
@@ -149,7 +148,7 @@
       
       </tbody>
     </table>
-  </div>
+
 @endsection
 <script>
 

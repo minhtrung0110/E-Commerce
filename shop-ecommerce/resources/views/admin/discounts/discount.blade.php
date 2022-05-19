@@ -11,7 +11,6 @@
  
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
     {{-- code --}}
     <div class="text-center">
       <h3>Danh sách khuyến mãi</h3>
@@ -97,7 +96,7 @@
       
       </tbody>
     </table>
-  </div>
+
 @endsection 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
