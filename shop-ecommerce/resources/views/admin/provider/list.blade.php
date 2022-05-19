@@ -4,7 +4,7 @@
 @endsection 
 
 @section('main-content')
-<div class="content-wrapper">
+
 
 
   <div class="row">
@@ -90,7 +90,7 @@
         </div>
         <!-- /.card-body -->
       </div>
-</div>
+
 <script>
 
 const obj_product=JSON.parse('<?= $providers ?>');

@@ -4,7 +4,7 @@
 @endsection
 
 @section('main-content')
-    <div class="content-wrapper row">
+    <div class="row">
 
         <div class="card col-md-10 card-info" >
             

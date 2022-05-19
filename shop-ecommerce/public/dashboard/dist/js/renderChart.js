@@ -1,18 +1,17 @@
-const ctx1 = document.getElementById("donutChart");
-sum=data.reduce((total,item,index) => {
+//group-product ---> 
+const chartGroupProduct = document.getElementById("pieChart");
+sum=dataGroupProduct.reduce((total,item,index) => {
     return total+item.Tong
 },0)
 
-num=data.map((item,index)=>{
-    return (item.Tong/sum)*100
-    
+num=dataGroupProduct.map((item,index)=>{
+    return (item.Tong/sum)*100  
 })
-nameGroupProduct=data.map((item,index)=>{
-    return item.name
-    
+nameGroupProduct=dataGroupProduct.map((item,index)=>{
+    return item.name  
 })
 console.log(num);
-const myChart = new Chart(ctx1, {
+const myChart = new Chart(chartGroupProduct, {
   type: "pie",
   data: {
     labels: nameGroupProduct,

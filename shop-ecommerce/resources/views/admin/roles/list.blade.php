@@ -5,7 +5,7 @@
 
 @section('main-content')
 
-    <div class="content-wrapper row">
+    <div class=" row">
         <div class="col-md-7 card">
           <div class="card-header">
             <h3 class="card-title">Danh Sách Các Quyền</h3>
