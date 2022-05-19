@@ -5,8 +5,6 @@
 
 @section('main-content')
 
-    <div class="content-wrapper">
-
         <div class="card card-success  " style="padding:1em 8em;min-height: ">
             <div class="card-header">
                 <h3 class="card-title">Sửa Khách Hàng</h3>

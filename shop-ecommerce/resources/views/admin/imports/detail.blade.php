@@ -9,7 +9,6 @@
 @endsection
 @section('main-content')
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
   {{-- code --}}
   
   <div class="card card-success  " style="padding:1em 8em;min-height: ">
@@ -25,5 +24,4 @@
     </tbody></table>
     <a href="{{Route('admin.imports.list')}}" class="btn btn-success ">Quay lại</a>
     {{-- <a href="/admin/orders/print/" class="btn btn-info ">IN</a> --}}
-  </div>
 @endsection

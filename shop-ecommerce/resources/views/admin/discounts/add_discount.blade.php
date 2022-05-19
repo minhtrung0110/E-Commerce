@@ -11,7 +11,6 @@
  
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
 
       <div class="text-center">
           <h1>Thêm mã giảm giá</h1>
@@ -76,7 +75,6 @@
         </div>
           <button type="submit" class="btn btn-primary">Thêm</button>
         </form>
-  </div>
 @endsection 
 <script>
    const obj_discount=JSON.parse('<?= $discounts?>')

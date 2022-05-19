@@ -11,7 +11,6 @@
  
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
     {{-- code --}}
     <div class="text-center ">
         <h1>Thêm danh mục</h1>
@@ -40,8 +39,7 @@
 
         <button type="submit" class="form-submit btn btn-primary">Thêm</button>
       </form>
- 
-  </div>
+
 @endsection 
 <script>
    const obj_category=JSON.parse('<?= $categorys?>')

@@ -11,7 +11,6 @@
  
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
     {{-- code --}}
     <div class="text-center ">
         <h1>Sửa danh mục</h1>
@@ -49,7 +48,6 @@
         <button type="submit" class="btn btn-primary">Cập nhập</button>
       </form>
  @endforeach
-  </div>
 @endsection 
 <script>
   
