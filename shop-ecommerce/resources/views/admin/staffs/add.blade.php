@@ -58,7 +58,7 @@
                     <!-- text input -->
                     <div class="form-group col-sm-6">
                         <label>Mật Khẩu:</label>
-                        <input type="text" name='password' id='password' class="form-control" placeholder="Enter ...">
+                        <input type="password" name='password' id='password' class="form-control" placeholder="Enter ...">
                         <span class="form-message"></span>
                     </div>
                     <div class="form-group col-sm-12">
