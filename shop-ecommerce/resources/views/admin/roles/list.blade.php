@@ -10,7 +10,7 @@
           <div class="card-header">
             <h3 class="card-title">Danh Sách Các Quyền</h3>
             <div class="card-tools">
-              <button class="btn btn-dark" onclick="document.getElementById('form-add-role').style.display='block'">Thêm Nhân Viên</button>
+              <button class="btn btn-dark" onclick="document.getElementById('form-add-role').style.display='block'">Thêm Quyền</button>
           
           </div>
           </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="col-md-5 card">
           <div class="card-header">
-            <h3 class="card-title">Danh Sách Các Chức Năng</h3>
+            <h3 class="card-title">Danh Sách Các Chức Vụ</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -41,7 +41,7 @@
               <thead>
                 <tr>
                   <th style="width: 25%" >Mã </th>
-                  <th style="width: 70%" >Tên Chức Năng</th>
+                  <th style="width: 70%" >Tên Chức Vụ</th>
                 
                 </tr>
               </thead>
