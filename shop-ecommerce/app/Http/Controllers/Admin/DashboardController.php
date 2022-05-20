@@ -29,8 +29,46 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   $lastdate=mktime(0, 0, 0, date("m")  , date("d")-8, date("Y"));
+    public function index(Request $request)
+    {  
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $lastdate=mktime(0, 0, 0, date("m")  , date("d")-8, date("Y"));
+       // dd($request->input('start_date'));
+        if($request->has('start_date') && $request->has('end_date')){
+        $startDate=(!is_null($request->input('start_date')))?$request->input('start_date'):date('Y-m-d', $lastdate);
+        $endDate=(!is_null($request->input('end_date')))?$request->input('end_date'): date('Y-m-d H:i:s');
+        }
+        else {
+            $startDate= date('Y-m-d', $lastdate);
+            $endDate=date('Y-m-d H:i:s');
+        }
+      
+       // $this->orderService->getOrderInLongTime(date('Y-m-d', $lastdate),date('Y-m-d'));
+
+                   return view('admin.dashboard',[
+            'title'=>'Quản Trị Website Bán Hàng',
+            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
+            'statisticsGroupProduct'=> $this->orderDetailService->statisTical(date('m')),
+            'number_new_order'=>$this->orderService->getStatisticsNewOrder(),
+            'number_new_revenue'=>$this->orderService->getStatisticsNewRevenue(),
+            'number_new_customer_registery'=>$this->customerService->getStatisticsNewCustomerRegistery(),
+            'number_new_order_cancel'=>$this->orderService->getStatisticsNewCanceled(),
+            'top_customer_cancel_order'=>$this->orderService->getStatisticsMostCancelOrder(),
+            'dataChartOrder'=>$this->orderService->getOrderInLongTime( $startDate, $endDate),
+            'dataChartRevenue'=>$this->orderService->getRevenueInLongTime( $startDate, $endDate),
+            'start_date_Chart'=>$startDate,
+            'end_date_Chart'=>$endDate
+
+        ]);
+    }
+
+    public function loadChart(Request $request){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $lastdate=mktime(0, 0, 0, date("m")  , date("d")-8, date("Y"));
+        $startDate=date('Y-m-d', $lastdate);
+        $endDate=date('Y-m-d H:i:s');
+        $this->orderService->getOrderInLongTime(date('Y-m-d', $lastdate),date('Y-m-d'));
+        dd($request->all());
         return view('admin.dashboard',[
             'title'=>'Quản Trị Website Bán Hàng',
             'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
@@ -40,20 +78,9 @@ class DashboardController extends Controller
             'number_new_customer_registery'=>$this->customerService->getStatisticsNewCustomerRegistery(),
             'number_new_order_cancel'=>$this->orderService->getStatisticsNewCanceled(),
             'top_customer_cancel_order'=>$this->orderService->getStatisticsMostCancelOrder(),
-            'dataChartOrder'=>$this->orderService->getOrderInLongTime(date('Y-m-d', $lastdate),date('Y-m-d'))
-
-        ]);
-    }
-
-    public function loadChart(Request $request){
-        return view('admin.dashboard',[
-            'title'=>'Quản Trị Website Bán Hàng',
-            'staff'=>$this->staffService->getInFo(Session::get('staff_id')),
-            'statisticsGroupProduct'=> $this->orderDetailService->statisTical(date('m')),
-            'number_new_order'=>$this->orderService->getStatisticsNewOrder(),
-            'number_new_revenue'=>$this->orderService->getStatisticsNewRevenue(),
-            'number_new_customer_registery'=>$this->customerService->getStatisticsNewCustomerRegistery(),
-            'number_new_order_cancel'=>$this->orderService->getStatisticsNewCanceled(),
+            'dataChartOrder'=>$this->orderService->getOrderInLongTime( $startDate, $endDate),
+            'start_date_Chart'=>$startDate,
+            'end_date_Chart'=>$endDate
 
         ]);
     }

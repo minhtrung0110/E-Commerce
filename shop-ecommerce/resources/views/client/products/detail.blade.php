@@ -54,7 +54,7 @@
                         </h4>
 
                         <span class="mtext-106 cl2">
-                            {{ number_format($product->price) }} VNĐ
+                            <strong style="color:red">{{ number_format($product->price) }} VNĐ</strong>
                         </span>
 
                         <div class="stext-102 cl3 p-t-23">

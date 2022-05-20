@@ -9,7 +9,7 @@
                 <ul>
                     @foreach ($group_products as $item)
                     <li class="p-b-10">
-                        <a href="" class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="/products/{{$item->id}}-{{$item->name}}.html" class="stext-107 cl7 hov-cl1 trans-04">
                           {{$item->name}}
                         </a>
                     </li>

@@ -148,6 +148,12 @@ class OrderService{
         //SELECT created_at, COUNT(created_at) FROM orders GROUP BY created_at HAVING (created_at BETWEEN '2022-05-14' AND '2022-05-20')
 
     }
+    public function getRevenueInLongTime($start,$end){
+        return Orders::select('created_at',DB::raw('SUM(total_price)AS total_price'))
+        ->groupBy('created_at')
+        ->havingRaw('created_at  BETWEEN ? AND ?',  [''.$start.'', ''.$end.''])->get();
+        //SELECT created_at, COUNT(created_at) FROM orders GROUP BY created_at HAVING (created_at BETWEEN '2022-05-14' AND '2022-05-20')
+    }
     public function Order_InDate($start_date, $end_date){
      
         return DB::select('SELECT created_at, COUNT(created_at) 

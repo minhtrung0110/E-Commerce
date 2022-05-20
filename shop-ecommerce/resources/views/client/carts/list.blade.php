@@ -28,7 +28,7 @@
                                     @endphp
                                     <tbody>
                                         <tr class="table_head">
-                                            <th class="column-1">Sản Phẩm</th>
+                                            <th class="column-1"  style="padding-left:30px">Sản Phẩm</th>
                                             <th class="column-2"></th>
                                             <th class="column-3">Giá</th>
                                             <th class="column-4">Số Lượng</th>
@@ -42,7 +42,7 @@
                                                 $total += $price_product;
                                             @endphp
                                             <tr class="table_row">
-                                                <td class="column-1">
+                                                <td class="column-1" style="padding-left:30px">
                                                     <div class="how-itemcart1">
                                                         <img src="/storage/uploads/{{ $product->img }}" alt="IMG">
                                                     </div>
@@ -69,7 +69,7 @@
                                                 </td>
                                                 <td class="column-5">{{ number_format($price_product) }}</td>
                                                 <td class="p-r-15">
-                                                    <a href="/cart/delete/{{ $product->id }}">Xoá</a>
+                                                    <a    class="flex-c-m stext-100 cl2 size-100 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"href="/cart/delete/{{ $product->id }}">Xoá</a>
                                                 </td>
                                             </tr>
                                         @endforeach

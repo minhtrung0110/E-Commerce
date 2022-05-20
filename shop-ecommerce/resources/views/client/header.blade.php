@@ -17,7 +17,7 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="title-menu-narbar ">
-                         <a href="/" class="mtext-100 cl2">TRANG CHỦ</a>
+                         <a href="/" class="mtext-100 cl2 cl-w">TRANG CHỦ</a>
                            
                         </li>
 
