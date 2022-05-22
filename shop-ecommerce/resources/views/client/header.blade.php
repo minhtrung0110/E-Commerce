@@ -26,7 +26,9 @@
                            
                         </li>
 
-
+                        <li class="title-menu-narbar">
+                            <a href="{{Route('home.about')}}">VỀ CỬA HÀNG</a>
+                        </li>
 
                         <li class="title-menu-narbar">
                             <a href="{{Route('home.contact')}}">LIÊN HỆ</a>

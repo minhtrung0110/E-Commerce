@@ -84,17 +84,17 @@
         <!-- Main row -->
 
         <div class="row">
-            <form class="card col-md-12 row" method="get" action="">
-                <div class="card-header">
+            <form class="card card card-warning col-md-12 row" method="get" action="">
+                <div class="card-header ">
                     <h3 class="card-title">Thống Kê Tình Hình Kinh Doanh</h3>
                    
                 </div>
                 <div class="card-body row " style="height:73px">
                   <div class="col-md-7"></div>
-                    <input type="date" name="start_date" class=" col-md-2 " style="height:32px">
-                    <span class="">Đến: </span>
-                    <input type="date" name="end_date" class=" col-md-2 " style="height:32px">
-                    <button type="submit" class="  " style="height:32px"><i class="fas fa-search"></i></button>
+                    <input type="date" name="start_date" class=" form-control col-md-2 " style="height:32px">
+                    <span class="" >  Đến:  </span>
+                    <input type="date" name="end_date" class=" form-control col-md-2 " style="height:32px">
+                    <button type="submit" class="btn btn-info  " style="height:32px"><i class="fas fa-search"></i></button>
                 </div>
 
             </form>

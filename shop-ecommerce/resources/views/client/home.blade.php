@@ -21,7 +21,19 @@
             {!! \App\Helpers\Helper::renderProductNewArrival($new_arrival_products)!!}
 
            
+        </div>
 
+        <div class="p-b-10">
+            <h3 class="ltext-103 cl5">
+                Sản Phẩm Bán Chạy
+            </h3>
+        </div>
+        <div class="row isotope-grid">
+            
+            {!! \App\Helpers\Helper::renderProductBestSeller($best_seller_products)!!}
+
+           
+        </div>
             
 
         <!-- Load more -->

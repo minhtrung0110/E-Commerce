@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Session;
 
 class OrderDetailService{
     
+    public function getBestSellerProducts(){
+        return  OrderDetail::select('order_details.product_id',DB::raw('SUM(order_details.amount ) AS Amount'))
+        ->groupBy('order_details.product_id')
+        ->orderBy('Amount', 'DESC')
+        ->skip(0)->take(8)
+        ->get();
+    }
     public function getItem($id){
         return OrderDetail::join('orders','orders.id','=','order_details.order_id')
                         ->join('products','products.id','=','order_details.product_id')
