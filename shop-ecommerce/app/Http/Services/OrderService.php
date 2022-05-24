@@ -143,6 +143,7 @@ class OrderService{
     }
     public function getOrderInLongTime($start,$end){
         return Orders::select(DB::raw('DATE(created_at) as date'),DB::raw('COUNT(*)AS amount_order'))
+       // ->where('status',6)
         ->groupBy('date')
         ->havingRaw('date  BETWEEN ? AND ?',  [''.$start.'', ''.$end.''])->get();
         //SELECT created_at, COUNT(created_at) FROM orders GROUP BY created_at HAVING (created_at BETWEEN '2022-05-14' AND '2022-05-20')

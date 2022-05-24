@@ -160,7 +160,7 @@
                         <span class="form-message"></span>
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="email" class="form-label" class="mtext-101 cl2">Nhập Email</label>
+                        <label for="email"  class="mtext-101 cl2">Nhập Email</label>
                         <input id="email" name="email" type="text" placeholder="VD: email@domain.com"
                             value="{{ $email }}" class="form-control">
                         <span class="form-message"></span>
@@ -195,7 +195,7 @@
                         <span class="form-message"></span>
                     </div>
                     <div class="form-group col-md-10 mb-3">
-                        <label for="address" class="mtext-101 cl2">Address</label>
+                        <label for="address" class="mtext-101 cl2">Địa Chỉ</label>
                         <input type="text" class="form-control" name="address" id="address"
                             placeholder="VD: 123 Lê Văn Qới" required>
                         <span class="form-message"></span>
