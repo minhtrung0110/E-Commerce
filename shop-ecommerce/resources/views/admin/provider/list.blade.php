@@ -94,7 +94,7 @@
 <script>
 
 const obj_product=JSON.parse('<?= $providers ?>');
-  console.log(obj_product);
+
 </script>
 @if($id_cript==0)
 <script>
@@ -106,6 +106,7 @@ const obj_product=JSON.parse('<?= $providers ?>');
           errorSelector: '.form-message',
           rules: [
               Validator.isRequired('#name_provider', 'Vui lòng nhập tên nhà cung cấp'),
+              Validator.isCheck('#name_provider',obj_product,'Tên nhà cung cấp đã có'),
               Validator.minLength('#name_provider',6),
               Validator.isRequired('#address_provider', 'Vui lòng nhập địa chỉ'),
               Validator.isRequired('#phone_provider', 'Vui lòng nhập số điện thoại'),

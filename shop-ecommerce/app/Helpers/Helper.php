@@ -499,12 +499,12 @@ class Helper
     public static function renderListOrderCustomer($orders)
     {
         $STATUS = [
-            1 => 'Chờ xác nhận',
-            2 => 'Đã xác nhận',
-            3 => 'Đang giao',
-            4 => 'Giao giao',
-            5 => 'Đã hủy',
-            6 => 'Đã thanh toán'
+            1=>'Chờ Xác Nhận',
+            2=>'Đã Xác Nhận',
+             3=>'Đang Giao Hàng',
+             4=>'Giao Hàng Thành Công',
+            5=>'Giao Hàng Thất Bại',
+            6=>'Thất bại'
         ];
 
         $html = '';
