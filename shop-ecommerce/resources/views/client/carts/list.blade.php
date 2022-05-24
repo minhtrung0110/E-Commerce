@@ -51,7 +51,7 @@
                                                         href="/detail-product/{{ $product->id }}-{{ \Str::slug($product->name_product, '-') }}.html"
                                                         class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{ $product->name_product }}
                                                 </td>
-                                                <td class="column-3">{{ $product->price }}</td>
+                                                <td class="column-3">{{ number_format($product->price) }}</td>
                                                 <td class="column-4">
                                                     <div class="wrap-num-product flex-w m-l-auto m-r-0">
                                                         <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -93,28 +93,15 @@
                     <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
                         <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
                             <h4 class="mtext-109 cl2 p-b-30">
-                                Tổng Đơn Hàng
+                                Tổng Tiền Đơn Hàng
                             </h4>
 
-                            <div class="flex-w flex-t bor12 p-b-13">
-                                <div class="size-208">
-                                    <span class="stext-110 cl2">
-                                        Tổng Tiền
-                                    </span>
-                                </div>
-
-                                <div class="size-209">
-                                    <span class="mtext-110 cl2">
-                                        {{ number_format($total) }} VNĐ
-                                    </span>
-                                </div>
-                            </div>
-
+                           
                           
-                            <div class="flex-w flex-t p-t-27 p-b-33">
+                            <div class="flex-w flex-t p-t-27 p-b-33 bor12">
                                 <div class="size-208">
                                     <span class="mtext-101 cl2">
-                                        Thành Tiền
+                                        Tổng Tiền
                                     </span>
                                 </div>
 

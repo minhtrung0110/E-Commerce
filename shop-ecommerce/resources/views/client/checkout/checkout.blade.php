@@ -232,7 +232,7 @@
                 <hr class="mb-4">
                 @csrf
                 <Button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer ">
-                    Thanh Toán</Button>
+                    ĐẶT HÀNG</Button>
 
                 </form>
             </div>

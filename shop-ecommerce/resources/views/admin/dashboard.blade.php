@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                             <canvas id="areaChartOrder" width="400" height="312" class="chartjs-render-monitor"
-                            style="min-height: 250px; height: 350px; max-height: 350px; max-width: 100%; display: block; width: 550px;"
+                            style="min-height: 250px; height: 470px; max-height: 420px; max-width: 100%; display: block; width: 550px;"
                             ></canvas>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                             <canvas id="areaChartRevenue" width="400" height="312" class="chartjs-render-monitor"
-                            style="min-height: 250px; height: 350px; max-height: 350px; max-width: 100%; display: block; width: 550px;"
+                            style="min-height: 250px; height: 450px; max-height: 450px; max-width: 100%; display: block; width: 550px;"
                             ></canvas>
                         </div>
                     </div>
