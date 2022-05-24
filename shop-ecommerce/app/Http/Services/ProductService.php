@@ -2,7 +2,7 @@
 namespace App\Http\Services;
 use App\Models\Product;
 use App\Models\Product_detail;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -22,6 +22,9 @@ class ProductService{
     }
     public function getName($id){
         return Product::where('id',$id)->get();
+    }
+    public function findByID($id){
+        return Product::where('id',$id)->first();
     }
     public function getAllProduct(){
      

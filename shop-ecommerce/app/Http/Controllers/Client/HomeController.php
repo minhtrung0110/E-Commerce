@@ -8,6 +8,7 @@ use App\Http\Services\CustomerService;
 use App\Http\Services\GroupProduct_Service;
 use App\Http\Services\ProductService;
 use App\Http\Services\CartService;
+use App\Http\Services\OrderDetailService;
 use App\Http\Services\SliderService;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
@@ -21,14 +22,16 @@ class HomeController extends Controller
     protected $cartService;
     protected $productService;
     protected $sliderService;
+    protected $orderDetailsService;
 
-    public function __construct(CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService, ProductService $productService, SliderService $sliderService)
+    public function __construct(OrderDetailService $orderDetailService,CustomerService $customerService, GroupProduct_Service $groupProductService, CartService $cartService, ProductService $productService, SliderService $sliderService)
     {
         $this->customerService = $customerService;
         $this->groupProductService = $groupProductService;
         $this->cartService = $cartService;
         $this->productService = $productService;
         $this->sliderService = $sliderService;
+        $this->orderDetailsService= $orderDetailService;
     }
     /**
      * Display a listing of the resource.
@@ -42,6 +45,7 @@ class HomeController extends Controller
             'customer' => $this->customerService->getInFo(Session::get('customer_id')),
             //  'group_products'=>$this->groupProductService->getAll(),
             'new_arrival_products' => $this->productService->getNewArrivalProducts(),
+            'best_seller_products' => $this->orderDetailsService->getBestSellerProducts(),
             'sliders' => $this->sliderService->getSliders()
             // 'products'=>'products',
             // 'group_product'=>'category',

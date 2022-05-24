@@ -32,7 +32,7 @@ const myChartGroupProduct = new Chart(chartGroupProduct, {
 // Order-->
 
 var ChartOrder = dataChartOrderLongTime.map((item) => {
-  var dateObj = new Date(item.created_at)
+  var dateObj = new Date(item.date)
   let year = dateObj.getUTCFullYear()
   let month = dateObj.getUTCMonth() + 1
   let day = dateObj.getDate()
@@ -98,7 +98,7 @@ const myChart = new Chart(chartStatictisOrder, {
 // Revenues 
 
 const ChartRevenue =dataChartRevenue.map((item) => {
-  var dateObj = new Date(item.created_at)
+  var dateObj = new Date(item.date)
   let year = dateObj.getUTCFullYear()
   let month = dateObj.getUTCMonth() + 1
   let day = dateObj.getDate()
