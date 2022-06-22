@@ -2,11 +2,13 @@
 
 @section('content')
     @php
-
+ //  dd($discount);
     $first_name = is_null($customer_checkout->first_name) ? 'VD: Đăng Kiều' : $customer_checkout->first_name;
     $last_name = is_null($customer_checkout->last_name) ? 'VD: Lan Nhi ' : $customer_checkout->last_name;
     $email = is_null($customer_checkout->email) ? 'VD: email@domain.com' : $customer_checkout->email;
     $phone = is_null($customer_checkout->phone) ? 'VD: 0702******' : $customer_checkout->phone;
+    $sale_id =($discount==0)?0: $discount->id;
+    $sale =($discount==0)?0: $discount->value;
 
     @endphp
     <div class="container checkout-container">
@@ -77,13 +79,13 @@
                             <div class="size-60p">
                                 <span class="mtext-110 cl2">
                                     @php
-                                        $sale = $discount->value;
+                                      
                                         $render_percent = $sale / 100;
                                     @endphp
                                     {{ $sale }} %
                                 </span>
-                                <input type="hidden" name="discount_id" value="{{ $discount->id }}">
-                                <input type="hidden" name="discount_value" value="{{ $discount->value }}">
+                                <input type="hidden" name="discount_id" value="{{ $sale_id }}">
+                                <input type="hidden" name="discount_value" value="{{  $sale }}">
                             </div>
                         </div>
                         <div class="flex-w flex-t bor12 p-b-13 h-100 size-100p">
@@ -133,8 +135,8 @@
                     <!-- Thông Tin Giỏ Hàng --->
                     <input type="hidden" name="total" value="{{ $total }}">
                     <input type="hidden" name="total_price" value="{{ $total_price }}">
-                    <input type="hidden" name="discount_id" value="{{ $discount->id }}">
-                    <input type="hidden" name="discount_value" value="{{ $discount->value }}">
+                    <input type="hidden" name="discount_id" value="{{ $sale_id }}">
+                    <input type="hidden" name="discount_value" value="{{  $sale }}">
 
                     <!--- Thông Tin Khách Hàng Đặt Hàng -->
                     <div class="form-group col-md-6 mb-3">

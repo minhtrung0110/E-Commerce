@@ -16,10 +16,10 @@ foreach($discounts as $discount){
 }
 }
 public function getDiscount($date){
-
-    return Discounts::where('start_date','<=',$date)->where('end_date','>=',$date)->first();
+    $discount=Discounts::where('start_date','<=',$date)->where('end_date','>=',$date)->first();
+   // dd(is_null($discount)?0:$discount);
+    return (is_null($discount)?0:$discount);
 }
-   
 
 public function create($request){
     try {
