@@ -13,7 +13,7 @@ class StaffService
     public function findStaff($email)
     {
 
-        return Staffs::select('id', 'role_id', 'email', 'password')->where('email', $email)->where('status',1)->first();
+        return Staffs::select('id', 'role_id', 'email', 'password')->where('email', $email)->where('status', 1)->first();
     }
     public function getInFo($id)
     {
@@ -23,19 +23,42 @@ class StaffService
     {
         return Staffs::orderbyDesc('id')->get();
     }
-    public function getSearch($request){
-        return Staffs::orderbyDesc('id')
-                        ->where('first_name','like','%'.$request->input('search').'%')
-                        ->orwhere('last_name','like','%'.$request->input('search').'%')
-                        ->get();
-    }
-    public function getFilter($request){
+    public function getSearch($request)
+    {
         $query = Staffs::query();
-        if($request->has('role_id') && $request->input('role_id')!=-1){
-            $query=$query->where('role_id',$request->input('role_id'));
+        if ($request->has('search') && !is_null($request->input('search')) && $request->has('searchFor')  ){
+            switch ($request->has('searchFor')) {
+                case 'email':
+                    $query = $query->where('email', $request->input('search'));
+                    break;
+                case 'phone':
+                    $query = $query->where('phone', $request->input('search'));
+                    break;
+                case 'fullname':
+                    $query = $query->orderbyDesc('id')
+                    ->where('first_name', 'like', '%' . $request->input('search') . '%')
+                    ->orwhere('last_name', 'like', '%' . $request->input('search') . '%');
+                    break;
+            }
+          
         }
-        if($request->has('status') && $request->input('status')!=-1){
-            $query=$query->where('status',$request->input('status'));
+        if ($request->has('role_id') && $request->input('role_id') != -1) {
+            $query = $query->where('role_id', $request->input('role_id'));
+        }
+        if ($request->has('status') && $request->input('status') != -1) {
+            $query = $query->where('status', $request->input('status'));
+        }
+      //  dd($query);
+        return $query->get();
+    }
+    public function getFilter($request)
+    {
+        $query = Staffs::query();
+        if ($request->has('role_id') && $request->input('role_id') != -1) {
+            $query = $query->where('role_id', $request->input('role_id'));
+        }
+        if ($request->has('status') && $request->input('status') != -1) {
+            $query = $query->where('status', $request->input('status'));
         }
         return $query->get();
     }
@@ -43,7 +66,7 @@ class StaffService
     {
 
         try {
-             Staffs::create([
+            Staffs::create([
                 'role_id' => (int)$request->input('role_id'),
                 'first_name' => (string)$request->input('first_name'),
                 'last_name' => (string)$request->input('last_name'),
@@ -57,14 +80,15 @@ class StaffService
 
             ]);
         } catch (\Exception $err) {
-           // Session::flash('error', $err->getMessage());
+            // Session::flash('error', $err->getMessage());
             return false;
         }
         return true;
     }
-    public function delete($request){
-        $product=Staffs::where('id',$request->input('id'))->first();
-        if($product ){
+    public function delete($request)
+    {
+        $product = Staffs::where('id', $request->input('id'))->first();
+        if ($product) {
             $product->delete();
             return true;
         }
@@ -73,27 +97,26 @@ class StaffService
     public function update($request): bool
     {
 
-       
-        try {           
+
+        try {
             Staffs::where("id", $request->input('id'))->update([
-            'role_id' => (int)$request->input('role_id'),
-            'first_name' => (string)$request->input('first_name'),
-            'last_name' => (string)$request->input('last_name'),
-            'phone' => (string)$request->input('phone'),
-            'email' => (string)$request->input('email'),
-            'password' => (string)bcrypt($request->input('password')),
-            'status' => (int)$request->input('status'),
-            'address' => (string)$request->input('address'),
-            'start_date' => (string)$request->input('start_date'),
-            'end_date' => (string)$request->input('end_date'),
+                'role_id' => (int)$request->input('role_id'),
+                'first_name' => (string)$request->input('first_name'),
+                'last_name' => (string)$request->input('last_name'),
+                'phone' => (string)$request->input('phone'),
+                'email' => (string)$request->input('email'),
+                'password' => (string)bcrypt($request->input('password')),
+                'status' => (int)$request->input('status'),
+                'address' => (string)$request->input('address'),
+                'start_date' => (string)$request->input('start_date'),
+                'end_date' => (string)$request->input('end_date'),
             ]);
-        
-        }  catch (\Exception $err)  {
+        } catch (\Exception $err) {
             // session()->flash('error', 'Cập nhật nhân viên thất bại !!! ');
-              //Log::info($err->getMessage());
-             return false;
-         }
-         return true;
+            //Log::info($err->getMessage());
+            return false;
+        }
+        return true;
         // dd($request->all());
         /* DB::table('staffs')
             ->where('id', $id)
@@ -126,10 +149,8 @@ class StaffService
             // echo $err->getMessage();
             return  $staff;
         }*/
-       // return  $staff;
+        // return  $staff;
     }
 
     /*--- STatictis *************************************************/
-   
 }
-

@@ -206,3 +206,15 @@ height: 35px;
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
+
+  /** Filter & Search CSS Element For Admin*/
+  .label-justify-center{
+    line-height: calc(2.25rem + 2px);
+    margin-left:8px;
+    margin-right:5px;
+  }
+  .hg-button-filter{
+    height: calc(2.25rem + 2px);
+
+  }

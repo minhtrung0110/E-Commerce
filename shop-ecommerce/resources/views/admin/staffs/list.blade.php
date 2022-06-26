@@ -4,20 +4,63 @@
 @endsection
 
 @section('main-content')
+<script>
+   var listStaffs={!!json_encode($listStaffs)!!} 
+   console.log(listStaffs)
+</script>
     <div class="row">
+        <div class="card col-md-12 card-warning " >
+          
+            <div class="card-body ">
+                <form action="" method="post" id="form-search-staff" class=" row">
+                    <div class="input-group form-group col-md-3">
+                        @csrf
+                        <input type="text" name="search" class="form-control float-right" placeholder="Nhập dữ liệu tìm">
+    
+                                     
+                    </div>
+                    <select class="form-control col-md-2" name="searchFor" >
+                        <option value="fullname">Tìm Theo Tên</option>
+                        <option value="email">Tìm Theo Email</option>
+                      <option value="phone">Tìm Theo Số Điện Thoại</option>
+                    </select>
+                            
+                        <label for="role_id" class="label-justify-center">Chức Vụ: </label>
+                        <select class="form-control col-md-1" name="role_id">
+                            <option value="-1">Tất Cả</option>
+                            {!! \App\Helpers\Helper::renderListRole() !!}
+                        </select>
+                        <label for="role_id" class="label-justify-center">Trạng Thái: </label>
+                        <select class="form-control col-md-1" name="status" >
+                            <option value="-1">Tất Cả</option>
+                          <option value="1">Hoạt Động</option>
+                          <option value="0">Vô Hiệu Hoá</option>
+                        </select>
 
-        <div class="card col-md-10 card-info" >
+                      @csrf
+                   
+                    <div class="card-tools col-md-1 ">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>       
+                     
+                    
+                    </div>
+                    <button class="btn btn-dark ml-5 hg-button-filter"><a href="/admin/staffs/add"  class="cl-white">Thêm Nhân Viên </a></button>
+                </form>
+            </div>          
+        </div>
+        <div class="card col-md-12 card-info" >
             
             <div class="card-header">
                 <h2 class="card-title"><strong>Danh Sách Nhân Viên</strong></h2>
 
-                <div class="card-tools">
-                    <button class="btn btn-dark"><a href="/admin/staffs/add"  class="cl-white">Thêm Nhân Viên </a></button>
-                
-                </div>
+              
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 650px;">
+            <div class="card-body table-responsive p-0 table-bordered" style="height: 650px;">
                 <table class="table table-responsive table-head-fixed text-nowrap table-hover table-condensed"
                     >
                     <thead>
@@ -50,44 +93,7 @@
             {!! \App\Helpers\Helper::renderPopupViewItemStaff($listStaffs) !!}
            
         </div>
-        <div class="card col-md-2 card-warning" >
-            <div class="card-header">
-                <h2 class="card-title"><strong>Lọc Nhân Viên</strong></h2>
-            </div>
-            <div class="card-body">
-                <form action="" method="post" id="form-search-staff">
-                    <div class="input-group form-group">
-                        @csrf
-                        <input type="text" name="search" class="form-control float-right" placeholder="Tìm Theo Tên">
-    
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <form class="form-horizontal" method="post" action="/admin/staffs/list/filter" id="form-horizontal">
-                    <div class="form-group">
-                        <label>Chức Vụ</label>
-                        <select class="form-control" name="role_id">
-                            <option value="-1">Tất Cả</option>
-                            {!! \App\Helpers\Helper::renderListRole() !!}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Trạng Thái</label>
-                        <select class="form-control" name="status">
-                            <option value="-1">Tất Cả</option>
-                          <option value="1">Hoạt Động</option>
-                          <option value="0">Vô Hiệu Hoá</option>
-                        </select>
-                      </div>
-                      @csrf
-                    <input type="submit" class="btn btn-info" value="Lọc">
-                </form>
-            </div>          
-        </div>
+      
        
 
     </div>
