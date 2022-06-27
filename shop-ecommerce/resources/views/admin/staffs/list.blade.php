@@ -37,7 +37,7 @@
                           <option value="0">Vô Hiệu Hoá</option>
                         </select>
 
-                      @csrf
+                    
                    
                     <div class="card-tools col-md-1 ">
                         <div class="input-group-append">

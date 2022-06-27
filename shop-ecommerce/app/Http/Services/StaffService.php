@@ -27,18 +27,19 @@ class StaffService
     {
         $query = Staffs::query();
         if ($request->has('search') && !is_null($request->input('search')) && $request->has('searchFor')  ){
-            switch ($request->has('searchFor')) {
+            switch ($request->input('searchFor')) {
+                case 'fullname':
+                    $query = $query
+                    ->where('first_name', 'like', '%' . $request->input('search') . '%')
+                    ->orwhere('last_name', 'like', '%' . $request->input('search') . '%');
+                    break;
                 case 'email':
                     $query = $query->where('email', $request->input('search'));
                     break;
                 case 'phone':
                     $query = $query->where('phone', $request->input('search'));
                     break;
-                case 'fullname':
-                    $query = $query->orderbyDesc('id')
-                    ->where('first_name', 'like', '%' . $request->input('search') . '%')
-                    ->orwhere('last_name', 'like', '%' . $request->input('search') . '%');
-                    break;
+                
             }
           
         }
@@ -105,7 +106,6 @@ class StaffService
                 'last_name' => (string)$request->input('last_name'),
                 'phone' => (string)$request->input('phone'),
                 'email' => (string)$request->input('email'),
-                'password' => (string)bcrypt($request->input('password')),
                 'status' => (int)$request->input('status'),
                 'address' => (string)$request->input('address'),
                 'start_date' => (string)$request->input('start_date'),

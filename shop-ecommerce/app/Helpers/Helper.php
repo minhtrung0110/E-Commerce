@@ -331,7 +331,7 @@ class Helper
               <td>
               <a  class="btn btn-primary btn-sm" href="/admin/staffs/edit/' . $staff->id . '"><i class="fas fa-edit"></i></a>
                     <a  class="btn btn-danger btn-sm" onclick="removeRow(' . $staff->id . ', \'/admin/staffs/destroy\')")" ><i class="fas fa-trash"></i></a>
-                    <button class="btn btn-success btn-sm" onclick="showDetailStaff(' . $staff->id . ')">Xem Chi Tiết</button>
+                    <button class="btn btn-warning btn-sm" onclick="showDetailStaff(' . $staff->id . ')">Xem Chi Tiết</button>
                     </td>
             </tr>';
         }

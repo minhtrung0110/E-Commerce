@@ -120,7 +120,7 @@ class StaffController extends Controller
      */
     public function search(Request $request)
     {
-        
+       // dd($request->all());
         return view('admin.staffs.list', [
             'title' => 'Danh Sách Nhân Viên',
             'staff' => $this->staffService->getInFo(Session::get('staff_id')),
@@ -147,7 +147,7 @@ class StaffController extends Controller
      */
     public function update(Request $request)
     {
-       
+      
         $result = $this->staffService->update($request);
        if ($result)  
          return response()->json([

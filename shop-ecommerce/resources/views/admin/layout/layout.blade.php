@@ -37,7 +37,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{asset('dashboard/dist/img/LOGO.png')}}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{asset('/template/images/icon_brand.png')}}" alt="Trésor Du Ciel" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -82,8 +82,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/admin/" class="brand-link">
-      <img src="{{asset('dashboard/dist/img/LOGO.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">TRESOR</span>
+      <img src="{{asset('/template/images/icon_brand.png')}}" alt="Trésor du ciel Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Trésor Du Ciel</span>
     </a>
 
     <!-- Sidebar -->
@@ -91,7 +91,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('dashboard/dist/img/LOGO.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('/template/images/icon_brand.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           @hasSection ('infoStaff')

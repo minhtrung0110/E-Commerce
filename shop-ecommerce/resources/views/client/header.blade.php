@@ -9,9 +9,9 @@
             <nav class="limiter-menu-desktop container">
                 
                 <!-- Logo desktop -->		
-                <h4 href="/" class="logo">
-                    TRESÓR
-                </h4>
+                <a href="/" class="logo">
+                    <img src="{{asset('/template/images/icon_brand.png')}}" alt="IMG-LOGO">
+                </a>
 
                 <!-- Menu desktop -->
                 <div class="menu-desktop">

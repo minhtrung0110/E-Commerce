@@ -5,37 +5,63 @@
 
 @section('main-content')
 
-        <div class="card card-success  " style="padding:1em 8em;min-height: ">
-            <div class="card-header">
-                <h3 class="card-title">Sửa Nhân Viên</h3>
-    
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <form method="post" action="" id="form-edit-products" class="row">
-
-                    <!-- text input -->
-                    <input type="hidden" class="form-control" name='id' value="{{$staff_edit->id}}">
-                    <div class="form-group col-sm-6">
+        <div class="card card-success  " style="padding:1em 4em;min-height: ">
+           
+       
+            <form method="post" action="" id="form-edit-products" class="row">
+                <!-- text input -->
+                <input type="hidden" class="form-control" name='id' value="{{$staff_edit->id}}">
+                <div class="card-body card-add row col-md-10 mb-sm-4 ml-sm-5">
+                    <div class="col-sm-12">
+                    <h4><strong>Thông Tin Cá Nhân Của Nhân Viên</strong></h4>
+                    <p>Điền thông tin cá nhân của nhân vào các trường sau:</p>
+                    </div>
+                    <div class="form-group col-sm-5">
                         <label>Họ Nhân Viên</label>
                         <input type="text" name='first_name' id="first_name" class="form-control" value="{{$staff_edit->first_name}}">
                         <span class="form-message"></span>
                     </div>
-
-                    <div class="form-group col-sm-6">
+    
+                    <div class="form-group col-sm-5">
                         <label>Tên Nhân Viên</label>
                         <input type="text" name="last_name"  id="last_name" class="form-control" value="{{$staff_edit->last_name}}">
                         <span class="form-message"></span>
                     </div>
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-sm-5">
+                        <label>Số Điện Thoại:</label>
+                        <input type="text" name='phone'  id='phone' class="form-control" value="{{$staff_edit->phone}}">
+                        <span class="form-message"></span>
+                    </div>
+    
+                    <div class="form-group col-sm-5">
+                        <label>Email:</label>
+                        <input type="text" name="email"  id="email" class="form-control" value="{{$staff_edit->email}}">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group col-sm-10">
+                        <label>Địa Chỉ:</label>
+                        <input type="text" name="address"  id="address" class="form-control" value="{{$staff_edit->address}}">
+                        <span class="form-message"></span>
+                    </div>
+                </div>
+               
+                <div class="card-body card-add row col-md-10 ml-sm-5">
+                    <div class="col-sm-12">
+                        <h4><strong>Thông Tin Nhân Viên Đối Với Hệ Thống</strong></h4>
+                        <p>Điền thông về chức vụ hiện tại, thời gian hợp đồng lao động, mật khẩu đăng nhập và trạng thái của nhân viên đó:</p>
+                        </div>                        
+                    <div class="form-group col-sm-5">
+                        <label>Ngày Bắt Đầu Hợp Đồng:</label>
+                        <input type="date" name='start_date' id='start_date' class="form-control" value="{{$staff_edit->start_date}}">
+                        <span class="form-message"></span>
+                    </div>
+    
+                    <div class="form-group col-sm-5">
+                        <label>Ngày Kết Thúc Hợp Đồng:</label>
+                        <input type="date" name="end_date"  id="end_date" class="form-control" value="{{$staff_edit->end_date}}">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group col-sm-5">
                         <label>Chức Vụ:</label>
 
                         <select class="form-control" name="role_id">
@@ -48,37 +74,7 @@
 
                         </select>
                     </div>
-                    <div class="form-group col-sm-6">
-                        <label>Số Điện Thoại:</label>
-                        <input type="text" name='phone'  id='phone' class="form-control" value="{{$staff_edit->phone}}">
-                        <span class="form-message"></span>
-                    </div>
-
-                    <div class="form-group col-sm-6">
-                        <label>Email:</label>
-                        <input type="text" name="email"  id="email" class="form-control" value="{{$staff_edit->email}}">
-                        <span class="form-message"></span>
-                    </div>
-
-                    <div class="form-group col-sm-12">
-                        <label>Địa Chỉ:</label>
-                        <input type="text" name="address"  id="address" class="form-control" value="{{$staff_edit->address}}">
-                        <span class="form-message"></span>
-                    </div>
-
-
-                    <div class="form-group col-sm-6">
-                        <label>Ngày Bắt Đầu Hợp Đồng:</label>
-                        <input type="date" name='start_date' id='start_date' class="form-control" value="{{$staff_edit->start_date}}">
-                        <span class="form-message"></span>
-                    </div>
-
-                    <div class="form-group col-sm-6">
-                        <label>Ngày Kết Thúc Hợp Đồng:</label>
-                        <input type="date" name="end_date"  id="end_date" class="form-control" value="{{$staff_edit->end_date}}">
-                        <span class="form-message"></span>
-                    </div> 
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-5">
                         <label>Hoạt Động</label>
                         <div class="custom-control custom-radio">
                             <input class="custom-control-input" value="1" type="radio" id="active" name="status"   {{ $staff_edit->status=== 1 ? 'checked' : '' }}>
@@ -91,16 +87,15 @@
                           
                             >Không</label>
                         </div>
-                    </div>                 
-
-                            @csrf
-                            <div class="col-sm-3"></div>
-                            <button type="submit" class="form-submit btn btn-success col-sm-6"> Sửa Thông Tin Nhân Viên</button>
-                            <div class="col-sm-3"></div>
-                </form>
-                        <!-- /.card-body -->
-            </div>
-            
+                    </div>
+                    @csrf
+                    <br/> <br/>
+                    <div class="col-sm-3"></div>
+                    <button type="submit" class="btn-add-admin col-sm-5"> Cập Nhật Thông Tin Nhân Viên</button>
+                    <div class="col-sm-4"></div>
+                </div>
+    
+            </form>
            
 
         </div>
