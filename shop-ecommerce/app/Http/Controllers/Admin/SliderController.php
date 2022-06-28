@@ -52,37 +52,48 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->file('thumb')){
+      // dd($request->input('name'));
+       
+        if($request->has('thumb')){
             $img=$request->thumb;
              $file_extension=['png','jpg','jpeg'];
              $extension=$img->getClientOriginalExtension();
              $namFile=$img->getClientOriginalName();
              $exe_flag=true;
+             /*
              //check đuôi file
              $check=in_array($extension,$file_extension);
              if(!$check){
                  $exe_flag=false;
-                 Session()->flash('error','Thêm slider thất bại,vui lòng kiểm tra file ảnh');
-                     return redirect()->back();
-             }
+                 return response()->json([
+                    'error' => true,
+                   'message' => "Thêm Thất Bại"
+               ]);
+             }*/
              //luu database
                   if($exe_flag){
                         $result=$this->sliderService->create($request,$namFile);
+                    
                         $img->storeAs('public/sliders',$namFile);
 
                      }else{
-                         Session()->flash('error','Thêm slider thất bại');
-                         return redirect()->back();
+                        return response()->json([
+                            'error' => true,
+                           'message' => "Cập Nhật Thất Bại"
+                       ]);
                      }
-                     if($result){
-                         Session()->flash('success','Thêm slider thành công');
-                         return redirect()->route('admin.sliders.list');
-                     }else{
-                         Session()->flash('error','Thêm slider thất bại!');
-                         return redirect()->back();
-                     }
+                     if ($result)  
+                     return response()->json([
+                        'error' => false,
+                        'message' => "Cập Nhật Thành Công"
+                    ]);
+                    else
+                        return response()->json([
+                            'error' => true,
+                           'message' => "Cập Nhật Thất Bại"
+                       ]);
         
-       
+                       dd($result);
     }
 }
 

@@ -89,10 +89,13 @@
                         <label for="no_active" class="custom-control-label">Không</label>
                     </div>
                 </div>
+                <div class="col-sm-2"></div>
                 @csrf
-                <div class="col-sm-3"></div>
+                <div class="col-sm-1"></div>
+                <button  onClick="backtoPage()" class="btn-cancel-add-admin col-sm-2"> Huỷ</button>
+                <div class="col-sm-2"></div>
                 <button type="submit" class="btn-add-admin col-sm-4"> Thêm Nhân Viên</button>
-                <div class="col-sm-4"></div>
+                <div class="col-sm-2"></div>
             </div>
 
 

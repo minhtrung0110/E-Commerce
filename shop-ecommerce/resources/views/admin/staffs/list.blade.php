@@ -23,6 +23,7 @@
                         <option value="fullname">Tìm Theo Tên</option>
                         <option value="email">Tìm Theo Email</option>
                       <option value="phone">Tìm Theo Số Điện Thoại</option>
+                      <option value="id">Tìm Theo Mã</option>
                     </select>
                             
                         <label for="role_id" class="label-justify-center">Chức Vụ: </label>
@@ -93,9 +94,6 @@
             {!! \App\Helpers\Helper::renderPopupViewItemStaff($listStaffs) !!}
            
         </div>
-      
-       
-
     </div>
 
 @endsection

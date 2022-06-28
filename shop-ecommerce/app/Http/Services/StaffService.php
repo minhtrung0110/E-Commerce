@@ -39,6 +39,9 @@ class StaffService
                 case 'phone':
                     $query = $query->where('phone', $request->input('search'));
                     break;
+                case 'id':
+                        $query = $query->where('id', $request->input('search'));
+                    break;
                 
             }
           

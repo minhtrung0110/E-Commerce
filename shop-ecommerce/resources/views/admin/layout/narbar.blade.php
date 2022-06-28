@@ -138,61 +138,28 @@
 
 {{-- QL-nhan vien --}}
 <li class="nav-item nav-item-li " id="nav-item-staffs" >
-  <a href="#" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
-    <p>
-      Nhân Viên
-      {{-- <span class="badge badge-info right">2</span> --}}
-    </p>
-    <i class="fas fa-angle-left right"></i>
-  </a>
-  <ul class="nav nav-treeview">
-    <li class="nav-item">
+ 
       <a href="/admin/staffs/list" class="nav-link" id='staffs'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Danh Sách Nhân Viên</p>
+        <i class="far ion-android-person nav-icon"></i>
+        <p>Quản Lý Nhân Viên</p>
       </a>
-    </li>
-    <li class="nav-item ">
-      <a href="/admin/staffs/add" class="nav-link" id='staffs'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Thêm Nhân Viên</p>
-      </a>
-    </li>
-  </ul>
 </li>
+  
 {{-- QL-khach hang --}}
 <li class="nav-item nav-item-li " id="nav-item-customers" >
-  <a href="#" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
-    <p>
-      Khách Hàng
-      {{-- <span class="badge badge-info right">2</span> --}}
-    </p>
-    <i class="fas fa-angle-left right"></i>
-  </a>
-  <ul class="nav nav-treeview">
-    <li class="nav-item">
       <a href="/admin/customers/list" class="nav-link" id='customers'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Danh Sách Khách Hàng</p>
+        <i class="far fa-user-circle nav-icon"></i>
+        <p>Quản Lý Khách Hàng</p>
       </a>
-    </li>
-    <li class="nav-item ">
-      <a href="/admin/customers/add" class="nav-link" id='customers'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Thêm Khách Hàng</p>
-      </a>
-    </li>
-  </ul>
+  
 </li>
 
 {{-- đánh giá --}}
 <li class="nav-item nav-item-li" id="nav-item-ratings">
-  <a href="{{Route('admin.ratings.list')}}" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
+  <a href="{{Route('admin.ratings.list')}}" class="nav-link" id='ratings'>
+    <i class="nav-icon far ion-android-star"></i>
     <p>
-      Đánh giá
+     Quản Lý Đánh Giá
       
     </p>
   </a>
@@ -210,28 +177,12 @@
 
 {{-- Ql-silders --}}
 <li class="nav-item nav-item-li " id="nav-item-sliders" >
-  <a href="#" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
-    <p>
-      Ảnh Trình Chiếu
-      {{-- <span class="badge badge-info right">2</span> --}}
-    </p>
-    <i class="fas fa-angle-left right"></i>
-  </a>
-  <ul class="nav nav-treeview">
-    <li class="nav-item">
+ 
       <a href="{{Route('admin.sliders.list')}}" class="nav-link" id='sliders'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Danh Sách Ảnh</p>
+        <i class="far ion-android-list nav-icon"></i>
+        <p>Ảnh Trình Chiếu</p>
       </a>
-    </li>
-    <li class="nav-item ">
-      <a href="{{Route('admin.sliders.add')}}" class="nav-link" id='sliders'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Thêm Ảnh</p>
-      </a>
-    </li>
-  </ul>
+   
 </li>
 
 

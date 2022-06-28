@@ -416,7 +416,7 @@ class Helper
               <td>
               <a  class="btn btn-primary btn-sm" href="/admin/customers/edit/' . $staff->id . '"><i class="fas fa-edit"></i></a>
                     <a  class="btn btn-danger btn-sm" onclick="removeRow(' . $staff->id . ', \'/admin/customers/destroy\')")" ><i class="fas fa-trash"></i></a>
-                    <button class="btn btn-success btn-sm" onclick="showDetailStaff(' . $staff->id . ')">Xem Chi Tiết</button>
+                    <button class="btn btn-warning btn-sm" onclick="showDetailStaff(' . $staff->id . ')">Xem Chi Tiết</button>
                     </td>
             </tr>';
         }
@@ -921,5 +921,27 @@ class Helper
             ';
         }
         return $html;
+    }
+    public function renderListRatingsFormCustomer($listRatings){
+        $html = '';
+        foreach ($listRatings as $key => $rating) {
+        $html .= ' <tr>
+            <th scope="row">'.++$key .'</th>
+            <td><b>'.$rating->first_name . ' ' . $rating->last_name .'</b><br/> Mã Khách Hàng: '.$rating->customer_id.'</td>
+            <td>'. $rating->context.'</td>
+            <td>'. $rating->point.'&#10025;</td>
+            <td><b>
+            <a href="/detail-product/' . $rating->product_id . '-' . Str::slug( $rating->product_name, '-') . '.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+            ' .  $rating->product_name . '
+        </a></b>
+            <br/> Mã Sản Phẩm: '.$rating->product_id.'</td>
+            <td><a href="/storage/uploads/' .  $rating->img . '" target="_blank">
+                    <img src="/storage/uploads/' .  $rating->img . '"alt="IMG-PRODUCT" width="100px">
+                </a></td>
+            <td>'.date('d-m-Y', strtotime($rating->created_at)).'</td>
+
+        </tr>';
+    }
+          return $html;
     }
 }

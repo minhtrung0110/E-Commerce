@@ -5,44 +5,30 @@
 
 @section('main-content')
 
-        <div class="card card-success  " style="padding:1em 8em;min-height: ">
-            <div class="card-header">
-                
-                <h3 class="card-title">Cập nhập Sliders</h3>
-    
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  
-                </div>
-              </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                
-      @if(Session::has('error'))
-      <div class="text-center">
-        <p class="alert alert-dangger">{{Session::get('error')}}</p>
-      </div>
-      @endif
+        <div class="card card-success  " style="padding:1em 8em;min-height: ">     
+            <div class="card-body card-add row col-md-10 mb-sm-4 ml-sm-5">
+                <div class="col-sm-12">
+                    <h4><strong>Thông Tin Ảnh Trình Chiếu</strong></h4>
+                    <p>Người dùng điền chủ đề ảnh, mô tả và tải ảnh lên:</p>
+                    </div>
                 @foreach($sliders as $slider)
                 <form method="post" action="" id="form-add-sliders" class="row" enctype="multipart/form-data">
 
                     <!-- text input -->
-                    <div class="form-group col-sm-6">
-                        <label>Tên</label>
-                        <input type="text" name='name' id="name" value="{{$slider->name}}" class="form-control" placeholder="Name ...">
+                    <div class="form-group col-sm-10">
+                        <label>Tên Chủ Đề</label>
+                        <input type="text" name='name' id="name" value="{{$slider->name}}" class="form-control" placeholder="Tên chủ đề...">
                         <span class="form-message"></span>
                     </div>
 
-                    <div class="form-group col-sm-6">
-                        <label>Chi tiết</label>
-                        <input type="text" name="description" value="{{$slider->description}}"   id="description" class="form-control" placeholder="Description ...">
+                    <div class="form-group col-sm-10">
+                        <label>Mô Tả</label>
+                        <textarea  name="description"  id="description" class="form-control" >{{$slider->description}}</textarea>
                         <span class="form-message"></span>
                     </div>
                     
             
-                    <div class="form-group col-sm-12">
+                    <div class="form-group col-sm-10">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="thumb" name="thumb"  onchange="ImagesFileAsURL('thumb','displayImg');GetValuefile('thumb','js-show-file');">
                             <label class="custom-file-label"id="js-show-file" for="thumb">{{$slider->thumb}}</label>
@@ -59,21 +45,22 @@
 
                     
                     <div class="form-group col-sm-12">
-                        <label>Hoạt Động</label>
+                        <label>Trạng Thái</label>
                         <div class="custom-control custom-radio">
                             <input class="custom-control-input" value="1" type="radio" id="active" name="active" {{$slider->active ==1 ? 'checked':''}}>
-                            <label for="active" class="custom-control-label">Có</label>
+                            <label for="active" class="custom-control-label">Hoạt Động</label>
                         </div>
                         <div class="custom-control custom-radio">
                             <input class="custom-control-input" value="0" type="radio" id="no_active" name="active" {{$slider->active ==0 ? 'checked':''}} >
-                            <label for="no_active" class="custom-control-label">Không</label>
+                            <label for="no_active" class="custom-control-label">Vô Hiệu Hoá</label>
                         </div>
                     </div>                         
-
-                            @csrf
-                            <div class="col-sm-3"></div>
-                            <button type="submit" class="form-submit btn btn-success col-sm-6"> Thêm</button>
-                            <div class="col-sm-3"></div>
+                    @csrf
+                    <div class="col-sm-1"></div>
+                    <button  onClick="backtoPage()" class="btn-cancel-add-admin col-sm-2"> Huỷ</button>
+                    <div class="col-sm-2"></div>
+                    <button type="submit" class="btn-add-admin col-sm-4"> Cập Nhật Ảnh Trình Chiếu</button>
+                    <div class="col-sm-2"></div>
                 </form>
                 @endforeach
                         <!-- /.card-body -->

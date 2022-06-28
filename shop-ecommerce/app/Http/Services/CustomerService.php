@@ -17,22 +17,33 @@ class CustomerService {
     }
 
     public function getSearch($request){
-        return Customer::orderbyDesc('id')
-                        ->where('first_name','like','%'.$request->input('search').'%')
-                        ->orwhere('last_name','like','%'.$request->input('search').'%')
-                        ->get();
-    }
-    public function getFilter($request){
-        $query = Customer::query();
-        if($request->has('email') && !is_null($request->input('email')) ){
-            $query=$query->where('email',$request->input('email'));
+        $query =Customer::query();
+        if ($request->has('search') && !is_null($request->input('search')) && $request->has('searchFor')  ){
+            switch ($request->input('searchFor')) {
+                case 'fullname':
+                    $query = $query
+                    ->where('first_name', 'like', '%' . $request->input('search') . '%')
+                    ->orwhere('last_name', 'like', '%' . $request->input('search') . '%');
+                    break;
+                case 'email':
+                    $query = $query->where('email', $request->input('search'));
+                    break;
+                case 'id':
+                        $query = $query->where('id', $request->input('search'));
+                    break;
+                case 'phone':
+                    $query = $query->where('phone', $request->input('search'));
+                    break;
+                
+            }
+          
         }
-        if($request->has('status') && $request->input('status')!=-1){
-            $query=$query->where('status',$request->input('status'));
+        if ($request->has('status') && $request->input('status') != -1) {
+            $query = $query->where('status', $request->input('status'));
         }
+      //  dd($query);
         return $query->get();
     }
-
 
 
     public function findCustomerwithEmail($email){
