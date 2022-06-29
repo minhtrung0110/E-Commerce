@@ -225,6 +225,15 @@ height: 35px;
     border-radius: 4px;
     overflow: hidden;
   }
+  .pr-sm-5em{
+    padding-right: 5em !important;
+  }
+  .pr-sm-3em{
+    padding-right: 3em !important;
+  }
+  .pl-sm-3em-positive{
+    padding-left: -2em !important;
+  }
 
 
   /*------- các Nút Add Update của Admin ---------------*/

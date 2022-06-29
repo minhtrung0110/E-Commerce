@@ -38,8 +38,8 @@ class CategoryController extends Controller
         $title='Danh mục';
         $staff=$this->staffService->getInFo(Session::get('staff_id'));
         $categories=$this->groupProductService->getAll();
-
-        return view('admin.categories.category',compact('title','staff','categories'));
+        $categorys=$this->groupProductService->getAll();
+        return view('admin.categories.category',compact('title','staff','categories','categorys'));
     }
 
     /**
@@ -62,9 +62,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-    
-       
+    {      
         if($request->file('thumb'))
         {
         $img=$request->thumb;

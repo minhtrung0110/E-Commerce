@@ -3,7 +3,7 @@
 
 <li class="nav-item">
     <a href="{{Route('admin.dashboard')}}" class="nav-link ">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <i class="nav-icon fas ion-playstation"></i>
       <p>
         Tổng Quan
         {{-- <span class="badge badge-info right">2</span> --}}
@@ -12,28 +12,10 @@
 </li>
 {{-- danh mục --}}
 <li class="nav-item nav-item-li" id="nav-item-group-products">
-  <a href="#" class="nav-link ">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
-  <p>
-    Danh Mục Sản Phẩm
-    {{-- <span class="badge badge-info right">2</span> --}}
-  </p>
-  <i class="fas fa-angle-left right"></i>
-</a>
-  <ul class="nav nav-treeview">
-    <li class="nav-item">
       <a href="{{Route('admin.categories.list')}}" class="nav-link" id='group-products'>
-        <i class="far fa-circle nav-icon"></i>
-        <p>Danh Sách Danh Mục</p>
+        <i class="far ion-android-list nav-icon"></i>
+        <p>Danh Mục Sản Phẩm</p>
       </a>
-    </li>
-    <li class="nav-item">
-      <a href="{{Route('admin.categories.add')}}" class="nav-link" id='group-products' >
-        <i class="far fa-circle nav-icon"></i>
-        <p>Thêm Danh Mục</p>
-      </a>
-    </li>
-  </ul>
 </li>
 {{-- QL-san pham --}}
 <li class="nav-item nav-item-li " id="nav-item-products" >
@@ -116,7 +98,7 @@
 
 <li class="nav-item nav-item-li" id="nav-item-providers" >
   <a href="{{Route('admin.providers.list')}}" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <i class="nav-icon fas ion-android-home"></i>
     <p>
       Nhà cung cấp
   
@@ -128,7 +110,7 @@
    
 <li class="nav-item nav-item-li" id="nav-item-orders">
   <a href="{{Route('admin.orders')}}" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <i class="nav-icon fas ion-android-playstore"></i>
     <p>
       Đơn Hàng
       <span class="badge badge-info right">{{count($notification_order)==0?"": count($notification_order) }}</span>
@@ -167,7 +149,7 @@
 {{---Phân Quyền--}}
 <li class="nav-item nav-item-li" id="nav-item-roles" >
   <a href="{{Route('admin.roles')}}" class="nav-link">
-    <i class="nav-icon fas fa-tachometer-alt"></i>
+    <i class="nav-icon fas ion-ios-infinite"></i>
     <p>
      Phân Quyền
   
