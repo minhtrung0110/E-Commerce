@@ -100,8 +100,6 @@ class StaffService
     }
     public function update($request): bool
     {
-
-
         try {
             Staffs::where("id", $request->input('id'))->update([
                 'role_id' => (int)$request->input('role_id'),

@@ -119,3 +119,4 @@ $('#form-submit-login').click(function () {
 
 // search rating
 
+// Slider Upload File

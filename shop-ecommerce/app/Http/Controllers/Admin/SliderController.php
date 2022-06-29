@@ -52,15 +52,15 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-      // dd($request->input('name'));
-       
-        if($request->has('thumb')){
+      //dd($request->input('name'));
+     // dd($request->all());
+        if($request->file('thumb')){
             $img=$request->thumb;
              $file_extension=['png','jpg','jpeg'];
              $extension=$img->getClientOriginalExtension();
              $namFile=$img->getClientOriginalName();
              $exe_flag=true;
-             /*
+             
              //check đuôi file
              $check=in_array($extension,$file_extension);
              if(!$check){
@@ -69,7 +69,7 @@ class SliderController extends Controller
                     'error' => true,
                    'message' => "Thêm Thất Bại"
                ]);
-             }*/
+             }
              //luu database
                   if($exe_flag){
                         $result=$this->sliderService->create($request,$namFile);
@@ -93,7 +93,7 @@ class SliderController extends Controller
                            'message' => "Cập Nhật Thất Bại"
                        ]);
         
-                       dd($result);
+                    //   dd($result);
     }
 }
 
@@ -137,6 +137,8 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
+      // dd($request->all());
+      //  dd($request->file('thumb'));
         if($request->file('thumb'))
        {
         $img=$request->thumb;
@@ -148,35 +150,46 @@ class SliderController extends Controller
         $check=in_array($extension,$file_extension);
         if(!$check){
             $exe_flag=false;
-            Session()->flash('error','Thêm slider thất bại,vui lòng kiểm tra file ảnh');
-                return redirect()->back();
+            return response()->json([
+                'error' => true,
+               'message' => "Cập Nhật Thất Bại"
+           ]);
         }
          if($exe_flag){
-            $result=$this->sliderService->update($request,$namFile,$id);
+            $result=$this->sliderService->update($request,$namFile);
             $img->storeAs('public/sliders',$namFile);
 
          }else{
-             Session()->flash('error','Thêm slider thất bại');
-             return redirect()->back();
+            return response()->json([
+                'error' => true,
+               'message' => "Cập Nhật Thất Bại"
+           ]);
          }
          if($result){
-             Session()->flash('success','Thêm slider thành công');
-             return redirect()->route('admin.sliders.list');
+            return response()->json([
+                'error' => false,
+                'message' => "Cập Nhật Thành Công"
+            ]);
          }else{
-             Session()->flash('error','Thêm slider thất bại!');
-             return redirect()->back();
+            return response()->json([
+                'error' => true,
+               'message' => "Cập Nhật Thất Bại"
+           ]);
          }
         
 
     }else{
-        $result=$this->sliderService->update($request,$request->input('img'),$id);
-    
+        $result=$this->sliderService->update($request,$request->input('img'));
         if($result){
-            Session()->flash('success','Cập nhập thành công');
-            return redirect()->route('admin.sliders.list');
+            return response()->json([
+                'error' => false,
+                'message' => "Cập Nhật Thành Công"
+            ]);
            }
-           Session()->flash('error','Cập nhập thất bại');
-           return redirect()->back();
+           return response()->json([
+            'error' => true,
+           'message' => "Cập Nhật Thất Bại"
+       ]);
     }
     }
 

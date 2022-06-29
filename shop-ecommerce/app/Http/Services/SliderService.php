@@ -31,9 +31,9 @@ class SliderService{
    function getItems($id){
       return Slider::where('id',$id)->get();
    }
-   function update($request,$namefile,$id){
+   function update($request,$namefile){
        try {
-           Slider::where('id',$id)->update([
+           Slider::where('id',$request->input('id'))->update([
                'name'=>$request->input('name'),
                'description'=>$request->input('description'),
                'active'=>$request->input('active'),

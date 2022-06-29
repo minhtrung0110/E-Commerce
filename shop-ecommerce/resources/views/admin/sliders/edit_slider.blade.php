@@ -12,9 +12,10 @@
                     <p>Người dùng điền chủ đề ảnh, mô tả và tải ảnh lên:</p>
                     </div>
                 @foreach($sliders as $slider)
-                <form method="post" action="" id="form-add-sliders" class="row" enctype="multipart/form-data">
+                <form method="post" action="" id="form-edit-sliders" class="row" enctype="multipart/form-data">
 
                     <!-- text input -->
+                    <input type="hidden" value="{{$slider->id}}" name="id" >
                     <div class="form-group col-sm-10">
                         <label>Tên Chủ Đề</label>
                         <input type="text" name='name' id="name" value="{{$slider->name}}" class="form-control" placeholder="Tên chủ đề...">
@@ -30,7 +31,7 @@
             
                     <div class="form-group col-sm-10">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="thumb" name="thumb"  onchange="ImagesFileAsURL('thumb','displayImg');GetValuefile('thumb','js-show-file');">
+                            <input type="file" class="custom-file-input" id="thumb" name="thumb"   onchange="ImagesFileAsURL('thumb','displayImg');GetValuefile('thumb','js-show-file');">
                             <label class="custom-file-label"id="js-show-file" for="thumb">{{$slider->thumb}}</label>
                            </div>
                            <span class="form-message"></span>
@@ -73,7 +74,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Validator({
+           /* Validator({
                 form: '#form-add-sliders',
                 formGroupSelector: '.form-group',
                 errorSelector: '.form-message',
@@ -82,36 +83,33 @@
                     Validator.isRequired('#description', 'Vui lòng nhập chi tiết'),
                   
                 ],
-                // onSubmit: function (data) {    
-                //    const namb={
-                //             name: $('#name').val(),
-                //             description: $('#description').val(),
-                //             active: $('#active').val(),
-                //             thumb: document.getElementById('thumb').files
-                //     }
-                //      console.log(namb)
-                //     $.ajax({
-                //     type: 'POST',
-                //     datatype: 'JSON',
-                //     data: namb,
-                //     url: '/admin/sliders/add',
-                //     success: function (respond) {
-                //         console.log(respond.message)
+            })*/
+            $('#form-edit-sliders').submit(function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "/admin/sliders/edit/{id}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    if (response) {
+                        // this.reset();
+                        console.log(response);
+                        if (response.error === false) {
+                            swal("Cập Nhật Thành Công", "Chủ Đề Đã Được Cập Nhật", "success");
+                            setTimeout(() => {
+                                window.location = "/admin/sliders/list"
+                            }, 1200);
+                        } else {
+                            swal("Cập Nhật Thất Bại", "Cập Nhật Chủ Đề Và Ảnh Thất Bại", "error");
 
-                //         if (respond.error !== true ) {                       
-                //             swal("Thêm Thành Công", "Nhân Viên Đã Được Thêm", "success");
-                //            setTimeout(() => {window.location="/admin/staffs/list"}, 1200);
-                //         } 
-                //         else  {
-                //             swal("Thêm Thất Bại", "Email Của Nhân Viên Đã Tồn Tại", "error");
-                           
-                //         }
-                //     }})
+                        }
+                    }
+                },
                
-
-                // }
-
-
-            })
+            });
+        });
         });
     </script>

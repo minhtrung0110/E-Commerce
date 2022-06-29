@@ -21,10 +21,7 @@ function removeRow(id, url) {
                 datatype: 'JSON',
                 data: { id },
                 url: url,
-                headers: {
-                    "X-CSRFToken": csrftoken,
-                    "Content-Type": "application/json"
-                },
+                
                 success: function (result) {
                     if (result.error === false) {
                         swal("Tốt! Xoá Thành Công !", {
