@@ -27,8 +27,8 @@ class ProductService{
         return Product::where('id',$id)->first();
     }
     public function getAllProduct(){
-     
-        
+
+
         return Product::join('image_products','image_products.product_id','=','products.id')
         ->join('images','images.id','=','image_products.image_id')
         ->join('group_products','group_products.id','=','products.group_id')
@@ -37,7 +37,7 @@ class ProductService{
         ->get(['products.id','group_products.name','group_products.id as group_products_id','products.name as name_product','description','price','amount','active','code_color','img'])
         ;
     }
-    public function getProduct($id){
+    public static function getProduct($id){
         return Product::join('image_products','image_products.product_id','=','products.id')
         ->join('images','images.id','=','image_products.image_id')
         ->join('group_products','group_products.id','=','products.group_id')
@@ -58,8 +58,8 @@ class ProductService{
         ;
     }
     public function getNewArrivalProducts(){
-     
-        
+
+
         return Product::join('image_products','image_products.product_id','=','products.id')
         ->join('images','images.id','=','image_products.image_id')
         ->join('group_products','group_products.id','=','products.group_id')
@@ -69,7 +69,7 @@ class ProductService{
         ->get(['products.id','group_products.name','products.name as name_product','description','price','amount','active','code_color','images.img'])
         ;
     }
-  
+
     public function create($request){
        try {
           $products=Product::create([
@@ -91,7 +91,7 @@ class ProductService{
                         ->where('products.id',$id_product)
                         ->get(['products.name as name_product','group_products.name as name_cate','products.id as id_product']);
     }
-       
+
     public function getSearch($request){
         return Product::join('image_products','image_products.product_id','=','products.id')
         ->join('images','images.id','=','image_products.image_id')
@@ -123,7 +123,7 @@ class ProductService{
         }
         try {
             Product::where('id',$request->input('id'))->update([
-                
+
                 'active'=>(int)$active
             ]);
         } catch (\Exception $err) {
@@ -170,7 +170,7 @@ class ProductService{
         else {
             $query=$query->where('products.name', 'LIKE', "%{$request->input('search-product')}%");
         }
-       
+
         return $query
         ->paginate(32)
         ->withQueryString();
@@ -197,7 +197,7 @@ class ProductService{
         else {
             $query=$query->where('products.name', 'LIKE', "%{$request->input('search-product')}%");
         }
-       
+
         return $query
         ->paginate(32)
         ->withQueryString();

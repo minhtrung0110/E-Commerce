@@ -75,7 +75,7 @@ class Helper
             <td>' . $name_product[0]['name'] . '</td>
             <td>' . $import['amount'] . '</td>
             <td>' . number_format($import['price']) . '</td>
-            <td> 
+            <td>
               <a href="#" class="btn btn-danger btn-sm" onclick="removeRow(' . $id_delete . ', \'/admin/imports/destroy\')")">
                 <i class="fas fa-trash"></i>
               </a>
@@ -114,9 +114,9 @@ class Helper
             $html .= '
           <tr height="40px" id="1191685316" class="odd">
             <td class="" style="max-width:300px">
-              ' . $name_provider[0]['name'] . ' <br> 
+              ' . $name_provider[0]['name'] . ' <br>
             </td>
-      
+
             <td class="money text-center">' . $name_category[0]['name'] . '</td>
             <td class="quantity center text-center">' . $name_product[0]['name'] . '</td>
             <td class="total money text-right">' . $import->amount . '</td>
@@ -124,8 +124,8 @@ class Helper
             <td class="total money text-right">' . number_format($import->amount * $import->price) . '</td>
           </tr>';
         }
-        $html .= '  
-      
+        $html .= '
+
       <tr height="40px" class="order_summary order_total">
         <td class="text-right" colspan="5"><b>Tổng tiền</b></td>
         <td class="total money text-right"><b>' . number_format($total_price) . 'VNĐ </b></td>
@@ -177,12 +177,12 @@ class Helper
             $customer_firstname = $data->first_name;
             $customer_lastname = $data->last_name;
             $html = '
-  
+
             <div class="dropdown">
                 <button class="dropbtn">
-                     
-                        <span>' . $customer_firstname . ' ' . $customer_lastname . '</span>                
-                        
+
+                        <span>' . $customer_firstname . ' ' . $customer_lastname . '</span>
+
                 </button>
             <div class="dropdown-content">
                 <a href="/myprofile">Thông Tin Tài Khoản</a> </a>
@@ -213,15 +213,15 @@ class Helper
                                ' . $slider->description . '
                             </span>
                         </div>
-                            
+
                         <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
                             <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
                             ' . $slider->name . '
                             </h2>
                         </div>
-                            
+
                         <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                           
+
                         </div>
                     </div>
                 </div>
@@ -262,7 +262,7 @@ class Helper
                                 </span>
                             </div>
 
-                           
+
                         </div>
                     </div>
                 </div>
@@ -304,7 +304,7 @@ class Helper
                                 </span>
                             </div>
 
-                           
+
                         </div>
                     </div>
                 </div>
@@ -326,7 +326,7 @@ class Helper
               <td>' . self::RenderRole($staff->role_id) . '</td>
               <td>' . $staff->phone . '</td>
               <td>' . $staff->email . '</td>
-            
+
               <td>' . self::active($staff->status) . '</td>
               <td>
               <a  class="btn btn-primary btn-sm" href="/admin/staffs/edit/' . $staff->id . '"><i class="fas fa-edit"></i></a>
@@ -352,7 +352,7 @@ class Helper
               <span onclick="closeDetailStaff(' . $staff->id . ')" class="close"
               title="Close Modal">&times;</span>
             </div>
- 
+
               <div class="card-body pd-45 row">
                 <div class="form-group col-md-12">
                   <label for="name">Họ Tên Nhân Viên</label>
@@ -374,12 +374,12 @@ class Helper
                   <label for="name">Email</label>
                   <input type="text" class="form-control" disabled value="' . $staff->email . '" placeholder="">
                 </div>
-               
+
                 <div class="form-group col-md-12">
                   <label for="name">Địa Chỉ</label>
                   <input type="text" class="form-control" disabled value="' . $staff->address . '">
                 </div>
-                
+
                 <div class="form-group col-md-6">
                   <label for="name">Ngày Bắt Đầu Làm Việc</label>
                   <input type="text" class="form-control" disabled value="' . date('d-m-Y', strtotime($staff->start_date)) . '">
@@ -389,12 +389,12 @@ class Helper
                   <input type="text" class="form-control" disabled value="' . date('d-m-Y', strtotime($staff->end_date)) . '">
                 </div>
 
-               
+
               </div>
               <!-- /.card-body -->
-            
+
           </div>
-               
+
         </div>';
         }
 
@@ -411,7 +411,7 @@ class Helper
               <td>' . $staff->first_name . ' ' . $staff->last_name . '</td>
               <td>' . $staff->phone . '</td>
               <td>' . $staff->email . '</td>
-            
+
               <td>' . self::active($staff->status) . '</td>
               <td>
               <a  class="btn btn-primary btn-sm" href="/admin/customers/edit/' . $staff->id . '"><i class="fas fa-edit"></i></a>
@@ -437,7 +437,7 @@ class Helper
               <span onclick="closeDetailStaff(' . $staff->id . ')" class="close"
               title="Close Modal">&times;</span>
             </div>
- 
+
               <div class="card-body pd-45 row">
                 <div class="form-group col-md-12">
                   <label for="name">Họ Tên Khách Hàng</label>
@@ -459,12 +459,12 @@ class Helper
                   <label for="name">Email</label>
                   <input type="text" class="form-control" disabled value="' . $staff->email . '" placeholder="">
                 </div>
-              
+
                 <div class="form-group col-md-12">
                   <label for="name">Địa Chỉ</label>
                   <input type="text" class="form-control" disabled value="' . $staff->address . '">
                 </div>
-                
+
                 <div class="form-group col-md-6">
                   <label for="name">Ngày Đăng Ký Tài Khoản</label>
                   <input type="text" class="form-control" disabled value="' . date('d-m-Y', strtotime($staff->created_at)) . '">
@@ -474,12 +474,12 @@ class Helper
                   <input type="text" class="form-control" disabled value="' . date('d-m-Y', strtotime($staff->updated_at)) . '">
                 </div>
 
-               
+
               </div>
               <!-- /.card-body -->
-            
+
           </div>
-               
+
         </div>';
         }
 
@@ -514,7 +514,7 @@ class Helper
                 <div class="block2-pic hov-img0">
                     <img src="/storage/uploads/' . $item->img . '" alt="IMG-PRODUCT">
 
-                   
+
                 </div>
 
                 <div class="block2-txt flex-w flex-t p-t-14">
@@ -528,7 +528,7 @@ class Helper
                         </span>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -556,7 +556,7 @@ class Helper
             $info_product = \App\Helpers\Helper::renderListProductOrder($item->order_id);
             $payment_method = \App\Helpers\Helper::getpaymentMethod($item->payment_method_id);
             $html .= '
-            
+
             <tr class="order-item" data-redirect="/myprofile/invoices/' . $item->order_id . '">
 
             <td class="items id_order">TR' . $item->order_id . '</td>
@@ -567,21 +567,21 @@ class Helper
             <td class="items">' . $item->total_price . '</td>
             <td class="items">' . $payment_method . '</td>
             <td class="items">' . $STATUS[$item->status_order] . '</td>
-           
+
         </tr>
-       
+
             ';
         }
         return $html;
     }
-    public function renderListProductOrder($order_id)
+    public static function renderListProductOrder($order_id)
     {
-        $list_product = \App\Http\Services\OrderService::getListProductOrderDetails($order_id);
+        $list_product = (new \App\Http\Services\OrderService)->getListProductOrderDetails($order_id);
         $html = '';
         foreach ($list_product as $item) {
             $html .= '
             <a class="name_product_content"  href="/detail-product/' . $item->product_id . '-' . Str::slug($item->product_name, '-') . '.html">
-           
+
             ' . $item->product_name . '  -  Số Lượng: ' . $item->amount_detail . '<br> </a>
             ';
         }
@@ -590,11 +590,11 @@ class Helper
     }
     public static function getpaymentMethod($id)
     {
-        $html = \App\Http\Services\PaymentMethodService::getpaymentMethod($id);
+        $html = (new \App\Http\Services\PaymentMethodService)->getpaymentMethod($id);
         return $html->name;
     }
 
-    public function renderOrderDetailsCustomer($order_details)
+    public static function renderOrderDetailsCustomer($order_details)
     {
         $html = '';
         $tr = '';
@@ -619,22 +619,22 @@ class Helper
                     </p>
                     <small class="order_ref">MÃ SP: ' . $item->product_id . '</small>
                     <br>
-                   
+
                 </td>
                 <td class="order_avail txt-center">' . $item->amount_detail . '                </td>
                 <td class="price txt-center">' . $item->product_price . '
-                </td>    
+                </td>
                 <td class="price txt-center">
                   ' . number_format($item->amount_detail * $item->product_price) . ' VNĐ
                 </td>
-                
+
             </tr>
             ';
         }
         $html .= '
             <tbody>
               ' . $tr . '
-                          
+
             </tbody>
             <tfoot>
                 <tr>
@@ -645,7 +645,7 @@ class Helper
                 <tr>
                     <td colspan="2"><strong>Tiền Giảm Giá (nếu có):</strong>
                     </td>
-                   
+
                     <td colspan="2"><strong>' . number_format($total_price * ($discount_value / 100)) . ' VNĐ </strong>
                     </td>
                 </tr>
@@ -656,13 +656,13 @@ class Helper
                     </td>
                 </tr>
             </tfoot>
-        
+
         ';
         return $html;
     }
 
     /* --------------------------------List Product--------------------------------*/
-    public static function renderListProducts($products)
+    public  static function renderListProducts($products)
     {
         $html = '';
         if (is_null($products)) return $html;
@@ -681,7 +681,7 @@ class Helper
                     <div class="block2-pic hov-img0">
                         <img src="/storage/uploads/' . $image . '"alt="IMG-PRODUCT">
 
-                      
+
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">
@@ -695,7 +695,7 @@ class Helper
                                 </span>
                             </div>
 
-                           
+
                         </div>
                     </div>
                 </div>
@@ -704,7 +704,7 @@ class Helper
         }
         return $html;
     }
-    public function renderOrderDetailsCustomerSendMail($order_details)
+    public  static function renderOrderDetailsCustomerSendMail($order_details)
     {
         $html = '';
         $tr = '';
@@ -724,24 +724,24 @@ class Helper
 
             $tr .= '
             <tr>
-                <td style="text-align:center"><span >' . $key . '</span></td>               
+                <td style="text-align:center"><span >' . $key . '</span></td>
                 <td style="text-align:center"><p >' . $item->name . ' </p>
                     <small class="order_ref">MÃ SP: ' . $item->product_id . '</small>
-                    <br>                 
+                    <br>
                 </td>
                 <td style="text-align:center">' . $item->amount_detail . '                </td>
-                <td style="text-align:center">' . $item->product_price . '</td>    
+                <td style="text-align:center">' . $item->product_price . '</td>
                 <td style="text-align:center">
                   ' . number_format($item->amount_detail * $item->product_price) . ' VNĐ
                 </td>
-                
+
             </tr>
             ';
         }
         $html .= '
             <tbody>
               ' . $tr . '
-                          
+
             </tbody>
             <tfoot>
                 <tr>
@@ -752,8 +752,8 @@ class Helper
                 <tr>
                     <td colspan="2" style="text-align:center" ><strong>Tiền Giảm Giá (nếu có):</strong>
                     </td>
-                   
-                    <td colspan="2" style="text-align:center" >' . number_format($total_price * ($discount_value / 100)) . ' VNĐ 
+
+                    <td colspan="2" style="text-align:center" >' . number_format($total_price * ($discount_value / 100)) . ' VNĐ
                     </td>
                 </tr>
                 <tr>
@@ -775,13 +775,13 @@ class Helper
                 </td>
             </tr>
             </tfoot>
-        
+
         ';
         return $html;
     }
 
     /*----------------------------------------------------------------ROLE----------------------------------------------------------------*/
-    public function renderListRoles($listRoles)
+    public  static  function renderListRoles($listRoles)
     {
         $html = '';
         if (is_null($listRoles)) return $html;
@@ -802,7 +802,7 @@ class Helper
         }
         return $html;
     }
-    public function renderPopupViewItemRole($listRoles)
+    public static function renderPopupViewItemRole($listRoles)
     {
         $html = '';
         foreach ($listRoles as $item){
@@ -816,7 +816,7 @@ class Helper
               <span onclick="closeDetailStaff(' . $item->id . ')" class="close"
               title="Close Modal">&times;</span>
             </div>
- 
+
               <div class="card-body pd-45 row">
                 <div class="form-group col-md-12">
                   <label for="name">Họ Tên Khách Hàng</label>
@@ -827,15 +827,15 @@ class Helper
                 </ul>
               </div>
               <!-- /.card-body -->
-            
+
           </div>
-               
+
         </div>';
         }
 
         return $html;
     }
-    public function renderPopupItemViewPermissions($id)
+    public static function renderPopupItemViewPermissions($id)
     {
         $html = '';
         $detail_roles = \App\Http\Services\RoleService::getListPermissionsWithRoleID($id);
@@ -849,7 +849,7 @@ class Helper
 
         return $html;
     }
-    public function renderListPermissions($listPermissions)
+    public static function renderListPermissions($listPermissions)
     {
         $html = '';
         if (is_null($listPermissions)) return $html;
@@ -859,13 +859,13 @@ class Helper
 
             <td>' . $item->id . '</td>
             <td>' . $item->name . '</td>
-           
+
           </tr>
             ';
         }
         return $html;
     }
-    public function renderOptionPermission($listPermissions){
+    public  static function renderOptionPermission($listPermissions){
         $html = '';
         if (is_null($listPermissions)) return $html;
         foreach ($listPermissions as $item) {
@@ -878,33 +878,33 @@ class Helper
         }
         return $html;
     }
-    public function renderOptionPermissionEdit($listPermissions,$listChecked){
+    public static function renderOptionPermissionEdit($listPermissions,$listChecked){
         $html = '';
         $check='';
         if (is_null($listPermissions)) return $html;
         foreach ($listPermissions as $item) {
            foreach ($listChecked as $checked) { //
-               if($item->id == $checked->permission_id) {                 
-                $check='checked';              
+               if($item->id == $checked->permission_id) {
+                $check='checked';
                 break;
                }
                 else $check='';
                //echo $item->id;
-           }        
+           }
             $html .= '
             <div class="custom-control custom-checkbox">
             <input class="custom-control-input" '.$check.' name="permission_id[]" value="'.$item->id.'" type="checkbox" id="customCheckbox'.$item->id.'" >
             <label for="customCheckbox'.$item->id.'" class="custom-control-label">'.$item->name.'</label>
           </div>
             ';
-           
-            
+
+
         }
         return $html;
     }
 
     /*----------------------------------------------------Statictis********************************/
-    public function renderListCustomerFail($listCustomers){
+    public  static  function renderListCustomerFail($listCustomers){
         $html = '';
       //  if (is_null($listCustomers) return $html;
         foreach ($listCustomers as $key=> $item) {
@@ -922,7 +922,7 @@ class Helper
         }
         return $html;
     }
-    public function renderListRatingsFormCustomer($listRatings){
+    public static function renderListRatingsFormCustomer($listRatings){
         $html = '';
         foreach ($listRatings as $key => $rating) {
         $html .= ' <tr>
