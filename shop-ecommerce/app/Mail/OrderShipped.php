@@ -18,10 +18,10 @@ class OrderShipped extends Mailable
      *
      * @return void
      */
-    public function __construct($customer,$order_id)
+    public function __construct($customer, $order_id)
     {
         $this->customer = $customer;
-      $this->order = \App\Http\Services\OrderDetailService::getItem($order_id);
+        $this->order = \App\Http\Services\OrderDetailService::getItem($order_id);
     }
 
     /**
@@ -31,10 +31,10 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-       // dd($this->order);
-        return $this->view('client.mail.mail_order',[
-            'orders'=>$this->order,
-            'customer'=>$this->customer
+        // dd($this->order);
+        return $this->view('client.mail.mail_order', [
+            'orders' => $this->order,
+            'customer' => $this->customer
         ]);
     }
 }

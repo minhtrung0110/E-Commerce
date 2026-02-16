@@ -58,3 +58,11 @@ sau khi xóa chạy câu lệnh "php artisan storage:link" nếu hiện thông b
 
 #### Date parsing
 date ('d-m-Y', strtotime($staff->end_date)) 
+
+
+### CÁC LỖI CÒN TỒN TẠI
+1. SENMAIL nên chuyển sang redis<br>
+2. Logic Sendmail quên mật khẩu <br>
+3. Xử lý doanh thu từ VNPAY <br>
+4. Thêm nhiều thống kê hơn <br>
+5. Thêm chức năng từ Google API <br>
